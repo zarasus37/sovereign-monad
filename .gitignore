@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+dist/
+*.log
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+!.vscode/
+!.vscode/tasks.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.tgz
+
+# Logs
+logs/
+*.log
+
+# Test coverage
+coverage/
