@@ -1,0 +1,19 @@
+# Default all text files in the repo to LF for consistent cross-platform diffs.
+* text=auto eol=lf
+
+# Windows-native script types can keep CRLF where that is more conventional.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Keep common source and config formats explicit.
+*.sh text eol=lf
+*.ps1 text eol=lf
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.env text eol=lf
+Dockerfile text eol=lf
