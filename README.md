@@ -128,6 +128,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\refresh-status.ps1
 - VS Code task: `Terminal: Run Task` -> `Refresh STATUS.md`
 - VS Code task: `Terminal: Run Task` -> `Refresh STATUS.md + Git Status`
 - Git commits: `.githooks/pre-commit` refreshes and stages `STATUS.md` automatically before each commit
+- `.editorconfig` and `.vscode/settings.json` keep line endings and whitespace behavior consistent across editors
 
 ## Legacy Modes
 

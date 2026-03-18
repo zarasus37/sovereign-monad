@@ -15,6 +15,7 @@ dist/
 
 !.vscode/
 !.vscode/tasks.json
+!.vscode/settings.json
 
 # Python cache
 __pycache__/
