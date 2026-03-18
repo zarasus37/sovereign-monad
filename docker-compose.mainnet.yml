@@ -2,7 +2,7 @@ services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     hostname: zookeeper
-    container_name: monad-mev-mainnet-zookeeper
+    container_name: base-arb-mev-mainnet-zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
     ports:
@@ -20,7 +20,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:7.5.0
     hostname: kafka
-    container_name: monad-mev-mainnet-kafka
+    container_name: base-arb-mev-mainnet-kafka
     depends_on:
       zookeeper:
         condition: service_healthy
@@ -42,46 +42,48 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: monad-mev-mainnet-kafka-ui
+    container_name: base-arb-mev-mainnet-kafka-ui
     depends_on:
       - kafka
     ports:
       - "8080:8080"
     environment:
-      KAFKA_CLUSTERS_0_NAME: monad-mev-mainnet
+      KAFKA_CLUSTERS_0_NAME: base-arb-mev-mainnet
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
 
-  monad-market-agent:
+  base-market-agent:
     build:
-      context: ./monad-market-agent
+      context: ./base-market-agent
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-monad-agent
+    container_name: base-arb-mev-mainnet-base-agent
     depends_on:
       - kafka
     environment:
-      - MONAD_WS_URL=${MONAD_WS_URL}
-      - MONAD_RPC_URL=${MONAD_RPC_URL}
-      - KURU_ETH_USDC_ADDR=${KURU_ETH_USDC_ADDR}
-      - KURU_WETH_MON_ADDR=${KURU_WETH_MON_ADDR}
-      - KURU_WETH_AUSD_ADDR=${KURU_WETH_AUSD_ADDR}
-      - KURU_MON_USDC_ADDR=${KURU_MON_USDC_ADDR}
+      - CHAIN_A_WS_URL=${BASE_WS_URL}
+      - CHAIN_A_RPC_URL=${BASE_RPC_URL}
+      - CHAIN_A_NAME=base
+      - AERODROME_ROUTER_ADDR=${AERODROME_ROUTER_ADDR}
+      - AERODROME_ETH_USDC_POOL=${AERODROME_ETH_USDC_POOL}
       - KAFKA_BROKERS=kafka:29092
-      - KAFKA_TOPIC=market.monad.price-snapshot
+      - KAFKA_TOPIC=market.base.price-snapshot
       - LOG_LEVEL=info
     restart: on-failure
 
-  eth-market-agent:
+  arbitrum-market-agent:
     build:
-      context: ./eth-market-agent
+      context: ./arbitrum-market-agent
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-eth-agent
+    container_name: base-arb-mev-mainnet-arbitrum-agent
     depends_on:
       - kafka
     environment:
-      - ETH_WS_URL=${ETH_WS_URL}
-      - ETH_RPC_URL=${ETH_RPC_URL}
+      - CHAIN_B_WS_URL=${ARBITRUM_WS_URL}
+      - CHAIN_B_RPC_URL=${ARBITRUM_RPC_URL}
+      - CHAIN_B_NAME=arbitrum
+      - CAMELOT_ROUTER_ADDR=${CAMELOT_ROUTER_ADDR}
+      - CAMELOT_ETH_USDC_POOL=${CAMELOT_ETH_USDC_POOL}
       - KAFKA_BROKERS=kafka:29092
-      - KAFKA_TOPIC=market.eth.price-snapshot
+      - KAFKA_TOPIC=market.arbitrum.price-snapshot
       - LOG_LEVEL=info
     restart: on-failure
 
@@ -89,14 +91,14 @@ services:
     build:
       context: ./spread-scanner
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-spread-scanner
+    container_name: base-arb-mev-mainnet-spread-scanner
     depends_on:
-      - monad-market-agent
-      - eth-market-agent
+      - base-market-agent
+      - arbitrum-market-agent
     environment:
       - KAFKA_BROKERS=kafka:29092
-      - INPUT_TOPIC_MONAD=market.monad.price-snapshot
-      - INPUT_TOPIC_ETH=market.eth.price-snapshot
+      - INPUT_TOPIC_CHAIN_A=market.base.price-snapshot
+      - INPUT_TOPIC_CHAIN_B=market.arbitrum.price-snapshot
       - OUTPUT_TOPIC=market.spread.signal
       - MIN_SPREAD_BPS=${MIN_SPREAD_BPS:-15}
       - MIN_LIQUIDITY_10BPS_USD=${MIN_LIQUIDITY_10BPS_USD:-1000}
@@ -108,7 +110,7 @@ services:
     build:
       context: ./opportunity-constructor
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-opp-constructor
+    container_name: base-arb-mev-mainnet-opp-constructor
     depends_on:
       - spread-scanner
     environment:
@@ -124,7 +126,7 @@ services:
     build:
       context: ./risk-engine
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-risk-engine
+    container_name: base-arb-mev-mainnet-risk-engine
     depends_on:
       - opportunity-constructor
     environment:
@@ -142,7 +144,7 @@ services:
     build:
       context: ./portfolio-manager
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-portfolio
+    container_name: base-arb-mev-mainnet-portfolio
     depends_on:
       - risk-engine
     environment:
@@ -155,18 +157,21 @@ services:
       - LOG_LEVEL=info
     restart: on-failure
 
-  monad-arb-bot:
+  arb-bot:
     build:
-      context: ./monad-arb-bot
+      context: ./arb-bot
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-arb-bot
+    container_name: base-arb-mev-mainnet-arb-bot
     depends_on:
       - portfolio-manager
     environment:
       - KAFKA_BROKERS=kafka:29092
       - INPUT_TOPIC=execution.execution-plan
       - OUTPUT_TOPIC=execution.execution-result
-      - MONAD_RPC_URL=${MONAD_RPC_URL}
+      - CHAIN_A_RPC_URL=${BASE_RPC_URL}
+      - CHAIN_B_RPC_URL=${ARBITRUM_RPC_URL}
+      - CHAIN_A_NAME=base
+      - CHAIN_B_NAME=arbitrum
       - PRIVATE_KEY=${WALLET_PRIVATE_KEY}
       - DRY_RUN=true
       - MAX_POSITION_USD=100
@@ -178,12 +183,12 @@ services:
     build:
       context: ./model-feedback-logger
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-feedback
+    container_name: base-arb-mev-mainnet-feedback
     depends_on:
       - kafka
     environment:
       - KAFKA_BROKERS=kafka:29092
-      - INPUT_TOPICS=market.monad.price-snapshot,market.eth.price-snapshot,market.spread.signal,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-result
+      - INPUT_TOPICS=market.base.price-snapshot,market.arbitrum.price-snapshot,market.spread.signal,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-result
       - OUTPUT_DIR=/app/logs
       - LOG_LEVEL=info
     volumes:
@@ -194,13 +199,13 @@ services:
     build:
       context: ./stress-monitor
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-stress
+    container_name: base-arb-mev-mainnet-stress
     depends_on:
       - kafka
     environment:
       - KAFKA_BROKERS=kafka:29092
       - OUTPUT_TOPIC=market.stress-signal
-      - MONAD_WS_URL=${MONAD_WS_URL}
+      - CHAIN_A_WS_URL=${BASE_WS_URL}
       - LOG_LEVEL=info
     restart: on-failure
 
@@ -208,7 +213,7 @@ services:
     build:
       context: ./monitoring
       dockerfile: Dockerfile
-    container_name: monad-mev-mainnet-dashboard
+    container_name: base-arb-mev-mainnet-dashboard
     ports:
       - "8501:8501"
     environment:
@@ -227,4 +232,4 @@ volumes:
 
 networks:
   default:
-    name: monad-mev-mainnet
+    name: base-arb-mev-mainnet

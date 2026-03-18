@@ -1,0 +1,31 @@
+import { ArbitrageBot } from './service';
+import { createLogger } from './utils/logger';
+
+const logger = createLogger('main');
+let bot: ArbitrageBot | null = null;
+
+async function main(): Promise<void> {
+  bot = new ArbitrageBot();
+  await bot.start();
+}
+
+process.on('SIGINT', async () => {
+  logger.info('Shutting down');
+  if (bot) {
+    await bot.stop();
+  }
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  logger.info('Shutting down');
+  if (bot) {
+    await bot.stop();
+  }
+  process.exit(0);
+});
+
+main().catch((error) => {
+  logger.error({ error }, 'Fatal error starting arb-bot');
+  process.exit(1);
+});

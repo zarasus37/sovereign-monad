@@ -23,8 +23,8 @@ export function getConfig(): Config {
   configInstance = {
     kafkaBrokers: brokers.split(',').map(b => b.trim()),
     inputTopics: [
-      process.env.INPUT_TOPIC_MONAD || 'market.monad.price-snapshot',
-      process.env.INPUT_TOPIC_ETH || 'market.eth.price-snapshot',
+      process.env.INPUT_TOPIC_CHAIN_A || process.env.INPUT_TOPIC_MONAD || 'market.base.price-snapshot',
+      process.env.INPUT_TOPIC_CHAIN_B || process.env.INPUT_TOPIC_ETH || 'market.arbitrum.price-snapshot',
     ],
     outputTopic: process.env.OUTPUT_TOPIC || 'market.spread.signal',
     clientId: process.env.KAFKA_CLIENT_ID || 'spread-scanner',

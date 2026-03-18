@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Monad MEV Monitoring Dashboard
+Base-Arbitrum MEV Monitoring Dashboard
 Real-time monitoring for cross-chain arbitrage system
 
 Usage:
@@ -25,13 +25,13 @@ KAFKA_BROKERS = os.getenv("KAFKA_BROKERS", "localhost:9092")
 LOGS_DIR = Path(os.getenv("LOGS_DIR", "./logs"))
 
 st.set_page_config(
-    page_title="Monad MEV Dashboard",
+    page_title="Base-Arbitrum MEV Dashboard",
     page_icon="📈",
     layout="wide"
 )
 
 # Title
-st.title("🎲 Monad MEV Dashboard")
+st.title("🎲 Base-Arbitrum MEV Dashboard")
 st.markdown("### Cross-Chain Arbitrage Monitor")
 
 # Sidebar - Controls
@@ -277,4 +277,4 @@ if refresh_rate > 0:
 
 # Footer
 st.markdown("---")
-st.caption(f"Monad MEV Dashboard | Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+st.caption(f"Base-Arbitrum MEV Dashboard | Last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")

@@ -1,57 +1,65 @@
-# SMMEVAE - Sovereign Monad MEV Arb Engine
+# SMMEVAE - Sovereign Base-Arbitrum MEV Arb Engine
 ## System Status & Operations Reference
 
 > Last Updated: Managed by `scripts/refresh-status.ps1`
-> Source of Truth: This file
-> Environment: Monad Mainnet (Chain ID 143) + Ethereum Mainnet
+> Source of Truth: [docs/MIGRATION-BASE-ARB.md](c:/Users/crisc/Dev/agents/monad-mev/docs/MIGRATION-BASE-ARB.md) for migration status, this file for operating notes
+> Environment: Base Mainnet + Arbitrum Mainnet
 > Operating Mode: DRY_RUN, liquidity-gated
 
 ---
 
 ## Current State
 
-The system is running on real Monad mainnet and real Ethereum mainnet market data.
+The active migration target is the Base/Arbitrum topology reflected in `docker-compose.mainnet.yml`.
 
-- Monad side: live Kuru orderbooks on Monad mainnet
-- Ethereum side: live Uniswap V3 ETH/USDC pricing
-- Dashboard: live at `http://localhost:8501`
-- Execution: DRY_RUN only
-- Current gating mode: realistic, liquidity-aware suppression
+- Base side: `base-market-agent` using Aerodrome-oriented pricing
+- Arbitrum side: `arbitrum-market-agent` using Camelot-oriented pricing
+- Dashboard: `http://localhost:8501`
+- Execution: `arb-bot` in `DRY_RUN=true`
+- Alerts: `alert-rules` active with webhook delivery validated
+- Current gating mode: spread, liquidity, and capacity thresholds enforced in the downstream pipeline
 
-The key current limitation is executable depth on the active Monad ETH route. The stack is healthy, but controlled signals are intentionally suppressed unless live liquidity is sufficient.
+The Base/Arbitrum DRY_RUN path has now been revalidated end to end. The active profile uses production-like validation thresholds while the stack remains safely in `DRY_RUN=true`. The remaining project work is live-capital readiness, not migration plumbing.
 
 ---
 
 ## Auto-Refreshed Ops Snapshot
 
 <!-- AUTO-STATUS:START -->
-Generated: 2026-03-18 02:25:23 UTC
+Generated: 2026-03-18 21:53:33 UTC
 
 ### Live Containers
 
 | Container | Status |
 |---|---|
-| `monad-mev-mainnet-arb-bot` | Up 9 hours |
-| `monad-mev-mainnet-dashboard` | Up 9 hours |
-| `monad-mev-mainnet-feedback` | Up 9 hours |
-| `monad-mev-mainnet-kafka` | Up 10 hours |
-| `monad-mev-mainnet-kafka-ui` | Up 10 hours |
-| `monad-mev-mainnet-opp-constructor` | Up 9 hours |
-| `monad-mev-mainnet-portfolio` | Up 9 hours |
-| `monad-mev-mainnet-risk-engine` | Up 9 hours |
-| `monad-mev-mainnet-spread-scanner` | Up 3 hours |
-| `monad-mev-mainnet-stress` | Up 10 hours |
-| `monad-mev-mainnet-zookeeper` | Up 10 hours (healthy) |
+| `base-arb-mev-mainnet-alert-rules` | Up 5 hours |
+| `base-arb-mev-mainnet-arb-bot` | Up 8 hours |
+| `base-arb-mev-mainnet-arbitrum-agent` | Up 8 hours |
+| `base-arb-mev-mainnet-base-agent` | Up 8 hours |
+| `base-arb-mev-mainnet-dashboard` | Up 9 hours |
+| `base-arb-mev-mainnet-feedback` | Up 8 hours |
+| `base-arb-mev-mainnet-kafka` | Up 9 hours |
+| `base-arb-mev-mainnet-kafka-ui` | Up 9 hours |
+| `base-arb-mev-mainnet-opp-constructor` | Up 8 hours |
+| `base-arb-mev-mainnet-portfolio` | Up 4 hours |
+| `base-arb-mev-mainnet-risk-engine` | Up 8 hours |
+| `base-arb-mev-mainnet-spread-scanner` | Up 8 hours |
+| `base-arb-mev-mainnet-stress` | Up 9 hours |
+| `base-arb-mev-mainnet-zookeeper` | Up 9 hours (healthy) |
 
 ### Active Runtime Gates
 
 ```env
-MIN_SPREAD_BPS=15
-MIN_LIQUIDITY_10BPS_USD=5000
-MIN_CAPACITY_USD=10000
+MIN_SPREAD_BPS=12
+MIN_LIQUIDITY_10BPS_USD=750
+MIN_CAPACITY_USD=3000
+MIN_SIZE_USD=250
+RISK_FIXED_COST_BPS=8
+RISK_MIN_EFFECTIVE_SPREAD_BPS=12
 DRY_RUN=true
-MAX_SINGLE_TRADE_PERCENT=0.1
+MAX_SINGLE_TRADE_PERCENT=10
 MAX_BRIDGE_EXPOSURE_PERCENT=25
+MAX_SLIPPAGE_BPS=50
 ```
 <!-- AUTO-STATUS:END -->
 
@@ -59,63 +67,68 @@ MAX_BRIDGE_EXPOSURE_PERCENT=25
 
 ## Real Market Wiring
 
-### Monad mainnet endpoints
+### Base mainnet endpoints
 
-- HTTP RPC: `https://rpc.monad.xyz`
-- WebSocket: `wss://wss.monad-rpc.huginn.tech`
+- HTTP RPC: `https://mainnet.base.org`
+- WebSocket: `wss://base-rpc.publicnode.com`
 
-### Live Kuru market addresses in use
+### Arbitrum mainnet endpoints
 
-- Router: `0xb3e6778480b2E488385E8205eA05E20060B813cb`
-- `WETH/AUSD`: `0xcd8cc5f5b6f744403ad96a8802e050bba1aba37e`
-- `MON/USDC`: `0x065C9d28E428A0db40191a54d33d5b7c71a9C394`
+- HTTP RPC: `https://arb1.arbitrum.io/rpc`
+- WebSocket: `wss://arbitrum-one-rpc.publicnode.com`
 
-### Routing model
+### Active market venues
 
-- Direct `WETH/MON` was not reliable enough for current mainnet use.
-- Monad ETH is currently normalized from live `WETH/AUSD` into `kuru:ETH/USDC:spot` for downstream compatibility.
-- Downstream components key on the base asset, so this keeps the architecture intact while the quote venue differs.
+- Base: Aerodrome ETH/USDC flow via `base-market-agent`
+- Arbitrum: Camelot ETH/USDC flow via `arbitrum-market-agent`
+
+### Runtime topic model
+
+- `market.base.price-snapshot`
+- `market.arbitrum.price-snapshot`
+- `market.spread.signal`
+- `risk.opportunity-candidate`
+- `risk.opportunity-evaluation`
+- `execution.execution-plan`
+- `execution.execution-result`
 
 ---
 
 ## Current Risk / Scanner Gates
 
 ```env
-MIN_SPREAD_BPS=15
-MIN_LIQUIDITY_10BPS_USD=5000
-MIN_CAPACITY_USD=10000
+MIN_SPREAD_BPS=12
+MIN_LIQUIDITY_10BPS_USD=750
+MIN_CAPACITY_USD=3000
+MIN_SIZE_USD=250
+RISK_FIXED_COST_BPS=8
+RISK_MIN_EFFECTIVE_SPREAD_BPS=12
 DRY_RUN=true
-MAX_SINGLE_TRADE_PERCENT=0.1
+MAX_SINGLE_TRADE_PERCENT=10
 MAX_BRIDGE_EXPOSURE_PERCENT=25
+MAX_SLIPPAGE_BPS=50
 ```
 
 Effect:
 
-- Thin-book raw spread noise is suppressed.
-- Zero-capacity spreads no longer become opportunities.
-- The pipeline only advances when live executable liquidity is present.
+- Thin-book noise is filtered much more aggressively than in the migration-proofing pass.
+- Small or fragile opportunities are suppressed before they reach downstream sizing and approval.
+- The stack remains DRY_RUN-safe while producing a more realistic validation signal for production readiness.
 
 ---
 
 ## Recent Fixes Applied
 
-### Mainnet Kuru integration
+### Base/Arbitrum wiring
 
-- Replaced the obsolete Kuru ABI with the live orderbook interface.
-- Added `getL2Book()` decoding and market-param validation.
-- Added deployed-bytecode checks.
-- Corrected `bestBidAsk()` price normalization for current mainnet behavior.
+- Reworked `docker-compose.mainnet.yml` around `base-market-agent`, `arbitrum-market-agent`, and `arb-bot`.
+- Updated topic wiring so the spread scanner consumes `INPUT_TOPIC_CHAIN_A` and `INPUT_TOPIC_CHAIN_B`.
+- Replaced dead placeholder WebSocket endpoints with working Base and Arbitrum public endpoints.
 
-### Mainnet deployment wiring
+### Safer Docker/runtime behavior
 
-- Switched the stack from Monad testnet to Monad mainnet.
-- Replaced exhausted QuickNode usage with stable public Monad mainnet endpoints.
-- Updated `docker-compose.mainnet.yml` to pass the actual live market env vars.
-
-### Safer DRY_RUN routing
-
-- Added the `WETH/AUSD` fallback path for Monad ETH snapshots.
-- Normalized one-sided books so the market agent can still publish a stable DRY_RUN ETH price.
+- Removed local-only pretty logging dependencies from runtime paths that broke in containers.
+- Aligned container names under the `base-arb-mev-mainnet-*` pattern.
 
 ### Duplicate signal suppression
 
@@ -137,32 +150,38 @@ Effect:
 
 ## What Is Finished
 
-- Mainnet containers build and run cleanly.
-- Real Monad and Ethereum price feeds are flowing.
-- Dashboard is usable at `http://localhost:8501`.
-- The DRY_RUN pipeline has been proven end to end.
-- The pipeline has been re-tightened so current output is closer to real tradability.
+- Base/Arbitrum service scaffolds are present and wired into compose.
+- The dashboard naming and monitoring path reflect the Base/Arbitrum stack.
+- The DRY_RUN pipeline contract is defined end to end through `execution.execution-result`.
+- The migration guide now matches the active repo topology.
+- Live rerun proof now exists for market snapshots, spread signals, opportunity candidates, evaluations, execution plans, and execution results.
 
 ---
 
 ## What Still Prevents Real Trading Ready
 
-### ISSUE-001: Current Monad ETH venue is too thin
+### ISSUE-001: Thresholds are validation-grade, not live-capital approved
 
 - Severity: HIGH
-- Current symptom: Monad ETH snapshots show near-zero or zero `liquidity10bps`.
-- Current impact: Controlled scanner gates suppress spreads, and downstream opportunity flow stays quiet.
-- Current behavior: This is intentional and correct.
-- Real fix needed: A deeper live Monad ETH venue or a better direct ETH market on Kuru mainnet.
+- Current symptom: the stack now runs with a production-like DRY_RUN profile, but these values are still operator-selected validation thresholds rather than empirically calibrated live limits.
+- Current impact: the stack is suitable for stricter DRY_RUN observation, but not yet cleared for real-capital deployment.
+- Real fix needed: calibrate the profile against observed opportunity flow, fill assumptions, and venue-specific execution costs before enabling live trading. A concrete starting envelope now exists in `docs/GUARDED-LIVE-PROFILE.md`, but it has not been activated.
 
 ### ISSUE-002: Execution remains DRY_RUN only
 
 - Severity: MEDIUM
-- Current symptom: `monad-arb-bot` still simulates execution results.
+- Current symptom: `arb-bot` still simulates execution results.
 - Current impact: No real swaps or bridge operations are sent.
 - Real fix needed: Real venue-specific execution logic with slippage protection, confirmations, and failure handling.
 
-### ISSUE-003: Dashboard metrics are operational, not investor-grade analytics
+### ISSUE-003: Documentation drift still exists outside the runbook
+
+- Severity: LOW
+- Current symptom: remaining stale documentation is concentrated in retained legacy service folders and historical build artifacts rather than in the active top-level docs.
+- Current impact: the active project state is clear from current-facing docs, but legacy reference paths may still contain outdated narrative text.
+- Real fix needed: continue limiting stale narrative to explicitly historical folders only.
+
+### ISSUE-004: Dashboard metrics are operational, not investor-grade analytics
 
 - Severity: LOW
 - Current symptom: The dashboard shows live counts and PnL, but it does not compute advanced analytics like precision, Kelly calibration, or realized fill quality.
@@ -177,9 +196,20 @@ When system behavior changes:
 1. Update code or configuration.
 2. Rebuild or restart the affected services.
 3. Run `powershell -ExecutionPolicy Bypass -File .\scripts\refresh-status.ps1`.
-4. Update the manual sections above only if the architecture, market wiring, or open issues changed.
+4. Update the manual sections above only if the architecture, market wiring, runtime gates, or open issues changed.
 
 This keeps the live operational snapshot fresh while minimizing documentation drift.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
