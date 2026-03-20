@@ -1,0 +1,90 @@
+# Full Docker Compose Template
+# Complete MEV infrastructure
+
+version: '3.8'
+
+services:
+  # Market Agents
+  market-agent-a:
+    build: ./market-agent
+    env_file:
+      - .env
+    environment:
+      - CHAIN_NAME=base
+      - RPC_URL=${BASE_RPC_URL}
+    networks:
+      - mev-net
+
+  market-agent-b:
+    build: ./market-agent
+    env_file:
+      - .env
+    environment:
+      - CHAIN_NAME=arbitrum
+      - RPC_URL=${ARB_RPC_URL}
+    networks:
+      - mev-net
+
+  # Processing
+  spread-scanner:
+    build: ./spread-scanner
+    env_file:
+      - .env
+    depends_on:
+      - market-agent-a
+      - market-agent-b
+    networks:
+      - mev-net
+
+  risk-engine:
+    build: ./risk-engine
+    env_file:
+      - .env
+    depends_on:
+      - spread-scanner
+    networks:
+      - mev-net
+
+  # Execution
+  arb-bot:
+    build: ./arb-bot
+    env_file:
+      - .env
+    depends_on:
+      - risk-engine
+    networks:
+      - mev-net
+
+  # Infrastructure
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+    networks:
+      - mev-net
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - mev-net
+
+  dashboard:
+    build: ./dashboard
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    networks:
+      - mev-net
+
+networks:
+  mev-net:
+    driver: bridge
