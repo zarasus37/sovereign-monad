@@ -1,0 +1,3 @@
+{
+  "content": "🔧 **Tech Stack**\n\nFor those who want the details:\n\n- **Message Bus:** Kafka (not Redis, not in-memory)\n- **Market Data:** Direct RPC → Aerodrome (Base), Camelot (Arb)\n- **Risk:** Monte Carlo sims for position sizing\n- **Execution:** Guarded-live with dry-run safety\n- **Monitoring:** Custom dashboard + Prometheus metrics\n- **Deployment:** Docker Compose, production-ready\n\nArchitecture is modular. Add new venues, strategies, or risk models without rewriting the pipeline.\n\nAsk for the GitHub repo link if you want to see the code."
+}

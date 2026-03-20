@@ -32,7 +32,9 @@ function Get-EnvMap {
 function Get-ContainerRows {
     try {
         $rows = docker ps --format '{{.Names}}|{{.Status}}' 2>$null |
-            Where-Object { $_ -like 'monad-mev-mainnet*' } |
+            Where-Object {
+                $_ -like 'base-arb-mev-mainnet*' -or $_ -like 'monad-mev-mainnet*'
+            } |
             Sort-Object
         return @($rows)
     } catch {
@@ -70,7 +72,7 @@ function Build-GeneratedSection {
     $lines.Add("### Active Runtime Gates")
     $lines.Add("")
     $lines.Add('```env')
-    foreach ($key in 'MIN_SPREAD_BPS','MIN_LIQUIDITY_10BPS_USD','MIN_CAPACITY_USD','DRY_RUN','MAX_SINGLE_TRADE_PERCENT','MAX_BRIDGE_EXPOSURE_PERCENT') {
+    foreach ($key in 'MIN_SPREAD_BPS','MIN_LIQUIDITY_10BPS_USD','MIN_CAPACITY_USD','MIN_SIZE_USD','RISK_FIXED_COST_BPS','RISK_MIN_EFFECTIVE_SPREAD_BPS','DRY_RUN','MAX_SINGLE_TRADE_PERCENT','MAX_BRIDGE_EXPOSURE_PERCENT','MAX_SLIPPAGE_BPS') {
         if ($EnvMap.ContainsKey($key)) {
             $lines.Add("$key=$($EnvMap[$key])")
         }
