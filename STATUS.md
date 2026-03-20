@@ -26,23 +26,23 @@ The Base/Arbitrum DRY_RUN path has now been revalidated end to end. The active p
 ## Auto-Refreshed Ops Snapshot
 
 <!-- AUTO-STATUS:START -->
-Generated: 2026-03-20 16:15:26 UTC
+Generated: 2026-03-20 16:21:09 UTC
 
 ### Live Containers
 
 | Container | Status |
 |---|---|
 | `base-arb-mev-mainnet-alert-rules` | Up 5 hours |
-| `base-arb-mev-mainnet-arb-bot` | Up 2 hours |
+| `base-arb-mev-mainnet-arb-bot` | Up 3 hours |
 | `base-arb-mev-mainnet-arbitrum-agent` | Up 3 hours |
 | `base-arb-mev-mainnet-base-agent` | Up 3 hours |
 | `base-arb-mev-mainnet-dashboard` | Up 5 hours |
 | `base-arb-mev-mainnet-feedback` | Up 5 hours |
 | `base-arb-mev-mainnet-kafka` | Up 5 hours |
 | `base-arb-mev-mainnet-opp-constructor` | Up 5 hours |
-| `base-arb-mev-mainnet-portfolio` | Up 2 hours |
+| `base-arb-mev-mainnet-portfolio` | Up 3 hours |
 | `base-arb-mev-mainnet-risk-engine` | Up 5 hours |
-| `base-arb-mev-mainnet-spread-scanner` | Up 2 hours |
+| `base-arb-mev-mainnet-spread-scanner` | Up 3 hours |
 | `base-arb-mev-mainnet-stress` | Up 5 hours |
 | `base-arb-mev-mainnet-zookeeper` | Up 5 hours (healthy) |
 
@@ -198,6 +198,7 @@ When system behavior changes:
 4. Update the manual sections above only if the architecture, market wiring, runtime gates, or open issues changed.
 
 This keeps the live operational snapshot fresh while minimizing documentation drift.
+
 
 
 
