@@ -26,37 +26,36 @@ The Base/Arbitrum DRY_RUN path has now been revalidated end to end. The active p
 ## Auto-Refreshed Ops Snapshot
 
 <!-- AUTO-STATUS:START -->
-Generated: 2026-03-18 21:53:33 UTC
+Generated: 2026-03-20 11:42:44 UTC
 
 ### Live Containers
 
 | Container | Status |
 |---|---|
-| `base-arb-mev-mainnet-alert-rules` | Up 5 hours |
-| `base-arb-mev-mainnet-arb-bot` | Up 8 hours |
-| `base-arb-mev-mainnet-arbitrum-agent` | Up 8 hours |
-| `base-arb-mev-mainnet-base-agent` | Up 8 hours |
-| `base-arb-mev-mainnet-dashboard` | Up 9 hours |
-| `base-arb-mev-mainnet-feedback` | Up 8 hours |
-| `base-arb-mev-mainnet-kafka` | Up 9 hours |
-| `base-arb-mev-mainnet-kafka-ui` | Up 9 hours |
-| `base-arb-mev-mainnet-opp-constructor` | Up 8 hours |
-| `base-arb-mev-mainnet-portfolio` | Up 4 hours |
-| `base-arb-mev-mainnet-risk-engine` | Up 8 hours |
-| `base-arb-mev-mainnet-spread-scanner` | Up 8 hours |
-| `base-arb-mev-mainnet-stress` | Up 9 hours |
-| `base-arb-mev-mainnet-zookeeper` | Up 9 hours (healthy) |
+| `base-arb-mev-mainnet-alert-rules` | Up 7 minutes |
+| `base-arb-mev-mainnet-arb-bot` | Up About a minute |
+| `base-arb-mev-mainnet-arbitrum-agent` | Up 7 minutes |
+| `base-arb-mev-mainnet-base-agent` | Up 7 minutes |
+| `base-arb-mev-mainnet-dashboard` | Up 8 minutes |
+| `base-arb-mev-mainnet-feedback` | Up 7 minutes |
+| `base-arb-mev-mainnet-kafka` | Up 7 minutes |
+| `base-arb-mev-mainnet-opp-constructor` | Up 8 minutes |
+| `base-arb-mev-mainnet-portfolio` | Up 7 minutes |
+| `base-arb-mev-mainnet-risk-engine` | Up 8 minutes |
+| `base-arb-mev-mainnet-spread-scanner` | Up 2 minutes |
+| `base-arb-mev-mainnet-stress` | Up 7 minutes |
+| `base-arb-mev-mainnet-zookeeper` | Up 8 minutes (healthy) |
 
 ### Active Runtime Gates
 
 ```env
-MIN_SPREAD_BPS=12
+MIN_SPREAD_BPS=5
 MIN_LIQUIDITY_10BPS_USD=750
 MIN_CAPACITY_USD=3000
 MIN_SIZE_USD=250
 RISK_FIXED_COST_BPS=8
 RISK_MIN_EFFECTIVE_SPREAD_BPS=12
-DRY_RUN=true
+DRY_RUN=false
 MAX_SINGLE_TRADE_PERCENT=10
 MAX_BRIDGE_EXPOSURE_PERCENT=25
 MAX_SLIPPAGE_BPS=50
@@ -199,6 +198,7 @@ When system behavior changes:
 4. Update the manual sections above only if the architecture, market wiring, runtime gates, or open issues changed.
 
 This keeps the live operational snapshot fresh while minimizing documentation drift.
+
 
 
 

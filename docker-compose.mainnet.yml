@@ -100,9 +100,9 @@ services:
       - INPUT_TOPIC_CHAIN_A=market.base.price-snapshot
       - INPUT_TOPIC_CHAIN_B=market.arbitrum.price-snapshot
       - OUTPUT_TOPIC=market.spread.signal
-      - MIN_SPREAD_BPS=${MIN_SPREAD_BPS:-15}
-      - MIN_LIQUIDITY_10BPS_USD=${MIN_LIQUIDITY_10BPS_USD:-1000}
-      - MIN_CAPACITY_USD=${MIN_CAPACITY_USD:-5000}
+      - MIN_SPREAD_BPS=${MIN_SPREAD_BPS:-12}
+      - MIN_LIQUIDITY_10BPS_USD=${MIN_LIQUIDITY_10BPS_USD:-750}
+      - MIN_CAPACITY_USD=${MIN_CAPACITY_USD:-3000}
       - LOG_LEVEL=info
     restart: on-failure
 
@@ -117,8 +117,8 @@ services:
       - KAFKA_BROKERS=kafka:29092
       - INPUT_TOPIC=market.spread.signal
       - OUTPUT_TOPIC=risk.opportunity-candidate
-      - DEFAULT_SIZE_PERCENT=10
-      - MIN_SIZE_USD=10
+      - DEFAULT_SIZE_PERCENT=${DEFAULT_SIZE_PERCENT:-10}
+      - MIN_SIZE_USD=${MIN_SIZE_USD:-250}
       - LOG_LEVEL=info
     restart: on-failure
 
@@ -135,6 +135,8 @@ services:
       - OUTPUT_TOPIC=risk.opportunity-evaluation
       - SIMULATIONS=1000
       - EV_MIN_THRESHOLD=${EV_MIN_THRESHOLD:-10}
+      - RISK_FIXED_COST_BPS=${RISK_FIXED_COST_BPS:-8}
+      - RISK_MIN_EFFECTIVE_SPREAD_BPS=${RISK_MIN_EFFECTIVE_SPREAD_BPS:-12}
       - SHARPE_LIKE_THRESHOLD=0.3
       - MAX_TAIL_LOSS_PERCENT=30
       - LOG_LEVEL=info
@@ -151,9 +153,9 @@ services:
       - KAFKA_BROKERS=kafka:29092
       - INPUT_TOPIC=risk.opportunity-evaluation
       - OUTPUT_TOPIC=execution.execution-plan
-      - MAX_BRIDGE_EXPOSURE_PERCENT=25
-      - MAX_CHAIN_EXPOSURE_PERCENT=80
-      - MAX_SINGLE_TRADE_PERCENT=0.1
+      - MAX_BRIDGE_EXPOSURE_PERCENT=${MAX_BRIDGE_EXPOSURE_PERCENT:-25}
+      - MAX_CHAIN_EXPOSURE_PERCENT=${MAX_CHAIN_EXPOSURE_PERCENT:-80}
+      - MAX_SINGLE_TRADE_PERCENT=${MAX_SINGLE_TRADE_PERCENT:-10}
       - LOG_LEVEL=info
     restart: on-failure
 
@@ -173,9 +175,9 @@ services:
       - CHAIN_A_NAME=base
       - CHAIN_B_NAME=arbitrum
       - PRIVATE_KEY=${WALLET_PRIVATE_KEY}
-      - DRY_RUN=true
+      - DRY_RUN=${DRY_RUN:-false}
       - MAX_POSITION_USD=100
-      - MAX_SLIPPAGE_BPS=100
+      - MAX_SLIPPAGE_BPS=${MAX_SLIPPAGE_BPS:-50}
       - LOG_LEVEL=info
     restart: on-failure
 
@@ -193,6 +195,24 @@ services:
       - LOG_LEVEL=info
     volumes:
       - feedback-logs:/app/logs
+    restart: on-failure
+
+  alert-rules:
+    build:
+      context: ./alert-rules
+      dockerfile: Dockerfile
+    container_name: base-arb-mev-mainnet-alert-rules
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPICS=market.spread.signal,risk.opportunity-evaluation,execution.execution-result,market.stress-signal
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
+      - MIN_ALERT_SPREAD_BPS=${MIN_ALERT_SPREAD_BPS:-50}
+      - MAX_POSITION_ALERT_USD=${MAX_POSITION_ALERT_USD:-5000}
+      - ALERT_COOLDOWN_MS=${ALERT_COOLDOWN_MS:-30000}
+      - LOG_LEVEL=info
     restart: on-failure
 
   stress-monitor:
