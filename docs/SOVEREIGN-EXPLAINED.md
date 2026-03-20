@@ -1,11 +1,11 @@
-# Sovereign Monad MEV Arb Engine
-## A Plain-English Guide to Cross-Chain Arbitrage
+# Sovereign Base-Arbitrum MEV Arb Engine
+## A Plain-English Guide to the Current Cross-Chain Arbitrage Stack
 
 ---
 
 ## What Is This?
 
-**Sovereign** is an automated trading system that finds and exploits price differences between two blockchain networks — **Monad** and **Ethereum** — to make money.
+**Sovereign** is an automated trading system that finds and evaluates price differences between **Base** and **Arbitrum** so the stack can identify cross-chain ETH/USDC arbitrage.
 
 Think of it like this: imagine you could buy a stock on the New York Stock Exchange for $100 and simultaneously sell it on the London Stock Exchange for $101. The $1 difference is profit — without any risk from the stock moving up or down. That's arbitrage.
 
@@ -17,17 +17,17 @@ This engine does exactly that, but with cryptocurrency, and completely automatic
 
 ### Price Differences Across Networks
 
-Different markets quote prices differently. On any given moment:
+Different venues quote ETH differently. In the current stack:
 
-- On **Monad**, ETH might trade at **1,850 MON** (Monad's native token)
-- On **Ethereum**, ETH might trade at **$1,860 USDC**
+- On **Base**, ETH is read from an Aerodrome ETH/USDC pool
+- On **Arbitrum**, ETH is read from a Camelot ETH/USDC pool
 
 These prices aren't always perfectly aligned. When they diverge, there's free money on the table — *if you can act fast enough*.
 
 ### Why Humans Can't Do It
 
-1. **Speed** — Price gaps close in seconds or milliseconds. By the time a human clicks "buy," the opportunity is gone.
-2. **Complexity** — This involves two different blockchains, order books, bridge transfers, and smart contracts. Doing it manually is error-prone.
+1. **Speed** — Price gaps close quickly. By the time a human reacts, the edge is usually gone.
+2. **Complexity** — This involves two chains, DEX pool state, Kafka-driven downstream services, and execution simulation. Doing it manually is error-prone.
 3. **Capital** — You need money on both chains simultaneously to capture the spread instantly.
 
 Sovereign solves all three.
@@ -42,8 +42,8 @@ The system continuously monitors price feeds from two sources:
 
 | Network | Data Source | What It Tells Us |
 |---------|--------------|------------------|
-| **Monad** | Kuru Orderbook | Best bid/ask for ETH pairs on Monad |
-| **Ethereum** | Uniswap V3 | Best bid/ask for ETH/USDC on Ethereum |
+| **Base** | Aerodrome Slipstream pool | Spot ETH/USDC price and usable pool depth |
+| **Arbitrum** | Camelot V3 pool | Spot ETH/USDC price and usable pool depth |
 
 Both feeds stream in real-time via WebSocket connections.
 
@@ -52,29 +52,27 @@ Both feeds stream in real-time via WebSocket connections.
 The **Spread Scanner** compares prices continuously:
 
 ```
-Spread = (Ethereum Price in USDC) - (Monad Price converted to USDC)
+Spread = (Arbitrum ETH/USDC price) - (Base ETH/USDC price)
 ```
 
-If Ethereum price is higher than Monad's equivalent price, a **positive spread** exists.
+If one chain's ETH price is higher than the other, a spread exists.
 
 Example:
 
-- Ethereum: 1 ETH = $2,000 USDC
-- Monad: 1 ETH = 1,980 MON
-- Assume 1 MON = $1.01 USDC
-- Monad ETH in USDC terms = 1,980 × $1.01 = $1,999.80
+- Base: 1 ETH = $2,230 USDC
+- Arbitrum: 1 ETH = $2,231 USDC
 
-**Spread = $2,000 - $1,999.80 = $0.20 per ETH**
+**Spread = $1 per ETH**
 
-That $0.20 is pure arbitrage profit — *before fees*.
+That $1 is gross arbitrage edge before fees, slippage, and bridge or inventory costs.
 
 ### 3. Opportunity Construction
 
 When a spread is detected, the system doesn't just jump in. It checks:
 
-- **Minimum spread** — Must exceed 0.15% (15 basis points) to cover costs
-- **Liquidity** — Are there enough orders available to actually fill the trade?
-- **Capacity** — Can the trade handle at least $10,000 without moving the price?
+- **Minimum spread** — Current validation baseline is 12 basis points
+- **Liquidity** — Current validation baseline requires at least $750 at 10 bps depth on both sides
+- **Capacity** — Current validation baseline requires at least $3,000 executable size
 
 If all gates pass, the opportunity moves forward.
 
@@ -92,9 +90,9 @@ In the current configuration, the system runs in **DRY_RUN** mode — meaning it
 
 When switched to live mode, the engine would:
 
-1. **Buy** ETH on the cheaper market (Monad)
-2. **Bridge** ETH to Ethereum (or vice versa)
-3. **Sell** ETH on the higher-priced market (Ethereum)
+1. **Buy** or synthetically source ETH on the cheaper side
+2. **Move inventory** or bridge only if the execution mode requires it
+3. **Sell** on the higher-priced side
 4. **Collect** the spread as profit
 
 All of this happens in a single atomic transaction flow.
@@ -105,7 +103,7 @@ All of this happens in a single atomic transaction flow.
 
 ### 1. Cross-Chain Arbitrage (Primary)
 
-The main source. When ETH price differs between Monad and Ethereum:
+The main source. When ETH price differs between Base and Arbitrum:
 
 - Buy low on one chain → Bridge → Sell high on the other
 - Profit = Price spread minus fees
@@ -117,17 +115,11 @@ The main source. When ETH price differs between Monad and Ethereum:
 - Bridge latency (faster = more opportunities captured)
 - Slippage (less = better fill quality)
 
-### 2. Triangular Arbitrage (Potential Expansion)
+### 2. Multi-Venue Expansion (Potential)
 
-If MON/USDC, WETH/MON, and WETH/USDC pairs exist on Monad, the system could cycle through three assets in one trade:
+If additional Base or Arbitrum ETH venues are added, the same pipeline can compare more than one venue per chain and route toward the best effective spread.
 
-```
-USDC → MON → WETH → USDC
-```
-
-Each leg might offer a tiny edge that compounds into profit.
-
-### 3. Liquidty Provision / Market Making (Future)
+### 3. Liquidity Provision / Market Making (Future)
 
 As the system accumulates market data, it could:
 
@@ -139,8 +131,8 @@ As the system accumulates market data, it could:
 
 In DeFi, the order of transactions matters. By front-running large trades (when they appear in the mempool), the engine could:
 
-- Sandwich a large swap: buy before, sell after
-- Extract value that would otherwise go to miners
+- React to venue-specific flow when it improves effective edge
+- Route around public execution paths when private execution support exists
 
 *Note: This requires live execution and carries legal/ethical considerations that the current DRY_RUN intentionally avoids.*
 
@@ -200,7 +192,7 @@ The engine could be offered to third parties in several ways. Each model trades 
 
 ### 3. API / Signal Feed
 
-**How it works:** Don't give them the whole engine. Just give them the opportunities. Sell spread signals as an API feed — "ETH/MON spread just hit 0.2% on $50k depth."
+**How it works:** Don't give them the whole engine. Just give them the opportunities. Sell spread signals as an API feed, for example: "Base/Arbitrum ETH spread just cleared the validation gates on executable depth."
 
 **Revenue model:**
 
@@ -283,8 +275,8 @@ These can be combined:
 
 | Asset | Why It Has Value |
 |-------|------------------|
-| **Real-time price feeds** | Hard to build — Kuru + Uniswap integration |
-| **Spread detection logic** | Tuned for Monad-specific quirks |
+| **Real-time price feeds** | Hard to build well — Aerodrome + Camelot integration with provider failover |
+| **Spread detection logic** | Tuned for the current Base/Arbitrum liquidity regime |
 | **Risk engine** | Position sizing, exposure limits — tested over time |
 | **Dockerized stack** | "Works out of the box" reduces integration effort |
 | **Dashboard + monitoring** | Visual proof of performance |
@@ -389,11 +381,11 @@ These can be combined:
 |-------|------------|---------|
 | **Messaging** | Apache Kafka | Streams price data between components |
 | **Orchestration** | Docker Compose | Runs all services as containers |
-| **Price Feeds** | Kuru (Monad) + Uniswap V3 (Ethereum) | Real-time market data |
+| **Price Feeds** | Aerodrome (Base) + Camelot (Arbitrum) | Real-time market data |
 | **Analysis** | TypeScript / Node.js | Opportunity detection and construction |
 | **Risk** | Custom risk engine | Position sizing, limits |
 | **UI** | Streamlit (Python) | Dashboard for monitoring |
-| **Blockchain** | Ethereum RPC + Monad RPC | Network connectivity |
+| **Blockchain** | Base RPC + Arbitrum RPC | Network connectivity |
 
 ---
 
@@ -402,10 +394,10 @@ These can be combined:
 | Metric | Value |
 |--------|-------|
 | **Mode** | DRY_RUN (simulation only) |
-| **Live Networks** | Monad Mainnet + Ethereum Mainnet |
-| **Min Spread Gate** | 0.15% |
-| **Min Liquidity Gate** | $5,000 at 10 bps depth |
-| **Min Capacity Gate** | $10,000 executable |
+| **Live Networks** | Base Mainnet + Arbitrum Mainnet |
+| **Min Spread Gate** | 12 bps validation baseline |
+| **Min Liquidity Gate** | $750 at 10 bps depth |
+| **Min Capacity Gate** | $3,000 executable |
 | **Containers Running** | 10+ services |
 | **Dashboard** | `http://localhost:8501` |
 
@@ -435,11 +427,11 @@ These can be combined:
 
 Sovereign is an **automated cross-chain arbitrage engine** that:
 
-1. **Watches** prices on Monad and Ethereum in real-time
+1. **Watches** prices on Base and Arbitrum in real-time
 2. **Detects** profitable spread opportunities
 3. **Validates** them against liquidity and risk rules
 4. **Would execute** trades to capture the spread (when live)
 
-It generates revenue primarily through **cross-chain price arbitrage**, with potential expansion into **triangular arbitrage**, **market making**, and **MEV extraction**.
+It generates revenue primarily through **cross-chain price arbitrage**, with potential expansion into **multi-venue routing**, **market making**, and **MEV-aware execution**.
 
-Currently it runs in **simulation mode** to validate performance and risk controls before real capital is deployed.
+Currently it runs in **simulation mode** to validate the migrated Base/Arbitrum pipeline before real capital is deployed, and the present thresholds are intentionally tighter than the migration-proofing pass while still remaining DRY_RUN-only validation settings.

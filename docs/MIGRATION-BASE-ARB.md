@@ -3,7 +3,7 @@
 
 > Repo-accurate migration and validation guide for the current Base/Arbitrum stack.
 > Last updated: 2026-03-18
-> Status: Code migration largely complete; end-to-end DRY_RUN validation still pending.
+> Status: Migration to the active Base/Arbitrum topology is complete. The stack is validated end to end in DRY_RUN, and the remaining work is guarded-live readiness and execution hardening.
 
 ---
 
@@ -21,6 +21,7 @@ It replaces the earlier mixed draft and is intentionally written against the cod
 
 - `.env` uses Base/Arbitrum endpoint names with the `*_URL` suffix.
 - `docker-compose.mainnet.yml` is aligned around the Base/Arbitrum service topology.
+- `spread-scanner` accepts the new `INPUT_TOPIC_CHAIN_A` and `INPUT_TOPIC_CHAIN_B` names while still tolerating older env names.
 - `monitoring/dashboard.py` already uses Base/Arbitrum labeling.
 - `base-market-agent` exists and is wired to Aerodrome.
 - `arbitrum-market-agent` exists and is wired to Camelot.
@@ -29,13 +30,33 @@ It replaces the earlier mixed draft and is intentionally written against the cod
 
 ### Pending
 
-- Re-run the DRY_RUN compose stack after the WebSocket endpoint fix.
-- Confirm live topic flow from market snapshots through execution results.
-- Clean up any residual legacy references only after the new path is stable.
+- Activate and validate the guarded-live profile only after funding, preflight checks, and explicit operator review.
+- Replace simulated execution with real venue-specific execution logic when live trading is intentionally enabled.
+
+### Legacy reference artifacts
+
+The superseded Monad/Ethereum service folders are being intentionally retained as reference artifacts rather than deleted. They are not part of the active Base/Arbitrum runtime, but they should remain readable and buildable so the repo keeps a restart point if Monad-side execution becomes interesting again.
+
+Treat these folders as dormant reference implementations:
+
+- `monad-market-agent`
+- `eth-market-agent`
+- `monad-arb-bot`
+- `eth-arb-bot`
+- `bridge-exec-bot`
+
+### Not yet source-of-truth
+
+The following material should not be treated as authoritative for the Base/Arbitrum stack:
+
+- internal implementation details inside the retained Monad/Ethereum reference packages, which intentionally preserve the old topology
+- any older architecture notes that still describe `market.monad.price-snapshot` or `market.eth.price-snapshot`
 
 ### Important recent runtime finding
 
 The last compose smoke test was blocked by dead public WebSocket endpoints, not by the market-agent or executor code. The configured WebSocket endpoints were replaced with working public endpoints and verified from this machine.
+
+The current rerun also confirmed live topic flow through `execution.execution-result` after fixing the market-adapter provider refresh path and restoring a production-like DRY_RUN profile for the observed Base/Arbitrum liquidity regime.
 
 ---
 
@@ -56,6 +77,8 @@ Use these paths as the current source of truth.
 | Spread pipeline | `spread-scanner` | Consumes both market feeds |
 | Risk pipeline | `opportunity-constructor`, `risk-engine`, `portfolio-manager` | Downstream evaluation and sizing |
 | Dashboard | `monitoring/dashboard.py` | Monitoring UI |
+
+Treat the compose file as the operational source of truth when a service folder or README disagrees.
 
 ---
 
@@ -78,6 +101,8 @@ This execution path is why `arb-bot` was built around the execution-plan contrac
 ## Environment Contract
 
 Use the current `.env` naming scheme. Do not reintroduce older short-form names unless you intentionally refactor the services and compose file together.
+
+Important: `.env.example` is a template, not a proof that every non-empty address in it has been production-validated. Recheck contract addresses before live-capital use.
 
 ### Required chain endpoints
 
@@ -113,7 +138,45 @@ MIN_CAPACITY_USD=
 DRY_RUN=
 MAX_SINGLE_TRADE_PERCENT=
 MAX_BRIDGE_EXPOSURE_PERCENT=
+MAX_SLIPPAGE_BPS=
+WALLET_PRIVATE_KEY=
 ```
+
+### Recommended production-like DRY_RUN profile
+
+The migrated stack no longer uses the ultra-relaxed proofing gates. Use this profile as the current recommended validation baseline before any live-capital work:
+
+```env
+MIN_SPREAD_BPS=12
+MIN_LIQUIDITY_10BPS_USD=750
+MIN_CAPACITY_USD=3000
+MIN_SIZE_USD=250
+RISK_FIXED_COST_BPS=8
+RISK_MIN_EFFECTIVE_SPREAD_BPS=12
+DRY_RUN=true
+MAX_SINGLE_TRADE_PERCENT=10
+MAX_SLIPPAGE_BPS=50
+```
+
+This profile is intentionally stricter than the migration-proofing settings, but still permissive enough for DRY_RUN observation on the current Base/Arbitrum route.
+
+### Compose defaults that matter
+
+If a value is omitted from `.env`, current compose or service defaults still affect runtime behavior:
+
+```env
+MIN_SPREAD_BPS=12
+MIN_LIQUIDITY_10BPS_USD=750
+MIN_CAPACITY_USD=3000
+MIN_SIZE_USD=250
+RISK_FIXED_COST_BPS=8
+RISK_MIN_EFFECTIVE_SPREAD_BPS=12
+DRY_RUN=true
+MAX_SINGLE_TRADE_PERCENT=10
+MAX_SLIPPAGE_BPS=50
+```
+
+These values are the current production-like DRY_RUN defaults for the migrated Base/Arbitrum route. They are still validation settings, not live-capital approvals, so validate the effective runtime config rather than assuming the template is sufficient for real execution.
 
 ### Known-good endpoint note
 
@@ -132,6 +195,7 @@ Current expectations:
 - consumes `CHAIN_A_WS_URL` and `CHAIN_A_RPC_URL` from compose
 - receives Base values via `BASE_WS_URL` and `BASE_RPC_URL`
 - publishes `market.base.price-snapshot`
+- current container name in compose is `base-arb-mev-mainnet-base-agent`
 - preserves the downstream snapshot shape expected by `spread-scanner`
 
 ### Arbitrum market agent
@@ -143,6 +207,7 @@ Current expectations:
 - consumes `CHAIN_B_WS_URL` and `CHAIN_B_RPC_URL` from compose
 - receives Arbitrum values via `ARBITRUM_WS_URL` and `ARBITRUM_RPC_URL`
 - publishes `market.arbitrum.price-snapshot`
+- current container name in compose is `base-arb-mev-mainnet-arbitrum-agent`
 - preserves the downstream snapshot shape expected by `spread-scanner`
 
 ### Execution bot
@@ -155,6 +220,7 @@ Current expectations:
 - emits `execution.execution-result`
 - uses Base and Arbitrum RPC endpoints
 - supports `DRY_RUN=true`
+- current container name in compose is `base-arb-mev-mainnet-arb-bot`
 
 This is the correct contract for the present pipeline because `portfolio-manager` emits execution plans, not bridge requests.
 
@@ -167,8 +233,9 @@ Before treating the migration as complete, verify all of the following:
 1. Every `build.context` path in `docker-compose.mainnet.yml` exists on disk.
 2. Every referenced environment variable exists in `.env` or has a safe default.
 3. Topic names match across all producers and consumers.
-4. Service names in logs and smoke tests match compose service names, not stale container names from older drafts.
-5. Logger configuration does not depend on local-only transports that are missing in Docker.
+4. `spread-scanner` is reading `INPUT_TOPIC_CHAIN_A` and `INPUT_TOPIC_CHAIN_B`, not just the old Monad/Ethereum env names.
+5. Service names in logs and smoke tests match compose service names, and container names match the `base-arb-mev-mainnet-*` pattern.
+6. Logger configuration does not depend on local-only transports that are missing in Docker.
 
 ---
 
@@ -195,6 +262,13 @@ docker compose -f docker-compose.mainnet.yml logs base-market-agent
 docker compose -f docker-compose.mainnet.yml logs arbitrum-market-agent
 ```
 
+If you need container-level inspection rather than compose service logs, use the current container names:
+
+```powershell
+docker logs base-arb-mev-mainnet-base-agent
+docker logs base-arb-mev-mainnet-arbitrum-agent
+```
+
 ### Inspect downstream flow
 
 ```powershell
@@ -217,6 +291,13 @@ docker compose -f docker-compose.mainnet.yml logs spread-scanner | Select-String
 docker compose -f docker-compose.mainnet.yml down
 ```
 
+### What to verify during the rerun
+
+- market-agent startup no longer fails on dead WebSocket endpoints
+- snapshot topics are being written under `market.base.price-snapshot` and `market.arbitrum.price-snapshot`
+- `spread-scanner` is consuming the chain-A and chain-B topic names you expect
+- `arb-bot` is receiving execution plans and emitting results under DRY_RUN
+
 ---
 
 ## Acceptance Criteria
@@ -236,4 +317,8 @@ Do not treat the migration as complete until all of the following are true:
 
 ## Recommended Next Step
 
-The next engineering step is to rerun the DRY_RUN stack with the corrected WebSocket endpoints and verify live topic flow. If that succeeds, only then move on to cleanup of legacy folders or further refactors.
+The next project step is to move from migration validation into guarded-live preparation:
+
+1. fund the active Base and Arbitrum wallet,
+2. keep the documented guarded-live profile under explicit operator control,
+3. validate first funded execution behavior before any attempt to expand trade frequency or notional size.
