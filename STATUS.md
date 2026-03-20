@@ -26,25 +26,25 @@ The Base/Arbitrum DRY_RUN path has now been revalidated end to end. The active p
 ## Auto-Refreshed Ops Snapshot
 
 <!-- AUTO-STATUS:START -->
-Generated: 2026-03-20 13:48:27 UTC
+Generated: 2026-03-20 14:55:05 UTC
 
 ### Live Containers
 
 | Container | Status |
 |---|---|
-| `base-arb-mev-mainnet-alert-rules` | Up 2 hours |
-| `base-arb-mev-mainnet-arb-bot` | Up About a minute |
-| `base-arb-mev-mainnet-arbitrum-agent` | Up 20 minutes |
-| `base-arb-mev-mainnet-base-agent` | Up 20 minutes |
-| `base-arb-mev-mainnet-dashboard` | Up 2 hours |
-| `base-arb-mev-mainnet-feedback` | Up 2 hours |
-| `base-arb-mev-mainnet-kafka` | Up 2 hours |
-| `base-arb-mev-mainnet-opp-constructor` | Up 2 hours |
-| `base-arb-mev-mainnet-portfolio` | Up About a minute |
-| `base-arb-mev-mainnet-risk-engine` | Up 2 hours |
-| `base-arb-mev-mainnet-spread-scanner` | Up About a minute |
-| `base-arb-mev-mainnet-stress` | Up 2 hours |
-| `base-arb-mev-mainnet-zookeeper` | Up 2 hours (healthy) |
+| `base-arb-mev-mainnet-alert-rules` | Up 3 hours |
+| `base-arb-mev-mainnet-arb-bot` | Up About an hour |
+| `base-arb-mev-mainnet-arbitrum-agent` | Up About an hour |
+| `base-arb-mev-mainnet-base-agent` | Up About an hour |
+| `base-arb-mev-mainnet-dashboard` | Up 3 hours |
+| `base-arb-mev-mainnet-feedback` | Up 3 hours |
+| `base-arb-mev-mainnet-kafka` | Up 3 hours |
+| `base-arb-mev-mainnet-opp-constructor` | Up 3 hours |
+| `base-arb-mev-mainnet-portfolio` | Up About an hour |
+| `base-arb-mev-mainnet-risk-engine` | Up 3 hours |
+| `base-arb-mev-mainnet-spread-scanner` | Up About an hour |
+| `base-arb-mev-mainnet-stress` | Up 3 hours |
+| `base-arb-mev-mainnet-zookeeper` | Up 3 hours (healthy) |
 
 ### Active Runtime Gates
 
@@ -198,6 +198,7 @@ When system behavior changes:
 4. Update the manual sections above only if the architecture, market wiring, runtime gates, or open issues changed.
 
 This keeps the live operational snapshot fresh while minimizing documentation drift.
+
 
 
 
