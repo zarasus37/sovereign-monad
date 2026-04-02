@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-/**
+/*
  * @title DoveCore
  * @notice Sovereign Monad Ecosystem — Phase 1a
  * @dev The immutable accountability anchor of the Sovereign Monad Ecosystem.

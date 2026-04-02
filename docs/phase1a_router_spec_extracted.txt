@@ -1,0 +1,414 @@
+Revenue  Router  Speciﬁcation  — Phase  1 a
+Version: 1.0.0
+Date: M arch 25, 2026
+Status: SPECIFICATION LOCKED — Ready for Implementation
+Network: M onad M ainnet
+1. Overview
+The Revenue Router is the single point of capital inﬂow and allocation for the Sovereign 
+M onad Ecosystem. It receives all external income from every source (M onadSpin provider 
+revenue, M EV performance fees, Oracle API fees, Data licensing fees, trait-gated protocol 
+fees, external framework licensing) and routes it to deﬁned sinks according to the ﬁnalized 
+allocation policy.
+Core Principle: Nothing leaks out by default. All routing is transparent, on-chain, and Dove-
+observable.
+2. Allocation Policy (v1.0.1 — LOCKED)
+Sink Allocation Purpose Notes
+Treasury 40%
+Core stability, 
+runway, protocol-
+owned liquidity
+Vault contract, 
+multisig early, DAO-
+governed Phase 3+
+M EV Bankroll 25%
+Engine reinvestment, 
+compounds the 
+metabolism
+Direct to M EV 
+contract, Kelly 
+criterion sizing
+Ops / Dev 15% Infrastructure, 
+audits, RPC, tooling
+Includes founder 
+stipend ($5k‒
+$10k/mo, sunsets 
+when 5% revenue 
+exceeds)
+Data Yield Pool 10% Behavioral data 
+monetization
+Redirects to M EV 
+Bankroll until Agent 
+NFTs live (Phase 3)
+Total: 100% (no remainder, no dust)
+3. Contract Architecture
+The Revenue Router is a m odular, four-layer system designed for clarity, auditability, and 
+Dove observability:
+Plain Text
+┌─────────────────────────────────────────────────────────────┐
+│                    INBOUND RECEIVER                         │
+│  (Receives capital from all sources, validates, emits)      │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│                  ALLOCATION ENGINE                          │
+│  (Applies allocation policy, calculates sink amounts)       │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+                     ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   SINK ROUTER                               │
+│  (Routes to sinks, handles retries, emits Dove signals)    │
+└────────────────────┬────────────────────────────────────────┘
+                     │
+        ┌────────────┼────────────┬─────────────┬──────────┐
+        ▼            ▼            ▼             ▼          ▼
+   Treasury      MEV Bankroll   Ops/Dev    Data Yield  Delegates
+   (40%)         (25%)          (15%)      (10%)        (5%)
+                                                    Founder (5%)
+3.1 Layer 1: InboundReceiver
+Responsibility: Accept capital from external sources, validate, and emit inﬂow events.
+Delegate Pools 5%
+Oracle, Signal, Dove, 
+Builder delegate 
+incentives
+Distributed per 
+delegation tier
+Founder 5%
+Permanent, on-
+chain, Dove-
+monitored
+Separate from 
+operational stipend
+Contract Nam e: RevenueRouter_InboundReceiver.sol
+Key Functions:
+Plain Text
+// Receive capital from MonadSpin provider
+function receiveMonadSpinRevenue(
+    uint256 amount,
+    string calldata period,  // e.g., "2026-03-week-1"
+    bytes calldata signature  // Provider signature for authenticity
+) external payable returns (bytes32 inflow_id);
+// Receive capital from MEV performance fees
+function receiveMEVPerformanceFee(
+    uint256 amount,
+    uint256 period_timestamp,
+    string calldata strategy_id
+) external onlyMEVEngine returns (bytes32 inflow_id);
+// Receive capital from Oracle API fees
+function receiveOracleAPIFees(
+    uint256 amount,
+    uint256 call_count,
+    string calldata tier
+) external onlyOracle returns (bytes32 inflow_id);
+// Generic inflow handler (for data licensing, trait-gated fees, etc.)
+function receiveGenericInflow(
+    uint256 amount,
+    string calldata source_name,
+    bytes calldata metadata
+) external onlyWhitelisted returns (bytes32 inflow_id);
+// Query total inflows in a period
+function getTotalInflowsInPeriod(
+    uint256 start_timestamp,
+    uint256 end_timestamp
+) external view returns (uint256 total, uint256 count);
+Events:
+Plain Text
+event InflowReceived(
+    bytes32 indexed inflow_id,
+    string indexed source,
+    uint256 amount,
+    uint256 timestamp,
+    address indexed receiver
+);
+event InflowValidated(
+    bytes32 indexed inflow_id,
+    bool is_valid,
+    string validation_note
+);
+Dove Observables:
+• Total inﬂows per period
+• Inﬂow source distribution (M onadSpin %, M EV %, Oracle %, etc.)
+• Validation failure rate
+• Timestamp of last inﬂow
+3.2 Layer 2: AllocationEngine
+Responsibility: Apply the allocation policy to inﬂows and calculate sink amounts.
+Contract Nam e: RevenueRouter_AllocationEngine.sol
+Key Functions:
+Plain Text
+// Calculate sink allocations for a given inflow
+function calculateAllocations(
+    uint256 total_inflow,
+    string calldata source
+) external view returns (
+    uint256 treasury_amount,
+    uint256 mev_bankroll_amount,
+    uint256 ops_dev_amount,
+    uint256 data_yield_amount,
+    uint256 delegate_pools_amount,
+    uint256 founder_amount
+);
+// Get current allocation policy
+function getAllocationPolicy() external view returns (
+    uint16 treasury_pct,
+    uint16 mev_bankroll_pct,
+    uint16 ops_dev_pct,
+    uint16 data_yield_pct,
+    uint16 delegate_pools_pct,
+    uint16 founder_pct
+);
+// Update allocation policy (DAO-governed after Phase 3)
+function updateAllocationPolicy(
+    uint16 new_treasury_pct,
+    uint16 new_mev_bankroll_pct,
+    uint16 new_ops_dev_pct,
+    uint16 new_data_yield_pct,
+    uint16 new_delegate_pools_pct,
+    uint16 new_founder_pct
+) external onlyGovernance;
+// Get allocation history (for Dove auditing)
+function getAllocationHistory(
+    uint256 start_timestamp,
+    uint256 end_timestamp
+) external view returns (AllocationRecord[] memory);
+struct AllocationRecord {
+    uint256 timestamp;
+    uint256 total_inflow;
+    uint256 treasury_amount;
+    uint256 mev_bankroll_amount;
+    uint256 ops_dev_amount;
+    uint256 data_yield_amount;
+    uint256 delegate_pools_amount;
+    uint256 founder_amount;
+    string source;
+}
+Events:
+Plain Text
+event AllocationCalculated(
+    bytes32 indexed inflow_id,
+    uint256 total_inflow,
+    uint256 treasury_amount,
+    uint256 mev_bankroll_amount,
+    uint256 ops_dev_amount,
+    uint256 data_yield_amount,
+    uint256 delegate_pools_amount,
+    uint256 founder_amount
+);
+event AllocationPolicyUpdated(
+    uint16 treasury_pct,
+    uint16 mev_bankroll_pct,
+    uint16 ops_dev_pct,
+    uint16 data_yield_pct,
+    uint16 delegate_pools_pct,
+    uint16 founder_pct,
+    uint256 timestamp,
+    address indexed governance
+);
+Dove Observables:
+• Current allocation policy percentages
+• Allocation policy change history
+• Total capital allocated per sink (cumulative)
+• Allocation accuracy (verify 100% of inﬂow is allocated)
+3.3 Layer 3: SinkRouter
+Responsibility: Route calculated amounts to sink contracts, handle retries, and emit Dove 
+signals.
+Contract Nam e: RevenueRouter_SinkRouter.sol
+Key Functions:
+Plain Text
+// Route allocations to all sinks
+function routeAllocations(
+    bytes32 inflow_id,
+    uint256 treasury_amount,
+    uint256 mev_bankroll_amount,
+    uint256 ops_dev_amount,
+    uint256 data_yield_amount,
+    uint256 delegate_pools_amount,
+    uint256 founder_amount
+) external onlyAllocationEngine returns (bool success);
+// Retry failed routing (with exponential backoff)
+function retryFailedRoute(
+    bytes32 inflow_id,
+    string calldata sink_name,
+    uint256 amount
+) external onlyRouter returns (bool success);
+// Get routing status for an inflow
+function getRoutingStatus(bytes32 inflow_id) external view returns (
+    bool all_routed,
+    RoutingStatus[] memory sink_statuses
+);
+// Query sink addresses and verify they're registered
+function getSinkAddress(string calldata sink_name) external view returns (addres
+// Register/update sink address (DAO-governed)
+function registerSink(
+    string calldata sink_name,
+    address sink_address,
+    bool is_active
+) external onlyGovernance;
+struct RoutingStatus {
+    string sink_name;
+    uint256 amount;
+    bool routed;
+    uint256 timestamp;
+    string error_message;
+}
+Events:
+Plain Text
+event AllocationRouted(
+    bytes32 indexed inflow_id,
+    string indexed sink_name,
+    uint256 amount,
+    bool success,
+    uint256 timestamp
+);
+event RoutingRetried(
+    bytes32 indexed inflow_id,
+    string indexed sink_name,
+    uint256 amount,
+    uint256 attempt_number,
+    uint256 timestamp
+);
+event SinkRegistered(
+    string indexed sink_name,
+    address indexed sink_address,
+    bool is_active,
+    uint256 timestamp
+);
+Dove Observables:
+• Routing success rate per sink
+• Failed routing attempts and reasons
+• Retry frequency and success rate
+• Sink address changes (for centralization detection)
+• Total capital routed to each sink (cumulative)
+3.4 Layer 4: Sinks (Destination Contracts)
+Each sink is a simple, well-deﬁned contract that receives capital and emits events. Sinks are 
+not part of the Router but are called by it.
+Sink Interface (all sinks implement):
+Plain Text
+interface IRevenueSink {
+    // Receive capital from Router
+    function receiveAllocation(
+        uint256 amount,
+        bytes32 inflow_id,
+        string calldata source
+    ) external payable returns (bool success);
+    // Query total received
+    function getTotalReceived() external view returns (uint256);
+    // Query balance
+    function getBalance() external view returns (uint256);
+    // Emit Dove-observable events
+    event AllocationReceived(
+        bytes32 indexed inflow_id,
+        uint256 amount,
+        string indexed source,
+        uint256 timestamp
+    );
+}
+Sink Im plem entations:
+1.Treasury Sink (RevenueSink_Treasury.sol)
+• Receives 40% of inﬂows
+• Stores in vault contract (non-custodial, multisig early)
+• Emits allocation events for Dove monitoring
+2.M EV Bankroll Sink (RevenueSink_M EVBankroll.sol)
+• Receives 25% of inﬂows + 10% from Data Yield Pool (until Phase 3)
+• Directly feeds M EV Engine capital
+• Emits capital injection events
+3.Ops/Dev Sink (RevenueSink_OpsDev.sol)
+• Receives 15% of inﬂows
+• M anages founder stipend ($5k‒$10k/mo draw)
+• Emits expense tracking events
+4.Data Yield Pool Sink (RevenueSink_DataYield.sol)
+• Receives 10% of inﬂows
+• Holds until Agent NFTs live (Phase 3)
+• Then redirects to M EV Bankroll
+• Emits holding/redirect events
+5.Delegate Pools Sink (RevenueSink_DelegatePools.sol)
+• Receives 5% of inﬂows
+• Distributes to Oracle, Signal, Dove, Builder delegates per tier
+• Emits distribution events
+6.Founder Sink (RevenueSink_Founder.sol)
+• Receives 5% of inﬂows
+• Permanent allocation, Dove-monitored
+• Emits withdrawal events
+4. Data Flow
+4.1 Happy Path: M onadSpin Revenue Inﬂow
+Plain Text
+1. MonadSpin Provider calls InboundReceiver.receiveMonadSpinRevenue(1000 ETH, "2
+   └─> Validates signature, emits InflowReceived(inflow_id="0x123...", source="M
+2. AllocationEngine.calculateAllocations(1000, "MonadSpin")
+   └─> Returns: Treasury=400, MEV=250, Ops=150, DataYield=100, Delegates=50, Fou
+3. SinkRouter.routeAllocations(inflow_id="0x123...", 400, 250, 150, 100, 50, 50
+   └─> Calls each sink's receiveAllocation() in sequence
+   └─> Emits AllocationRouted events for each sink
+4. All sinks receive capital, emit AllocationReceived events
+5. Dove observes:
+   - Total inflow: 1000 ETH
+   - Allocation accuracy: 100%
+   - Routing success: 6/6 sinks
+   - Capital distribution: 40/25/15/10/5/5 ✓
+4.2 Error Path: Failed Routing
+Plain Text
+1. SinkRouter.routeAllocations() succeeds for Treasury, MEV, Ops, DataYield, De
+2. Founder sink call fails (e.g., contract paused)
+   └─> Emits AllocationRouted(inflow_id="0x123...", sink="Founder", amount=50, s
+3. Dove detects: RoutingStatus shows Founder sink failed
+4. SinkRouter.retryFailedRoute(inflow_id="0x123...", "Founder", 50)
+   └─> Retries with exponential backoff
+   └─> On success: Emits RoutingRetried(..., attempt_number=2, success=true)
+5. Dove observes retry and eventual success
+5. Dove-Observable Hooks
+The Revenue Router emits structured signals that the Dove Protocol observes to detect drift:
+5.1 Tier 1 Signals (Silent Internal Flags)
+Dove monitors these continuously:
+• Allocation Accuracy: Is 100% of inﬂow allocated? (Drift if < 99.9%)
+• Routing Success Rate: Are all sinks receiving capital? (Drift if < 99%)
+• Inﬂow Consistency: Is revenue arriving as expected? (Drift if inﬂows drop > 20% week-
+over-week)
+• Sink Address Stability: Are sink addresses changing unexpectedly? (Drift if changes 
+without governance event)
+5.2 Tier 2 Signals (G overnance Proposals)
+If Tier 1 signals detect drift, Dove generates governance proposals:
+• "Allocation Policy Drift Detected" — If actual allocations deviate from policy
+• "Routing Failure Rate Elevated" — If sink routing fails > 1%
+• "Revenue Inﬂow Anom aly" — If inﬂows drop > 30% or spike > 50%
+• "Sink Address U nauthorized Change" — If a sink address changes without DAO vote
+5.3 Tier 3 Signals (Conﬁrm ation W ithdrawal)
+If drift persists after Tier 2 signals are ignored:
+• Dove presence dims across all products simultaneously
+• On-chain alignment state shows "DRIFT DETECTED"
+• All new inﬂows are held in escrow pending DAO resolution
+6. Im plem entation Constraints
+6.1 Security
+• No custodial risk: Sinks are non-custodial, capital ﬂows directly from Router to 
+destination
+• Atom ic routing: All sinks receive capital in a single transaction (or all fail)
+• Signature validation: All external inﬂows require provider signature
+• Reentrancy protection: All sink calls use checks-eﬀects-interactions pattern
+6.2 G as Eﬃciency
+• Batch routing: M ultiple inﬂows can be routed in a single transaction
+• M inim al storage: Only essential state stored on-chain (current policy, sink addresses, 
+inﬂow history)
+• Eﬃcient allocation m ath: Fixed-point arithmetic, no ﬂoating-point operations
+6.3 Auditability
+• Com plete event history: Every inﬂow, allocation, and routing is emitted as an event
+• Im m utable records: All historical allocations stored in AllocationRecord structs
+• Dove-readable state: All critical state queryable via view functions
+7. Phase 1a Im plem entation Checklist
+InboundReceiver contract deployed
+AllocationEngine contract deployed
+SinkRouter contract deployed
+All six sink contracts deployed (Treasury, M EV, Ops, DataYield, Delegates, Founder)
+M onadSpin provider wired as ﬁrst inﬂow source
+Test inﬂow: 1 ETH routed to all sinks (verify allocation accuracy)
+ISSUE-001 (threshold calibration) resolved
+ISSUE-002 (real execution logic) resolved
+GUARDED-LIVE-PROFILE.md activated
+M ainnet deployment veriﬁed
+Dove monitoring substrate observing Router state
+Phase 1a sign-oﬀ: Router live and routing capital
+8. References
+• Allocation Policy: v1.0.1 (locked 2026-03-25)
+• Network: M onad M ainnet
+• Axiom  Alignm ent: Axiom 2 (Emanation — each layer serves above, feeds below)
+• Dove Protocol: Layer 11 observes all Router operations
+"The pattern was always there. We are revealing it, not constructing it."
+— Cristobal Colon, M arch 25, 2026

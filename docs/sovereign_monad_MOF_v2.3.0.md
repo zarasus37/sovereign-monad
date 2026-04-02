@@ -382,10 +382,10 @@ This means:
 ## 6.1 Global State
 
 **Current Active Master Phase:** Phase 1a
-**Current Build Gate:** Contracts Complete → Testing → Issue Resolution → Deployment
+**Current Build Gate:** Contracts Reconstructed → Test Expansion → Issue Resolution → Deployment
 **System Maturity:** Architecture mature, implementation partial, deployment incomplete
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
-**Immediate Priority:** Test suite, issue resolution, guarded-live deployment path
+**Immediate Priority:** expand the reconstructed Phase 1a test suite, resolve issue set, and preserve guarded-live deployment path discipline
 
 ## 6.2 Current Live Snapshot
 
@@ -394,8 +394,8 @@ This means:
 | Core Philosophy / Axioms | COMPLETE | stable, refined, active |
 | Architecture Blueprint | COMPLETE | canonical structure exists |
 | Master Build Coordination | ACTIVE | this file serves that role |
-| Phase 1a Contracts | COMPLETE | 11 written and locked |
-| Test Suite | NOT COMPLETE | next required major deliverable |
+| Phase 1a Contracts | RECONSTRUCTED | reconstructed cleanly from the canonical MOF, surviving DoveCore.sol, and the surviving Revenue Router specification; not claimed as recovered original source set |
+| Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 7 passing Phase 1a tests; expansion still required before deployment |
 | Router Deployment | NOT DEPLOYED | blocked by testing / issue resolution |
 | Treasury Deployment | NOT DEPLOYED | depends on Phase 1a deployment |
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
@@ -525,7 +525,7 @@ Spread Detection:
 | monad-market-agent | ⚠️ Crash-looping | QuickNode daily limit hit — BLOCKER |
 | eth-market-agent | Polling | Operational |
 | spread-scanner | Consumer ready | Awaiting stable price feeds |
-| risk-engine | 24 local package tests passing | Repo package signal only; broader canonical test program remains incomplete |
+| risk-engine | 28 local package tests passing | Repo package signal only; broader canonical test program remains incomplete |
 | opportunity-constructor | ✅ Built | npm install/build complete |
 | portfolio-manager | ✅ Built | npm install/build complete |
 | monad-arb-bot | ✅ Execution ready | npm install/build complete |
@@ -1113,11 +1113,20 @@ Its purpose is to establish the first live, controllable, observable capital inf
 
 ## 9.2 Phase 1a Status
 
-**Status:** Contracts Complete — Test Suite Pending — Deployment Pending
+**Status:** Contracts Reconstructed — Initial Test Suite Live — Deployment Pending
 
 ## 9.3 Phase 1a Contract Suite
 
-All 11 contracts are reported written and locked:
+The canonical Phase 1a contract inventory remains 11 contracts.
+
+Current repo truth:
+
+- the original Phase 1a source set was not recovered
+- the contract suite has now been **reconstructed** from the canonical MOF, the surviving `DoveCore.sol`, and the surviving Revenue Router specification artifact
+- this reconstruction compiles and has an executable baseline test harness
+- it must still be treated as a reconstruction until deployment and broader test expansion prove behavioral parity with canonical intent
+
+Current reconstructed set:
 
 1. GovernanceController.sol
 2. DoveCore.sol
@@ -1140,6 +1149,20 @@ All 11 contracts are reported written and locked:
 5. Dove failure cannot halt economic flow
 6. no silent ETH ingress through fallback/receive
 7. receiver/router addressing locks after wiring
+
+## 9.4.1 Current Reconstruction Verification
+
+The reconstructed Phase 1a suite currently has a live Hardhat test harness with **7 passing tests** covering:
+
+1. atomic end-to-end routing from InboundReceiver through RevenueRouter into all sinks
+2. locked allocation behavior with pre-Phase 3 Data Yield redirection into MEV
+3. treasury floor and allocation policy guardrails
+4. receiver/router/sink wiring locks after first set
+5. no silent ETH ingress through `receive()` / `fallback()`
+6. Dove failure not halting economic flow
+7. DoveRouterObserver health snapshot flow
+
+This is sufficient to classify the test suite as **started and executable**, not sufficient to classify Phase 1a as deployment-ready.
 
 ## 9.5 Upgrade Roadmap (Post Phase 1a)
 
@@ -1361,13 +1384,13 @@ Validate with router health, observation counts, flow integrity, and issue closu
 
 ## What should be worked on right now
 
-**Primary next task:** Build the Phase 1a test suite.
+**Primary next task:** Expand the reconstructed Phase 1a test suite.
 
 ## Why this is the next task
 
-- contracts are already written
-- deployment without tests is structurally premature
-- open issues cannot be resolved cleanly without test scaffolding
+- the reconstructed contract base now exists and compiles
+- deployment without deeper test coverage is still structurally premature
+- open issues cannot be resolved cleanly without executable test scaffolding
 - everything downstream depends on this layer becoming real and reliable
 
 ## What should not be worked on right now
@@ -1715,6 +1738,27 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - current next action remains the Phase 1a test suite
 - repo-side commercial artifacts are now classified as subordinate support layers rather than ambiguous phase claims
 
+## v2.3.2 — April 2, 2026
+
+**Change Type:** Patch — Phase 1a reconstruction state synchronization
+
+**Summary of changes:**
+
+- **Section 6.1:** current build gate relabeled from generic contract completion to explicit reconstructed-contract testing path
+- **Section 6.2:** Phase 1a contract row changed from "11 written and locked" to the truthful current repo state: reconstructed from surviving canonical artifacts rather than recovered original sources
+- **Section 6.2:** test-suite row updated from "not complete" to "in progress" with explicit current executable baseline
+- **Section 9.2 / 9.3:** Phase 1a status and contract-suite language updated to distinguish reconstruction from source recovery
+- **Section 9.4.1:** added explicit reconstruction verification block documenting the current 7 passing Hardhat tests and what they cover
+- **Section 11:** immediate-next-action reasoning updated to reflect that the suite now exists and must be expanded rather than started from zero
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- deployment remains pending
+- original Phase 1a source recovery remains unresolved
+- reconstructed Phase 1a contracts now compile and have an executable baseline test harness
+- current next action becomes **test expansion and deployment hardening**, not first-time test harness creation
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
@@ -1735,10 +1779,10 @@ If a collaborator or model needs immediate orientation, the project currently is
 - a behavioral-science-driven agent system in design
 - a capital-routing organism with conscience and decompression-integrity layers
 - currently in **Phase 1a**
-- with **11 contracts written and locked**
+- with **11 canonical Phase 1a contracts reconstructed in repo**
 - but **not yet test-complete or deployment-complete**
-- with **three active blockers:** test suite, ISSUE-002 (execution logic), ISSUE-003 (monad-market-agent crash loop)
-- and the **single most important next task is the Phase 1a test suite**
+- with **three active blockers:** deeper Phase 1a test expansion, ISSUE-002 (execution logic), ISSUE-003 (monad-market-agent crash loop)
+- and the **single most important next task is expanding the reconstructed Phase 1a test suite toward deployment confidence**
 
 Everything else remains subordinate to that until the foundation proves itself live.
 

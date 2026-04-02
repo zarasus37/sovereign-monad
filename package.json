@@ -1,0 +1,14 @@
+{
+  "name": "sovereign-monad-phase1a",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Reconstructed Phase 1a Solidity workspace for Sovereign Monad",
+  "scripts": {
+    "build:contracts": "hardhat compile",
+    "test:contracts": "hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.7"
+  }
+}
