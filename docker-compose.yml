@@ -1,0 +1,308 @@
+﻿## Historical reference stack retained for legacy Monad/Ethereum workflows.
+## Sovereign Monad runtime compose artifact.
+version: '3.8'
+
+services:
+  # Kafka and dependencies
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    hostname: zookeeper
+    container_name: monad-mev-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-logs:/var/lib/zookeeper/log
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    hostname: kafka
+    container_name: monad-mev-kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_LOG_RETENTION_HOURS: 24
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+
+  # Kafka UI for debugging
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: monad-mev-kafka-ui
+    depends_on:
+      - kafka
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: monad-mev
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+
+  # Phase 1: Monad Market Agent
+  monad-market-agent:
+    build:
+      context: ./monad-market-agent
+      dockerfile: Dockerfile
+    container_name: monad-mev-monad-market-agent
+    depends_on:
+      - kafka
+    environment:
+      - MONAD_WS_URL=${MONAD_WS_URL:-wss://monad-mainnet.quiknode.pro/}
+      - KURU_ETH_USDC_ADDR=${KURU_ETH_USDC_ADDR:-}
+      - KURU_WETH_MON_ADDR=${KURU_WETH_MON_ADDR:-}
+      - KURU_MON_USDC_ADDR=${KURU_MON_USDC_ADDR:-}
+      - KAFKA_BROKERS=kafka:29092
+      - KAFKA_TOPIC=market.monad.price-snapshot
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 2: Ethereum Market Agent
+  eth-market-agent:
+    build:
+      context: ./eth-market-agent
+      dockerfile: Dockerfile
+    container_name: monad-mev-eth-market-agent
+    depends_on:
+      - kafka
+    environment:
+      - ETH_WS_URL=${ETH_WS_URL:-wss://mainnet.infura.io/ws/v3/}
+      - UNI_ETH_USDC_005_ADDR=${UNI_V3_ETH_USDC_POOL:-0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640}
+      - KAFKA_BROKERS=kafka:29092
+      - KAFKA_TOPIC=market.eth.price-snapshot
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 3: Spread Scanner
+  spread-scanner:
+    build:
+      context: ./spread-scanner
+      dockerfile: Dockerfile
+    container_name: monad-mev-spread-scanner
+    depends_on:
+      - kafka
+      - monad-market-agent
+      - eth-market-agent
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPIC_MONAD=market.monad.price-snapshot
+      - INPUT_TOPIC_ETH=market.eth.price-snapshot
+      - OUTPUT_TOPIC=market.spread.signal
+      - MIN_SPREAD_BPS=5
+      - MIN_CAPACITY_USD=100
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 4: Opportunity Constructor
+  opportunity-constructor:
+    build:
+      context: ./opportunity-constructor
+      dockerfile: Dockerfile
+    container_name: monad-mev-opportunity-constructor
+    depends_on:
+      - kafka
+      - spread-scanner
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPIC=market.spread.signal
+      - OUTPUT_TOPIC=risk.opportunity-candidate
+      - DEFAULT_SIZE_PERCENT=10
+      - MIN_SIZE_USD=10
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 5: Risk Engine
+  risk-engine:
+    build:
+      context: ./risk-engine
+      dockerfile: Dockerfile
+    container_name: monad-mev-risk-engine
+    depends_on:
+      - kafka
+      - opportunity-constructor
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPIC=risk.opportunity-candidate
+      - OUTPUT_TOPIC=risk.opportunity-evaluation
+      - ETH_RPC_URL=${ETH_RPC_URL:-https://eth.drpc.org}
+      - ETH_PRICE_USD=${ETH_PRICE_USD:-2500}
+      - GAS_LIMIT_UNITS=200000
+      - SIMULATIONS=1000
+      - EV_MIN_THRESHOLD=10
+      - SHARPE_LIKE_THRESHOLD=0.3
+      - MAX_TAIL_LOSS_PERCENT=30
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 6: Portfolio Manager
+  portfolio-manager:
+    build:
+      context: ./portfolio-manager
+      dockerfile: Dockerfile
+    container_name: monad-mev-portfolio-manager
+    depends_on:
+      - kafka
+      - risk-engine
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPIC=risk.opportunity-evaluation
+      - OUTPUT_TOPIC=execution.execution-plan
+      - MAX_BRIDGE_EXPOSURE_PERCENT=50
+      - MAX_CHAIN_EXPOSURE_PERCENT=80
+      - MAX_SINGLE_TRADE_PERCENT=20
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 7: Monad Arb Bot
+  monad-arb-bot:
+    build:
+      context: ./monad-arb-bot
+      dockerfile: Dockerfile
+    container_name: monad-mev-monad-arb-bot
+    depends_on:
+      - kafka
+      - portfolio-manager
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPIC=execution.execution-plan
+      - OUTPUT_TOPIC=execution.execution-result
+      - MONAD_RPC_URL=${MONAD_RPC_URL:-https://monad-mainnet.quiknode.pro/}
+      - PRIVATE_KEY=${PRIVATE_KEY:-}
+      - DRY_RUN=${DRY_RUN:-true}
+      - MAX_SLIPPAGE_BPS=50
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 8: Ethereum Arb Bot
+  eth-arb-bot:
+    build:
+      context: ./eth-arb-bot
+      dockerfile: Dockerfile
+    container_name: monad-mev-eth-arb-bot
+    depends_on:
+      - kafka
+      - portfolio-manager
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPIC=execution.eth-execution-plan
+      - OUTPUT_TOPIC=execution.eth-result
+      - ETH_RPC_URL=${ETH_RPC_URL:-https://eth-mainnet.alchemyapi.io/}
+      - PRIVATE_KEY=${PRIVATE_KEY:-}
+      - DRY_RUN=${DRY_RUN:-true}
+      - MAX_SLIPPAGE_BPS=50
+      - USE_FLASHBOTS=${USE_FLASHBOTS:-false}
+      - FLASHBOTS_RELAY_URL=${FLASHBOTS_RELAY_URL:-https://relay.flashbots.net}
+      - FLASHBOTS_AUTH_KEY=${FLASHBOTS_AUTH_KEY:-}
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 8: Bridge Executor Bot
+  bridge-exec-bot:
+    build:
+      context: ./bridge-exec-bot
+      dockerfile: Dockerfile
+    container_name: monad-mev-bridge-exec-bot
+    depends_on:
+      - kafka
+      - portfolio-manager
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPIC=execution.bridge-request
+      - OUTPUT_TOPIC=execution.bridge-result
+      - ETH_RPC_URL=${ETH_RPC_URL:-https://eth-mainnet.alchemyapi.io/}
+      - MONAD_RPC_URL=${MONAD_RPC_URL:-https://monad-mainnet.quiknode.pro/}
+      - PRIVATE_KEY=${PRIVATE_KEY:-}
+      - BRIDGE_TYPE=wormhole-ntt
+      - WORMHOLE_NTT_ADDRESS=${WORMHOLE_NTT_ADDRESS:-}
+      - WORMHOLE_CHAIN_ID_MONAD=${WORMHOLE_CHAIN_ID_MONAD:-0}
+      - DRY_RUN=${DRY_RUN:-true}
+      - BRIDGE_TIMEOUT_MS=120000
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 9: Model Feedback Logger
+  model-feedback-logger:
+    build:
+      context: ./model-feedback-logger
+      dockerfile: Dockerfile
+    container_name: monad-mev-model-feedback-logger
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPICS=market.monad.price-snapshot,market.eth.price-snapshot,market.spread.signal,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-result
+      - OUTPUT_DIR=/app/logs
+      - LOG_LEVEL=info
+    volumes:
+      - feedback-logs:/app/logs
+    restart: unless-stopped
+
+  # Phase 10: Stress Monitor
+  stress-monitor:
+    build:
+      context: ./stress-monitor
+      dockerfile: Dockerfile
+    container_name: monad-mev-stress-monitor
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - OUTPUT_TOPIC=market.stress-signal
+      - MONAD_WS_URL=${MONAD_WS_URL:-wss://monad-mainnet.quiknode.pro/}
+      - MONAD_RPC_URL=${STRESS_MONAD_RPC_URL:-https://monad-testnet.drpc.org}
+      - KURU_ETH_USDC_ADDR=${KURU_ETH_USDC_ADDR:-}
+      - KURU_MON_USDC_ADDR=${KURU_MON_USDC_ADDR:-}
+      - KURU_STRESS_POOL_ADDR=${KURU_STRESS_POOL_ADDR:-}
+      - USDC_TOKEN_ADDRESS=${USDC_TOKEN_ADDRESS:-}
+      - GAS_SPIKE_MULTIPLIER=2.0
+      - BLOCK_DELAY_THRESHOLD_SEC=5
+      - LIQUIDATION_THRESHOLD=1.1
+      - DEGOD_THRESHOLD=0.95
+      - POLL_INTERVAL_MS=5000
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+  # Phase 11: Alert Rules Engine
+  alert-rules:
+    build:
+      context: ./alert-rules
+      dockerfile: Dockerfile
+    container_name: monad-mev-alert-rules
+    depends_on:
+      - kafka
+    environment:
+      - KAFKA_BROKERS=kafka:29092
+      - INPUT_TOPICS=market.spread.signal,risk.opportunity-evaluation,execution.execution-result,market.stress-signal
+      - DISCORD_WEBHOOK_URL=${DISCORD_WEBHOOK_URL:-}
+      - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL:-}
+      - MIN_ALERT_SPREAD_BPS=50
+      - MAX_POSITION_ALERT_USD=5000
+      - ALERT_COOLDOWN_MS=30000
+      - LOG_LEVEL=info
+    restart: unless-stopped
+
+volumes:
+  zookeeper-data:
+  zookeeper-logs:
+  kafka-data:
+  feedback-logs:
+
+networks:
+  default:
+    name: monad-mev-network
+
