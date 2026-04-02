@@ -13,16 +13,18 @@ Canonical project status does not live in this repo. Use the separate `sovereign
 
 - Canonical status and active master phase: `https://github.com/zarasus37/sovereign-monad`
 - Local mirrored MOF for workspace use: `docs/SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md`
+- Local mirrored build map for workspace use: `docs/ECOSYSTEM_BUILD_MAP.md`
+- Local mirrored sync discipline for workspace use: `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - Base/Arbitrum repo migration notes: `docs/MIGRATION-BASE-ARB.md`
 - Service and topic flow artifacts: `ARCHITECTURE.md`
 - Proposed funded operating envelope: `docs/GUARDED-LIVE-PROFILE.md`
 - Base/Arbitrum deployment artifact entrypoint: `docker-compose.mainnet.yml`
 - Commercialization guide: `risk-engine/MEV_LICENSING_BUILD_GUIDE.md`
 
-Refresh the local MOF mirror from the canonical repo with:
+Refresh all local canonical mirrors from the canonical repo with:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\sync-mof-mirror.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\sync-canonical-mirrors.ps1
 ```
 
 ## Repo Runtime Artifacts
