@@ -5,6 +5,8 @@ This repository contains the canonical Sovereign Monad materials plus the runtim
 ## Canonical Documents
 
 - `docs/sovereign_monad_MOF_v2.3.0.md`
+- `docs/ECOSYSTEM_BUILD_MAP.md`
+- `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - `docs/Gnosis_Integrity_Layer_Spec_v1.2.md`
 - `docs/data_buyer_thesis.md`
 - `DoveCore.sol`
