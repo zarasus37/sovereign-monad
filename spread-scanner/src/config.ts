@@ -29,9 +29,9 @@ export function getConfig(): Config {
     outputTopic: process.env.OUTPUT_TOPIC || 'market.spread.signal',
     clientId: process.env.KAFKA_CLIENT_ID || 'spread-scanner',
     logLevel: process.env.LOG_LEVEL || 'info',
-    minSpreadBps: parseFloat(process.env.MIN_SPREAD_BPS || '5'),
-    minLiquidity10bpsUsd: parseFloat(process.env.MIN_LIQUIDITY_10BPS_USD || '0'),
-    minCapacityUsd: parseFloat(process.env.MIN_CAPACITY_USD || '50000'),
+    minSpreadBps: parseFloat(process.env.MIN_SPREAD_BPS || '12'),
+    minLiquidity10bpsUsd: parseFloat(process.env.MIN_LIQUIDITY_10BPS_USD || '750'),
+    minCapacityUsd: parseFloat(process.env.MIN_CAPACITY_USD || '3000'),
   };
   return configInstance;
 }

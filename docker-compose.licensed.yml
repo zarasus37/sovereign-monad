@@ -1,0 +1,42 @@
+x-license-env: &license-env
+  LICENSE_KEY: ${LICENSE_KEY:?Run scripts/activate-license.sh before starting the licensed stack}
+  LICENSE_ACTIVATED: ${LICENSE_ACTIVATED:?Run scripts/activate-license.sh before starting the licensed stack}
+  LICENSE_ACTIVATED_AT: ${LICENSE_ACTIVATED_AT:?Run scripts/activate-license.sh before starting the licensed stack}
+  LICENSE_ACTIVATION_ID: ${LICENSE_ACTIVATION_ID:?Run scripts/activate-license.sh before starting the licensed stack}
+  LICENSE_TIER: ${LICENSE_TIER:?Run scripts/activate-license.sh before starting the licensed stack}
+  LICENSE_CUSTOMER: ${LICENSE_CUSTOMER:?Run scripts/activate-license.sh before starting the licensed stack}
+  LICENSE_SERVER_URL: ${LICENSE_SERVER_URL:-}
+
+services:
+  base-market-agent:
+    environment: *license-env
+
+  arbitrum-market-agent:
+    environment: *license-env
+
+  spread-scanner:
+    environment: *license-env
+
+  opportunity-constructor:
+    environment: *license-env
+
+  risk-engine:
+    environment: *license-env
+
+  portfolio-manager:
+    environment: *license-env
+
+  arb-bot:
+    environment: *license-env
+
+  model-feedback-logger:
+    environment: *license-env
+
+  alert-rules:
+    environment: *license-env
+
+  stress-monitor:
+    environment: *license-env
+
+  dashboard:
+    environment: *license-env

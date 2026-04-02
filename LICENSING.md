@@ -73,12 +73,15 @@ Showcase the system capabilities without exposing edge.
 ### Recommended Customer Deployment
 ```
 /deploy/
-  docker-compose.yml    # Base deployment
-  .env.example         # Template
+  docker-compose.mainnet.yml
+  docker-compose.licensed.yml
+  .env.example
+  .env.license
   scripts/
-    deploy.sh
+    activate-license.sh
+    validate-license.sh
+    deploy-licensed.sh
     health-check.sh
-    migrate-secrets.sh
 ```
 
 ---

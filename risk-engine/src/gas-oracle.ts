@@ -1,8 +1,8 @@
 /**
  * Gas Price Oracle for Risk Engine
  * 
- * Fetches real-time gas prices from Ethereum RPC and caches
- * them for one block (~12s) to avoid excessive RPC calls.
+ * Fetches real-time gas prices from the configured execution-chain RPC and
+ * caches them briefly to avoid excessive calls during bursty opportunity flow.
  */
 
 import { createLogger } from './utils/logger';
@@ -11,9 +11,9 @@ const logger = createLogger('gas-oracle');
 
 export class GasPriceOracle {
   private readonly rpcUrl: string;
-  private cachedGasPriceGwei: number = 30; // reasonable fallback
+  private cachedGasPriceGwei: number = 30; // conservative fallback for L2 execution
   private lastFetchMs: number = 0;
-  private readonly cacheTtlMs: number = 12_000; // ~1 ETH block
+  private readonly cacheTtlMs: number = 12_000; // short cache window for repeated evaluations
 
   constructor(rpcUrl: string) {
     this.rpcUrl = rpcUrl;

@@ -1,81 +1,37 @@
-# Case Study: Building Production MEV Infrastructure
+# Case Study Draft: MEV Infrastructure Packaging
 
 ## The Problem
 
-Most teams spend 3-6 months building trading infrastructure before they can start trading.
+Most teams spend months building trading infrastructure before they can evaluate whether the strategy layer is even worth operating.
 
-## What We Built
+## What The Repo Contains
 
-In [timeframe], we built a complete production-ready MEV arbitrage system:
+This repository contains a substantial MEV infrastructure codebase with:
 
-```
-[Base Market] ──┐
-                ├──→ [Spread Scanner] ──→ [Risk Engine] ──→ [Execution]
-[Arb Market] ──┘
-```
+- market-agent artifacts
+- a spread scanner
+- a Monte Carlo risk engine
+- execution-path artifacts
+- monitoring and alerting
+- Docker-based packaging
 
-### Components Built
+## Current Status Notes
 
-| Component | Technology | Status |
-|-----------|------------|--------|
-| Market Agents | TypeScript + RPC | ✅ |
-| Spread Scanner | TypeScript + Kafka | ✅ |
-| Risk Engine | Monte Carlo sims | ✅ |
-| Execution | Ethers.js | ✅ |
-| Dashboard | Streamlit + Python | ✅ |
-| Alerting | Custom rules | ✅ |
-| Deployment | Docker Compose | ✅ |
+- Base/Arbitrum deployment artifacts exist in the repo.
+- Legacy Monad/Ethereum reference paths also remain in the repo.
+- Commercialization scaffolds exist for demo, API, billing, and license activation.
+- Canonical project phase and live status remain governed by the separate `sovereign-monad` repo.
 
-### Features
+## What Is Actually Defensible To Say
 
-- [x] Real-time price feeds (Base, Arbitrum)
-- [x] Kafka-powered event pipeline
-- [x] Spread detection (configurable threshold)
-- [x] Position sizing with risk limits
-- [x] Guarded-live execution (dry-run by default)
-- [x] Dashboard with live metrics
-- [x] Alerting (Discord, Telegram)
-- [x] Docker deployment
-- [x] Health checks
-
-### Tech Stack
-
-- **Language:** TypeScript, Python
-- **Message Bus:** Apache Kafka
-- **Blockchain:** Ethers.js, Base, Arbitrum
-- **DEX:** Aerodrome, Camelot
-- **Deployment:** Docker, Docker Compose
-- **Monitoring:** Streamlit, Prometheus
-
-## Results
-
-- ✅ System running 24/7
-- ✅ Live market data from 2 chains
-- ✅ Automated spread detection
-- ✅ Configurable risk parameters
-
-## What We Learned
-
-1. Kafka is overkill for simple bots, but essential for scale
-2. RPC reliability matters more than speed
-3. Guarded-live pattern is essential for safety
-4. Monitoring everything from day 1 saves debugging time
-
-## Cost
-
-| Item | Cost |
-|------|------|
-| RPC (Alchemy) | ~$50/mo |
-| VPS (optional) | ~$20/mo |
-| Time to build | 2-4 weeks |
+1. The repo contains meaningful implementation, not just planning docs.
+2. The risk engine and evaluation layer are packaged for demo and API use.
+3. The presence of those artifacts does not prove live-trading readiness or broader program completion.
 
 ## Next Steps
 
-1. Add more market pairs
-2. Integrate more DEXs
-3. Optimize execution
-4. Find design partners
+1. tighten public positioning around the MOF
+2. deploy only the surfaces that are actually ready for external use
+3. keep sales and investor material aligned to canonical status
 
----
-
-*Want to build something similar? DM for consulting or custom development.*
+*This file is a draft positioning document, not a canonical live-status statement.*

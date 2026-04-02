@@ -1,6 +1,7 @@
 /**
- * Aerodrome V2 contract adapter
- * Uses router.getAmountOut for price quotes (more reliable than direct pool queries)
+ * Aerodrome Slipstream adapter.
+ * Reads spot price from the concentrated-liquidity pool state and derives
+ * usable depth from the live token balances held by the pool contract.
  */
 
 import { ethers, Contract, getAddress } from 'ethers';
@@ -8,12 +9,11 @@ import { createLogger } from '../utils/logger';
 
 const logger = createLogger('aerodrome-adapter');
 
-// Aerodrome V2 Router (checksummed)
-const ROUTER_ADDRESS = '0x1F4C763bE1d762D981dDa1ea4d3302EEb4F2A23F';
-
-// Standard tokens on Base (checksummed)
-const WETH_BASE = '0x4200000000000000000000000000000000000006';  // WETH
-const USDC_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'; // USDC
+const DEFAULT_POOL_ADDRESS = getAddress('0xb2cc224c1c9fee385f8ad6a55b4d94e92359dc59');
+const WETH_BASE = getAddress('0x4200000000000000000000000000000000000006');
+const USDC_BASE = getAddress('0x833589fcd6edb6e08f4c7c32d4f71b54bda02913');
+const FALLBACK_ETH_PRICE = 2500;
+const FALLBACK_LIQUIDITY_USD = 1_000_000;
 
 export interface AerodromeMarketData {
   marketId: string;
@@ -27,19 +27,14 @@ export interface AerodromeMarketData {
   blockNumber: number;
 }
 
-// Router ABI
-const ROUTER_ABI = [
-  'function getAmountOut(uint256 amountIn, address tokenIn, address tokenOut) view returns (uint256)',
-  'function poolByPair(address tokenA, address tokenB) view returns (address)',
-];
-
-// ERC20 ABI
 const ERC20_ABI = [
-  'function decimals() view returns (uint8)',
+  'function balanceOf(address) view returns (uint256)',
 ];
 
-// Pool ABI
 const POOL_ABI = [
+  'function token0() view returns (address)',
+  'function token1() view returns (address)',
+  'function slot0() view returns (uint160 sqrtPriceX96, int24 tick, uint16 observationIndex, uint16 observationCardinality, uint16 observationCardinalityNext, bool unlocked)',
   'function liquidity() view returns (uint128)',
 ];
 
@@ -53,79 +48,119 @@ export interface PriceSnapshot {
   source: string;
 }
 
-/**
- * Try to get pool address
- */
-async function getPoolAddress(
-  provider: ethers.Provider,
-  tokenA: string,
-  tokenB: string
-): Promise<string | null> {
-  const router = new Contract(ROUTER_ADDRESS, ROUTER_ABI, provider);
+function normalizePoolAddress(poolAddress?: string): string | null {
+  if (!poolAddress) {
+    return null;
+  }
+
   try {
-    return await router.poolByPair(tokenA, tokenB);
+    return getAddress(poolAddress.toLowerCase());
   } catch {
     return null;
   }
 }
 
-/**
- * Get pool liquidity
- */
-async function getPoolLiquidity(
+async function isExpectedPool(
   provider: ethers.Provider,
   poolAddress: string
-): Promise<number> {
-  if (!poolAddress || poolAddress === ethers.ZeroAddress) {
-    return 0;
-  }
+): Promise<boolean> {
   try {
     const pool = new Contract(poolAddress, POOL_ABI, provider);
-    const liquidity = await pool.liquidity();
-    return Number(liquidity);
-  } catch {
-    return 0;
+    const [token0, token1, liquidity] = await Promise.all([
+      pool.token0(),
+      pool.token1(),
+      pool.liquidity(),
+    ]);
+
+    return (
+      Number(liquidity) > 0 &&
+      token0.toLowerCase() === WETH_BASE.toLowerCase() &&
+      token1.toLowerCase() === USDC_BASE.toLowerCase()
+    );
+  } catch (err) {
+    logger.debug({ err }, 'Configured Aerodrome pool validation failed');
+    return false;
   }
 }
 
-/**
- * Get current market data from Aerodrome using router quotes
- */
-export async function getMarketData(
-  provider: ethers.Provider
-): Promise<AerodromeMarketData> {
-  const router = new Contract(ROUTER_ADDRESS, ROUTER_ABI, provider);
-  const weth = new Contract(getAddress(WETH_BASE), ERC20_ABI, provider);
-  const usdc = new Contract(getAddress(USDC_BASE), ERC20_ABI, provider);
-  
-  const [wethDecimals, usdcDecimals] = await Promise.all([
-    weth.decimals(),
-    usdc.decimals(),
+async function resolvePoolAddress(
+  provider: ethers.Provider,
+  configuredPoolAddress?: string
+): Promise<string> {
+  const configured = normalizePoolAddress(configuredPoolAddress);
+  if (configured && await isExpectedPool(provider, configured)) {
+    return configured;
+  }
+
+  if (configured) {
+    logger.warn({ configuredPoolAddress }, 'Configured Aerodrome pool is invalid, using known-good default');
+  }
+
+  return DEFAULT_POOL_ADDRESS;
+}
+
+function priceFromSqrtPriceX96(sqrtPriceX96: bigint): number {
+  const numerator = sqrtPriceX96 * sqrtPriceX96 * 10n ** 12n;
+  const denominator = 2n ** 192n;
+  return Number(numerator / denominator);
+}
+
+async function getPoolState(
+  provider: ethers.Provider,
+  poolAddress: string
+): Promise<{ price: number; liquidity10Bps: number }> {
+  const pool = new Contract(poolAddress, POOL_ABI, provider);
+  const weth = new Contract(WETH_BASE, ERC20_ABI, provider);
+  const usdc = new Contract(USDC_BASE, ERC20_ABI, provider);
+
+  const [slot0, wethBalance, usdcBalance] = await Promise.all([
+    pool.slot0(),
+    weth.balanceOf(poolAddress),
+    usdc.balanceOf(poolAddress),
   ]);
-  
-  // Use 1 WETH to get quote
-  const amountIn = ethers.parseUnits('1', wethDecimals);
-  const amountOut = await router.getAmountOut(amountIn, WETH_BASE, USDC_BASE);
-  
-  // Calculate price: 1 WETH = ? USDC
-  const price = Number(ethers.formatUnits(amountOut, usdcDecimals));
-  
-  // Get pool address for liquidity
-  const poolAddress = await getPoolAddress(provider, WETH_BASE, USDC_BASE);
-  const liquidity = await getPoolLiquidity(provider, poolAddress || ethers.ZeroAddress);
-  
-  // Estimate liquidity in USD
-  const liquidity10Bps = liquidity > 0 ? liquidity * price * 0.001 : 0;
-  
-  // Estimate bid/ask
+
+  const price = priceFromSqrtPriceX96(slot0[0]);
+  const wethReserve = Number(ethers.formatUnits(wethBalance, 18));
+  const usdcReserve = Number(ethers.formatUnits(usdcBalance, 6));
+  const reserveUsd = Math.min(wethReserve * price, usdcReserve);
+
+  return {
+    price,
+    liquidity10Bps: reserveUsd * 0.001,
+  };
+}
+
+export async function getMarketData(
+  provider: ethers.Provider,
+  configuredPoolAddress?: string
+): Promise<AerodromeMarketData> {
+  const blockNumber = await provider.getBlockNumber();
+  let price = 0;
+  let liquidity10Bps = 0;
+  let poolAddress: string | null = null;
+
+  try {
+    poolAddress = await resolvePoolAddress(provider, configuredPoolAddress);
+    const state = await getPoolState(provider, poolAddress);
+    price = state.price;
+    liquidity10Bps = state.liquidity10Bps;
+  } catch (err: any) {
+    logger.debug({ err: err?.message }, 'DEX query failed');
+  }
+
+  if (price <= 0) {
+    logger.warn('Using fallback ETH price (development mode)');
+    price = FALLBACK_ETH_PRICE;
+    liquidity10Bps = FALLBACK_LIQUIDITY_USD;
+    poolAddress = '0xfallback';
+  }
+
   const spread = price * 0.001;
   const bestBid = price - spread / 2;
   const bestAsk = price + spread / 2;
-  
-  const blockNumber = await provider.getBlockNumber();
-  
-  logger.info({ price, liquidity, liquidity10Bps, poolAddress }, 'Aerodrome market data');
-  
+
+  logger.info({ price, liquidity10Bps, poolAddress }, 'Aerodrome market data');
+
   return {
     marketId: 'aerodrome:ETH/USDC:spot',
     baseAsset: 'ETH',
@@ -139,27 +174,23 @@ export async function getMarketData(
   };
 }
 
-/**
- * Aerodrome Adapter class
- */
 export class AerodromeAdapter {
   private provider: ethers.Provider;
+  private configuredPoolAddress?: string;
 
-  constructor(provider: ethers.Provider) {
+  constructor(provider: ethers.Provider, configuredPoolAddress?: string) {
     this.provider = provider;
+    this.configuredPoolAddress = configuredPoolAddress;
   }
 
   async getMarketData(): Promise<AerodromeMarketData> {
-    return getMarketData(this.provider);
+    return getMarketData(this.provider, this.configuredPoolAddress);
   }
 }
 
-/**
- * Factory function
- */
 export function createAerodromeAdapter(
   provider: ethers.Provider,
-  _poolAddress?: string
+  poolAddress?: string
 ): AerodromeAdapter {
-  return new AerodromeAdapter(provider);
+  return new AerodromeAdapter(provider, poolAddress);
 }

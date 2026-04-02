@@ -161,6 +161,8 @@ export class OpportunityConstructorService {
       sizeSuggestion: suggestedSize.toFixed(2),
       entryMarket: isBuyMSellE ? spreadSignal.marketM : spreadSignal.marketE,
       exitMarket: isBuyMSellE ? spreadSignal.marketE : spreadSignal.marketM,
+      entryPrice: isBuyMSellE ? spreadSignal.priceM : spreadSignal.priceE,
+      exitPrice: isBuyMSellE ? spreadSignal.priceE : spreadSignal.priceM,
       modeOptions: ['inventory_based', 'bridge_based'], // Both modes available
       timeWindowEstimateMs: Math.floor(timeWindowEstimateMs),
       spreadBps: spreadSignal.spreadBps,

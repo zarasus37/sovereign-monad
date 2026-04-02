@@ -1,6 +1,6 @@
 /**
- * Monad WebSocket RPC client using ethers.js v6
- * Supports multiple endpoint failover for rate-limit resilience
+ * Arbitrum WebSocket RPC client using ethers.js v6.
+ * Supports multiple endpoint failover for rate-limit resilience.
  */
 
 import { WebSocketProvider } from 'ethers';
@@ -9,13 +9,11 @@ import { createLogger } from '../utils/logger';
 const logger = createLogger('rpc-adapter');
 
 /**
- * Monad testnet public/free RPC endpoints for failover.
- * When the primary (configured) endpoint hits rate limits,
- * the client rotates through these alternatives.
+ * Public Arbitrum mainnet RPC endpoints used for failover.
+ * When the primary endpoint hits rate limits or drops, the client rotates through these alternatives.
  */
-const MONAD_TESTNET_WS_FALLBACKS = [
-  'wss://monad-testnet.drpc.org',
-  'wss://ws.testnet.monad.xyz',
+const ARBITRUM_MAINNET_WS_FALLBACKS = [
+  'wss://arbitrum-one-rpc.publicnode.com',
 ];
 
 export interface RpcClient {
@@ -28,7 +26,7 @@ export interface RpcClient {
   getProvider(): WebSocketProvider | null;
 }
 
-export class MonadRpcClient implements RpcClient {
+export class ArbitrumRpcClient implements RpcClient {
   private provider: WebSocketProvider | null = null;
   private endpoints: string[];
   private currentEndpointIndex: number = 0;
@@ -46,7 +44,7 @@ export class MonadRpcClient implements RpcClient {
     // Build endpoint list: primary first, then fallbacks (deduplicated)
     const seen = new Set<string>();
     this.endpoints = [];
-    for (const url of [wsUrl, ...MONAD_TESTNET_WS_FALLBACKS]) {
+    for (const url of [wsUrl, ...ARBITRUM_MAINNET_WS_FALLBACKS]) {
       const normalized = url.replace(/\/+$/, '');
       if (!seen.has(normalized)) {
         seen.add(normalized);
@@ -93,7 +91,7 @@ export class MonadRpcClient implements RpcClient {
       try {
         logger.info(
           { wsUrl: this.currentWsUrl, attempt: this.reconnectAttempt + 1, endpoint: this.currentEndpointIndex + 1, totalEndpoints: this.endpoints.length },
-          'Connecting to Monad WebSocket'
+          'Connecting to Arbitrum WebSocket'
         );
         this.provider = new WebSocketProvider(this.currentWsUrl);
 
@@ -101,7 +99,7 @@ export class MonadRpcClient implements RpcClient {
         const network = await this.provider.getNetwork();
         logger.info(
           { chainId: network.chainId },
-          'Connected to Monad network'
+          'Connected to Arbitrum network'
         );
 
         // Get initial block number
@@ -194,7 +192,7 @@ export class MonadRpcClient implements RpcClient {
 
   async disconnect(): Promise<void> {
     if (this.provider) {
-      logger.info('Disconnecting from Monad WebSocket');
+      logger.info('Disconnecting from Arbitrum WebSocket');
       this.removeBlockListener();
       await this.provider.destroy();
       this.provider = null;
@@ -293,6 +291,6 @@ export class MonadRpcClient implements RpcClient {
 }
 
 export function createRpcClient(wsUrl: string): RpcClient {
-  return new MonadRpcClient(wsUrl);
+  return new ArbitrumRpcClient(wsUrl);
 }
 

@@ -5,7 +5,7 @@
  * Sharpe-like ratio, and tail risk for cross-chain arbitrage.
  * 
  * Per spec:
- * - Correlated price paths between Monad and Ethereum
+ * - Correlated price paths between the two active execution chains
  * - Bridge latency modeled as log-normal distribution
  * - Small probability of bridge failure
  * - Gas and bridge fees as costs
@@ -19,6 +19,10 @@ const DEFAULT_BRIDGE_FAILURE_RATE = 0.001; // 0.1% per trade
 const DEFAULT_GAS_COST_USD = 5;
 const DEFAULT_BRIDGE_FEE_BPS = 3;
 const DEFAULT_CORRELATION = 0.7;
+const DEFAULT_INVENTORY_SLIPPAGE_BPS = 1;
+const DEFAULT_BRIDGE_SLIPPAGE_BPS = 4;
+const DEFAULT_MARKET_IMPACT_BPS_PER_100K = 1.5;
+const DEFAULT_LIQUIDITY_SHOCK_MULTIPLIER = 1;
 
 /**
  * Monte Carlo parameters
@@ -34,6 +38,12 @@ export interface MonteCarloParams {
   bridgeLatencyMs?: { median: number; p95: number };
   gasCostUsd?: number;
   bridgeFeeBps?: number;
+  bridgeFailureRate?: number;
+  inventorySlippageBps?: number;
+  bridgeSlippageBps?: number;
+  marketImpactBpsPer100k?: number;
+  liquidityShockMultiplier?: number;
+  seed?: number;
 }
 
 /**
@@ -44,6 +54,8 @@ export interface MonteCarloResult {
   evStd: number;
   sharpeLike: number;
   pLossGtX: number;
+  p01Pnl: number;
+  // Legacy alias retained for downstream compatibility.
   maxDrawdownEstimate: number;
   distribution: number[];
 }
@@ -51,10 +63,18 @@ export interface MonteCarloResult {
 /**
  * Box-Muller transform for generating standard normal random numbers
  */
-function randomNormal(): number {
+function createSeededRandom(seed: number): () => number {
+  let state = seed >>> 0;
+  return () => {
+    state = (1664525 * state + 1013904223) >>> 0;
+    return state / 0x100000000;
+  };
+}
+
+function randomNormal(random: () => number): number {
   let u = 0, v = 0;
-  while (u === 0) u = Math.random();
-  while (v === 0) v = Math.random();
+  while (u === 0) u = random();
+  while (v === 0) v = random();
   return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 }
 
@@ -62,8 +82,8 @@ function randomNormal(): number {
  * Generate correlated price paths using Cholesky decomposition
  * 
  * @param n Number of paths
- * @param volM Monad volatility (annualized)
- * @param volE Ethereum volatility (annualized) 
+ * @param volM Chain A volatility (annualized)
+ * @param volE Chain B volatility (annualized)
  * @param correlation Correlation between chains
  * @param dt Time step in years
  */
@@ -72,7 +92,8 @@ function generateCorrelatedPaths(
   volM: number,
   volE: number,
   correlation: number,
-  dt: number
+  dt: number,
+  random: () => number
 ): { pricesM: number[]; pricesE: number[] }[] {
   const paths: { pricesM: number[]; pricesE: number[] }[] = [];
   
@@ -92,8 +113,8 @@ function generateCorrelatedPaths(
 
     // Generate path with up to 100 steps (needed for bridge-based latency indexing)
     for (let t = 1; t <= 100; t++) {
-      const z1 = randomNormal();
-      const z2 = chol21 * z1 + chol22 * randomNormal();
+      const z1 = randomNormal(random);
+      const z2 = chol21 * z1 + chol22 * randomNormal(random);
       
       // Geometric Brownian Motion: S(t+dt) = S(t) * exp((μ - σ²/2)*dt + σ*sqrt(dt)*Z)
       // Using μ = 0 (drift-free)
@@ -112,11 +133,26 @@ function generateCorrelatedPaths(
  * @param median Expected latency (50th percentile)
  * @param p95 95th percentile latency
  */
-function sampleBridgeLatency(median: number, p95: number): number {
+function sampleBridgeLatency(median: number, p95: number, random: () => number): number {
   // Convert median and p95 to log-normal parameters
   const sigma = (Math.log(p95) - Math.log(median)) / 1.6449;
   const mu = Math.log(median) - 0.5 * sigma * sigma;
-  return Math.exp(mu + sigma * randomNormal());
+  return Math.exp(mu + sigma * randomNormal(random));
+}
+
+function computeLiquidityCostUsd(
+  sizeUsd: number,
+  mode: 'inventory_based' | 'bridge_based',
+  inventorySlippageBps: number,
+  bridgeSlippageBps: number,
+  marketImpactBpsPer100k: number,
+  liquidityShockMultiplier: number
+): number {
+  const baseSlippageBps =
+    mode === 'inventory_based' ? inventorySlippageBps : bridgeSlippageBps;
+  const sizeImpactBps = (sizeUsd / 100000) * marketImpactBpsPer100k;
+  const totalBps = (baseSlippageBps + sizeImpactBps) * liquidityShockMultiplier;
+  return (totalBps / 10000) * sizeUsd;
 }
 
 /**
@@ -133,6 +169,7 @@ export function runMonteCarlo(
   params: Partial<MonteCarloParams> = {},
   simulations: number = 10000
 ): MonteCarloResult {
+  const random = params.seed !== undefined ? createSeededRandom(params.seed) : Math.random;
   const config = {
     volM: params.volM ?? opportunity.volM5m,
     volE: params.volE ?? opportunity.volE5m,
@@ -144,6 +181,11 @@ export function runMonteCarlo(
     bridgeLatencyMs: params.bridgeLatencyMs ?? DEFAULT_BRIDGE_LATENCY_MS,
     gasCostUsd: params.gasCostUsd ?? DEFAULT_GAS_COST_USD,
     bridgeFeeBps: params.bridgeFeeBps ?? DEFAULT_BRIDGE_FEE_BPS,
+    bridgeFailureRate: params.bridgeFailureRate ?? DEFAULT_BRIDGE_FAILURE_RATE,
+    inventorySlippageBps: params.inventorySlippageBps ?? DEFAULT_INVENTORY_SLIPPAGE_BPS,
+    bridgeSlippageBps: params.bridgeSlippageBps ?? DEFAULT_BRIDGE_SLIPPAGE_BPS,
+    marketImpactBpsPer100k: params.marketImpactBpsPer100k ?? DEFAULT_MARKET_IMPACT_BPS_PER_100K,
+    liquidityShockMultiplier: params.liquidityShockMultiplier ?? DEFAULT_LIQUIDITY_SHOCK_MULTIPLIER,
   };
 
   const results: number[] = [];
@@ -157,7 +199,8 @@ export function runMonteCarlo(
     config.volM,
     config.volE,
     config.correlation,
-    dt
+    dt,
+    random
   );
 
   for (let i = 0; i < simulations; i++) {
@@ -167,11 +210,19 @@ export function runMonteCarlo(
     
     // Initial spread profit (the edge we're capturing)
     const initialEdge = config.spreadBps * config.sizeUsd;
+    const liquidityCostUsd = computeLiquidityCostUsd(
+      config.sizeUsd,
+      config.mode,
+      config.inventorySlippageBps,
+      config.bridgeSlippageBps,
+      config.marketImpactBpsPer100k,
+      config.liquidityShockMultiplier
+    );
     
     if (config.mode === 'inventory_based') {
       // Inventory-based: close almost immediately
       // PnL = spread - gas
-      pnl = initialEdge - config.gasCostUsd;
+      pnl = initialEdge - config.gasCostUsd - liquidityCostUsd;
       
       // Add small price movement risk over time window
       // Partial exposure since we're closing fast
@@ -184,7 +235,8 @@ export function runMonteCarlo(
       // Bridge-based: exposed to bridge latency
       const latency = sampleBridgeLatency(
         config.bridgeLatencyMs.median,
-        config.bridgeLatencyMs.p95
+        config.bridgeLatencyMs.p95,
+        random
       );
       
       // During bridge time, price can move against us
@@ -196,11 +248,12 @@ export function runMonteCarlo(
       pnl = initialEdge 
         - (config.bridgeFeeBps / 10000) * config.sizeUsd 
         - config.gasCostUsd * 2
+        - liquidityCostUsd
         - priceMoveM
         - priceMoveE;
       
       // Small chance of bridge failure (catastrophic loss)
-      if (Math.random() < DEFAULT_BRIDGE_FAILURE_RATE) {
+      if (random() < config.bridgeFailureRate) {
         pnl = -config.sizeUsd * 0.5;
       }
     }
@@ -222,14 +275,15 @@ export function runMonteCarlo(
   
   // Max drawdown estimate (worst 1st percentile — the bad tail)
   const sorted = [...results].sort((a, b) => a - b);
-  const maxDrawdownEstimate = sorted[Math.floor(sorted.length * 0.01)];
+  const p01Pnl = sorted[Math.floor(sorted.length * 0.01)];
 
   return {
     evMean,
     evStd,
     sharpeLike,
     pLossGtX,
-    maxDrawdownEstimate,
+    p01Pnl,
+    maxDrawdownEstimate: p01Pnl,
     distribution: results,
   };
 }
@@ -253,7 +307,7 @@ export function evaluateOpportunity(
   const approved = 
     result.evMean > config.evMinThreshold &&
     result.sharpeLike > config.sharpeLikeThreshold &&
-    Math.abs(result.maxDrawdownEstimate) < maxAllowedLoss;
+    Math.abs(result.p01Pnl) < maxAllowedLoss;
 
   // Scale size based on confidence for borderline cases
   let size = opportunity.sizeSuggestion;
@@ -282,11 +336,20 @@ export function createEvaluation(
       source: 'risk-engine',
     },
     opportunityId: opportunity.id,
+    asset: opportunity.asset,
+    direction: opportunity.direction,
+    entryVenue: opportunity.entryMarket,
+    exitVenue: opportunity.exitMarket,
+    entryPrice: opportunity.entryPrice,
+    exitPrice: opportunity.exitPrice,
+    spreadBps: opportunity.spreadBps,
+    sourceSignalId: opportunity.sourceSignalId,
     mode,
     evMean: mcResult.evMean,
     evStd: mcResult.evStd,
     sharpeLike: mcResult.sharpeLike,
     pLossGtX: mcResult.pLossGtX,
+    p01Pnl: mcResult.p01Pnl,
     maxDrawdownEstimate: mcResult.maxDrawdownEstimate,
     approved: decision.approved,
     size: decision.size,

@@ -7,7 +7,10 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "stress:matrix": "node dist/tools/stress-matrix.js",
+    "stress:matrix:json": "node dist/tools/stress-matrix.js --json",
+    "stress:matrix:report": "node dist/tools/stress-matrix.js --json --out artifacts/stress-matrix.json"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

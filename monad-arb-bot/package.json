@@ -1,7 +1,7 @@
 {
   "name": "monad-arb-bot",
   "version": "1.0.0",
-  "description": "Execution bot for Monad arbitrage",
+  "description": "Historical only: superseded Monad execution bot retained for migration reference",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",

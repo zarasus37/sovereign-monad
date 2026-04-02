@@ -1,4 +1,7 @@
 /**
+ * Historical reference artifact retained for possible future Monad reactivation.
+ * Not part of the active Base/Arbitrum runtime.
+ *
  * Entry point for monad-market-agent
  * Handles graceful shutdown on SIGINT/SIGTERM
  */

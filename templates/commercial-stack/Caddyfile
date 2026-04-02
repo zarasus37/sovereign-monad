@@ -1,0 +1,18 @@
+{
+  email {$ACME_EMAIL}
+}
+
+{$API_DOMAIN} {
+  encode zstd gzip
+  reverse_proxy smev-api:3000
+}
+
+{$BILLING_DOMAIN} {
+  encode zstd gzip
+  reverse_proxy smev-billing:3010
+}
+
+{$LICENSE_DOMAIN} {
+  encode zstd gzip
+  reverse_proxy smev-license-service:4010
+}

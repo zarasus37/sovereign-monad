@@ -19,6 +19,7 @@ import { createLogger } from './utils/logger';
 import { OpportunityCandidate, OpportunityEvaluation } from './models/events';
 import { ArbitrageSignal, RiskGnosisEngine, SpreadSnapshot } from './core/rge';
 import { GasPriceOracle } from './gas-oracle';
+import { shouldApproveEvaluation } from './approval';
 
 const logger = createLogger('risk-engine');
 
@@ -44,8 +45,13 @@ export class RiskEngineService {
     });
     this.consumer = this.kafka.consumer({ groupId: `${this.config.clientId}-group` });
     this.producer = this.kafka.producer();
-    this.engine = new RiskGnosisEngine();
-    this.gasOracle = new GasPriceOracle(this.config.ethRpcUrl);
+    this.engine = new RiskGnosisEngine(
+      10_000,
+      0.30,
+      this.config.fixedCostBps,
+      this.config.minEffectiveSpreadBps
+    );
+    this.gasOracle = new GasPriceOracle(this.config.executionRpcUrl);
   }
 
   /**
@@ -75,6 +81,8 @@ export class RiskEngineService {
         simulations: this.config.simulations,
         evThreshold: this.config.evMinThreshold,
         sharpeThreshold: this.config.sharpeLikeThreshold,
+        fixedCostBps: this.config.fixedCostBps,
+        minEffectiveSpreadBps: this.config.minEffectiveSpreadBps,
       },
       'Risk Engine started'
     );
@@ -173,8 +181,17 @@ export class RiskEngineService {
     const evMean = notional * effectiveEdgeFrac * 0.65 - gasCostUsd;
     const evStd = notional > 0 ? Math.max(notional * 0.30 * timeScale, 0.01) : 0;
     const sharpeLike = evStd > 0 ? evMean / evStd : 0;
-    const maxDrawdownEstimate = notional > 0 ? -(notional * 0.30 * timeScale * 2) : 0;
-    const approved = signal !== null && notional > 0;
+    const p01Pnl = notional > 0 ? -(notional * 0.30 * timeScale * 2) : 0;
+    const approved = shouldApproveEvaluation(
+      {
+        signal,
+        notional,
+        evMean,
+        sharpeLike,
+        p01Pnl,
+      },
+      this.config
+    );
 
     return {
       meta: {
@@ -185,12 +202,21 @@ export class RiskEngineService {
         source: 'risk-engine',
       },
       opportunityId: opportunity.id,
+      asset: opportunity.asset,
+      direction: opportunity.direction,
+      entryVenue: opportunity.entryMarket,
+      exitVenue: opportunity.exitMarket,
+      entryPrice: opportunity.entryPrice,
+      exitPrice: opportunity.exitPrice,
+      spreadBps: opportunity.spreadBps,
+      sourceSignalId: opportunity.sourceSignalId,
       mode,
       evMean,
       evStd,
       sharpeLike,
       pLossGtX: approved ? 0.35 : 1,
-      maxDrawdownEstimate,
+      p01Pnl,
+      maxDrawdownEstimate: p01Pnl,
       approved,
       size: notional.toFixed(2),
       timeWindowMs: opportunity.timeWindowEstimateMs,

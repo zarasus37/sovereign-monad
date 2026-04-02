@@ -1,3 +1,0 @@
-{
-  "content": "⚡ **Why Build Trading Infra From Scratch?**\n\nWe built a production-ready MEV arbitrage system so you don't have to.\n\n**What's included:**\n- Event-driven pipeline (Kafka)\n- Real-time market data (Base + Arbitrum)\n- Risk engine with Monte Carlo sims\n- Guarded-live execution (dry-run by default)\n- Dashboard + alerts\n\n**Why it matters:**\nMost teams spend 3-6 months building infrastructure.\nWe built it once. You just deploy.\n\n**Currently running:**\n- Live on Base ↔ Arbitrum\n- Monitoring spreads 24/7\n- Ready for design partners\n\nReply if you want a demo!"
-}

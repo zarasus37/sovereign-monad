@@ -1,3 +1,8 @@
+/**
+ * Historical reference artifact retained for possible future Monad execution reactivation.
+ * Not part of the active Base/Arbitrum runtime.
+ */
+
 import { ArbitrageBot } from './service';
 import { createLogger } from './utils/logger';
 

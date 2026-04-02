@@ -20,8 +20,10 @@ const baseOpportunity: OpportunityCandidate = {
   asset: 'ETH',
   direction: 'buy_M_sell_E',
   sizeSuggestion: '50000',
-  entryMarket: 'kuru:ETH/USDC:spot',
-  exitMarket: 'uni_v3:ETH/USDC:0.05%',
+  entryMarket: 'aerodrome:ETH/USDC:spot',
+  exitMarket: 'camelot:ETH/USDC:spot',
+  entryPrice: 2500,
+  exitPrice: 2510,
   modeOptions: ['inventory_based', 'bridge_based'],
   timeWindowEstimateMs: 30000,
   spreadBps: 25,
@@ -54,6 +56,7 @@ describe('MonteCarlo Engine', () => {
       expect(result).toHaveProperty('evStd');
       expect(result).toHaveProperty('sharpeLike');
       expect(result).toHaveProperty('pLossGtX');
+      expect(result).toHaveProperty('p01Pnl');
       expect(result).toHaveProperty('maxDrawdownEstimate');
       expect(result).toHaveProperty('distribution');
       expect(Array.isArray(result.distribution)).toBe(true);
@@ -85,6 +88,53 @@ describe('MonteCarlo Engine', () => {
     it('should produce consistent results', () => {
       const results = [runMonteCarlo(TEST_OPPORTUNITY, {}, 100), runMonteCarlo(TEST_OPPORTUNITY, {}, 100)];
       results.forEach(r => expect(r.distribution.length).toBe(100));
+    });
+
+    it('should be deterministic when seeded', () => {
+      const seededA = runMonteCarlo(TEST_OPPORTUNITY, { seed: 12345 }, 500);
+      const seededB = runMonteCarlo(TEST_OPPORTUNITY, { seed: 12345 }, 500);
+      expect(seededA.evMean).toBeCloseTo(seededB.evMean, 10);
+      expect(seededA.evStd).toBeCloseTo(seededB.evStd, 10);
+      expect(seededA.sharpeLike).toBeCloseTo(seededB.sharpeLike, 10);
+      expect(seededA.p01Pnl).toBeCloseTo(seededB.p01Pnl, 10);
+      expect(seededA.maxDrawdownEstimate).toBeCloseTo(seededB.maxDrawdownEstimate, 10);
+    });
+
+    it('should reduce EV under higher slippage and liquidity impact', () => {
+      const baseline = runMonteCarlo(
+        TEST_OPPORTUNITY,
+        { seed: 2024, inventorySlippageBps: 1, marketImpactBpsPer100k: 1.5 },
+        1000
+      );
+      const stressed = runMonteCarlo(
+        TEST_OPPORTUNITY,
+        {
+          seed: 2024,
+          inventorySlippageBps: 6,
+          marketImpactBpsPer100k: 6,
+          liquidityShockMultiplier: 2,
+        },
+        1000
+      );
+      expect(stressed.evMean).toBeLessThan(baseline.evMean);
+    });
+
+    it('should reduce bridge EV when bridge failure rate is stressed', () => {
+      const bridgeOpportunity = {
+        ...TEST_OPPORTUNITY,
+        modeOptions: ['bridge_based', 'bridge_based'] as ['bridge_based', 'bridge_based'],
+      };
+      const baseline = runMonteCarlo(
+        bridgeOpportunity,
+        { seed: 9090, bridgeFailureRate: 0.001 },
+        2000
+      );
+      const stressed = runMonteCarlo(
+        bridgeOpportunity,
+        { seed: 9090, bridgeFailureRate: 0.02 },
+        2000
+      );
+      expect(stressed.evMean).toBeLessThan(baseline.evMean);
     });
   });
 

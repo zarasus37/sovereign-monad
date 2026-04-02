@@ -1,16 +1,11 @@
 # eth-market-agent
 
-Ethereum price feed agent - mirrors monad-market-agent but for Ethereum Uniswap V3 pools.
+Historical only. This package is retained as a reference artifact from the original Ethereum-side topology and is not part of the active Base/Arbitrum runtime.
 
-## Setup
+Use the active services instead:
 
-```bash
-cd eth-market-agent
-npm install
-cp .env.example .env
-npm run dev
-```
+- `base-market-agent`
+- `arbitrum-market-agent`
+- `arb-bot`
 
-## Markets
-
-- ETH/USDC (0.05% fee tier pool)
+For migration status and current runtime details, see `docs/MIGRATION-BASE-ARB.md` and `STATUS.md`.

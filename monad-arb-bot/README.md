@@ -1,21 +1,7 @@
-# Monad Arb Bot
+# monad-arb-bot
 
-Execution bot for Monad-based arbitrage trades.
+Historical only. This package is retained as a reference artifact from the original Monad execution path and is not part of the active Base/Arbitrum runtime.
 
-## Modes
+Use `arb-bot` for the current execution path.
 
-- **Dry Run**: Set `DRY_RUN=true` to simulate execution without sending transactions
-- **Live**: Provide `PRIVATE_KEY` and set `DRY_RUN=false`
-
-## Topics
-
-- Input: `execution.execution-plan`
-- Output: `execution.execution-result`
-
-## Execution Flow
-
-1. Receives approved ExecutionPlan from portfolio manager
-2. Builds swap transaction (Kuru/Uniswap)
-3. Applies slippage protection
-4. Executes via Flashbots or public mempool
-5. Emits ExecutionResult with realized PnL
+For migration status and current runtime details, see `docs/MIGRATION-BASE-ARB.md` and `STATUS.md`.

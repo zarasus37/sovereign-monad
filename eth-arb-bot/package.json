@@ -1,7 +1,7 @@
 {
   "name": "eth-arb-bot",
   "version": "1.0.0",
-  "description": "Ethereum arbitrage execution bot",
+  "description": "Historical only: superseded Ethereum execution bot retained for migration reference",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",

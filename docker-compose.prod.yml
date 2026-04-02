@@ -1,3 +1,5 @@
+## Historical reference stack retained for legacy Monad/Ethereum production-style workflows.
+## Not the active Base/Arbitrum deployment entrypoint.
 version: '3.8'
 
 services:

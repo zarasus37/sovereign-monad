@@ -17,7 +17,7 @@ export function getConfig(): Config {
   if (!brokers) throw new Error('KAFKA_BROKERS required');
   configInstance = {
     kafkaBrokers: brokers.split(',').map(b => b.trim()),
-    inputTopics: (process.env.INPUT_TOPICS || 'market.monad.price-snapshot,market.eth.price-snapshot,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-result').split(','),
+    inputTopics: (process.env.INPUT_TOPICS || 'market.base.price-snapshot,market.arbitrum.price-snapshot,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-result').split(','),
     outputDir: process.env.OUTPUT_DIR || './logs',
     clientId: process.env.KAFKA_CLIENT_ID || 'model-feedback-logger',
     logLevel: process.env.LOG_LEVEL || 'info',

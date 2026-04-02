@@ -1,7 +1,7 @@
 {
   "name": "bridge-exec-bot",
   "version": "1.0.0",
-  "description": "Cross-chain bridge executor for Monad Native Bridge",
+  "description": "Historical only: superseded bridge executor retained for migration reference",
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",

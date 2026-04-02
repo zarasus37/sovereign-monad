@@ -100,7 +100,7 @@ services:
       - INPUT_TOPIC_CHAIN_A=market.base.price-snapshot
       - INPUT_TOPIC_CHAIN_B=market.arbitrum.price-snapshot
       - OUTPUT_TOPIC=market.spread.signal
-      - MIN_SPREAD_BPS=${MIN_SPREAD_BPS:-12}
+      - MIN_SPREAD_BPS=${MIN_SPREAD_BPS:-3}
       - MIN_LIQUIDITY_10BPS_USD=${MIN_LIQUIDITY_10BPS_USD:-750}
       - MIN_CAPACITY_USD=${MIN_CAPACITY_USD:-3000}
       - LOG_LEVEL=info

@@ -34,3 +34,15 @@ logs/
 
 # Test coverage
 coverage/
+
+# Generated risk reports
+risk-engine/artifacts/
+
+# Local package caches
+templates/billing/.npm-cache/
+
+# Local stack env files (examples are tracked separately)
+templates/commercial-stack/.env.api
+templates/commercial-stack/.env.billing
+templates/commercial-stack/.env.edge
+templates/commercial-stack/.env.license-service

@@ -1,0 +1,12 @@
+services:
+  smev-api:
+    ports:
+      - "3000:3000"
+
+  smev-billing:
+    ports:
+      - "3010:3010"
+
+  smev-license-service:
+    ports:
+      - "4010:4010"

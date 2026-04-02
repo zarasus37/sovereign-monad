@@ -17,7 +17,9 @@ export interface Config {
   evMinThreshold: number;
   sharpeLikeThreshold: number;
   maxTailLossPercent: number;
-  ethRpcUrl: string;
+  fixedCostBps: number;
+  minEffectiveSpreadBps: number;
+  executionRpcUrl: string;
   ethPriceUsd: number;
   gasLimitUnits: number;
 }
@@ -44,7 +46,9 @@ export function getConfig(): Config {
     evMinThreshold: parseFloat(process.env.EV_MIN_THRESHOLD || '100'),
     sharpeLikeThreshold: parseFloat(process.env.SHARPE_LIKE_THRESHOLD || '0.5'),
     maxTailLossPercent: parseFloat(process.env.MAX_TAIL_LOSS_PERCENT || '20'),
-    ethRpcUrl: process.env.ETH_RPC_URL || 'https://eth.drpc.org',
+    fixedCostBps: parseFloat(process.env.RISK_FIXED_COST_BPS || '8'),
+    minEffectiveSpreadBps: parseFloat(process.env.RISK_MIN_EFFECTIVE_SPREAD_BPS || '12'),
+    executionRpcUrl: process.env.CHAIN_A_RPC_URL || process.env.BASE_RPC_URL || process.env.ETH_RPC_URL || 'https://mainnet.base.org',
     ethPriceUsd: parseFloat(process.env.ETH_PRICE_USD || '2500'),
     gasLimitUnits: parseInt(process.env.GAS_LIMIT_UNITS || '200000'),
   };

@@ -36,7 +36,7 @@ export function getConfig(): Config {
     clientId: process.env.KAFKA_CLIENT_ID || 'opportunity-constructor',
     logLevel: process.env.LOG_LEVEL || 'info',
     defaultSizePercent: parseFloat(process.env.DEFAULT_SIZE_PERCENT || '10'),
-    minSizeUsd: parseFloat(process.env.MIN_SIZE_USD || '10000'),
+    minSizeUsd: parseFloat(process.env.MIN_SIZE_USD || '250'),
   };
 
   return configInstance;

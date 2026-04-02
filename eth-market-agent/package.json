@@ -1,7 +1,7 @@
 {
   "name": "eth-market-agent",
   "version": "1.0.0",
-  "description": "Ethereum price feed agent for cross-chain MEV arbitrage system",
+  "description": "Historical only: superseded Ethereum market agent retained for migration reference",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

@@ -24,6 +24,7 @@ const ETH_USDC_MARKET_ID = 'camelot:ETH/USDC:spot';
 export class ArbitrumMarketAgent {
   private rpcClient: RpcClient;
   private camelotAdapter: CamelotAdapter;
+  private adapterProvider = null as ReturnType<RpcClient['getProvider']>;
   private kafkaProducer: KafkaProducerClient;
   private volatilityTracker: VolatilityTracker;
   private config: ReturnType<typeof getConfig>;
@@ -52,7 +53,7 @@ export class ArbitrumMarketAgent {
   async initialize(): Promise<void> {
     logger.info('Initializing Arbitrum Market Agent with Camelot');
     await this.rpcClient.connect();
-    this.camelotAdapter = createCamelotAdapter(this.rpcClient.getProvider()!, this.poolAddress);
+    this.refreshAdapter();
     await this.kafkaProducer.connect();
     logger.info('Arbitrum Market Agent initialized successfully');
   }
@@ -85,10 +86,24 @@ export class ArbitrumMarketAgent {
     logger.debug({ blockNumber }, 'Processing new block');
 
     try {
+      this.refreshAdapter();
       const marketData = await this.camelotAdapter.getMarketData();
       await this.publishSnapshot(this.buildSnapshot(marketData, blockNumber));
     } catch (error: unknown) {
       logger.error({ blockNumber, err: error instanceof Error ? error.message : String(error) }, 'Error processing block');
+    }
+  }
+
+  private refreshAdapter(): void {
+    const provider = this.rpcClient.getProvider();
+    if (!provider) {
+      throw new Error('RPC provider unavailable');
+    }
+
+    if (provider !== this.adapterProvider) {
+      this.camelotAdapter = createCamelotAdapter(provider, this.poolAddress);
+      this.adapterProvider = provider;
+      logger.info('Refreshed Camelot adapter for current RPC provider');
     }
   }
 

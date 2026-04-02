@@ -25,6 +25,7 @@ const ETH_USDC_MARKET_ID = 'aerodrome:ETH/USDC:spot';
 export class BaseMarketAgent {
   private rpcClient: RpcClient;
   private aerodromeAdapter: AerodromeAdapter;
+  private adapterProvider = null as ReturnType<RpcClient['getProvider']>;
   private kafkaProducer: KafkaProducerClient;
   private volatilityTracker: VolatilityTracker;
   private config: ReturnType<typeof getConfig>;
@@ -67,10 +68,7 @@ export class BaseMarketAgent {
     await this.rpcClient.connect();
 
     // Initialize Aerodrome adapter with provider
-    this.aerodromeAdapter = createAerodromeAdapter(
-      this.rpcClient.getProvider()!,
-      this.poolAddress
-    );
+    this.refreshAdapter();
 
     // Connect to Kafka
     await this.kafkaProducer.connect();
@@ -117,12 +115,27 @@ export class BaseMarketAgent {
     logger.debug({ blockNumber }, 'Processing new block');
 
     try {
+      this.refreshAdapter();
+
       // Fetch market data from Aerodrome
       const marketData = await this.aerodromeAdapter.getMarketData();
 
       await this.publishSnapshot(this.buildSnapshot(marketData, blockNumber));
     } catch (error: any) {
       logger.error({ blockNumber, err: error?.message ?? String(error) }, 'Error processing block');
+    }
+  }
+
+  private refreshAdapter(): void {
+    const provider = this.rpcClient.getProvider();
+    if (!provider) {
+      throw new Error('RPC provider unavailable');
+    }
+
+    if (provider !== this.adapterProvider) {
+      this.aerodromeAdapter = createAerodromeAdapter(provider, this.poolAddress);
+      this.adapterProvider = provider;
+      logger.info('Refreshed Aerodrome adapter for current RPC provider');
     }
   }
 

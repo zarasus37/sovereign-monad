@@ -39,6 +39,8 @@ export interface OpportunityCandidate {
   sizeSuggestion: string;
   entryMarket: string;
   exitMarket: string;
+  entryPrice: number;
+  exitPrice: number;
   modeOptions: [TradeMode, TradeMode]; // Tuple: [inventory_based, bridge_based]
   timeWindowEstimateMs: number;
   spreadBps: number;

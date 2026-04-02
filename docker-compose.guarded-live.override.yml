@@ -1,0 +1,33 @@
+services:
+  spread-scanner:
+    environment:
+      MIN_SPREAD_BPS: "15"
+      MIN_LIQUIDITY_10BPS_USD: "750"
+      MIN_CAPACITY_USD: "3000"
+
+  opportunity-constructor:
+    environment:
+      MIN_SIZE_USD: "250"
+
+  risk-engine:
+    environment:
+      EV_MIN_THRESHOLD: "25"
+      SHARPE_LIKE_THRESHOLD: "0.75"
+      MAX_TAIL_LOSS_PERCENT: "10"
+      RISK_FIXED_COST_BPS: "10"
+      RISK_MIN_EFFECTIVE_SPREAD_BPS: "15"
+
+  portfolio-manager:
+    environment:
+      MAX_SINGLE_TRADE_PERCENT: "10"
+      MAX_BRIDGE_EXPOSURE_PERCENT: "5"
+
+  arb-bot:
+    environment:
+      DRY_RUN: "false"
+      MAX_SLIPPAGE_BPS: "20"
+
+  alert-rules:
+    environment:
+      MIN_ALERT_SPREAD_BPS: "50"
+      ALERT_COOLDOWN_MS: "30000"

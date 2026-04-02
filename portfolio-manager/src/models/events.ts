@@ -9,6 +9,14 @@ export interface EventMeta {
 export interface OpportunityEvaluation {
   meta: EventMeta;
   opportunityId: string;
+  asset: string;
+  direction: 'buy_M_sell_E' | 'buy_E_sell_M';
+  entryVenue: string;
+  exitVenue: string;
+  entryPrice: number;
+  exitPrice: number;
+  spreadBps: number;
+  sourceSignalId: string;
   mode: 'inventory_based' | 'bridge_based';
   evMean: number;
   evStd: number;
@@ -24,14 +32,20 @@ export interface ExecutionPlan {
   meta: EventMeta;
   planId: string;
   opportunityId: string;
+  sourceSignalId: string;
   asset: string;
   direction: 'buy_M_sell_E' | 'buy_E_sell_M';
   size: string;
   mode: 'inventory_based' | 'bridge_based';
   entryVenue: string;
   exitVenue: string;
+  entryPrice: number;
+  exitPrice: number;
+  spreadBps: number;
   expectedEv: number;
   approved: boolean;
+  timeWindowMs: number;
+  executionDeadlineMs: number;
   timestampMs: number;
 }
 

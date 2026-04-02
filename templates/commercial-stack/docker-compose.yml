@@ -1,0 +1,56 @@
+services:
+  smev-api:
+    build:
+      context: ../api
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env.api
+    volumes:
+      - ../api/config:/app/config
+    expose:
+      - "3000"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/health').then(r=>{if(!r.ok) process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  smev-billing:
+    build:
+      context: ../billing
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env.billing
+    volumes:
+      - ../api/config:/app/shared-api-keys
+    environment:
+      API_KEY_STORE_PATH: /app/shared-api-keys/api-keys.json
+    expose:
+      - "3010"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3010/health').then(r=>{if(!r.ok) process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  smev-license-service:
+    build:
+      context: ../license-service
+      dockerfile: Dockerfile
+    env_file:
+      - ./.env.license-service
+    volumes:
+      - ../license-service/config:/app/config
+    expose:
+      - "4010"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4010/health').then(r=>{if(!r.ok) process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

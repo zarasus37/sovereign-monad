@@ -2,7 +2,7 @@ import { Kafka, Consumer, Producer, EachMessagePayload } from 'kafkajs';
 import { v4 as uuidv4 } from 'uuid';
 import { getConfig } from './config';
 import { createLogger } from './utils/logger';
-import { MonadPriceSnapshot, EthereumPriceSnapshot, SpreadSignal, EventMeta } from './models/events';
+import { ChainAPriceSnapshot, ChainBPriceSnapshot, SpreadSignal, EventMeta } from './models/events';
 
 const logger = createLogger('scanner');
 
@@ -11,7 +11,7 @@ export class SpreadScanner {
   private consumer: Consumer;
   private producer: Producer;
   private config: ReturnType<typeof getConfig>;
-  private latestPrices: Map<string, { monad?: MonadPriceSnapshot; eth?: EthereumPriceSnapshot }> = new Map();
+  private latestPrices: Map<string, { chainA?: ChainAPriceSnapshot; chainB?: ChainBPriceSnapshot }> = new Map();
   private lastSignalFingerprint: Map<string, string> = new Map();
 
   constructor() {
@@ -56,14 +56,14 @@ export class SpreadScanner {
       }
 
       if (topic === this.config.inputTopics[0]) {
-        state.monad = data as MonadPriceSnapshot;
+        state.chainA = data as ChainAPriceSnapshot;
       } else {
-        state.eth = data as EthereumPriceSnapshot;
+        state.chainB = data as ChainBPriceSnapshot;
       }
 
       // Check if we have both prices for this asset
-      if (state.monad && state.eth) {
-        const spread = this.calculateSpread(state.monad, state.eth);
+      if (state.chainA && state.chainB) {
+        const spread = this.calculateSpread(state.chainA, state.chainB);
         if (spread) {
           await this.emitSpreadSignalIfChanged(spread);
         }
@@ -73,22 +73,22 @@ export class SpreadScanner {
     }
   }
 
-  private calculateSpread(monad: MonadPriceSnapshot, eth: EthereumPriceSnapshot): SpreadSignal | null {
-    const spreadBps = (10000 * (monad.priceMid - eth.priceMid)) / eth.priceMid;
+  private calculateSpread(chainA: ChainAPriceSnapshot, chainB: ChainBPriceSnapshot): SpreadSignal | null {
+    const spreadBps = (10000 * (chainA.priceMid - chainB.priceMid)) / chainB.priceMid;
     const absSpreadBps = Math.abs(spreadBps);
 
     // Filter by minimum spread
     if (absSpreadBps < this.config.minSpreadBps) return null;
 
     // Calculate capacity (min of both sides)
-    const capM = parseFloat(monad.liquidity10bps);
-    const capE = parseFloat(eth.liquidity10bps);
+    const capA = parseFloat(chainA.liquidity10bps);
+    const capB = parseFloat(chainB.liquidity10bps);
 
-    if (capM < this.config.minLiquidity10bpsUsd || capE < this.config.minLiquidity10bpsUsd) {
+    if (capA < this.config.minLiquidity10bpsUsd || capB < this.config.minLiquidity10bpsUsd) {
       return null;
     }
 
-    const capacity = Math.min(capM, capE);
+    const capacity = Math.min(capA, capB);
 
     if (capacity < this.config.minCapacityUsd) return null;
 
@@ -102,16 +102,16 @@ export class SpreadScanner {
 
     return {
       meta,
-      asset: monad.baseAsset,
-      marketM: monad.marketId,
-      marketE: eth.marketId,
-      priceM: monad.priceMid,
-      priceE: eth.priceMid,
+      asset: chainA.baseAsset,
+      marketM: chainA.marketId,
+      marketE: chainB.marketId,
+      priceM: chainA.priceMid,
+      priceE: chainB.priceMid,
       spreadBps,
       direction: spreadBps > 0 ? 'buy_M_sell_E' : 'buy_E_sell_M',
       notionalCapacity: capacity.toFixed(2),
-      volM5m: monad.realizedVol5m,
-      volE5m: eth.realizedVol5m,
+      volM5m: chainA.realizedVol5m,
+      volE5m: chainB.realizedVol5m,
       timestampMs: Date.now(),
     };
   }

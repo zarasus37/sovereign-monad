@@ -1,169 +1,75 @@
-# Docker Templates for Trading Bots
+# Docker Entrypoints
 
-## Quick Start
+This file replaces the older template matrix that referenced compose files that no longer exist in this repo.
 
-```bash
-# Base template
-docker compose -f docker-compose.base.yml up -d
+## Base/Arbitrum Runtime Path
 
-# With monitoring
-docker compose -f docker-compose.monitored.yml up -d
+Use these compose files for the Base/Arbitrum artifact path:
 
-# Production
-docker compose -f docker-compose.prod.yml up -d
+- `docker-compose.mainnet.yml`
+- `docker-compose.guarded-live.override.yml`
+- `docker-compose.licensed.yml`
+
+Supporting docs:
+
+1. `README.deploy.md`
+2. `docs/GUARDED-LIVE-ACTIVATION.md`
+3. `docs/LICENSED-DEPLOYMENT.md`
+4. `docs/OPERATOR-RUNBOOK.md`
+
+## Commercial Service Path
+
+Use `templates/commercial-stack/` for the public commercial services:
+
+- `docker-compose.yml`: base services with no host port publishing
+- `docker-compose.local.yml`: local validation on host ports `3000`, `3010`, `4010`
+- `docker-compose.prod.yml`: localhost-only host binding
+- `docker-compose.edge.yml`: internet-facing `80/443` edge with Caddy
+
+Primary docs:
+
+1. `templates/commercial-stack/README.md`
+2. `templates/commercial-stack/DEPLOYMENT-RUNBOOK.md`
+3. `docs/PAYMENTS.md`
+
+## Verified Commands
+
+Local commercial stack:
+
+```powershell
+cd templates/commercial-stack
+.\up.ps1
+.\verify.ps1
+.\down.ps1
 ```
 
----
+Localhost-only production bind:
 
-## Available Templates
-
-### 1. Base Template (`docker-compose.base.yml`)
-Minimal setup for testing.
-
-**Services:**
-- Kafka + Zookeeper
-- 1 Market agent
-- Basic monitoring
-
-```bash
-docker compose -f docker-compose.base.yml up -d
+```powershell
+cd templates/commercial-stack
+.\preflight.ps1 -AllowPlaceholders
+.\up.ps1 -Prod
+.\verify.ps1
+.\down.ps1 -Prod
 ```
 
----
+Public edge deployment shape:
 
-### 2. Full Template (`docker-compose.full.yml`)
-Complete MEV infrastructure.
-
-**Services:**
-- Kafka + Zookeeper
-- Base market agent
-- Arbitrum market agent
-- Spread scanner
-- Risk engine
-- Portfolio manager
-- Execution bot
-- Dashboard
-
-```bash
-docker compose -f docker-compose.full.yml up -d
+```powershell
+cd templates/commercial-stack
+copy .env.edge.example .env.edge
+.\preflight.ps1 -Edge -AllowPlaceholders
+docker-compose -f docker-compose.yml -f docker-compose.edge.yml config
 ```
 
----
+Full public verification still depends on:
 
-### 3. Monitored Template (`docker-compose.monitored.yml`)
-Full + Prometheus + Grafana.
+- a real root domain
+- DNS records for `api`, `billing`, and `licenses`
+- a reachable host on ports `80/443`
+- real Stripe live credentials
 
-**Services:**
-- Everything in full
-- Prometheus
-- Grafana
-- AlertManager
+## Notes
 
-```bash
-docker compose -f docker-compose.monitored.yml up -d
-```
-
----
-
-### 4. Production Template (`docker-compose.prod.yml`)
-Production-ready with health checks.
-
-**Services:**
-- Everything in monitored
-- Health check endpoints
-- Log aggregation
-- Backup scripts
-
-```bash
-docker compose -f docker-compose.prod.yml up -d
-```
-
----
-
-## Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `KAFKA_BROKERS` | Kafka servers | kafka:29092 |
-| `RPC_BASE` | Base RPC URL | - |
-| `RPC_ARB` | Arbitrum RPC URL | - |
-| `DRY_RUN` | Dry run mode | true |
-| `MIN_SPREAD_BPS` | Min spread | 5 |
-| `LOG_LEVEL` | Log level | info |
-
----
-
-## Deployment Commands
-
-### Development
-```bash
-docker compose -f docker-compose.full.yml up -d
-```
-
-### Production
-```bash
-# Build first
-docker compose -f docker-compose.prod.yml build
-
-# Deploy
-docker compose -f docker-compose.prod.yml up -d
-
-# With custom name
-docker compose -f docker-compose.prod.yml -p my-bot up -d
-```
-
-### Monitoring
-```bash
-# View logs
-docker compose -f docker-compose.full.yml logs -f
-
-# Check health
-docker compose -f docker-compose.full.yml ps
-
-# Stop
-docker compose -f docker-compose.full.yml down
-```
-
----
-
-## Customization
-
-### Add New Market
-1. Create new adapter in `src/adapters/`
-2. Add service to compose file
-3. Configure environment variables
-
-### Add New Strategy
-1. Add strategy logic in `src/strategies/`
-2. Update risk engine config
-3. Restart services
-
----
-
-## Volumes
-
-| Volume | Purpose |
-|--------|---------|
-| `kafka-data` | Kafka messages |
-| `postgres-data` | Trade database |
-| `logs` | Application logs |
-
----
-
-## Networking
-
-All services communicate via internal Docker network. External access:
-
-- Dashboard: `localhost:8501`
-- Kafka: `localhost:9092`
-- Prometheus: `localhost:9090`
-- Grafana: `localhost:3000`
-
----
-
-## Security
-
-- No secrets in compose files
-- Use `.env` for sensitive data
-- Rotate API keys regularly
-- Use read-only wallets for production
+- Do not rely on older references to `docker-compose.base.yml`, `docker-compose.full.yml`, or `docker-compose.monitored.yml`. Those files are not part of the current repo state.
+- The commercial stack and the Base/Arbitrum runtime path are separate deployment concerns and should be operated that way.

@@ -6,9 +6,9 @@ export interface EventMeta {
   source: string;
 }
 
-export interface MonadPriceSnapshot {
+export interface ChainAPriceSnapshot {
   meta: EventMeta;
-  chainId: 'MONAD';
+  chainId: 'BASE';
   marketId: string;
   baseAsset: string;
   quoteAsset: string;
@@ -23,9 +23,9 @@ export interface MonadPriceSnapshot {
   blockNumber: number;
 }
 
-export interface EthereumPriceSnapshot {
+export interface ChainBPriceSnapshot {
   meta: EventMeta;
-  chainId: 'ETHEREUM';
+  chainId: 'ARBITRUM';
   marketId: string;
   baseAsset: string;
   quoteAsset: string;

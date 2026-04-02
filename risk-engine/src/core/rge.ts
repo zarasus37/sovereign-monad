@@ -21,7 +21,9 @@ export class RiskGnosisEngine {
 
   constructor(
     private readonly portfolio: number = 10_000,
-    private readonly annualVol: number = 0.30
+    private readonly annualVol: number = 0.30,
+    private readonly fixedCostBps: number = 15,
+    private readonly minEffectiveSpreadBps: number = 20
   ) {}
 
   effectiveSpread(rawSpreadBps: number, bridgeDelaySec: number): number {
@@ -29,7 +31,7 @@ export class RiskGnosisEngine {
     const t = Math.max(bridgeDelaySec, 0) / this.SECS_PER_YEAR;
     const decay = this.annualVol * Math.sqrt(t);
     const compounding = 0.5 * decay * decay;
-    const effectiveFrac = rawSpread - decay - compounding - 0.0015;
+    const effectiveFrac = rawSpread - decay - compounding - (this.fixedCostBps * this.BPS_TO_FRAC);
     return effectiveFrac / this.BPS_TO_FRAC;
   }
 
@@ -41,7 +43,7 @@ export class RiskGnosisEngine {
   positionSize(rawSpreadBps: number, bridgeDelaySec: number): number {
     const effectiveBps = this.effectiveSpread(rawSpreadBps, bridgeDelaySec);
 
-    if (effectiveBps < 20) {
+    if (effectiveBps < this.minEffectiveSpreadBps) {
       return 0;
     }
 

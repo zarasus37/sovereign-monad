@@ -1,7 +1,7 @@
 {
   "name": "alert-rules",
   "version": "1.0.0",
-  "description": "Alert rules engine — Discord/Slack notifications for Monad MEV",
+  "description": "Alert rules engine for the active Base/Arbitrum runtime",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

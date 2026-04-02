@@ -1,0 +1,50 @@
+param()
+
+$ErrorActionPreference = 'Stop'
+
+$canonicalPath = 'C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md'
+$mirrorPath = 'C:\Users\crisc\Dev\agents\monad-mev\docs\SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md'
+
+if (-not (Test-Path -LiteralPath $canonicalPath)) {
+  throw "Canonical MOF not found: $canonicalPath"
+}
+
+$canonicalContent = Get-Content -LiteralPath $canonicalPath -Raw -Encoding UTF8
+
+$mirrorBanner = @'
+> Local mirror kept in `monad-mev` for operator convenience.
+> Canonical maintenance target: `C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md`
+> If the two copies ever diverge, the `sovereign-monad` copy wins and this mirror must be resynced.
+>
+'@
+
+$lines = $canonicalContent -split "`r?`n"
+if ($lines.Length -lt 1) {
+  throw 'Canonical MOF is empty.'
+}
+
+$header = $lines[0]
+$body = if ($lines.Length -gt 1) { ($lines[1..($lines.Length - 1)] -join "`r`n") } else { '' }
+
+$mirrorContent = @(
+  $header
+  ''
+  $mirrorBanner.TrimEnd()
+  $body
+) -join "`r`n"
+
+$mirrorDir = Split-Path -Parent $mirrorPath
+if (-not (Test-Path -LiteralPath $mirrorDir)) {
+  New-Item -ItemType Directory -Path $mirrorDir | Out-Null
+}
+
+Set-Content -LiteralPath $mirrorPath -Value $mirrorContent -Encoding UTF8
+
+$canonicalHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $canonicalPath).Hash
+$mirrorHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $mirrorPath).Hash
+
+Write-Host "Canonical: $canonicalPath"
+Write-Host "Mirror:    $mirrorPath"
+Write-Host "Canonical SHA256: $canonicalHash"
+Write-Host "Mirror SHA256:    $mirrorHash"
+Write-Host 'MOF mirror sync complete.'

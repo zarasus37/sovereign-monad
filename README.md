@@ -1,135 +1,106 @@
-# Monad Cross-Chain MEV System
+# Sovereign Repo Overview
 
-Sovereign cross-chain arbitrage and market-monitoring engine targeting Monad mainnet and Ethereum mainnet.
+Sovereign is a cross-chain arbitrage and market-monitoring repository. The repo currently contains:
 
-## Current State
+- Base/Arbitrum dry-run deployment artifacts
+- legacy Monad/Ethereum reference packages
+- a standalone demo package
+- API, billing, and license-service commercialization scaffolds
 
-The system is running on real Monad mainnet and Ethereum mainnet market data.
+Canonical project status does not live in this repo. Use the separate `sovereign-monad` repo for current phase, blocker state, and what is or is not live: `https://github.com/zarasus37/sovereign-monad`.
 
-- Monad side: live Kuru orderbooks on Monad mainnet
-- Ethereum side: live Uniswap V3 ETH/USDC pricing
-- Execution: DRY_RUN only
-- Dashboard: live at `http://localhost:8501`
-- Current gating mode: realistic, liquidity-aware suppression
+## Source Of Truth
 
-The stack is operational, but the current Monad ETH source is too thin for controlled tradable opportunities. That means the pipeline now correctly stays quiet unless meaningful executable liquidity appears.
+- Canonical status and active master phase: `https://github.com/zarasus37/sovereign-monad`
+- Local mirrored MOF for workspace use: `docs/SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md`
+- Base/Arbitrum repo migration notes: `docs/MIGRATION-BASE-ARB.md`
+- Service and topic flow artifacts: `ARCHITECTURE.md`
+- Proposed funded operating envelope: `docs/GUARDED-LIVE-PROFILE.md`
+- Base/Arbitrum deployment artifact entrypoint: `docker-compose.mainnet.yml`
+- Commercialization guide: `risk-engine/MEV_LICENSING_BUILD_GUIDE.md`
 
-## Architecture
+Refresh the local MOF mirror from the canonical repo with:
 
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\sync-mof-mirror.ps1
 ```
+
+## Repo Runtime Artifacts
+
+- Base side: `base-market-agent`
+- Arbitrum side: `arbitrum-market-agent`
+- Spread path: `spread-scanner -> opportunity-constructor -> risk-engine -> portfolio-manager`
+- Execution artifact: `arb-bot` with `DRY_RUN=true`
+- Observability: `model-feedback-logger`, `alert-rules`, `monitoring/dashboard.py`
+- Risk-engine sanity tooling: deterministic stress matrix with report output at `risk-engine/artifacts/stress-matrix.json`
+
+These are repo artifacts. They should not be read as proof that the broader program has advanced phases.
+
+## Base/Arbitrum Pipeline Artifact
+
+```text
 Layer 1: Market Intelligence
-├── monad-market-agent       → market.monad.price-snapshot
-├── eth-market-agent         → market.eth.price-snapshot
-├── spread-scanner           → market.spread.signal
-└── stress-monitor           → market.stress-signal
+base-market-agent        -> market.base.price-snapshot
+arbitrum-market-agent    -> market.arbitrum.price-snapshot
+spread-scanner           -> market.spread.signal
+stress-monitor           -> market.stress-signal
 
 Layer 2: Risk / Decision
-├── opportunity-constructor  → risk.opportunity-candidate
-└── risk-engine              → risk.opportunity-evaluation
+opportunity-constructor  -> risk.opportunity-candidate
+risk-engine              -> risk.opportunity-evaluation
 
 Layer 3: Execution
-├── portfolio-manager        → execution.execution-plan
-├── monad-arb-bot            → execution.execution-result
-├── eth-arb-bot              → execution.eth-result
-└── bridge-exec-bot          → execution.bridge-result
+portfolio-manager        -> execution.execution-plan
+arb-bot                  -> execution.execution-result
 
 Layer 4: Feedback / Observability
-├── model-feedback-logger    → JSONL event logs
-└── monitoring/dashboard.py  → Streamlit dashboard
+model-feedback-logger    -> JSONL event logs
+monitoring/dashboard.py  -> Streamlit dashboard
 ```
 
-## Mainnet Services
+## Quick Start
 
-| Service | Purpose | Current Status |
-|---|---|---|
-| `monad-market-agent` | Monad mainnet Kuru pricing | Running |
-| `eth-market-agent` | Ethereum mainnet Uniswap pricing | Running |
-| `spread-scanner` | Cross-chain spread detection | Running, deduplicated |
-| `opportunity-constructor` | Tradable opportunity construction | Running, rejects zero capacity |
-| `risk-engine` | EV / risk evaluation | Running |
-| `portfolio-manager` | Position sizing and exposure controls | Running |
-| `monad-arb-bot` | Monad execution path | Running, DRY_RUN |
-| `model-feedback-logger` | Event logging | Running |
-| `stress-monitor` | Side-channel chain monitoring | Running |
-| `dashboard` | Streamlit UI | Running |
-
-## Mainnet Quick Start
+If you are exercising the Base/Arbitrum artifact path:
 
 ```bash
-# 1. Copy the environment template
 copy .env.example .env
-
-# 2. Fill in the required RPC URLs, wallet key, and market addresses
-
-# 3. Launch the mainnet DRY_RUN stack
 docker compose -f docker-compose.mainnet.yml up -d --build
-
-# 4. Open the dashboard
 start http://localhost:8501
-
-# 5. Check service health
-docker ps --format "table {{.Names}}\t{{.Status}}" | Select-String 'monad-mev-mainnet'
+docker ps --format "table {{.Names}}\t{{.Status}}" | Select-String 'base-arb-mev-mainnet'
 ```
 
-## Active Mainnet Configuration
-
-These are the key current operating assumptions:
+Typical repo-level validation thresholds:
 
 - `DRY_RUN=true`
-- `MIN_SPREAD_BPS=15`
-- `MIN_LIQUIDITY_10BPS_USD=5000`
-- `MIN_CAPACITY_USD=10000`
-- `MAX_SINGLE_TRADE_PERCENT=0.1`
-- `MAX_BRIDGE_EXPOSURE_PERCENT=25`
+- `MIN_SPREAD_BPS=12`
+- `MIN_LIQUIDITY_10BPS_USD=750`
+- `MIN_CAPACITY_USD=3000`
+- `MIN_SIZE_USD=250`
+- `RISK_FIXED_COST_BPS=8`
+- `RISK_MIN_EFFECTIVE_SPREAD_BPS=12`
+- `MAX_SINGLE_TRADE_PERCENT=10`
+- `MAX_SLIPPAGE_BPS=50`
 
-## Mainnet Market Wiring
+Current repo-local package signal:
 
-- Monad RPC: `https://rpc.monad.xyz`
-- Monad WS: `wss://wss.monad-rpc.huginn.tech`
-- Kuru router: `0xb3e6778480b2E488385E8205eA05E20060B813cb`
-- Kuru `WETH/AUSD`: `0xcd8cc5f5b6f744403ad96a8802e050bba1aba37e`
-- Kuru `MON/USDC`: `0x065C9d28E428A0db40191a54d33d5b7c71a9C394`
-- Uniswap V3 ETH/USDC 0.05%: `0x88e6a0c2ddd26feeb64f039a2c41296fcb3f5640`
+- `risk-engine`: `28` passing tests, including deterministic stress-matrix regression coverage
 
-## Important Behavioral Notes
+If this route is resumed toward funded use, the guarded-live profile should be activated only after wallet funding, preflight checks, and explicit operator review.
 
-Recent hardening changes:
+## Commercial Surfaces In Repo
 
-- The spread scanner suppresses duplicate identical ETH signals.
-- Zero-capacity spreads no longer turn into trade candidates.
-- Risk sizing is capped by the constructor’s suggested executable size.
-- Portfolio expected EV is scaled to the approved execution size.
-- DRY_RUN realized PnL uses the sized expected EV directly.
+- Buyer demo: `demo-package/`
+- Starter/Pro API: `templates/api/`
+- Billing scaffold: `templates/billing/`
+- License-service scaffold: `templates/license-service/`
+- Combined commercial stack: `templates/commercial-stack/`
 
-## Why Opportunities May Be Quiet
+These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
 
-This is expected in the current realistic mode.
+## Legacy Reference Material
 
-The normalized Monad ETH market currently has little or no executable `liquidity10bps`, so the scanner and constructor correctly suppress downstream opportunity flow. The stack is functioning as intended; the market is simply too thin right now for controlled DRY_RUN trading under nonzero thresholds.
+- `docker-compose.yml`, `docker-compose.testnet.yml`, and `docker-compose.prod.yml`
+- `monad-market-agent`, `eth-market-agent`
+- `monad-arb-bot`, `eth-arb-bot`, `bridge-exec-bot`
 
-## Validation Commands
-
-```bash
-# Monad snapshots
-docker exec monad-mev-mainnet-kafka sh -lc "kafka-console-consumer --bootstrap-server localhost:9092 --topic market.monad.price-snapshot --timeout-ms 8000 --max-messages 4"
-
-# Spread signals
-docker exec monad-mev-mainnet-kafka sh -lc "kafka-console-consumer --bootstrap-server localhost:9092 --topic market.spread.signal --timeout-ms 8000 --max-messages 5"
-
-# Dashboard data flow
-docker logs monad-mev-mainnet-feedback --tail 20
-
-# Refresh the live ops snapshot in STATUS.md
-powershell -ExecutionPolicy Bypass -File .\scripts\refresh-status.ps1
-```
-
-## Maintenance Workflow
-
-- VS Code task: `Terminal: Run Task` -> `Refresh STATUS.md`
-- VS Code task: `Terminal: Run Task` -> `Refresh STATUS.md + Git Status`
-- Git commits: `.githooks/pre-commit` refreshes and stages `STATUS.md` automatically before each commit
-- `.editorconfig` and `.vscode/settings.json` keep line endings and whitespace behavior consistent across editors
-
-## Legacy Modes
-
-Legacy compose files for testnet and production staging remain in the repo, but the current validated operating path is `docker-compose.mainnet.yml`.
+Do not use those paths as the source of truth for canonical project status.

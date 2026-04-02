@@ -1,11 +1,11 @@
 /**
  * Demo Spread Scanner
- * 
- * ⚠️ DEMO ONLY - Calculates mock spreads for evaluation
- * No real trading signals, no execution
+ *
+ * DEMO ONLY - Consumes synthetic prices, computes cross-market spreads,
+ * and emits opportunity candidates for the demo risk engine.
  */
 
-import { Kafka, Consumer, Producer } from 'kafkajs';
+import { Kafka } from 'kafkajs';
 import { v4 as uuidv4 } from 'uuid';
 
 interface PriceSnapshot {
@@ -46,16 +46,42 @@ interface SpreadSignal {
   signal: string;
 }
 
+interface OpportunityCandidate {
+  meta: {
+    eventId: string;
+    eventType: string;
+    version: number;
+    timestampMs: number;
+    source: string;
+  };
+  id: string;
+  asset: string;
+  direction: 'buy_M_sell_E' | 'buy_E_sell_M';
+  sizeSuggestion: string;
+  entryMarket: string;
+  exitMarket: string;
+  modeOptions: readonly ('inventory_based' | 'bridge_based')[];
+  timeWindowEstimateMs: number;
+  spreadBps: number;
+  volM5m: number;
+  volE5m: number;
+  sourceSignalId: string;
+}
+
 async function main() {
   const kafkaBrokers = (process.env.KAFKA_BROKERS || 'kafka:29092').split(',');
   const inputTopicA = process.env.INPUT_TOPIC_A || 'market.demo-a.snapshot';
   const inputTopicB = process.env.INPUT_TOPIC_B || 'market.demo-b.snapshot';
   const outputTopic = process.env.OUTPUT_TOPIC || 'market.demo.spread';
+  const candidateTopic = process.env.CANDIDATE_TOPIC || 'risk.demo.opportunity-candidate';
   const spreadThresholdBps = parseFloat(process.env.SPREAD_THRESHOLD_BPS || '1');
+  const bridgeDelayMs = parseInt(process.env.BRIDGE_DELAY_MS || '4000', 10);
+  const sizeSuggestionUsd = parseFloat(process.env.SIZE_SUGGESTION_USD || '1000');
 
   console.log('[Scanner] Starting demo spread scanner');
   console.log(`[Scanner] Input topics: ${inputTopicA}, ${inputTopicB}`);
   console.log(`[Scanner] Output topic: ${outputTopic}`);
+  console.log(`[Scanner] Candidate topic: ${candidateTopic}`);
   console.log(`[Scanner] Spread threshold: ${spreadThresholdBps} bps`);
 
   const kafka = new Kafka({
@@ -73,25 +99,31 @@ async function main() {
   await consumer.subscribe({ topic: inputTopicA, fromBeginning: false });
   await consumer.subscribe({ topic: inputTopicB, fromBeginning: false });
 
-  // Store latest prices from each market
   const latestPrices: Record<string, PriceSnapshot> = {};
 
   await consumer.run({
     eachMessage: async ({ topic, message }) => {
-      if (!message.value) return;
+      if (!message.value) {
+        return;
+      }
 
       const snapshot: PriceSnapshot = JSON.parse(message.value.toString());
       latestPrices[topic] = snapshot;
 
-      // Try to calculate spread when we have both prices
       const priceA = latestPrices[inputTopicA];
       const priceB = latestPrices[inputTopicB];
 
       if (priceA && priceB) {
-        const spread = Math.abs(priceA.priceMid - priceB.priceMid);
-        const spreadBps = (spread / priceA.priceMid) * 10000;
-        const spreadPct = (spread / priceA.priceMid) * 100;
+        const signedSpread = priceB.priceMid - priceA.priceMid;
+        const referencePrice = (priceA.priceMid + priceB.priceMid) / 2;
+        const spread = Math.abs(signedSpread);
+        const spreadBps = (spread / referencePrice) * 10_000;
+        const spreadPct = (spread / referencePrice) * 100;
         const isViable = spreadBps >= spreadThresholdBps;
+        const direction: OpportunityCandidate['direction'] =
+          signedSpread >= 0 ? 'buy_M_sell_E' : 'buy_E_sell_M';
+        const entryMarket = signedSpread >= 0 ? priceA.marketId : priceB.marketId;
+        const exitMarket = signedSpread >= 0 ? priceB.marketId : priceA.marketId;
 
         const signal: SpreadSignal = {
           meta: {
@@ -111,6 +143,28 @@ async function main() {
           signal: isViable ? 'SPREAD_DETECTED' : 'NO_OPPORTUNITY',
         };
 
+        const candidate: OpportunityCandidate = {
+          meta: {
+            eventId: uuidv4(),
+            eventType: 'OpportunityCandidate',
+            version: 1,
+            timestampMs: Date.now(),
+            source: 'demo-scanner',
+          },
+          id: uuidv4(),
+          asset: 'ETH/USDC',
+          direction,
+          sizeSuggestion: sizeSuggestionUsd.toFixed(2),
+          entryMarket,
+          exitMarket,
+          modeOptions: ['inventory_based', 'bridge_based'] as const,
+          timeWindowEstimateMs: bridgeDelayMs,
+          spreadBps,
+          volM5m: 0.28,
+          volE5m: 0.25,
+          sourceSignalId: signal.meta.eventId,
+        };
+
         await producer.send({
           topic: outputTopic,
           messages: [
@@ -121,8 +175,18 @@ async function main() {
           ],
         });
 
+        await producer.send({
+          topic: candidateTopic,
+          messages: [
+            {
+              key: candidate.id,
+              value: JSON.stringify(candidate),
+            },
+          ],
+        });
+
         console.log(
-          `[Scanner] Spread: ${spreadBps.toFixed(4)} bps (${spreadPct.toFixed(4)}%) - ${signal.signal}`
+          `[Scanner] Spread=${spreadBps.toFixed(2)}bps (${spreadPct.toFixed(3)}%) direction=${direction} candidate=${candidate.id} signal=${signal.signal}`
         );
       }
     },

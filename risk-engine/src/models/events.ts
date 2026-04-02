@@ -21,6 +21,8 @@ export interface OpportunityCandidate {
   sizeSuggestion: string;
   entryMarket: string;
   exitMarket: string;
+  entryPrice: number;
+  exitPrice: number;
   modeOptions: readonly ('inventory_based' | 'bridge_based')[];
   timeWindowEstimateMs: number;
   spreadBps: number;
@@ -33,11 +35,21 @@ export interface OpportunityCandidate {
 export interface OpportunityEvaluation {
   meta: EventMeta;
   opportunityId: string;
+  asset: string;
+  direction: 'buy_M_sell_E' | 'buy_E_sell_M';
+  entryVenue: string;
+  exitVenue: string;
+  entryPrice: number;
+  exitPrice: number;
+  spreadBps: number;
+  sourceSignalId: string;
   mode: 'inventory_based' | 'bridge_based';
   evMean: number;
   evStd: number;
   sharpeLike: number;
   pLossGtX: number;
+  p01Pnl: number;
+  // Legacy alias retained for downstream compatibility.
   maxDrawdownEstimate: number;
   approved: boolean;
   size: string;

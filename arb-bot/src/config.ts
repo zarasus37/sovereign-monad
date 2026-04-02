@@ -14,7 +14,18 @@ export interface Config {
   chainBName: string;
   privateKey: string;
   dryRun: boolean;
+  enableLiveExecution: boolean;
   maxSlippageBps: number;
+  maxPlanAgeMs: number;
+  expectedChainAId: number;
+  expectedChainBId: number;
+  minGasBalanceEth: number;
+  enableSwapSubmission: boolean;
+  enableAutoApprove: boolean;
+  aerodromeRouterAddress: string | null;
+  aerodromeFactoryAddress: string | null;
+  camelotRouterAddress: string | null;
+  camelotReferrerAddress: string | null;
 }
 
 let configInstance: Config | null = null;
@@ -39,7 +50,20 @@ export function getConfig(): Config {
     chainBName: process.env.CHAIN_B_NAME || 'arbitrum',
     privateKey: process.env.PRIVATE_KEY || '',
     dryRun: process.env.DRY_RUN === 'true',
+    enableLiveExecution: process.env.ENABLE_LIVE_EXECUTION === 'true',
     maxSlippageBps: parseInt(process.env.MAX_SLIPPAGE_BPS || '50', 10),
+    maxPlanAgeMs: parseInt(process.env.MAX_PLAN_AGE_MS || '30000', 10),
+    expectedChainAId: parseInt(process.env.EXPECTED_CHAIN_A_ID || '8453', 10),
+    expectedChainBId: parseInt(process.env.EXPECTED_CHAIN_B_ID || '42161', 10),
+    minGasBalanceEth: parseFloat(process.env.MIN_GAS_BALANCE_ETH || '0.005'),
+    enableSwapSubmission: process.env.ENABLE_SWAP_SUBMISSION === 'true',
+    enableAutoApprove: process.env.ENABLE_AUTO_APPROVE === 'true',
+    aerodromeRouterAddress: process.env.AERODROME_ROUTER_ADDR || null,
+    aerodromeFactoryAddress:
+      process.env.AERODROME_FACTORY_ADDR || '0x420DD381b31aEf6683db6B902084cB0FFECe40Da',
+    camelotRouterAddress: process.env.CAMELOT_ROUTER_ADDR || null,
+    camelotReferrerAddress:
+      process.env.CAMELOT_REFERRER_ADDR || '0x0000000000000000000000000000000000000000',
   };
 
   return configInstance;

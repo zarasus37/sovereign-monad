@@ -1,3 +1,8 @@
+/**
+ * Historical reference artifact retained for possible future legacy execution reactivation.
+ * Not part of the active Base/Arbitrum runtime.
+ */
+
 import { EthArbBot } from './service';
 import { createLogger } from './utils/logger';
 

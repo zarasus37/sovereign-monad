@@ -87,8 +87,8 @@ export class AlertService {
       title: '🎯 High Spread Detected',
       message: `${Number(spreadBps).toFixed(1)} bps  •  ${data.asset}  •  ${data.direction}`,
       fields: [
-        { name: 'Monad', value: `$${Number(data.priceM).toFixed(2)}` },
-        { name: 'Ethereum', value: `$${Number(data.priceE).toFixed(2)}` },
+        { name: 'Base', value: `$${Number(data.priceM).toFixed(2)}` },
+        { name: 'Arbitrum', value: `$${Number(data.priceE).toFixed(2)}` },
         { name: 'Capacity', value: `$${data.notionalCapacity}` },
       ],
     });

@@ -1,3 +1,8 @@
+/**
+ * Historical reference artifact retained for possible future legacy-market reactivation.
+ * Not part of the active Base/Arbitrum runtime.
+ */
+
 import { createAgent } from './agent';
 import { createLogger } from './utils/logger';
 

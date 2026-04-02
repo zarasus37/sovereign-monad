@@ -1,4 +1,4 @@
-# monad-market-agent Implementation Plan
+# base-market-agent Implementation Plan
 
 ## Phase 1: Project Setup
 - [x] Create project directory structure
@@ -13,7 +13,7 @@
 
 ## Phase 3: Adapters
 - [x] Implement src/adapters/rpc.ts (ethers WebSocket provider)
-- [x] Implement src/adapters/kuru.ts (Kuru contract adapter)
+- [x] Implement src/adapters/aerodrome.ts (Aerodrome contract adapter)
 - [x] Implement src/adapters/kafka.ts (KafkaJS producer)
 
 ## Phase 4: Utilities
@@ -27,5 +27,6 @@
 - [x] Create README.md with setup instructions
 
 ## Phase 7: Verification
-- [ ] Run `npm install && npm run dev` and confirm startup
+- [ ] Run `npm install && npm run dev` and confirm Base market startup
+- [ ] Validate snapshot publishing to `market.base.price-snapshot`
 

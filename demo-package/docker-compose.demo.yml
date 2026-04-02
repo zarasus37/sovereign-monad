@@ -1,6 +1,7 @@
 # Demo Package - Evaluation Infrastructure
-# ⚠️ This is a stripped demonstration package with mock data only
-# No real trading execution, no strategy logic
+# This package is intentionally synthetic: no private modules, no real RPCs,
+# and no live execution. It demonstrates the data flow into opportunity
+# evaluation using safe generated data only.
 
 services:
   zookeeper:
@@ -30,13 +31,12 @@ services:
       - "29092:29092"
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  # Demo market agent for Chain A - publishes mock prices
   demo-market-agent-a:
     build:
       context: ./demo-market-agent
@@ -46,10 +46,16 @@ services:
       - KAFKA_TOPIC=market.demo-a.snapshot
       - MARKET_NAME=CHAIN_A
       - MOCK_PRICE=${DEMO_PRICE_A:-2500.00}
-      - PUBLISH_INTERVAL_MS=${PUBLISH_INTERVAL:-5000}
+      - VENUE_SPREAD_BPS=${DEMO_VENUE_SPREAD_A_BPS:-8}
+      - VOLATILITY_BPS=${DEMO_VOLATILITY_A_BPS:-14}
+      - DRIFT_BPS_PER_TICK=${DEMO_DRIFT_A_BPS_PER_TICK:-0.5}
+      - WAVE_AMPLITUDE_BPS=${DEMO_WAVE_A_BPS:-12}
+      - WAVE_PERIOD_TICKS=${DEMO_WAVE_PERIOD_TICKS:-18}
+      - LIQUIDITY_10BPS=${DEMO_LIQUIDITY_A_10BPS:-1500000}
+      - LIQUIDITY_50BPS=${DEMO_LIQUIDITY_A_50BPS:-6000000}
+      - PUBLISH_INTERVAL_MS=${PUBLISH_INTERVAL_MS:-2000}
       - LOG_LEVEL=info
 
-  # Demo market agent for Chain B - publishes mock prices
   demo-market-agent-b:
     build:
       context: ./demo-market-agent
@@ -58,11 +64,17 @@ services:
       - KAFKA_BROKERS=${KAFKA_BROKERS:-kafka:29092}
       - KAFKA_TOPIC=market.demo-b.snapshot
       - MARKET_NAME=CHAIN_B
-      - MOCK_PRICE=${DEMO_PRICE_B:-2500.50}
-      - PUBLISH_INTERVAL_MS=${PUBLISH_INTERVAL:-5000}
+      - MOCK_PRICE=${DEMO_PRICE_B:-2502.50}
+      - VENUE_SPREAD_BPS=${DEMO_VENUE_SPREAD_B_BPS:-10}
+      - VOLATILITY_BPS=${DEMO_VOLATILITY_B_BPS:-16}
+      - DRIFT_BPS_PER_TICK=${DEMO_DRIFT_B_BPS_PER_TICK:-0.3}
+      - WAVE_AMPLITUDE_BPS=${DEMO_WAVE_B_BPS:-16}
+      - WAVE_PERIOD_TICKS=${DEMO_WAVE_PERIOD_TICKS:-18}
+      - LIQUIDITY_10BPS=${DEMO_LIQUIDITY_B_10BPS:-1300000}
+      - LIQUIDITY_50BPS=${DEMO_LIQUIDITY_B_50BPS:-5000000}
+      - PUBLISH_INTERVAL_MS=${PUBLISH_INTERVAL_MS:-2000}
       - LOG_LEVEL=info
 
-  # Demo spread scanner - calculates spread between markets
   demo-scanner:
     build:
       context: ./demo-scanner
@@ -75,7 +87,30 @@ services:
       - INPUT_TOPIC_A=market.demo-a.snapshot
       - INPUT_TOPIC_B=market.demo-b.snapshot
       - OUTPUT_TOPIC=market.demo.spread
+      - CANDIDATE_TOPIC=risk.demo.opportunity-candidate
       - SPREAD_THRESHOLD_BPS=${DEMO_SPREAD_THRESHOLD_BPS:-1}
+      - BRIDGE_DELAY_MS=${DEMO_BRIDGE_DELAY_MS:-4000}
+      - SIZE_SUGGESTION_USD=${DEMO_SIZE_SUGGESTION_USD:-1000}
+      - LOG_LEVEL=info
+
+  demo-risk-engine:
+    build:
+      context: ./demo-risk-engine
+      dockerfile: Dockerfile
+    depends_on:
+      - demo-scanner
+    environment:
+      - KAFKA_BROKERS=${KAFKA_BROKERS:-kafka:29092}
+      - INPUT_TOPIC=risk.demo.opportunity-candidate
+      - OUTPUT_TOPIC=risk.demo.opportunity-evaluation
+      - RISK_PORTFOLIO_USD=${DEMO_RISK_PORTFOLIO_USD:-10000}
+      - RISK_ANNUAL_VOL=${DEMO_RISK_ANNUAL_VOL:-0.30}
+      - RISK_FIXED_COST_BPS=${DEMO_RISK_FIXED_COST_BPS:-8}
+      - RISK_MIN_EFFECTIVE_SPREAD_BPS=${DEMO_RISK_MIN_EFFECTIVE_SPREAD_BPS:-12}
+      - EV_MIN_THRESHOLD=${DEMO_EV_MIN_THRESHOLD:-0}
+      - SHARPE_LIKE_THRESHOLD=${DEMO_SHARPE_LIKE_THRESHOLD:-0.15}
+      - MAX_TAIL_LOSS_PERCENT=${DEMO_MAX_TAIL_LOSS_PERCENT:-20}
+      - DEMO_GAS_COST_USD=${DEMO_GAS_COST_USD:-6.50}
       - LOG_LEVEL=info
 
 volumes:
