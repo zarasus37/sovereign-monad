@@ -21,6 +21,7 @@ This repository contains the canonical Sovereign Monad materials plus the runtim
 - `hardhat.config.js`
 - `package.json`
 - `docs/PHASE1A_DEPLOYMENT_SEQUENCE.md`
+- `docs/SLOT_SOURCE_HANDOFF.md`
 
 Current status:
 
@@ -43,12 +44,18 @@ npm run preflight:phase1a
 npm run deploy:phase1a
 npm run rehearse:phase1a
 npm run verify:phase1a
+npx hardhat run scripts/slot-source-handoff.js --network phase1a
 ```
 
 For the initial approved source:
 
 - use the real Stake-linked MonadSpin source if it is deployed
 - otherwise use a temporary bootstrap source address you control and document it as temporary
+
+For a later source cutover:
+
+- keep the bootstrap source approved until the real Stake-linked source is verified
+- use the slot handoff script to add the real source and optionally revoke the bootstrap source
 
 ## Core Runtime Included
 

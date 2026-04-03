@@ -3,6 +3,7 @@ dist/
 logs/
 .env
 .env.phase1a
+config/slot-source-handoff.json
 *.log
 .DS_Store
 Thumbs.db
