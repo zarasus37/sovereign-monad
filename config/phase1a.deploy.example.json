@@ -1,5 +1,5 @@
 {
-  "expectedChainId": 0,
+  "expectedChainId": 143,
   "founderAddress": "0x0000000000000000000000000000000000000001",
   "approvedSourceAddress": "0x0000000000000000000000000000000000000002",
   "approvedSourceLabel": "MonadSpin Provider",

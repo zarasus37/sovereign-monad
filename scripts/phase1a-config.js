@@ -16,7 +16,8 @@ function loadPhase1aConfig({ requireFile = false } = {}) {
     return { configPath, config: {} };
   }
 
-  const parsed = JSON.parse(fs.readFileSync(configPath, "utf8"));
+  const raw = fs.readFileSync(configPath, "utf8").replace(/^\uFEFF/, "");
+  const parsed = JSON.parse(raw);
   return { configPath, config: parsed };
 }
 

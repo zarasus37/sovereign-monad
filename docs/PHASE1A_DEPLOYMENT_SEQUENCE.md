@@ -98,8 +98,27 @@ Live deployment prep now expects:
 
 - `.env.phase1a` or shell env vars for RPC and deployer key
 - `config/phase1a.deploy.json` for founder and approved-source addresses
+- explicit preflight acknowledgments for:
+  - confirmed deployer address
+  - fresh deployer wallet with zero tx history
+  - founder address matching deployer, if intentional
 
 Reference files:
 
 - `.env.phase1a.example`
 - `config/phase1a.deploy.example.json`
+
+## Preflight Hard Stops
+
+The preflight now fails closed on:
+
+- RPC `eth_chainId` not matching the expected chain ID
+- invalid or placeholder `approvedSourceAddress`
+- deployer balance below the configured gas floor
+- `.env.phase1a` or `config/phase1a.deploy.json` being tracked or staged in git
+- missing manual deployer confirmation
+
+The preflight also requires explicit acknowledgment when:
+
+- the deployer address has zero prior transaction history on the target chain
+- the founder address matches the deployer address
