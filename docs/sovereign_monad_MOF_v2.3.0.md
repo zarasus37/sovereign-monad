@@ -385,7 +385,7 @@ This means:
 **Current Build Gate:** Contracts Reconstructed → Test Expansion → Issue Resolution → Deployment
 **System Maturity:** Architecture mature, implementation partial, deployment incomplete
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
-**Immediate Priority:** expand the reconstructed Phase 1a test suite, resolve issue set, and preserve guarded-live deployment path discipline
+**Immediate Priority:** complete final Phase 1a deployment hardening, resolve issue set, and preserve guarded-live deployment path discipline
 
 ## 6.2 Current Live Snapshot
 
@@ -395,7 +395,7 @@ This means:
 | Architecture Blueprint | COMPLETE | canonical structure exists |
 | Master Build Coordination | ACTIVE | this file serves that role |
 | Phase 1a Contracts | RECONSTRUCTED | reconstructed cleanly from the canonical MOF, surviving DoveCore.sol, and the surviving Revenue Router specification; not claimed as recovered original source set |
-| Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 7 passing Phase 1a tests; expansion still required before deployment |
+| Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 13 passing Phase 1a tests, including deeper invariants and deployment-sequence rehearsal; live deployment proof is still required |
 | Router Deployment | NOT DEPLOYED | blocked by testing / issue resolution |
 | Treasury Deployment | NOT DEPLOYED | depends on Phase 1a deployment |
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
@@ -1124,7 +1124,7 @@ Current repo truth:
 - the original Phase 1a source set was not recovered
 - the contract suite has now been **reconstructed** from the canonical MOF, the surviving `DoveCore.sol`, and the surviving Revenue Router specification artifact
 - this reconstruction compiles and has an executable baseline test harness
-- it must still be treated as a reconstruction until deployment and broader test expansion prove behavioral parity with canonical intent
+- it must still be treated as a reconstruction until deployment and live behavior prove parity with canonical intent
 
 Current reconstructed set:
 
@@ -1152,7 +1152,7 @@ Current reconstructed set:
 
 ## 9.4.1 Current Reconstruction Verification
 
-The reconstructed Phase 1a suite currently has a live Hardhat test harness with **7 passing tests** covering:
+The reconstructed Phase 1a suite currently has a live Hardhat test harness with **13 passing tests** covering:
 
 1. atomic end-to-end routing from InboundReceiver through RevenueRouter into all sinks
 2. locked allocation behavior with pre-Phase 3 Data Yield redirection into MEV
@@ -1161,8 +1161,14 @@ The reconstructed Phase 1a suite currently has a live Hardhat test harness with 
 5. no silent ETH ingress through `receive()` / `fallback()`
 6. Dove failure not halting economic flow
 7. DoveRouterObserver health snapshot flow
+8. approved-source lifecycle and receiver pause gates
+9. governance emergency pause on router
+10. founder withdrawal boundaries and draw-pause enforcement
+11. governance-only MEV, delegate, and ops outflow controls
+12. executor delegation and ownership-transfer boundaries
+13. locked Phase 1a deployment-sequence rehearsal and full wiring validation
 
-This is sufficient to classify the test suite as **started and executable**, not sufficient to classify Phase 1a as deployment-ready.
+This is sufficient to classify the test suite as **meaningfully expanded and executable**, not sufficient to classify Phase 1a as deployment-ready.
 
 ## 9.5 Upgrade Roadmap (Post Phase 1a)
 
@@ -1759,6 +1765,24 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - reconstructed Phase 1a contracts now compile and have an executable baseline test harness
 - current next action becomes **test expansion and deployment hardening**, not first-time test harness creation
 
+## v2.3.3 — April 2, 2026
+
+**Change Type:** Patch — Phase 1a invariant and deployment-sequence completion pass
+
+**Summary of changes:**
+
+- **Section 6.1 / 6.2:** immediate priority and test-suite rows updated to reflect deeper invariant coverage plus executable deployment-sequence rehearsal
+- **Section 9.4.1:** reconstruction verification block expanded from 7 to 13 passing tests
+- **Section 13:** locked deployment sequence now has an executable runner and local rehearsal path in repo
+- added `docs/PHASE1A_DEPLOYMENT_SEQUENCE.md` and deployment scripts for repeatable local sequence execution
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- deployment remains pending
+- deeper invariant coverage and deployment-sequence rehearsal are now complete at the local contract-workspace level
+- current next action becomes **final deployment hardening and live deployment proof**, not baseline test expansion
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
@@ -1781,8 +1805,8 @@ If a collaborator or model needs immediate orientation, the project currently is
 - currently in **Phase 1a**
 - with **11 canonical Phase 1a contracts reconstructed in repo**
 - but **not yet test-complete or deployment-complete**
-- with **three active blockers:** deeper Phase 1a test expansion, ISSUE-002 (execution logic), ISSUE-003 (monad-market-agent crash loop)
-- and the **single most important next task is expanding the reconstructed Phase 1a test suite toward deployment confidence**
+- with **three active blockers:** live Phase 1a deployment proof, ISSUE-002 (execution logic), ISSUE-003 (monad-market-agent crash loop)
+- and the **single most important next task is turning the reconstructed-and-rehearsed Phase 1a suite into live deployment proof**
 
 Everything else remains subordinate to that until the foundation proves itself live.
 

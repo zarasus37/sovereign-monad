@@ -16,21 +16,32 @@ This repository contains the canonical Sovereign Monad materials plus the runtim
 ## Phase 1a Contract Workspace
 
 - `contracts/`
+- `scripts/`
 - `test/`
 - `hardhat.config.js`
 - `package.json`
+- `docs/PHASE1A_DEPLOYMENT_SEQUENCE.md`
 
 Current status:
 
 - the original Phase 1a Solidity source set was not recovered
 - Phase 1a contracts were reconstructed from the canonical MOF, the surviving `DoveCore.sol`, and the surviving Revenue Router specification
-- the reconstructed contract workspace compiles and currently has `7` passing Hardhat reconstruction tests
+- the reconstructed contract workspace compiles, has `13` passing Hardhat tests, and includes a locked deployment-sequence runner plus local rehearsal flow
 
 Canonical rule:
 
 - this reconstruction is repo truth
 - deployment truth remains governed by the MOF
 - reconstructed code is not treated as equivalent to recovered original source history
+
+## Phase 1a Commands
+
+```bash
+npm run build:contracts
+npm run test:contracts
+npm run deploy:phase1a
+npm run rehearse:phase1a
+```
 
 ## Core Runtime Included
 

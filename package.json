@@ -5,7 +5,9 @@
   "description": "Reconstructed Phase 1a Solidity workspace for Sovereign Monad",
   "scripts": {
     "build:contracts": "hardhat compile",
-    "test:contracts": "hardhat test"
+    "test:contracts": "hardhat test",
+    "deploy:phase1a": "hardhat run scripts/deploy-phase1a.js",
+    "rehearse:phase1a": "hardhat run scripts/rehearse-phase1a.js"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",

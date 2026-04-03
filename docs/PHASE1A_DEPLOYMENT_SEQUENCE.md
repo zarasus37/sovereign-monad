@@ -1,0 +1,75 @@
+# Phase 1a Deployment Sequence
+
+This document is the executable deployment/rehearsal companion to the locked Phase 1a order in the MOF.
+
+## Canonical Source
+
+The order remains governed by:
+
+- `docs/sovereign_monad_MOF_v2.3.0.md`
+
+## Implemented Sequence
+
+The implemented runner executes these steps in order:
+
+1. Deploy `DoveCore.sol`
+2. Deploy `GovernanceController.sol(doveCore)`
+3. Register `GovernanceController` as observer
+4. Deploy `InboundReceiver.sol`
+5. Register `InboundReceiver` as observer
+6. Deploy `RevenueSinkTreasury.sol`
+7. Deploy `RevenueSinkMEV.sol`
+8. Deploy `RevenueSinkOpsDev.sol`
+9. Deploy `RevenueSinkDataYield.sol`
+10. Deploy `RevenueSinkFounder.sol`
+11. Deploy `RevenueSinkDelegatePools.sol`
+12. Deploy `RevenueRouter.sol`
+13. Register router and sinks as observers
+14. Initialize router sinks
+15. Set receiver on router
+16. Set router / receiver addresses across system
+17. Deploy `DoveRouterObserver.sol`
+18. Register `DoveRouterObserver`
+19. Initialize `DoveRouterObserver` with system addresses
+20. Wire stipend / treasury references
+21. Register MonadSpin as approved source
+
+## Current Executable Interpretation Of Step 20
+
+The reconstructed Phase 1a contracts do not currently expose a separate treasury-reference setter.
+
+So the executable Step 20 currently means:
+
+- `RevenueSinkDataYield.setMevSink(...)`
+- `RevenueSinkMEV.setDataYieldSource(...)`
+
+That is the present honest executable subset. If later reconstructed or recovered contracts introduce dedicated treasury/stipend reference setters, Step 20 should be expanded to include them.
+
+## Commands
+
+Compile:
+
+```bash
+npm run build:contracts
+```
+
+Run the deployment sequence locally:
+
+```bash
+npm run deploy:phase1a
+```
+
+Run the deployment rehearsal with a test inflow and allocation assertions:
+
+```bash
+npm run rehearse:phase1a
+```
+
+## Output
+
+Both commands write a JSON report to:
+
+- `deployments/phase1a-deploy-<network>.json`
+- `deployments/phase1a-rehearsal-<network>.json`
+
+These reports are local deployment artifacts. They do not mean Phase 1a is live onchain.

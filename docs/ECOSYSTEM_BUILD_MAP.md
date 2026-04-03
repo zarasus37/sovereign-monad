@@ -38,18 +38,18 @@ Remaining:
 ### B. Phase 1a Routing Substrate
 
 Status: `PARTIAL`
-Progress: `3/6 complete`
+Progress: `5/6 complete`
 
 Complete:
 
 - reconstructed Phase 1a contract suite exists
 - Hardhat workspace exists
 - baseline reconstruction test harness exists
+- deeper Phase 1a invariant coverage exists
+- deployment sequence implementation and rehearsal exist
 
 Remaining:
 
-- deeper Phase 1a invariant coverage
-- deployment sequence implementation and rehearsal
 - live onchain deployment
 
 ### C. Runtime Revenue Engine
@@ -339,18 +339,19 @@ Remaining:
 ### Layer 13. Unified Revenue Router
 
 Status: `PARTIAL`
-Progress: `3/6 complete`
+Progress: `4/6 complete`
 
 Complete:
 
 - reconstructed `RevenueRouter.sol`
 - reconstructed sink contracts
 - reconstructed `InboundReceiver.sol`
+- deployment sequence runner and rehearsal exist
 
 Remaining:
 
 - deeper routing tests
-- deployment
+- live deployment
 - live routing proof
 
 ### Layer 14. Data Rail
