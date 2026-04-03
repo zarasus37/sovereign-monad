@@ -382,10 +382,10 @@ This means:
 ## 6.1 Global State
 
 **Current Active Master Phase:** Phase 1a
-**Current Build Gate:** Contracts Reconstructed → Test Expansion → Issue Resolution → Deployment
+**Current Build Gate:** Live Preflight Complete → Funding Restore → Live Deployment Proof → Approved Source Registration
 **System Maturity:** Architecture mature, implementation partial, deployment incomplete
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
-**Immediate Priority:** complete final Phase 1a deployment hardening, resolve issue set, and preserve guarded-live deployment path discipline
+**Immediate Priority:** complete live Phase 1a deployment proof, register the initial approved source truthfully, and preserve guarded-live deployment path discipline
 
 ## 6.2 Current Live Snapshot
 
@@ -396,7 +396,7 @@ This means:
 | Master Build Coordination | ACTIVE | this file serves that role |
 | Phase 1a Contracts | RECONSTRUCTED | reconstructed cleanly from the canonical MOF, surviving DoveCore.sol, and the surviving Revenue Router specification; not claimed as recovered original source set |
 | Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 13 passing Phase 1a tests, including deeper invariants and deployment-sequence rehearsal; live deployment proof is still required |
-| Router Deployment | NOT DEPLOYED | blocked by testing / issue resolution |
+| Router Deployment | LIVE RETRY PENDING | live preflight passed, first mainnet deployment attempt consumed deployer balance mid-sequence, retry is blocked only by wallet re-funding |
 | Treasury Deployment | NOT DEPLOYED | depends on Phase 1a deployment |
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
 | Signal Layer | NOT INITIALIZED | Phase 3+ |
@@ -1788,6 +1788,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - deployment remains pending
 - deeper invariant coverage and deployment-sequence rehearsal are now complete at the local contract-workspace level
 - current next action becomes **final deployment hardening and live deployment proof**, not baseline test expansion
+
+## v2.3.4 — April 3, 2026
+
+**Change Type:** Patch — live deployment preparation and blocker-state synchronization
+
+**Summary of changes:**
+
+- **Section 6.1:** build gate updated from test-expansion language to the truthful current state: live preflight complete, funding restore required, live deployment proof pending, approved-source registration next
+- **Section 6.2:** router deployment row updated to reflect the first real mainnet deployment attempt and the actual blocker: deployer balance depletion during the live sequence
+- synchronized current next action language to the present deployment reality rather than the older test-expansion state
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- test expansion and deployment rehearsal are complete
+- live Phase 1a deployment proof is the immediate gate
+- first approved source registration remains next after successful deployment
 
 ---
 

@@ -76,7 +76,9 @@ async function main() {
   const founderAddress = config.founderAddress || founder.address;
   const approvedSourceAddress = config.approvedSourceAddress || approvedSource.address;
   const expectedChainId = config.expectedChainId ?? (process.env.PHASE1A_CHAIN_ID ? Number(process.env.PHASE1A_CHAIN_ID) : 143);
-  const minDeployerBalanceEth = config.minDeployerBalanceEth || "0";
+  const minDeployerBalanceNative = config.minDeployerBalanceNative || config.minDeployerBalanceEth || "1";
+  const recommendedDeployerBalanceNative =
+    config.recommendedDeployerBalanceNative || config.recommendedDeployerBalanceEth || "10";
   const deployerPrivateKey = process.env.DEPLOYER_PRIVATE_KEY;
   const derivedDeployerAddress = deployerPrivateKey
     ? new ethers.Wallet(deployerPrivateKey).address
@@ -133,9 +135,18 @@ async function main() {
   }
 
   const deployerBalance = await ethers.provider.getBalance(deployer.address);
-  const minBalanceWei = ethers.parseEther(String(minDeployerBalanceEth));
+  const minBalanceWei = ethers.parseEther(String(minDeployerBalanceNative));
+  const recommendedBalanceWei = ethers.parseEther(String(recommendedDeployerBalanceNative));
   if (deployerBalance < minBalanceWei) {
-    fail(`deployer balance ${ethers.formatEther(deployerBalance)} ETH below minimum ${minDeployerBalanceEth} ETH`);
+    fail(
+      `deployer balance ${ethers.formatEther(deployerBalance)} native token units below minimum ${minDeployerBalanceNative} native token units`
+    );
+  }
+
+  if (deployerBalance < recommendedBalanceWei) {
+    warn(
+      `deployer balance ${ethers.formatEther(deployerBalance)} native token units is below the recommended live deployment budget of ${recommendedDeployerBalanceNative} native token units`
+    );
   }
 
   console.log("Phase 1a preflight passed.");
@@ -149,8 +160,10 @@ async function main() {
     founderAddress,
     approvedSourceAddress,
     approvedSourceLabel: config.approvedSourceLabel || "Bootstrap Revenue Source",
-    deployerBalanceEth: ethers.formatEther(deployerBalance),
-    minDeployerBalanceEth: String(minDeployerBalanceEth),
+    nativeTokenSymbol: "MON",
+    deployerBalanceNative: ethers.formatEther(deployerBalance),
+    minDeployerBalanceNative: String(minDeployerBalanceNative),
+    recommendedDeployerBalanceNative: String(recommendedDeployerBalanceNative),
     envPath,
     configPath,
   }, null, 2));

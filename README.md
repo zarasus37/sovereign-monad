@@ -28,6 +28,8 @@ Current status:
 - the original Phase 1a Solidity source set was not recovered
 - Phase 1a contracts were reconstructed from the canonical MOF, the surviving `DoveCore.sol`, and the surviving Revenue Router specification
 - the reconstructed contract workspace compiles, has `13` passing Hardhat tests, and includes a locked deployment-sequence runner plus local rehearsal flow
+- live preflight uses a native-token gas floor on Monad mainnet, not Ethereum-mainnet USD assumptions
+- live deploy guidance now distinguishes the hard fail floor from the recommended deploy budget (`1 MON` minimum, `10 MON` recommended)
 
 Canonical rule:
 

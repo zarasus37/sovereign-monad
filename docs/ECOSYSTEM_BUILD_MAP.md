@@ -413,9 +413,9 @@ Primary contents:
 
 The next build frontier remains:
 
-1. expand the reconstructed Phase 1a test suite
-2. close remaining execution-truth gaps in the runtime
-3. deploy the runtime/commercial stack with real infrastructure inputs
-4. execute guarded-live mainnet validation
+1. complete live Phase 1a deployment proof
+2. register the bootstrap approved source and verify the first live routing path
+3. close remaining execution-truth gaps in the runtime
+4. deploy the runtime/commercial stack with real infrastructure inputs
 
 Everything else should be sequenced relative to those gates.

@@ -123,13 +123,27 @@ Reference files:
 - `.env.phase1a.example`
 - `config/phase1a.deploy.example.json`
 
+## Funding Guidance
+
+Use two separate balance concepts:
+
+- hard fail floor: `minDeployerBalanceNative`
+- recommended live deploy budget: `recommendedDeployerBalanceNative`
+
+Current practical guidance for Monad mainnet:
+
+- minimum floor: `1 MON`
+- recommended deploy funding: `10 MON`
+
+The minimum exists to catch obviously underfunded wallets. The recommended budget exists because the full Phase 1a deployment sequence is many transactions deep and can drain a lightly funded wallet before completion.
+
 ## Preflight Hard Stops
 
 The preflight now fails closed on:
 
 - RPC `eth_chainId` not matching the expected chain ID
 - invalid or placeholder `approvedSourceAddress`
-- deployer balance below the configured gas floor
+- deployer balance below the configured native-token gas floor (`minDeployerBalanceNative`, denominated in MON on Monad mainnet)
 - `.env.phase1a` or `config/phase1a.deploy.json` being tracked or staged in git
 - missing manual deployer confirmation
 
@@ -137,3 +151,7 @@ The preflight also requires explicit acknowledgment when:
 
 - the deployer address has zero prior transaction history on the target chain
 - the founder address matches the deployer address
+
+The preflight also warns when:
+
+- deployer balance is below `recommendedDeployerBalanceNative` even if it is still above the hard fail floor
