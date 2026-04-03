@@ -96,10 +96,10 @@ Useful for the bootstrap → Stake cutover transition.
 
 ## Current status (Phase 1a)
 
-- Phase 1a contracts: reconstructed, not yet deployed
-- Bootstrap source: address not yet assigned (placeholder in config)
-- Stake-linked source: not deployed, not configured
-- Expected state once bootstrap wallet is funded: `BOOTSTRAP_ONLY`
+- Phase 1a contracts are reconstructed and the live deployment retry is pending deployer re-funding
+- Bootstrap source wallet is designated locally but not yet registered on-chain
+- Stake-linked source is not deployed and must remain inactive in config
+- Expected state after successful live deployment and bootstrap source registration: `BOOTSTRAP_ONLY`
 - Expected state after Stake cutover: `STAKE_ACTIVE`
 
 Do not change the state in config until the on-chain state actually changes.
