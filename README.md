@@ -27,6 +27,18 @@ Refresh all local canonical mirrors from the canonical repo with:
 powershell -ExecutionPolicy Bypass -File .\scripts\sync-canonical-mirrors.ps1
 ```
 
+Verify the active runtime, slot, and speech packages with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\verify-active-packages.ps1
+```
+
+Materialize the local slot bootstrap config after on-chain source registration with:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\scripts\init-slot-bootstrap-config.ps1
+```
+
 ## Repo Runtime Artifacts
 
 - Base side: `base-market-agent`
@@ -96,8 +108,26 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Billing scaffold: `templates/billing/`
 - License-service scaffold: `templates/license-service/`
 - Combined commercial stack: `templates/commercial-stack/`
+- Slot lifecycle monitor: `slot-core/`
+- Slot lifecycle API: `slot-api/`
+- Slot operator UI: `slot-frontend/`
+- Speech I/O gateway: `speech-gateway/`
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
+
+## Immediate Post-Deploy Operator Path
+
+Once the live Phase 1a deployment succeeds in `sovereign-monad`, use:
+
+- `docs/POST_PHASE1A_NEXT_STEPS.md`
+
+That document covers:
+
+- post-deploy verification
+- bootstrap source registration
+- local slot config materialization
+- slot stack bring-up
+- active package verification
 
 ## Legacy Reference Material
 

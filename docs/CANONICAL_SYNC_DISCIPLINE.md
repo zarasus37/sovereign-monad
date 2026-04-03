@@ -58,6 +58,7 @@ Primary subordinate docs in `sovereign-monad`:
 
 - `README.md`
 - `docs/data_buyer_thesis.md`
+- `docs/SLOT_SOURCE_HANDOFF.md`
 
 Rule:
 

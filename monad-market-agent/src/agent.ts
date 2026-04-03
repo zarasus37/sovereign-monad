@@ -29,7 +29,6 @@ export class MonadMarketAgent {
   private isRunning: boolean = false;
   private lastBlockNumber: number = 0;
   private lastFetchMs: number = 0;
-  private readonly MIN_FETCH_INTERVAL_MS = 2000;
 
   private static readonly DIRECT_ETH_MARKET_ID = 'kuru:ETH/USDC:spot';
   private static readonly ROUTED_ETH_MARKET_ID = 'kuru:WETH/MON:spot';
@@ -40,7 +39,11 @@ export class MonadMarketAgent {
     this.config = getConfig();
 
     // Initialize adapters (provider will be set after RPC connects)
-    this.rpcClient = createRpcClient(this.config.monadWsUrl);
+    this.rpcClient = createRpcClient(
+      this.config.monadWsUrl,
+      this.config.monadWsFallbacks,
+      this.config.rpcConnectTimeoutMs
+    );
     this.kafkaProducer = createKafkaProducer({
       brokers: this.config.kafkaBrokers,
       clientId: this.config.kafkaClientId,
@@ -74,9 +77,7 @@ export class MonadMarketAgent {
     await this.rpcClient.connect();
 
     // Initialize Kuru adapter with provider
-    this.kuruAdapter = createKuruAdapter(
-      this.rpcClient.getProvider()!
-    );
+    this.kuruAdapter = createKuruAdapter(this.rpcClient.getProvider()!, this.config.marketFetchConcurrency);
 
     // Register markets
     for (const market of this.config.markets) {
@@ -119,7 +120,7 @@ export class MonadMarketAgent {
 
     // Throttle fetches to stay under RPC rate limits
     const now = Date.now();
-    if (now - this.lastFetchMs < this.MIN_FETCH_INTERVAL_MS) {
+    if (now - this.lastFetchMs < this.config.minFetchIntervalMs) {
       return;
     }
     this.lastFetchMs = now;

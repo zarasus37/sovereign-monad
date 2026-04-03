@@ -5,11 +5,11 @@
 import dotenv from 'dotenv';
 import { MarketConfig } from './models/events';
 
-// Load .env file
 dotenv.config();
 
 export interface Config {
   monadWsUrl: string;
+  monadWsFallbacks: string[];
   kuruEthUsdcAddr: string;
   kuruWethMonAddr: string;
   kuruWethAusdAddr: string;
@@ -23,6 +23,9 @@ export interface Config {
   volWindow1m: number;
   volWindow5m: number;
   volWindow1h: number;
+  minFetchIntervalMs: number;
+  marketFetchConcurrency: number;
+  rpcConnectTimeoutMs: number;
 }
 
 let configInstance: Config | null = null;
@@ -33,6 +36,7 @@ export function getConfig(): Config {
   }
 
   const monadWsUrl = process.env.MONAD_WS_URL;
+  const monadWsFallbacks = process.env.MONAD_WS_FALLBACKS || '';
   const kuruEthUsdcAddr = process.env.KURU_ETH_USDC_ADDR;
   const kuruWethMonAddr = process.env.KURU_WETH_MON_ADDR;
   const kuruWethAusdAddr = process.env.KURU_WETH_AUSD_ADDR;
@@ -41,10 +45,14 @@ export function getConfig(): Config {
   const kafkaTopic = process.env.KAFKA_TOPIC || 'market.monad.price-snapshot';
   const kafkaClientId = process.env.KAFKA_CLIENT_ID || 'monad-market-agent';
   const logLevel = process.env.LOG_LEVEL || 'info';
+  const minFetchIntervalMs = parseInt(process.env.MIN_FETCH_INTERVAL_MS || '4000', 10);
+  const marketFetchConcurrency = parseInt(process.env.MARKET_FETCH_CONCURRENCY || '1', 10);
+  const rpcConnectTimeoutMs = parseInt(process.env.RPC_CONNECT_TIMEOUT_MS || '15000', 10);
 
   if (!monadWsUrl) {
     throw new Error('MONAD_WS_URL is required');
   }
+
   if (!kafkaBrokers) {
     throw new Error('KAFKA_BROKERS is required');
   }
@@ -93,19 +101,23 @@ export function getConfig(): Config {
 
   configInstance = {
     monadWsUrl,
+    monadWsFallbacks: monadWsFallbacks.split(',').map((url) => url.trim()).filter(Boolean),
     kuruEthUsdcAddr: kuruEthUsdcAddr || '',
     kuruWethMonAddr: kuruWethMonAddr || '',
     kuruWethAusdAddr: kuruWethAusdAddr || '',
     kuruMonUsdcAddr: kuruMonUsdcAddr || '',
-    kafkaBrokers: kafkaBrokers.split(',').map((b) => b.trim()),
+    kafkaBrokers: kafkaBrokers.split(',').map((broker) => broker.trim()),
     kafkaTopic,
     kafkaClientId,
     logLevel,
     markets,
-    blockTimeMs: 400, // Monad block time
-    volWindow1m: 150, // 150 blocks * 400ms ≈ 1 minute
-    volWindow5m: 750, // 750 blocks * 400ms ≈ 5 minutes
-    volWindow1h: 9000, // 9000 blocks * 400ms ≈ 1 hour
+    blockTimeMs: 400,
+    volWindow1m: 150,
+    volWindow5m: 750,
+    volWindow1h: 9000,
+    minFetchIntervalMs,
+    marketFetchConcurrency,
+    rpcConnectTimeoutMs,
   };
 
   return configInstance;
@@ -119,8 +131,27 @@ export function validateConfig(): string[] {
     errors.push('MONAD_WS_URL must be a WebSocket URL (wss://)');
   }
 
+  for (const fallback of config.monadWsFallbacks) {
+    if (!fallback.startsWith('wss://')) {
+      errors.push('MONAD_WS_FALLBACKS must contain only WebSocket URLs (wss://)');
+      break;
+    }
+  }
+
   if (config.kafkaBrokers.length === 0) {
     errors.push('KAFKA_BROKERS must contain at least one broker');
+  }
+
+  if (config.minFetchIntervalMs < 1000) {
+    errors.push('MIN_FETCH_INTERVAL_MS must be at least 1000');
+  }
+
+  if (config.marketFetchConcurrency < 1) {
+    errors.push('MARKET_FETCH_CONCURRENCY must be at least 1');
+  }
+
+  if (config.rpcConnectTimeoutMs < 1000) {
+    errors.push('RPC_CONNECT_TIMEOUT_MS must be at least 1000');
   }
 
   return errors;

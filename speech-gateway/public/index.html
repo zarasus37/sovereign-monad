@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Speech Gateway</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">Azure Speech Console</div>
+          <h1>Speech Gateway</h1>
+          <p>
+            Speech in, spoken reply out. Text input stays silent unless you explicitly
+            synthesize it.
+          </p>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Gateway Status</div>
+          <div id="health-status" class="status-pill pending">Checking</div>
+          <div id="health-note" class="status-note">Waiting for /health</div>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="panel-title">1. Input Mode</div>
+        <div class="mode-row">
+          <button id="record-button" class="primary">Record Speech</button>
+          <button id="stop-button" class="secondary" disabled>Stop</button>
+          <button id="use-text-button" class="secondary">Use Text Input</button>
+        </div>
+        <div id="input-mode-note" class="hint">No input captured yet.</div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">2. Transcript / Message</div>
+        <textarea id="message-input" rows="5" placeholder="Speech transcript or typed message will appear here."></textarea>
+        <div class="actions-row">
+          <button id="transcribe-button" class="secondary" disabled>Transcribe Last Recording</button>
+          <button id="mark-text-button" class="secondary">Mark As Text</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">3. Assistant Response</div>
+        <textarea id="response-input" rows="5" placeholder="Paste or type the response text you want spoken back when the input originated as speech."></textarea>
+        <div class="actions-row">
+          <button id="respond-button" class="primary">Run Speech-Aware Response</button>
+          <button id="assistant-button" class="primary">Ask Assistant</button>
+          <button id="synthesize-button" class="secondary">Force Synthesize</button>
+        </div>
+        <div id="response-mode-note" class="hint">
+          Speech-aware response uses the last input mode. If the message came from speech, audio will auto-play.
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">4. Output</div>
+        <div id="result-log" class="log-box">No output yet.</div>
+        <audio id="player" controls class="player"></audio>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -5,6 +5,7 @@
 
 import { ethers, Contract, BigNumberish } from 'ethers';
 import { createLogger } from '../utils/logger';
+import { mapWithConcurrency } from '../utils/concurrency';
 
 const logger = createLogger('kuru-adapter');
 const MAX_UINT256 = (1n << 256n) - 1n;
@@ -381,9 +382,11 @@ export class KuruContract {
 export class KuruAdapter {
   private contracts: Map<string, KuruContract> = new Map();
   private provider: ethers.Provider;
+  private marketFetchConcurrency: number;
 
-  constructor(provider: ethers.Provider) {
+  constructor(provider: ethers.Provider, marketFetchConcurrency: number = 1) {
     this.provider = provider;
+    this.marketFetchConcurrency = marketFetchConcurrency;
   }
 
   /**
@@ -399,14 +402,15 @@ export class KuruAdapter {
    * Get market data for all registered markets
    */
   async fetchAllMarkets(): Promise<KuruMarketData[]> {
-    const promises = Array.from(this.contracts.values()).map((c) =>
-      c.fetchMarketData().catch((err: any) => {
-        logger.error({ err: err?.message ?? String(err) }, 'Error fetching market data');
-        return null;
-      })
+    const results = await mapWithConcurrency(
+      Array.from(this.contracts.values()),
+      this.marketFetchConcurrency,
+      async (contract) =>
+        contract.fetchMarketData().catch((err: any) => {
+          logger.error({ err: err?.message ?? String(err) }, 'Error fetching market data');
+          return null;
+        })
     );
-
-    const results = await Promise.all(promises);
     return results.filter((r): r is KuruMarketData => r !== null);
   }
 
@@ -429,7 +433,7 @@ export class KuruAdapter {
   }
 }
 
-export function createKuruAdapter(provider: ethers.Provider): KuruAdapter {
-  return new KuruAdapter(provider);
+export function createKuruAdapter(provider: ethers.Provider, marketFetchConcurrency: number = 1): KuruAdapter {
+  return new KuruAdapter(provider, marketFetchConcurrency);
 }
 
