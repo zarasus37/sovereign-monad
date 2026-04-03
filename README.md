@@ -39,8 +39,10 @@ Canonical rule:
 ```bash
 npm run build:contracts
 npm run test:contracts
+npm run preflight:phase1a
 npm run deploy:phase1a
 npm run rehearse:phase1a
+npm run verify:phase1a
 ```
 
 ## Core Runtime Included

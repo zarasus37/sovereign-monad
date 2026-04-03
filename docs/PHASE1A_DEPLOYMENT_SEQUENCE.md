@@ -47,6 +47,12 @@ That is the present honest executable subset. If later reconstructed or recovere
 
 ## Commands
 
+Preflight the live deployment inputs:
+
+```bash
+npm run preflight:phase1a
+```
+
 Compile:
 
 ```bash
@@ -59,10 +65,22 @@ Run the deployment sequence locally:
 npm run deploy:phase1a
 ```
 
+Run the deployment sequence against the configured `phase1a` network:
+
+```bash
+npx hardhat run scripts/deploy-phase1a.js --network phase1a
+```
+
 Run the deployment rehearsal with a test inflow and allocation assertions:
 
 ```bash
 npm run rehearse:phase1a
+```
+
+Verify a live deployment from the saved report:
+
+```bash
+npm run verify:phase1a
 ```
 
 ## Output
@@ -73,3 +91,15 @@ Both commands write a JSON report to:
 - `deployments/phase1a-rehearsal-<network>.json`
 
 These reports are local deployment artifacts. They do not mean Phase 1a is live onchain.
+
+## Live Deployment Inputs
+
+Live deployment prep now expects:
+
+- `.env.phase1a` or shell env vars for RPC and deployer key
+- `config/phase1a.deploy.json` for founder and approved-source addresses
+
+Reference files:
+
+- `.env.phase1a.example`
+- `config/phase1a.deploy.example.json`

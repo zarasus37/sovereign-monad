@@ -18,6 +18,9 @@ async function deployPhase1aSequence(hre, options = {}) {
   const ownerSigner = options.ownerSigner || deployer;
   const founderSigner = options.founderSigner || founder;
   const approvedSourceSigner = options.approvedSourceSigner || approvedSource;
+  const founderAddress = options.founderAddress || founderSigner.address;
+  const approvedSourceAddress = options.approvedSourceAddress || approvedSourceSigner.address;
+  const approvedSourceLabel = options.approvedSourceLabel || "MonadSpin Provider";
 
   const steps = [];
 
@@ -92,7 +95,7 @@ async function deployPhase1aSequence(hre, options = {}) {
   const founderSink = await RevenueSinkFounder.connect(ownerSigner).deploy(
     await governance.getAddress(),
     await dove.getAddress(),
-    founderSigner.address
+    founderAddress
   );
   await founderSink.waitForDeployment();
   record(10, "Deploy RevenueSinkFounder.sol", { address: await founderSink.getAddress() });
@@ -168,17 +171,19 @@ async function deployPhase1aSequence(hre, options = {}) {
   });
 
   await govExec(receiver, "setApprovedSource", [
-    approvedSourceSigner.address,
+    approvedSourceAddress,
     true,
-    options.approvedSourceLabel || "MonadSpin Provider",
+    approvedSourceLabel,
   ]);
-  record(21, "Register MonadSpin as approved source", { approvedSource: approvedSourceSigner.address });
+  record(21, "Register MonadSpin as approved source", { approvedSource: approvedSourceAddress, approvedSourceLabel });
 
   return {
     accounts: {
       owner: ownerSigner,
       approvedSource: approvedSourceSigner,
       founder: founderSigner,
+      founderAddress,
+      approvedSourceAddress,
       engine,
       delegateRecipient,
       alternateGovernor,
@@ -206,6 +211,9 @@ function formatDeploymentReport(hre, system) {
     network: hre.network.name,
     chainId: hre.network.config.chainId || null,
     generatedAt: new Date().toISOString(),
+    deployer: system.accounts.owner.address,
+    founderAddress: system.accounts.founderAddress,
+    approvedSourceAddress: system.accounts.approvedSourceAddress,
     addresses: {},
     steps: system.steps,
   };

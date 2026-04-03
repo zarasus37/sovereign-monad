@@ -6,8 +6,11 @@
   "scripts": {
     "build:contracts": "hardhat compile",
     "test:contracts": "hardhat test",
+    "preflight:phase1a": "hardhat run scripts/preflight-phase1a.js --network phase1a",
     "deploy:phase1a": "hardhat run scripts/deploy-phase1a.js",
     "rehearse:phase1a": "hardhat run scripts/rehearse-phase1a.js"
+    ,
+    "verify:phase1a": "hardhat run scripts/verify-phase1a.js --network phase1a"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
