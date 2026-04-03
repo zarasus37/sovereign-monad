@@ -2,6 +2,6 @@
   "expectedChainId": 143,
   "founderAddress": "0x0000000000000000000000000000000000000001",
   "approvedSourceAddress": "0x0000000000000000000000000000000000000002",
-  "approvedSourceLabel": "MonadSpin Provider",
+  "approvedSourceLabel": "Bootstrap Revenue Source (replace after Stake integration)",
   "minDeployerBalanceEth": "0.25"
 }

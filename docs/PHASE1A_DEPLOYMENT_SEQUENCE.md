@@ -32,7 +32,17 @@ The implemented runner executes these steps in order:
 18. Register `DoveRouterObserver`
 19. Initialize `DoveRouterObserver` with system addresses
 20. Wire stipend / treasury references
-21. Register MonadSpin as approved source
+21. Register initial approved source
+
+## Step 21 Truthful Current Interpretation
+
+If the Stake-linked MonadSpin source is not yet deployed, Step 21 must use a bootstrap source address you control.
+
+Rule:
+
+- use the real Stake-linked source once it exists
+- until then, register a temporary bootstrap source and document it explicitly
+- do not describe the approved source as MonadSpin if the Stake-linked source does not yet exist
 
 ## Current Executable Interpretation Of Step 20
 
@@ -98,6 +108,11 @@ Live deployment prep now expects:
 
 - `.env.phase1a` or shell env vars for RPC and deployer key
 - `config/phase1a.deploy.json` for founder and approved-source addresses
+
+For `approvedSourceAddress`:
+
+- if Stake/MonadSpin is live, use that real revenue address
+- if Stake/MonadSpin is not live, use a bootstrap source address you control and label it as temporary
 - explicit preflight acknowledgments for:
   - confirmed deployer address
   - fresh deployer wallet with zero tx history

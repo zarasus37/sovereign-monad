@@ -45,6 +45,11 @@ npm run rehearse:phase1a
 npm run verify:phase1a
 ```
 
+For the initial approved source:
+
+- use the real Stake-linked MonadSpin source if it is deployed
+- otherwise use a temporary bootstrap source address you control and document it as temporary
+
 ## Core Runtime Included
 
 - `monad-market-agent/`

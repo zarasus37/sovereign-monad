@@ -1464,7 +1464,13 @@ The project is not blocked by lack of vision. It is blocked by the normal next r
 18. Register DoveRouterObserver
 19. Initialize DoveRouterObserver with system addresses
 20. Wire stipend / treasury references
-21. Register MonadSpin as approved source
+21. Register initial approved source
+
+Current honest interpretation of Step 21:
+
+- if the Stake-linked MonadSpin source exists, register that real inflow source
+- if it does not yet exist, register a temporary bootstrap source you control
+- the deployment sequence must not describe the approved source as MonadSpin before that source is actually deployed
 
 Only after this sequence is complete should Phase 1a be treated as live.
 

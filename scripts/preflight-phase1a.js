@@ -148,7 +148,7 @@ async function main() {
     deployerTxCount,
     founderAddress,
     approvedSourceAddress,
-    approvedSourceLabel: config.approvedSourceLabel || "MonadSpin Provider",
+    approvedSourceLabel: config.approvedSourceLabel || "Bootstrap Revenue Source",
     deployerBalanceEth: ethers.formatEther(deployerBalance),
     minDeployerBalanceEth: String(minDeployerBalanceEth),
     envPath,

@@ -20,7 +20,7 @@ async function deployPhase1aSequence(hre, options = {}) {
   const approvedSourceSigner = options.approvedSourceSigner || approvedSource;
   const founderAddress = options.founderAddress || founderSigner.address;
   const approvedSourceAddress = options.approvedSourceAddress || approvedSourceSigner.address;
-  const approvedSourceLabel = options.approvedSourceLabel || "MonadSpin Provider";
+  const approvedSourceLabel = options.approvedSourceLabel || "Bootstrap Revenue Source";
 
   const steps = [];
 
@@ -175,7 +175,11 @@ async function deployPhase1aSequence(hre, options = {}) {
     true,
     approvedSourceLabel,
   ]);
-  record(21, "Register MonadSpin as approved source", { approvedSource: approvedSourceAddress, approvedSourceLabel });
+  record(21, "Register initial approved source", {
+    approvedSource: approvedSourceAddress,
+    approvedSourceLabel,
+    note: "Use a bootstrap source if the Stake-linked MonadSpin source is not yet deployed.",
+  });
 
   return {
     accounts: {
