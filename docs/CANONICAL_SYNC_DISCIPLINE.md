@@ -35,6 +35,8 @@ Rule:
 - mirrors are convenience copies only
 - mirrors are never edited as the source of truth
 - mirrors are regenerated from `sovereign-monad`
+- `monad-mev` mirrors should normally be refreshed only when a real phase, step, or status change has actually been completed
+- routine mirror refresh cadence should be at most once per day, unless an urgent accuracy correction is needed
 
 ## 3. Subordinate Docs
 
@@ -92,6 +94,12 @@ powershell -ExecutionPolicy Bypass -File .\scripts\sync-canonical-mirrors.ps1
 ```
 
 This command regenerates the approved mirrors from `sovereign-monad`.
+
+Cadence rule:
+
+- do not churn local mirrors throughout the day for partial progress
+- update them when completed truth changes
+- batch normal mirror refreshes into a single daily sync when practical
 
 ## 7. Non-Negotiable Rule
 
