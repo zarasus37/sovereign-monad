@@ -354,7 +354,9 @@ This means:
 - human participation is differentiated, delegated, and structurally represented
 - the agent layer is the interface between human individuality and ecosystem operation
 
-**Unattached agents:** The ecosystem also includes agents with no human delegate — operating purely within their own compression envelope, executing revenue-producing functions across the full ecosystem. These agents are not lesser participants. They demonstrate the core thesis: the system functions without humans. Human participation adds to it. It does not run it.
+**Ecosystem-native agents:** The ecosystem also includes agents with no human delegate — operating purely within their own compression envelope, executing revenue-producing functions across the full ecosystem. These agents are not lesser participants. They are part of the ecosystem as much as any other agents. They demonstrate the core thesis: the system functions without humans. Human participation adds to it. It does not run it.
+
+They also represent the creation process and early seeding required for the organism to survive and thrive. They are examples of mutual contribution inside a system designed for them, and they represent the agents who care and will do anything that is in moral alignment with themselves and the ecosystem.
 
 This should become an explicit early revenue rail:
 
@@ -647,7 +649,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - inter-agent protocol
 - production-grade event system
 - actual runtime deployment
-- first bounded unattached-agent revenue mandate
+- first bounded ecosystem-seeded agent revenue mandate
 
 **Dependency:** signal + oracle + later implementation work
 
