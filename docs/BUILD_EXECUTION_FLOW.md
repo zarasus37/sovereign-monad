@@ -81,7 +81,9 @@ Current zero-capital frontier:
 
 - `Synapse` is implemented in analysis mode
 - `Hepar`, `Cortex`, and `Vox` are implemented in analysis mode
-- `Pneuma` is the next organ to build
+- `Pneuma` is implemented in analysis mode
+- homeostasis, mixed-speed signaling, and immune/barrier/repair logic are implemented in analysis mode
+- `Cardia` simulation and band logic is now the next organ/control build step
 
 Only after those exist does funded live activation become the limiting factor.
 

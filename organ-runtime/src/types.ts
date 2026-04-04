@@ -43,6 +43,17 @@ export interface OrganRuntimeConfig {
   vox?: {
     sampleRequests?: VoxNarrativeRequest[];
   };
+  pneuma?: {
+    sampleLeads?: PneumaLead[];
+  };
+  controls?: {
+    homeostasis?: {
+      sampleMetrics?: HomeostasisMetric[];
+    };
+    immune?: {
+      sampleIncidents?: ImmuneIncident[];
+    };
+  };
 }
 
 export interface OrganSnapshot {
@@ -67,6 +78,10 @@ export interface OrganRuntimeSnapshot {
   hepar?: HeparRuntimeSnapshot;
   cortex?: CortexRuntimeSnapshot;
   vox?: VoxRuntimeSnapshot;
+  pneuma?: PneumaRuntimeSnapshot;
+  homeostasis?: HomeostasisRuntimeSnapshot;
+  signaling?: SignalingRuntimeSnapshot;
+  immune?: ImmuneRuntimeSnapshot;
 }
 
 export type SynapseSignalCategory =
@@ -186,4 +201,87 @@ export interface VoxRuntimeSnapshot {
   implemented: true;
   requestCount: number;
   packages: VoxNarrativePackage[];
+}
+
+export type PneumaReadiness = 'cold' | 'warm' | 'ready';
+
+export interface PneumaLead {
+  id: string;
+  source: string;
+  fitScore: number;
+  reciprocity: RiskBand;
+  readiness: PneumaReadiness;
+  needsNarrativePackage: boolean;
+  summary: string;
+}
+
+export interface PneumaDecision {
+  leadId: string;
+  accepted: boolean;
+  channel: string;
+  nextAction: string;
+  reasons: string[];
+}
+
+export interface PneumaRuntimeSnapshot {
+  implemented: true;
+  leadCount: number;
+  acceptedCount: number;
+  decisions: PneumaDecision[];
+}
+
+export interface HomeostasisMetric {
+  name: string;
+  current: number;
+  min: number;
+  max: number;
+  unit: string;
+  correctiveAction: string;
+}
+
+export interface HomeostasisBreach {
+  name: string;
+  current: number;
+  range: string;
+  correctiveAction: string;
+}
+
+export interface HomeostasisRuntimeSnapshot {
+  implemented: true;
+  healthy: boolean;
+  metricCount: number;
+  breaches: HomeostasisBreach[];
+}
+
+export interface SignalingRuntimeSnapshot {
+  implemented: true;
+  fastLaneSignalIds: string[];
+  slowLaneSignalIds: string[];
+}
+
+export type ImmuneIncidentCategory = 'integrity' | 'security' | 'operations' | 'drift';
+
+export interface ImmuneIncident {
+  id: string;
+  category: ImmuneIncidentCategory;
+  severity: SynapseSignalSeverity;
+  selfBoundaryViolated: boolean;
+  contained: boolean;
+  needsRepair: boolean;
+  summary: string;
+}
+
+export interface ImmuneResponseDecision {
+  incidentId: string;
+  barrierTriggered: boolean;
+  containmentAction: string;
+  repairAction: string | null;
+}
+
+export interface ImmuneRuntimeSnapshot {
+  implemented: true;
+  incidentCount: number;
+  barrierTriggerCount: number;
+  repairQueueCount: number;
+  decisions: ImmuneResponseDecision[];
 }

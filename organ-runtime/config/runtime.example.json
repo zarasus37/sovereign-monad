@@ -159,5 +159,80 @@
         "urgency": "fast"
       }
     ]
+  },
+  "pneuma": {
+    "sampleLeads": [
+      {
+        "id": "pneu-lead-001",
+        "source": "operator-referral",
+        "fitScore": 82,
+        "reciprocity": "low",
+        "readiness": "ready",
+        "needsNarrativePackage": false,
+        "summary": "Qualified buyer-side lead ready for direct exchange."
+      },
+      {
+        "id": "pneu-lead-002",
+        "source": "content-inbound",
+        "fitScore": 74,
+        "reciprocity": "medium",
+        "readiness": "warm",
+        "needsNarrativePackage": true,
+        "summary": "Interested lead that needs narrative packaging before conversion."
+      },
+      {
+        "id": "pneu-lead-003",
+        "source": "misaligned-outreach",
+        "fitScore": 41,
+        "reciprocity": "high",
+        "readiness": "cold",
+        "needsNarrativePackage": false,
+        "summary": "Low-fit counterpart that should remain outside direct exchange."
+      }
+    ]
+  },
+  "controls": {
+    "homeostasis": {
+      "sampleMetrics": [
+        {
+          "name": "drawdown_bps",
+          "current": 85,
+          "min": 0,
+          "max": 120,
+          "unit": "bps",
+          "correctiveAction": "Hold current exposure and continue bounded operations."
+        },
+        {
+          "name": "operator_queue_depth",
+          "current": 11,
+          "min": 0,
+          "max": 8,
+          "unit": "items",
+          "correctiveAction": "Slow new routing and clear backlog before opening new workflows."
+        }
+      ]
+    },
+    "immune": {
+      "sampleIncidents": [
+        {
+          "id": "imm-001",
+          "category": "integrity",
+          "severity": "high",
+          "selfBoundaryViolated": true,
+          "contained": false,
+          "needsRepair": true,
+          "summary": "Boundary violation detected in a proposed routing path."
+        },
+        {
+          "id": "imm-002",
+          "category": "operations",
+          "severity": "medium",
+          "selfBoundaryViolated": false,
+          "contained": true,
+          "needsRepair": false,
+          "summary": "Operational drift was detected and locally contained."
+        }
+      ]
+    }
   }
 }

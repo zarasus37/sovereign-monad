@@ -1,6 +1,8 @@
+import { buildHomeostasisSnapshot, buildImmuneSnapshot, buildSignalingSnapshot } from './controls';
 import { buildCortexSnapshot } from './cortex';
 import { buildHeparSnapshot } from './hepar';
 import { ORGAN_DEFINITIONS } from './organs';
+import { buildPneumaSnapshot } from './pneuma';
 import { buildSynapseSnapshot } from './synapse';
 import { OrganName, OrganRuntimeConfig, OrganRuntimeSnapshot, OrganSnapshot } from './types';
 import { buildVoxSnapshot } from './vox';
@@ -24,6 +26,11 @@ export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSn
   const hepar = buildHeparSnapshot(config.hepar?.sampleOpportunities || []);
   const cortex = buildCortexSnapshot(config.cortex?.sampleResearch || []);
   const vox = buildVoxSnapshot(config.vox?.sampleRequests || [], cortex.briefs);
+  const pneuma = buildPneumaSnapshot(config.pneuma?.sampleLeads || []);
+  const synapse = buildSynapseSnapshot(config.synapse?.sampleSignals || []);
+  const homeostasis = buildHomeostasisSnapshot(config.controls?.homeostasis?.sampleMetrics || []);
+  const signaling = buildSignalingSnapshot(config.synapse?.sampleSignals || []);
+  const immune = buildImmuneSnapshot(config.controls?.immune?.sampleIncidents || []);
 
   const organs: OrganSnapshot[] = config.coordination.primaryLoop.map((name) => {
     const definition = ORGAN_DEFINITIONS[name];
@@ -63,9 +70,13 @@ export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSn
     capitalGatedQueue: organs.filter((o) => o.capitalRequired).map((o) => o.name),
     coordinationLoop: config.coordination.primaryLoop,
     organs,
-    synapse: buildSynapseSnapshot(config.synapse?.sampleSignals || []),
+    synapse,
     hepar,
     cortex,
     vox,
+    pneuma,
+    homeostasis,
+    signaling,
+    immune,
   };
 }

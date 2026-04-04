@@ -12,6 +12,9 @@ It provides a zero-capital runtime surface for:
 - Hepar opportunity filtering in analysis mode
 - Cortex research synthesis in analysis mode
 - Vox narrative packaging in analysis mode
+- Pneuma exchange qualification in analysis mode
+- homeostasis and mixed-speed signaling snapshots
+- immune, barrier, and repair snapshots
 - build-order separation between zero-capital and capital-gated work
 - local dry-run cycle planning
 
@@ -70,6 +73,10 @@ cmd /c npm start
 - Hepar screening decisions for sample opportunities
 - Cortex briefs for sample research inputs
 - Vox narrative packages built from Cortex briefs
+- Pneuma exchange decisions for sample leads
+- homeostasis breaches and correction actions
+- fast-lane vs slow-lane signaling separation
+- immune containment and repair decisions
 - blocked items by organ
 
 That gives a real executable entrypoint for Layer 5 without waiting on funding.

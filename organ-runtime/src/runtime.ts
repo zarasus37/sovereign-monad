@@ -67,6 +67,50 @@ export class OrganRuntime {
       );
     }
 
+    if (snapshot.pneuma) {
+      this.logger.info(
+        {
+          leadCount: snapshot.pneuma.leadCount,
+          acceptedCount: snapshot.pneuma.acceptedCount,
+          decisions: snapshot.pneuma.decisions,
+        },
+        'pneuma exchange snapshot',
+      );
+    }
+
+    if (snapshot.homeostasis) {
+      this.logger.info(
+        {
+          healthy: snapshot.homeostasis.healthy,
+          metricCount: snapshot.homeostasis.metricCount,
+          breaches: snapshot.homeostasis.breaches,
+        },
+        'homeostasis snapshot',
+      );
+    }
+
+    if (snapshot.signaling) {
+      this.logger.info(
+        {
+          fastLaneSignalIds: snapshot.signaling.fastLaneSignalIds,
+          slowLaneSignalIds: snapshot.signaling.slowLaneSignalIds,
+        },
+        'mixed-speed signaling snapshot',
+      );
+    }
+
+    if (snapshot.immune) {
+      this.logger.info(
+        {
+          incidentCount: snapshot.immune.incidentCount,
+          barrierTriggerCount: snapshot.immune.barrierTriggerCount,
+          repairQueueCount: snapshot.immune.repairQueueCount,
+          decisions: snapshot.immune.decisions,
+        },
+        'immune barrier repair snapshot',
+      );
+    }
+
     snapshot.organs.forEach((organ) => {
       this.logger.info(
         {
