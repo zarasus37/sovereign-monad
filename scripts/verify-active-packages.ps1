@@ -86,6 +86,16 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'data-rail-router'
+    Path = 'data-rail-router'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'reward-ledger-core'
+    Path = 'reward-ledger-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'speech-gateway'
     Path = 'speech-gateway'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')

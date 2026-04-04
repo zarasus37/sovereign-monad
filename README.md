@@ -123,6 +123,8 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Controlled expansion framework: `expansion-control/`
 - Keys scaffold and delegation policy: `keys-core/`
 - Data Rail preparation scaffold: `data-rail-core/`
+- Data Rail routing scaffold: `data-rail-router/`
+- Internal reward ledger surface: `reward-ledger-core/`
 - Speech I/O gateway: `speech-gateway/`
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.

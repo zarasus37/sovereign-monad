@@ -89,6 +89,7 @@ The correct immediate build order is:
 19. identity surface policies and local key activation logic
 20. Data Rail preparation and behavioral capture policy surfaces
 21. Data Rail routing logic and internal reward ledger surfaces
+22. Data Rail externalization gates: diversity thresholds, rights policy, and product boundary conditions
 
 Current zero-capital frontier:
 
@@ -104,7 +105,9 @@ Current zero-capital frontier:
 - `expansion-control` now provides a policy-driven controlled expansion framework
 - `keys-core` now provides local key activation scaffolding and delegation boundary enforcement
 - `data-rail-core` now provides a local behavioral capture policy surface and reward/data schema scaffold
-- the next no-cost priority is Data Rail routing logic and internal reward ledger surfaces
+- `data-rail-router` now provides local internal routing logic while external productization remains blocked
+- `reward-ledger-core` now provides an internal non-monetary reward ledger surface
+- the next no-cost priority is Data Rail externalization gates: diversity thresholds, rights policy, and product boundary conditions
 
 Only after those exist does funded live activation become the limiting factor.
 

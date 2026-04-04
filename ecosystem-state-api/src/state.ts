@@ -138,8 +138,8 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     integrityStatus: gnosis.integrityStatus,
     escalationTier: boundaryStress.escalationTier,
     nextFrontier: [
-      'data_rail_routing_logic',
-      'behavioral_reward_router_scaffold',
+      'data_rail_diversity_thresholds',
+      'externalization_gate_definitions',
       'emergence_observation_prep',
     ],
   };

@@ -146,6 +146,8 @@ Complete:
 - local delegation boundary system now exists
 - behavioral capture policy surface now exists locally
 - reward/data schema scaffold now exists locally
+- local internal Data Rail routing now exists
+- local internal reward ledger now exists
 
 Remaining:
 
@@ -154,6 +156,7 @@ Remaining:
 - Oracle maturity beyond repo-local surfaces
 - agent NFTs
 - Keys
+- Data Rail externalization thresholds and rights policy
 - Data Rail
 - Emergent Protocol System
 
@@ -396,16 +399,18 @@ Remaining:
 ### Layer 14. Data Rail
 
 Status: `PARTIAL`
-Progress: `2/4 complete`
+Progress: `4/6 complete`
 
 Complete:
 
 - behavioral capture policy surface now exists locally
 - reward/data schema scaffold now exists locally
+- internal routing logic now exists locally
+- internal reward ledger now exists locally
 
 Remaining:
 
-- routing and monetization implementation
+- population diversity thresholds and externalization gates
 - live revenue loop and external productization
 
 ### Layer 15. Emergent Protocol System
