@@ -27,6 +27,11 @@ Refresh all local canonical mirrors from the canonical repo with:
 powershell -ExecutionPolicy Bypass -File .\scripts\sync-canonical-mirrors.ps1
 ```
 
+Normal rule:
+
+- refresh mirrors after completed phase/step truth changes
+- batch routine mirror updates to once per day when practical
+
 Verify the active runtime, slot, and speech packages with:
 
 ```powershell
