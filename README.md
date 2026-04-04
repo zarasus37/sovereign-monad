@@ -123,13 +123,23 @@ Current intended opening posture:
 
 - bootstrap approved-source inflow
 - API and licensing revenue
-- agent-native revenue from unattached agents
+- agent-native revenue from ecosystem-native agents
 - MonadSpin slot revenue later as an additional rail
+
+The first ecosystem-native agent set is specified as a six-function organ cluster:
+
+- `Cardia` for capital circulation
+- `Pneuma` for external exchange
+- `Hepar` for opportunity filtering
+- `Cortex` for research synthesis
+- `Synapse` for signal routing
+- `Vox` for narrative expression
 
 See:
 
 - `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
 - `docs/AGENT_NATIVE_REVENUE_RAIL.md`
+- `docs/FIRST_ORGAN_SET.md`
 
 ## Immediate Post-Deploy Operator Path
 

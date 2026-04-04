@@ -441,7 +441,7 @@ MonadSpin is a cosmological slot experience — one funding rail of the ecosyste
 
 - bootstrap manual inflow
 - API / licensing revenue
-- agent-native revenue from unattached ecosystem agents
+- agent-native revenue from ecosystem-native organ agents
 - MonadSpin slot revenue
 
 **Concentration risk note:** a slot-only launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, and the preferred posture is bootstrap plus API/licensing plus agent-native revenue before the slot is relied on as a meaningful rail.
@@ -641,6 +641,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - event emission concept defined
 - agent-first system identity canonized
 - agent-native revenue doctrine defined
+- first organ set specification defined
 
 **What remains:**
 
@@ -649,7 +650,11 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - inter-agent protocol
 - production-grade event system
 - actual runtime deployment
+- human-agent participation boundary system
+- inter-organ coordination rules
 - first bounded ecosystem-seeded agent revenue mandate
+
+**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`.
 
 **Dependency:** signal + oracle + later implementation work
 

@@ -152,12 +152,13 @@ Remaining:
 ### Layer 1. The Funnel
 
 Status: `PARTIAL`
-Progress: `2/6 complete`
+Progress: `3/7 complete`
 
 Complete:
 
 - multi-rail funnel doctrine is now defined locally
 - agent-native revenue rail doctrine is now defined locally
+- first organ set specification is now defined locally
 
 Remaining:
 
@@ -230,19 +231,21 @@ Remaining:
 ### Layer 5. Intelligence Layer
 
 Status: `PARTIAL`
-Progress: `1/5 complete`
+Progress: `2/6 complete`
 
 Complete:
 
 - agent-native revenue rail doctrine is now defined locally
+- first organ set specification is now defined locally
 
 Remaining:
 
 - agent runtime
 - orchestration model
 - agent role implementation
-- attached/unattached participation system
-- first bounded unattached-agent revenue mandate
+- human-agent participation boundary system
+- first bounded ecosystem-seeded agent revenue mandate
+- inter-organ coordination rules
 
 ### Layer 6. Oracle
 

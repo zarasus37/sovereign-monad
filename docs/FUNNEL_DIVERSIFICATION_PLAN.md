@@ -71,6 +71,7 @@ Purpose:
 - create a revenue source that is faithful to the agent-native thesis
 - reduce dependence on human-sold or consumer-product rails
 - express mutual contribution inside a system designed for them
+- seed the first organ-functions the organism needs to survive
 
 Early forms:
 
@@ -86,6 +87,7 @@ Rule:
 See:
 
 - `docs/AGENT_NATIVE_REVENUE_RAIL.md`
+- `docs/FIRST_ORGAN_SET.md`
 
 ### Rail 4. MonadSpin Slot
 
