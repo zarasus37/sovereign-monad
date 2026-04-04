@@ -66,10 +66,11 @@ export function routeBehaviorEvent(
     });
   }
 
-  if (policy.internalOnly || !policy.diversityThresholdsDefined) {
+  if (policy.internalOnly || !policy.diversityThresholdsDefined || !policy.externalizationAllowed) {
     blockedDestinations.push({
       destination: 'external_product_surface',
-      reason: 'external productization remains blocked until diversity thresholds are defined and met',
+      reason:
+        'external productization remains blocked until diversity thresholds are met and rights gates are satisfied',
     });
     reasons.push('external productization remains blocked');
   }
@@ -94,13 +95,23 @@ export function buildRoutingSnapshot(
     implemented: true,
     internalOnly: true,
     routeCount: events.length,
-    externalProductizationBlocked: true,
+    externalProductizationBlocked: !policy.externalizationAllowed,
+    thresholdsDefined: policy.diversityThresholdsDefined,
+    externalizationAllowed: policy.externalizationAllowed,
     decisions: events.map((event) => routeBehaviorEvent(event, policy)),
   };
 }
 
 export function loadLocalRoutingSnapshot(packageRoot: string): DataRailRoutingSnapshot {
   const modulePath = path.resolve(packageRoot, '..', 'data-rail-core', 'dist', 'src', 'core.js');
+  const governanceModulePath = path.resolve(
+    packageRoot,
+    '..',
+    'data-rail-governance',
+    'dist',
+    'src',
+    'index.js',
+  );
   const { buildDataRailSnapshot, loadExampleEvents } = require(modulePath) as {
     buildDataRailSnapshot: (events: RoutedBehaviorEvent[]) => {
       internalOnly: true;
@@ -109,11 +120,19 @@ export function loadLocalRoutingSnapshot(packageRoot: string): DataRailRoutingSn
     };
     loadExampleEvents: () => RoutedBehaviorEvent[];
   };
+  const { buildGovernanceSnapshot } = require(governanceModulePath) as {
+    buildGovernanceSnapshot: (events: RoutedBehaviorEvent[]) => {
+      thresholdsDefined: boolean;
+      externalizationAllowed: boolean;
+    };
+  };
 
   const exampleEvents = loadExampleEvents();
   const snapshot = buildDataRailSnapshot(exampleEvents);
+  const governance = buildGovernanceSnapshot(snapshot.events);
   return buildRoutingSnapshot(snapshot.events, {
     internalOnly: snapshot.internalOnly,
     diversityThresholdsDefined: snapshot.diversityThresholdsDefined,
+    externalizationAllowed: governance.externalizationAllowed,
   });
 }

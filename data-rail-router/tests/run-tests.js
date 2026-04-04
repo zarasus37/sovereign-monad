@@ -10,13 +10,16 @@ function testEligibleEventRoutesInternally() {
     {
       id: 'evt-1',
       actorId: 'native-synapse',
+      actorClass: 'ecosystem_native',
       surface: 'organ_runtime',
       outcome: 'accepted',
+      attributable: true,
+      containsSensitivePayload: false,
       rewardEligible: true,
       blockedReasons: [],
       tags: ['signal'],
     },
-    { internalOnly: true, diversityThresholdsDefined: false },
+    { internalOnly: true, diversityThresholdsDefined: true, externalizationAllowed: false },
   );
 
   assert.ok(decision.approvedDestinations.includes('internal_behavioral_archive'));
@@ -34,13 +37,16 @@ function testBlockedEventFallsIntoReviewPaths() {
     {
       id: 'evt-2',
       actorId: 'future-buyer',
+      actorClass: 'user_linked',
       surface: 'keys',
       outcome: 'contained',
+      attributable: true,
+      containsSensitivePayload: true,
       rewardEligible: false,
       blockedReasons: ['event contains sensitive payload'],
       tags: ['identity', 'sensitive'],
     },
-    { internalOnly: true, diversityThresholdsDefined: false },
+    { internalOnly: true, diversityThresholdsDefined: true, externalizationAllowed: false },
   );
 
   assert.ok(decision.approvedDestinations.includes('gnosis_memory'));
@@ -56,18 +62,23 @@ function testRoutingSnapshotCountsRoutes() {
       {
         id: 'evt-1',
         actorId: 'native-synapse',
+        actorClass: 'ecosystem_native',
         surface: 'organ_runtime',
         outcome: 'accepted',
+        attributable: true,
+        containsSensitivePayload: false,
         rewardEligible: true,
         blockedReasons: [],
         tags: ['signal'],
       },
     ],
-    { internalOnly: true, diversityThresholdsDefined: false },
+    { internalOnly: true, diversityThresholdsDefined: true, externalizationAllowed: false },
   );
 
   assert.equal(snapshot.routeCount, 1);
   assert.equal(snapshot.externalProductizationBlocked, true);
+  assert.equal(snapshot.thresholdsDefined, true);
+  assert.equal(snapshot.externalizationAllowed, false);
 }
 
 testEligibleEventRoutesInternally();

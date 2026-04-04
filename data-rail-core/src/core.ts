@@ -46,7 +46,9 @@ export function buildRewardPreview(
   const reasons: string[] = [];
 
   if (activePolicy.internalOnly) {
-    reasons.push('Data Rail remains internal-only until diversity thresholds are defined');
+    reasons.push(
+      'Data Rail remains internal-only until diversity thresholds are met and rights gates are satisfied',
+    );
   }
 
   if (!activePolicy.diversityThresholdsDefined) {

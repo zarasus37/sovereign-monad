@@ -1,7 +1,7 @@
 {
   "schemaVersion": "data-rail-v0",
   "internalOnly": true,
-  "diversityThresholdsDefined": false,
+  "diversityThresholdsDefined": true,
   "minimumContributionScore": 60,
   "rewardEligibleOutcomes": ["accepted", "published", "qualified"],
   "requiresAttribution": true,

@@ -67,6 +67,37 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
       buildBoundaryStressSnapshot: () => ({
         escalationTier: 'tier2',
       }),
+      buildDataRailSnapshot: () => ({
+        internalOnly: true,
+        normalizedCount: 4,
+        rewardEligibleCount: 2,
+        events: [
+          {
+            id: 'evt-1',
+            actorId: 'native-synapse',
+            actorClass: 'ecosystem_native',
+            contributionScore: 80,
+            rewardEligible: true,
+          },
+        ],
+        rewards: [{ eventId: 'evt-1', rewardBand: 'acknowledge' }],
+      }),
+      buildRoutingSnapshot: () => ({
+        decisions: [{ eventId: 'evt-1', approvedDestinations: ['internal_reward_ledger'] }],
+      }),
+      buildRewardLedgerSnapshot: () => ({
+        entryCount: 1,
+        balances: [{ actorId: 'native-synapse', units: 1.2, entryCount: 1 }],
+      }),
+      buildGovernanceSnapshot: () => ({
+        thresholdsDefined: true,
+        thresholdsMet: false,
+        externalizationAllowed: false,
+      }),
+      buildEmergenceObservationSnapshot: () => ({
+        readiness: 'forming',
+      }),
+      loadExampleDataRailEvents: () => [],
     },
     'C:\\runtime.json',
     1710000000000,
@@ -78,6 +109,8 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
   assert.equal(snapshot.summary.deploymentBlockedByCapital, true);
   assert.equal(snapshot.summary.deploymentPosture, 'bounded');
   assert.equal(snapshot.summary.integrityStatus, 'contain');
+  assert.equal(snapshot.summary.dataRailExternalizationAllowed, false);
+  assert.equal(snapshot.summary.emergenceReadiness, 'forming');
   assert.deepEqual(snapshot.summary.capitalGatedOrgans, ['Cardia']);
 });
 
@@ -119,6 +152,37 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
       buildBoundaryStressSnapshot: () => ({
         escalationTier: 'tier0',
       }),
+      buildDataRailSnapshot: () => ({
+        internalOnly: true,
+        normalizedCount: 8,
+        rewardEligibleCount: 4,
+        events: [
+          {
+            id: 'evt-1',
+            actorId: 'native-synapse',
+            actorClass: 'ecosystem_native',
+            contributionScore: 80,
+            rewardEligible: true,
+          },
+        ],
+        rewards: [{ eventId: 'evt-1', rewardBand: 'acknowledge' }],
+      }),
+      buildRoutingSnapshot: () => ({
+        decisions: [{ eventId: 'evt-1', approvedDestinations: ['internal_reward_ledger'] }],
+      }),
+      buildRewardLedgerSnapshot: () => ({
+        entryCount: 1,
+        balances: [{ actorId: 'native-synapse', units: 1.2, entryCount: 1 }],
+      }),
+      buildGovernanceSnapshot: () => ({
+        thresholdsDefined: true,
+        thresholdsMet: true,
+        externalizationAllowed: true,
+      }),
+      buildEmergenceObservationSnapshot: () => ({
+        readiness: 'observable',
+      }),
+      loadExampleDataRailEvents: () => [],
     },
     'C:\\runtime.json',
     1710000000001,
@@ -126,4 +190,6 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
 
   assert.equal(snapshot.summary.deploymentBlockedByCapital, false);
   assert.equal(snapshot.summary.escalationTier, 'tier0');
+  assert.equal(snapshot.summary.dataRailExternalizationAllowed, true);
+  assert.equal(snapshot.summary.emergenceReadiness, 'observable');
 });

@@ -10,8 +10,11 @@ export type DataRailDestination = InternalDataRailDestination | 'external_produc
 export interface RoutedBehaviorEvent {
   id: string;
   actorId: string;
+  actorClass: 'ecosystem_native' | 'delegated_human' | 'operator_review' | 'user_linked';
   surface: string;
   outcome: string;
+  attributable: boolean;
+  containsSensitivePayload: boolean;
   rewardEligible: boolean;
   blockedReasons: string[];
   tags: string[];
@@ -20,6 +23,7 @@ export interface RoutedBehaviorEvent {
 export interface DataRailPolicyInput {
   internalOnly: true;
   diversityThresholdsDefined: boolean;
+  externalizationAllowed: boolean;
 }
 
 export interface RouteDecision {
@@ -33,6 +37,8 @@ export interface DataRailRoutingSnapshot {
   implemented: true;
   internalOnly: true;
   routeCount: number;
-  externalProductizationBlocked: true;
+  externalProductizationBlocked: boolean;
+  thresholdsDefined: boolean;
+  externalizationAllowed: boolean;
   decisions: RouteDecision[];
 }

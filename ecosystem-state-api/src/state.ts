@@ -60,6 +60,32 @@ function buildModulePaths(packageRoot: string, runtimeConfigPath: string): Runti
       'dist',
       'index.js',
     ),
+    dataRailCoreModulePath: path.resolve(packageRoot, '..', 'data-rail-core', 'dist', 'src', 'index.js'),
+    dataRailRouterModulePath: path.resolve(
+      packageRoot,
+      '..',
+      'data-rail-router',
+      'dist',
+      'src',
+      'index.js',
+    ),
+    rewardLedgerModulePath: path.resolve(
+      packageRoot,
+      '..',
+      'reward-ledger-core',
+      'dist',
+      'src',
+      'index.js',
+    ),
+    dataRailGovernanceModulePath: path.resolve(
+      packageRoot,
+      '..',
+      'data-rail-governance',
+      'dist',
+      'src',
+      'index.js',
+    ),
+    emergenceObserverModulePath: path.resolve(packageRoot, '..', 'emergence-observer-core', 'dist', 'index.js'),
   };
 }
 
@@ -98,6 +124,21 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
       paths.boundaryStressModulePath,
       'buildBoundaryStressSnapshot',
     ),
+    buildDataRailSnapshot: loadBuiltModule(paths.dataRailCoreModulePath, 'buildDataRailSnapshot'),
+    buildRoutingSnapshot: loadBuiltModule(paths.dataRailRouterModulePath, 'buildRoutingSnapshot'),
+    buildRewardLedgerSnapshot: loadBuiltModule(
+      paths.rewardLedgerModulePath,
+      'buildRewardLedgerSnapshot',
+    ),
+    buildGovernanceSnapshot: loadBuiltModule(
+      paths.dataRailGovernanceModulePath,
+      'buildGovernanceSnapshot',
+    ),
+    buildEmergenceObservationSnapshot: loadBuiltModule(
+      paths.emergenceObserverModulePath,
+      'buildEmergenceObservationSnapshot',
+    ),
+    loadExampleDataRailEvents: loadBuiltModule(paths.dataRailCoreModulePath, 'loadExampleEvents'),
   };
 }
 
@@ -117,6 +158,8 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
   const oracle = snapshot.oracle as any;
   const gnosis = snapshot.gnosis as any;
   const boundaryStress = snapshot.boundaryStress as any;
+  const dataRailGovernance = snapshot.dataRailGovernance as any;
+  const emergenceObservation = snapshot.emergenceObservation as any;
 
   return {
     runtimeMode: organRuntime.runtimeMode,
@@ -127,6 +170,11 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
       'oracle-core',
       'gnosis-core',
       'boundary-stress-monitor',
+      'data-rail-core',
+      'data-rail-router',
+      'reward-ledger-core',
+      'data-rail-governance',
+      'emergence-observer-core',
     ],
     zeroCapitalReadyOrgans: organRuntime.zeroCapitalBuildQueue || [],
     capitalGatedOrgans: organRuntime.capitalGatedQueue || [],
@@ -137,10 +185,13 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     commercializationPosture: oracle.commercializationPosture,
     integrityStatus: gnosis.integrityStatus,
     escalationTier: boundaryStress.escalationTier,
+    dataRailExternalizationAllowed: dataRailGovernance?.externalizationAllowed || false,
+    emergenceReadiness: emergenceObservation?.readiness || 'insufficient',
     nextFrontier: [
-      'data_rail_diversity_thresholds',
-      'externalization_gate_definitions',
-      'emergence_observation_prep',
+      'data_rail_population_growth',
+      'rights_review_workflow',
+      'externalization_activation_readiness',
+      'emergence_longitudinal_baseline',
     ],
   };
 }
@@ -210,6 +261,61 @@ export function buildEcosystemStateFromRuntimeConfig(
           .length || 0,
     },
   });
+  const dataRailEvents = builders.loadExampleDataRailEvents();
+  const dataRail = builders.buildDataRailSnapshot(dataRailEvents);
+  const dataRailGovernance = builders.buildGovernanceSnapshot(dataRail.events);
+  const dataRailRouting = builders.buildRoutingSnapshot(dataRail.events, {
+    internalOnly: dataRail.internalOnly,
+    diversityThresholdsDefined: dataRailGovernance.thresholdsDefined,
+    externalizationAllowed: dataRailGovernance.externalizationAllowed,
+  });
+  const routeMap = new Map(
+    dataRailRouting.decisions.map((decision: any) => [decision.eventId, decision.approvedDestinations]),
+  );
+  const rewardBandMap = new Map(dataRail.rewards.map((reward: any) => [reward.eventId, reward.rewardBand]));
+  const rewardLedgerInputs = dataRail.events
+    .filter((event: any) => {
+      const destinations = routeMap.get(event.id);
+      return Array.isArray(destinations) && destinations.includes('internal_reward_ledger');
+    })
+    .map((event: any) => ({
+      eventId: event.id,
+      actorId: event.actorId,
+      actorClass: event.actorClass,
+      contributionScore: event.contributionScore,
+      rewardEligible: event.rewardEligible,
+      rewardBand: rewardBandMap.get(event.id) || 'none',
+    }));
+  const rewardLedger = builders.buildRewardLedgerSnapshot(rewardLedgerInputs);
+  const emergenceObservation = builders.buildEmergenceObservationSnapshot({
+    runtime: {
+      organCount: organRuntime.organs?.length || 0,
+      orchestrationPhaseCount: organRuntime.orchestration?.phases?.length || 0,
+      mandateSequenceCount: organRuntime.mandate?.sequence?.length || 0,
+      participationActorCount: organRuntime.participation?.actorCount || 0,
+    },
+    signal: {
+      normalizedCount: signalLayer.normalizedCount || 0,
+      interpretationCount: signalLayer.interpretations?.length || 0,
+    },
+    oracle: {
+      deploymentPosture: oracle.deploymentPosture,
+      commercializationPosture: oracle.commercializationPosture,
+    },
+    gnosis: {
+      integrityStatus: gnosis.integrityStatus,
+      hollowConvergenceRisk: gnosis.hollowConvergenceRisk,
+    },
+    dataRail: {
+      normalizedCount: dataRail.normalizedCount,
+      rewardEligibleCount: dataRail.rewardEligibleCount,
+    },
+    governance: {
+      thresholdsDefined: dataRailGovernance.thresholdsDefined,
+      thresholdsMet: dataRailGovernance.thresholdsMet,
+      externalizationAllowed: dataRailGovernance.externalizationAllowed,
+    },
+  });
 
   const surfaces = {
     organRuntime,
@@ -217,6 +323,11 @@ export function buildEcosystemStateFromRuntimeConfig(
     oracle,
     gnosis,
     boundaryStress,
+    dataRail,
+    dataRailRouting,
+    rewardLedger,
+    dataRailGovernance,
+    emergenceObservation,
   };
 
   return {

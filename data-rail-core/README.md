@@ -7,7 +7,7 @@ Local Data Rail preparation scaffold for Sovereign Monad.
 - defines a behavioral capture policy surface
 - normalizes behavioral events into a reward/data schema
 - produces a local reward eligibility preview
-- keeps the Data Rail explicitly internal-only until diversity thresholds are defined
+- keeps the Data Rail explicitly internal-only until diversity thresholds are met and rights gates are satisfied
 
 This package does not monetize data and does not route live revenue. It prepares Layer 14 so capture rules and schema do not get invented retroactively.
 

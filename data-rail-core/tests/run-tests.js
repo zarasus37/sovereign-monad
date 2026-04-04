@@ -45,7 +45,9 @@ function testEligibleRewardPreview() {
   assert.equal(preview.rewardEligible, true);
   assert.equal(preview.rewardBand, 'acknowledge');
   assert.ok(
-    preview.reasons.includes('Data Rail remains internal-only until diversity thresholds are defined'),
+    preview.reasons.includes(
+      'Data Rail remains internal-only until diversity thresholds are met and rights gates are satisfied',
+    ),
   );
 }
 
@@ -67,7 +69,7 @@ function testInternalOnlySnapshot() {
   ]);
 
   assert.equal(snapshot.internalOnly, true);
-  assert.equal(snapshot.diversityThresholdsDefined, false);
+  assert.equal(snapshot.diversityThresholdsDefined, true);
   assert.equal(snapshot.rewardEligibleCount, 1);
 }
 

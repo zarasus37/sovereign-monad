@@ -9,6 +9,8 @@ export interface EcosystemStateSummary {
   commercializationPosture: string;
   integrityStatus: string;
   escalationTier: string;
+  dataRailExternalizationAllowed: boolean;
+  emergenceReadiness: string;
   nextFrontier: string[];
 }
 
@@ -65,6 +67,44 @@ export interface EcosystemStateSnapshot {
       reviewRequired: boolean;
       pauseSuggested: boolean;
       reasons: string[];
+    };
+    dataRail: {
+      normalizedCount: number;
+      rewardEligibleCount: number;
+      diversityThresholdsDefined: boolean;
+    };
+    dataRailRouting: {
+      routeCount: number;
+      externalProductizationBlocked: boolean;
+      thresholdsDefined: boolean;
+      externalizationAllowed: boolean;
+    };
+    rewardLedger: {
+      entryCount: number;
+      balances: Array<{ actorId: string; units: number; entryCount: number }>;
+    };
+    dataRailGovernance: {
+      thresholdsDefined: boolean;
+      thresholdsMet: boolean;
+      externalizationAllowed: boolean;
+      reasons: string[];
+      diversity: {
+        unmetThresholds: string[];
+        metrics: {
+          totalEvents: number;
+          distinctActors: number;
+          actorClassCount: number;
+          surfaceCount: number;
+          outcomeCount: number;
+        };
+      };
+    };
+    emergenceObservation: {
+      readiness: string;
+      evidenceWindow: string;
+      blockedBy: string[];
+      nextCollectionTargets: string[];
+      markers: Array<{ marker: string; level: string; reasons: string[] }>;
     };
   };
   summary: EcosystemStateSummary;

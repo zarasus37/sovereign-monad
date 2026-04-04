@@ -9,6 +9,7 @@ Internal reward ledger surface for the local Data Rail.
 - tracks actor balances in internal credits only
 
 This package does not create payouts and does not claim live economic distribution. It is an internal accounting surface only.
+External productization remains blocked until diversity thresholds are met and rights gates are satisfied.
 
 ## Run
 

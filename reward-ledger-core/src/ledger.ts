@@ -24,7 +24,7 @@ export function buildLedgerEntry(input: RewardLedgerInput): LedgerEntry | null {
     rewardBand: input.rewardBand,
     reasons: [
       'entry is internal-only and not redeemable external revenue',
-      'external productization remains blocked until diversity thresholds are defined and met',
+      'external productization remains blocked until diversity thresholds are met and rights gates are satisfied',
     ],
   };
 }

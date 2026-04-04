@@ -95,6 +95,14 @@ export default function App() {
               <span>Escalation</span>
               <strong>{data.summary.escalationTier}</strong>
             </div>
+            <div className="metric-card">
+              <span>Data Rail Externalization</span>
+              <strong>{data.summary.dataRailExternalizationAllowed ? 'allowed' : 'blocked'}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Emergence Readiness</span>
+              <strong>{data.summary.emergenceReadiness}</strong>
+            </div>
           </section>
 
           <Section title="Summary">
@@ -173,6 +181,41 @@ export default function App() {
                 <p>Sheath Pressure: {data.surfaces.boundaryStress.sheathPressure}</p>
                 <p>Turbulence: {data.surfaces.boundaryStress.turbulence}</p>
                 <p>Pause Suggested: {data.surfaces.boundaryStress.pauseSuggested ? 'yes' : 'no'}</p>
+              </article>
+            </div>
+          </Section>
+
+          <Section title="Data Rail / Emergence">
+            <div className="triple-grid">
+              <article className="subpanel">
+                <h3>Data Rail</h3>
+                <p>Normalized Events: {data.surfaces.dataRail.normalizedCount}</p>
+                <p>Reward Eligible: {data.surfaces.dataRail.rewardEligibleCount}</p>
+                <p>Ledger Entries: {data.surfaces.rewardLedger.entryCount}</p>
+                <p>
+                  Externalization:{' '}
+                  {data.surfaces.dataRailRouting.externalizationAllowed ? 'allowed' : 'blocked'}
+                </p>
+              </article>
+              <article className="subpanel">
+                <h3>Governance Gates</h3>
+                <p>Thresholds Defined: {data.surfaces.dataRailGovernance.thresholdsDefined ? 'yes' : 'no'}</p>
+                <p>Thresholds Met: {data.surfaces.dataRailGovernance.thresholdsMet ? 'yes' : 'no'}</p>
+                <ul>
+                  {data.surfaces.dataRailGovernance.reasons.map((reason) => (
+                    <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Emergence Observation</h3>
+                <p>Readiness: {data.surfaces.emergenceObservation.readiness}</p>
+                <p>Evidence Window: {data.surfaces.emergenceObservation.evidenceWindow}</p>
+                <ul>
+                  {data.surfaces.emergenceObservation.blockedBy.map((reason) => (
+                    <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
               </article>
             </div>
           </Section>

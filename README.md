@@ -124,6 +124,9 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Keys scaffold and delegation policy: `keys-core/`
 - Data Rail preparation scaffold: `data-rail-core/`
 - Data Rail routing scaffold: `data-rail-router/`
+- Data Rail internal reward ledger scaffold: `reward-ledger-core/`
+- Data Rail governance scaffold: `data-rail-governance/`
+- Emergence observation scaffold: `emergence-observer-core/`
 - Internal reward ledger surface: `reward-ledger-core/`
 - Speech I/O gateway: `speech-gateway/`
 

@@ -96,6 +96,16 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'data-rail-governance'
+    Path = 'data-rail-governance'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'emergence-observer-core'
+    Path = 'emergence-observer-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'speech-gateway'
     Path = 'speech-gateway'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
@@ -115,7 +125,7 @@ foreach ($check in $checks) {
     try {
       Invoke-Expression $command
       if ($LASTEXITCODE -ne 0) {
-        throw "Command failed with exit code $LASTEXITCODE: $command"
+        throw "Command failed with exit code ${LASTEXITCODE}: $command"
       }
     }
     finally {
