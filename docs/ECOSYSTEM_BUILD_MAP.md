@@ -220,7 +220,7 @@ Remaining:
 ### Layer 5. Intelligence Layer
 
 Status: `PARTIAL`
-Progress: `6/13 complete`
+Progress: `9/16 complete`
 
 Complete:
 
@@ -230,10 +230,14 @@ Complete:
 - organ runtime scaffold now exists locally
 - zero-capital vs capital-gated build flow is now defined locally
 - `Synapse` is now implemented in analysis mode
+- `Hepar` is now implemented in analysis mode
+- `Cortex` is now implemented in analysis mode
+- `Vox` is now implemented in analysis mode
 
 Remaining:
 
-- organ role implementation
+- `Pneuma` implementation
+- `Cardia` simulation and band logic
 - orchestration model hardening
 - human-agent participation boundary system
 - first bounded ecosystem-seeded agent revenue mandate

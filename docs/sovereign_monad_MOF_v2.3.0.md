@@ -646,6 +646,9 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - organ runtime scaffold exists
 - zero-capital vs capital-gated build flow defined
 - `Synapse` implemented in analysis mode
+- `Hepar` implemented in analysis mode
+- `Cortex` implemented in analysis mode
+- `Vox` implemented in analysis mode
 
 **What remains:**
 
@@ -660,7 +663,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - immune, barrier, and repair implementation logic
 - first bounded ecosystem-seeded agent revenue mandate
 
-**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse` is now the first implemented organ, running in analysis mode inside `organ-runtime`.
+**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, and `Vox` are now implemented in analysis mode inside `organ-runtime`.
 
 **Dependency:** signal + oracle + later implementation work
 
