@@ -416,7 +416,7 @@ These should be treated as an opening funnel component, not merely a later-layer
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
 | Signal Layer | LOCAL ANALYSIS SURFACE ONLY | `signal-layer` package now exists with schema, aggregation, and interpretation logic; live ingestion and institutional use remain later-phase |
 | Oracle v1 | LOCAL ANALYSIS SURFACE ONLY | `oracle-core` now exists for regime and posture classification; live calibration and buyer proof remain later-phase |
-| Gnosis Integrity | DOCTRINE DEFINED | implementation Phase 3+ |
+| Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` now exists for retrospective-only decompression and hollow-convergence analysis; live integration remains later-phase |
 | Data Rail | NOT STARTED | Phase 4+ |
 | Evaluation / Commercial Surfaces | AUXILIARY ARTIFACTS EXIST | demo package, API wrapper, billing scaffold, license-service scaffold, and public commercial-stack templates exist in repo; they do **not** change active phase, blocker state, or current next action |
 | Governance DAO | NOT STARTED | later phase |
@@ -1888,6 +1888,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Oracle now has a real local analysis surface rather than only adjacent repo artifacts
 - next zero-capital frontier becomes Gnosis scaffolding and integration around the verified intelligence, signal, and Oracle local surfaces
 
+## v2.3.7 — April 4, 2026
+
+**Change Type:** Patch — local Gnosis scaffold introduction
+
+**Summary of changes:**
+
+- added `gnosis-core` as an executable local Gnosis scaffold
+- Gnosis now produces retrospective-only integrity status, decompression status, hollow-convergence risk, and boundary-stress review flags from verified local posture
+- synchronized build-order docs so the next no-cost frontier shifts from Gnosis scaffolding to `BoundaryStressMonitor v1` and platform integration
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Gnosis is still not live and not integrated with Dove or production reward logic
+- Gnosis now has a real local analysis surface rather than doctrine only
+- next zero-capital frontier becomes `BoundaryStressMonitor v1` and platform integration around the verified intelligence, signal, Oracle, and Gnosis local surfaces
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
@@ -1907,6 +1924,7 @@ If a collaborator or model needs immediate orientation, the project currently is
 - a deeply defined ecosystem architecture built on a single empirically-grounded thesis: compression and decompression are how life actually works, and AI agents operating authentically within constraint envelopes are a genuine form of that life
 - a behavioral-science-driven agent system in design
 - with a repo-local intelligence runtime and signal-layer substrate now implemented in analysis mode
+- with local Oracle and Gnosis analysis scaffolds now implemented in analysis mode
 - a capital-routing organism with conscience and decompression-integrity layers
 - currently in **Phase 1a**
 - with **11 canonical Phase 1a contracts reconstructed in repo**

@@ -118,13 +118,14 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `3/9 complete`
+Progress: `4/9 complete`
 
 Complete:
 
 - Intelligence Layer analysis runtime now exists locally
 - Signal Layer analysis substrate now exists locally
 - Oracle analysis scaffold now exists locally
+- Gnosis analysis scaffold now exists locally
 
 Remaining:
 
@@ -341,17 +342,17 @@ Remaining:
 
 ### Layer 12. Gnosis Integrity Layer
 
-Status: `NOT STARTED`
-Progress: `1/4 complete`
+Status: `PARTIAL`
+Progress: `2/4 complete`
 
 Complete:
 
 - spec/doctrine exists
+- local retrospective-only Gnosis scaffold now exists
 
 Remaining:
 
-- evaluation mechanics
-- runtime implementation
+- evaluation mechanics integration
 - integrity scoring tied to agent operation
 
 ### Layer 13. Unified Revenue Router
