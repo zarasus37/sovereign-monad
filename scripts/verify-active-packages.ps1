@@ -56,6 +56,11 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'ecosystem-state-api'
+    Path = 'ecosystem-state-api'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'speech-gateway'
     Path = 'speech-gateway'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')

@@ -83,6 +83,7 @@ The correct immediate build order is:
 13. `BoundaryStressMonitor v1` analysis scaffold
 14. platform integration surfaces around verified intelligence, signal, Oracle, Gnosis, and stress posture
 15. first shared internal state/API surface joining the zero-capital stack
+16. first internal dashboard and operator views consuming the shared state surface
 
 Current zero-capital frontier:
 
@@ -92,7 +93,8 @@ Current zero-capital frontier:
 - `oracle-core` now provides local regime and posture classification in analysis mode
 - `gnosis-core` now provides retrospective-only decompression and hollow-convergence analysis in analysis mode
 - `boundary-stress-monitor` now provides sheath pressure, turbulence, and escalation posture in analysis mode
-- the next no-cost priority is platform integration and a shared internal state/API surface across the verified local stack
+- `ecosystem-state-api` now exposes a shared local state surface across the verified zero-capital stack
+- the next no-cost priority is platform consumers and internal dashboard/operator views on top of the shared state surface
 
 Only after those exist does funded live activation become the limiting factor.
 

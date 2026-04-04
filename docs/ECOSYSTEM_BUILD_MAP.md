@@ -129,7 +129,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `5/9 complete`
+Progress: `6/9 complete`
 
 Complete:
 
@@ -138,6 +138,7 @@ Complete:
 - Oracle analysis scaffold now exists locally
 - Gnosis analysis scaffold now exists locally
 - Boundary stress analysis scaffold now exists locally
+- shared internal state/API surface now exists locally
 
 Remaining:
 
@@ -294,17 +295,17 @@ Remaining:
 
 ### Layer 8. Platform
 
-Status: `NOT STARTED`
-Progress: `0/3 complete`
+Status: `PARTIAL`
+Progress: `1/3 complete`
 
 Complete:
 
-- none
+- shared internal state/API surface now exists locally
 
 Remaining:
 
 - builder infrastructure
-- ecosystem access surface
+- ecosystem access surface beyond the local internal API
 - controlled expansion framework
 
 ### Layer 9. Keys
