@@ -1,4 +1,5 @@
 import { ORGAN_DEFINITIONS } from './organs';
+import { buildSynapseSnapshot } from './synapse';
 import { OrganName, OrganRuntimeConfig, OrganRuntimeSnapshot, OrganSnapshot } from './types';
 
 function unique<T>(items: T[]): T[] {
@@ -56,5 +57,6 @@ export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSn
     capitalGatedQueue: organs.filter((o) => o.capitalRequired).map((o) => o.name),
     coordinationLoop: config.coordination.primaryLoop,
     organs,
+    synapse: buildSynapseSnapshot(config.synapse?.sampleSignals || []),
   };
 }

@@ -31,6 +31,9 @@ export interface OrganRuntimeConfig {
     primaryLoop: OrganName[];
     allowCapitalGatedOrgansInAnalysis: boolean;
   };
+  synapse?: {
+    sampleSignals?: SynapseSignal[];
+  };
 }
 
 export interface OrganSnapshot {
@@ -51,4 +54,42 @@ export interface OrganRuntimeSnapshot {
   capitalGatedQueue: OrganName[];
   coordinationLoop: OrganName[];
   organs: OrganSnapshot[];
+  synapse?: SynapseRuntimeSnapshot;
+}
+
+export type SynapseSignalCategory =
+  | 'opportunity'
+  | 'research'
+  | 'narrative'
+  | 'growth'
+  | 'integrity'
+  | 'operations';
+
+export type SynapseSignalSeverity = 'low' | 'medium' | 'high' | 'critical';
+
+export type SynapseLatencyClass = 'slow' | 'normal' | 'urgent' | 'immediate';
+
+export interface SynapseSignal {
+  id: string;
+  category: SynapseSignalCategory;
+  severity: SynapseSignalSeverity;
+  latency: SynapseLatencyClass;
+  summary: string;
+  touchesCapital?: boolean;
+  requiresExternalExpression?: boolean;
+  tags?: string[];
+}
+
+export interface SynapseRouteDecision {
+  signalId: string;
+  primaryTarget: OrganName;
+  supportingTargets: OrganName[];
+  justification: string;
+  fastPath: boolean;
+}
+
+export interface SynapseRuntimeSnapshot {
+  implemented: true;
+  sampleSignalCount: number;
+  routeDecisions: SynapseRouteDecision[];
 }

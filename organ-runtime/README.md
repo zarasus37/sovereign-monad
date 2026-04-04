@@ -8,6 +8,7 @@ It provides a zero-capital runtime surface for:
 - canonical organ definitions
 - shared runtime config
 - coordination validation
+- Synapse signal routing in analysis mode
 - build-order separation between zero-capital and capital-gated work
 - local dry-run cycle planning
 
@@ -62,6 +63,7 @@ cmd /c npm start
 - zero-capital build queue
 - capital-gated queue
 - coordination order
+- Synapse route decisions for sample signals
 - blocked items by organ
 
 That gives a real executable entrypoint for Layer 5 without waiting on funding.

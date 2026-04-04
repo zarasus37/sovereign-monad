@@ -66,6 +66,32 @@ describe('buildRuntimeSnapshot', () => {
     expect(cardia?.blockedReasons).toContain('capital_gated');
   });
 
+  it('produces a synapse snapshot from sample signals', () => {
+    const config = makeConfig();
+    config.synapse = {
+      sampleSignals: [
+        {
+          id: 'sig-opportunity',
+          category: 'opportunity',
+          severity: 'high',
+          latency: 'urgent',
+          summary: 'Opportunity needs filtering before capital deployment.',
+          touchesCapital: true,
+        },
+      ],
+    };
+
+    const snapshot = buildRuntimeSnapshot(config);
+    expect(snapshot.synapse?.implemented).toBe(true);
+    expect(snapshot.synapse?.sampleSignalCount).toBe(1);
+    expect(snapshot.synapse?.routeDecisions[0]).toMatchObject({
+      signalId: 'sig-opportunity',
+      primaryTarget: 'Hepar',
+      supportingTargets: ['Cortex', 'Cardia'],
+      fastPath: true,
+    });
+  });
+
   it('requires every organ in the primary loop', () => {
     const config = makeConfig();
     config.coordination.primaryLoop = ['Synapse', 'Hepar', 'Cortex', 'Cardia', 'Vox'];

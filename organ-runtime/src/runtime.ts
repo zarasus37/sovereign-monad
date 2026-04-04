@@ -25,6 +25,17 @@ export class OrganRuntime {
       'organ-runtime snapshot',
     );
 
+    if (snapshot.synapse) {
+      this.logger.info(
+        {
+          implemented: snapshot.synapse.implemented,
+          sampleSignalCount: snapshot.synapse.sampleSignalCount,
+          routeDecisions: snapshot.synapse.routeDecisions,
+        },
+        'synapse routing snapshot',
+      );
+    }
+
     snapshot.organs.forEach((organ) => {
       this.logger.info(
         {

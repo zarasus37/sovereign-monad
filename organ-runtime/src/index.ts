@@ -2,6 +2,7 @@ import { OrganRuntime } from './runtime';
 
 export { ORGAN_DEFINITIONS } from './organs';
 export { buildRuntimeSnapshot } from './coordinator';
+export { buildSynapseSnapshot, routeSignal } from './synapse';
 export { OrganRuntime } from './runtime';
 export type {
   OrganDefinition,
@@ -10,6 +11,12 @@ export type {
   OrganRuntimeSnapshot,
   OrganSnapshot,
   RuntimeMode,
+  SynapseRouteDecision,
+  SynapseRuntimeSnapshot,
+  SynapseSignal,
+  SynapseSignalCategory,
+  SynapseSignalSeverity,
+  SynapseLatencyClass,
 } from './types';
 
 function main() {

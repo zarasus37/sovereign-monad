@@ -60,5 +60,36 @@
       "Pneuma"
     ],
     "allowCapitalGatedOrgansInAnalysis": true
+  },
+  "synapse": {
+    "sampleSignals": [
+      {
+        "id": "sig-opportunity-001",
+        "category": "opportunity",
+        "severity": "high",
+        "latency": "urgent",
+        "summary": "Cross-venue opportunity requires filtering before capital consideration.",
+        "touchesCapital": true,
+        "tags": ["defi", "arbitrage"]
+      },
+      {
+        "id": "sig-research-001",
+        "category": "research",
+        "severity": "medium",
+        "latency": "normal",
+        "summary": "Protocol regime shift needs synthesis and outward packaging.",
+        "requiresExternalExpression": true,
+        "tags": ["research", "brief"]
+      },
+      {
+        "id": "sig-growth-001",
+        "category": "growth",
+        "severity": "medium",
+        "latency": "normal",
+        "summary": "Qualified inbound demand should route into exchange and conversion handling.",
+        "requiresExternalExpression": true,
+        "tags": ["lead", "distribution"]
+      }
+    ]
   }
 }
