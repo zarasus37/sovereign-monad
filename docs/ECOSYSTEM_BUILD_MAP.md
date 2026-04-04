@@ -1,17 +1,6 @@
-﻿# Ecosystem Build Map Mirror
+# Ecosystem Build Map
 
-This is a local mirror of the ecosystem build map for runtime-side work in `monad-mev`.
-
-Canonical maintenance target:
-
-- `C:\Users\crisc\Dev\agents\sovereign-monad\docs\ECOSYSTEM_BUILD_MAP.md`
-
-If this mirror and the canonical copy diverge, the `sovereign-monad` version wins and this mirror should be resynced.
-
----
-
-
-This document is the working build tracker for the Sovereign Monad ecosystem.
+This document is the canonical working build tracker for the Sovereign Monad ecosystem.
 
 Use it for:
 
@@ -152,12 +141,13 @@ Remaining:
 ### Layer 1. The Funnel
 
 Status: `PARTIAL`
-Progress: `2/6 complete`
+Progress: `3/7 complete`
 
 Complete:
 
 - multi-rail funnel doctrine is now defined locally
 - agent-native revenue rail doctrine is now defined locally
+- first organ set specification is now defined locally
 
 Remaining:
 
@@ -230,19 +220,21 @@ Remaining:
 ### Layer 5. Intelligence Layer
 
 Status: `PARTIAL`
-Progress: `1/5 complete`
+Progress: `2/6 complete`
 
 Complete:
 
 - agent-native revenue rail doctrine is now defined locally
+- first organ set specification is now defined locally
 
 Remaining:
 
 - agent runtime
 - orchestration model
 - agent role implementation
-- attached/unattached participation system
-- first bounded unattached-agent revenue mandate
+- human-agent participation boundary system
+- first bounded ecosystem-seeded agent revenue mandate
+- inter-organ coordination rules
 
 ### Layer 6. Oracle
 

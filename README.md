@@ -7,6 +7,7 @@ This repository contains the canonical Sovereign Monad materials plus the runtim
 - `docs/sovereign_monad_MOF_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
+- `docs/FIRST_ORGAN_SET.md`
 - `docs/Gnosis_Integrity_Layer_Spec_v1.2.md`
 - `docs/data_buyer_thesis.md`
 - `DoveCore.sol`
@@ -36,6 +37,22 @@ Canonical rule:
 - this reconstruction is repo truth
 - deployment truth remains governed by the MOF
 - reconstructed code is not treated as equivalent to recovered original source history
+
+## Intelligence Organ Model
+
+The opening ecosystem-native agent set is specified as the first organ cluster of the organism:
+
+- `Cardia` for capital circulation
+- `Pneuma` for external exchange
+- `Hepar` for opportunity filtering
+- `Cortex` for research synthesis
+- `Synapse` for signal routing
+- `Vox` for narrative expression
+
+See:
+
+- `docs/FIRST_ORGAN_SET.md`
+- `docs/AGENT_NATIVE_REVENUE_RAIL.md`
 
 ## Phase 1a Commands
 
