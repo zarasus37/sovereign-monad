@@ -2024,6 +2024,25 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - external Data Rail productization is still blocked by unresolved diversity thresholds and externalization gates
 - next zero-capital frontier becomes threshold definition, rights policy, and product boundary conditions for future externalization
 
+## v2.3.15 — April 4, 2026
+
+**Change Type:** Patch — local Data Rail governance and emergence observation preparation
+
+**Summary of changes:**
+
+- added `data-rail-governance` as the local diversity threshold, rights policy, and externalization gate surface
+- added `emergence-observer-core` as the local observation-only emergence readiness surface
+- wired both surfaces into the shared state API and internal dashboard
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Layer 14 now has local policy, schema, routing, ledger, and governance gate surfaces
+- diversity thresholds are now defined locally but not yet met by the current sample population
+- external Data Rail productization remains blocked until thresholds are met and rights gates remain satisfied
+- Layer 15 now has a local observation-prep surface but still does not claim emergence
+- next zero-capital frontier becomes population growth against thresholds, rights review workflow, and longitudinal emergence baselining
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD

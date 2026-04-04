@@ -90,6 +90,7 @@ The correct immediate build order is:
 20. Data Rail preparation and behavioral capture policy surfaces
 21. Data Rail routing logic and internal reward ledger surfaces
 22. Data Rail externalization gates: diversity thresholds, rights policy, and product boundary conditions
+23. emergence observation preparation and longitudinal baseline surfaces
 
 Current zero-capital frontier:
 
@@ -107,7 +108,9 @@ Current zero-capital frontier:
 - `data-rail-core` now provides a local behavioral capture policy surface and reward/data schema scaffold
 - `data-rail-router` now provides local internal routing logic while external productization remains blocked
 - `reward-ledger-core` now provides an internal non-monetary reward ledger surface
-- the next no-cost priority is Data Rail externalization gates: diversity thresholds, rights policy, and product boundary conditions
+- `data-rail-governance` now provides local diversity thresholds, rights policy, and externalization gate evaluation
+- `emergence-observer-core` now provides local observation-only emergence readiness and longitudinal baselining
+- the next no-cost priority is population growth against the defined thresholds, rights review workflow, and longitudinal emergence observation
 
 Only after those exist does funded live activation become the limiting factor.
 

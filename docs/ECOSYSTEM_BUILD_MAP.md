@@ -118,7 +118,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `15/20 complete`
+Progress: `17/23 complete`
 
 Complete:
 
@@ -137,17 +137,17 @@ Complete:
 - reward/data schema scaffold now exists locally
 - local internal Data Rail routing now exists
 - local internal reward ledger now exists
+- local Data Rail diversity thresholds, rights policy, and externalization gates now exist
+- local emergence observation preparation now exists
 
 Remaining:
 
 - Treasury live maturity
 - governance system
 - Oracle maturity beyond repo-local surfaces
-- agent NFTs
-- Keys
-- Data Rail externalization thresholds and rights policy
-- Data Rail
-- Emergent Protocol System
+- agent NFTs and live Keys activation
+- live external Data Rail productization
+- emergent protocol maturity beyond observation prep
 
 ## 2. Layer-By-Layer Breakdown
 
@@ -388,7 +388,7 @@ Remaining:
 ### Layer 14. Data Rail
 
 Status: `PARTIAL`
-Progress: `4/6 complete`
+Progress: `5/6 complete`
 
 Complete:
 
@@ -396,24 +396,25 @@ Complete:
 - reward/data schema scaffold now exists locally
 - internal routing logic now exists locally
 - internal reward ledger now exists locally
+- diversity thresholds, rights policy, and externalization gate surface now exist locally
 
 Remaining:
 
-- population diversity thresholds and externalization gates
 - live revenue loop and external productization
 
 ### Layer 15. Emergent Protocol System
 
-Status: `NOT STARTED`
-Progress: `0/4 complete`
+Status: `PARTIAL`
+Progress: `1/4 complete`
 
 Complete:
 
-- none
+- local emergence observation preparation surface now exists
 
 Remaining:
 
 - pattern extraction system
+- longitudinal emergence evidence accumulation
 - protocol discovery logic
 - emergence validation rules
 - formalized downstream protocol path
