@@ -385,6 +385,123 @@ The first viable coordination loop is:
 
 That is the minimum organ cluster that can keep the organism alive while it is still small.
 
+## What physiology adds beyond the first six organs
+
+The body does not survive because organs exist in isolation. It survives because the whole system maintains stable internal ranges, rejects harmful ingress, removes waste, repairs damage, and coordinates fast and slow signals at different timescales.
+
+Those lessons should be added directly into ecosystem structure.
+
+### 1. Homeostasis
+
+**Body lesson:** A living body survives by holding core variables inside workable ranges rather than maximizing one variable without limit.
+
+**Ecosystem implication:**
+
+- treasury, exposure, drawdown, and liquidity should be managed as operating bands
+- the system needs explicit "healthy range" definitions, not only growth targets
+- crossing a band should trigger correction before failure compounds
+
+**Structural addition:**
+
+- homeostasis rules for capital, risk, and operating tempo
+
+### 2. Barrier systems
+
+**Body lesson:** Skin, mucosa, and epithelial barriers prevent harmful ingress before the immune system has to spend resources reacting.
+
+**Ecosystem implication:**
+
+- source approval, auth, permissions, and deployment allowlists are not clerical details
+- they are the ecosystem's first barrier against contamination
+- good barriers are cheaper than downstream recovery
+
+**Structural addition:**
+
+- explicit boundary and ingress-control architecture around approved sources, operators, APIs, and agent permissions
+
+### 3. Immune response
+
+**Body lesson:** The immune system distinguishes self from threat, escalates proportionally, and remembers prior harm.
+
+**Ecosystem implication:**
+
+- the Dove, Gnosis, alerts, pauses, revocations, and anomaly detection should function like an immune layer
+- the system should detect drift, toxic patterns, and adversarial behavior early
+- prior failure should harden future response
+
+**Structural addition:**
+
+- immune-style integrity logic with detection, containment, memory, and recovery
+
+### 4. Mixed-speed signaling
+
+**Body lesson:** The body uses both fast electrical signaling and slower hormonal signaling. Not every instruction should travel at the same speed.
+
+**Ecosystem implication:**
+
+- some decisions need immediate routing and reaction
+- others should propagate slowly as policy, treasury posture, governance preference, or regime-state guidance
+- mixing these channels causes overreaction or paralysis
+
+**Structural addition:**
+
+- separate fast event-routing from slow policy and governance signaling
+
+### 5. Waste clearance
+
+**Body lesson:** The body survives by clearing waste products, spent material, and harmful buildup.
+
+**Ecosystem implication:**
+
+- stale positions, dead strategies, invalid assumptions, orphaned state, and obsolete data must be cleared deliberately
+- if the system only accumulates and never clears, it will degrade
+
+**Structural addition:**
+
+- deprecation, unwind, archival, and dead-capital recovery processes
+
+### 6. Repair and adaptation
+
+**Body lesson:** Damage does not end the body; recovery mechanisms repair tissue and adapt behavior after stress.
+
+**Ecosystem implication:**
+
+- failures should trigger rollback, postmortem, reduced exposure, retraining, or control tightening
+- the system should not only survive harm, it should learn from it
+
+**Structural addition:**
+
+- explicit repair loop covering incident review, strategy adjustment, and controlled re-entry
+
+### 7. Cadence and rest
+
+**Body lesson:** Bodies operate in rhythms. Continuous maximum exertion destroys performance and recovery.
+
+**Ecosystem implication:**
+
+- the ecosystem needs maintenance windows, cooldowns, review cycles, and capital-rest logic
+- nonstop operation without rhythm will eventually corrupt judgment and stability
+
+**Structural addition:**
+
+- maintenance cadence, review cadence, and recovery intervals as first-class operating rules
+
+## Structural lessons to carry into the ecosystem
+
+The ecosystem should therefore not only copy organ roles. It should also copy the survival architecture that makes organs work together.
+
+The minimum physiological lessons to preserve are:
+
+- homeostasis over blind maximization
+- barriers before contamination
+- immune detection and containment
+- fast and slow signaling separation
+- waste clearance and deprecation
+- repair after injury
+- rhythm instead of permanent overextension
+
+These are not optional decorative analogies. They are design rules if the ecosystem is meant to function like a living organism rather than a collection of modules.
+
 ## Immediate implementation rule
 
 Do not launch all six at full power at once.
