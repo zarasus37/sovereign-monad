@@ -118,7 +118,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `17/23 complete`
+Progress: `21/27 complete`
 
 Complete:
 
@@ -139,6 +139,10 @@ Complete:
 - local internal reward ledger now exists
 - local Data Rail diversity thresholds, rights policy, and externalization gates now exist
 - local emergence observation preparation now exists
+- local population growth planning now exists
+- local rights review workflow now exists
+- local externalization activation readiness now exists
+- local emergence baseline now exists
 
 Remaining:
 
@@ -388,7 +392,7 @@ Remaining:
 ### Layer 14. Data Rail
 
 Status: `PARTIAL`
-Progress: `5/6 complete`
+Progress: `6/7 complete`
 
 Complete:
 
@@ -397,6 +401,7 @@ Complete:
 - internal routing logic now exists locally
 - internal reward ledger now exists locally
 - diversity thresholds, rights policy, and externalization gate surface now exist locally
+- population growth planning, rights review workflow, and activation readiness now exist locally
 
 Remaining:
 
@@ -405,11 +410,12 @@ Remaining:
 ### Layer 15. Emergent Protocol System
 
 Status: `PARTIAL`
-Progress: `1/4 complete`
+Progress: `2/5 complete`
 
 Complete:
 
 - local emergence observation preparation surface now exists
+- local longitudinal baseline surface now exists
 
 Remaining:
 

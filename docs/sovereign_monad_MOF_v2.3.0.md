@@ -2043,6 +2043,25 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 15 now has a local observation-prep surface but still does not claim emergence
 - next zero-capital frontier becomes population growth against thresholds, rights review workflow, and longitudinal emergence baselining
 
+## v2.3.16 — April 4, 2026
+
+**Change Type:** Patch — local population growth, rights review, readiness, and baseline surfaces
+
+**Summary of changes:**
+
+- added `population-growth-core` for explicit threshold-gap planning
+- added `rights-review-core` for structured rights queue handling
+- added `externalization-readiness-core` for blocked / conditional / ready activation posture
+- added `emergence-baseline-core` for seed longitudinal baselining
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Layer 14 now has local policy, schema, routing, ledger, governance, growth, review, and readiness surfaces
+- external Data Rail productization is still blocked, but the remaining blockers are now explicit rather than implicit
+- Layer 15 now has both observation-prep and baseline surfaces, while emergence remains observational only
+- next zero-capital frontier becomes actual threshold-closing population growth, rights resolution, and accumulation of real longitudinal windows
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
