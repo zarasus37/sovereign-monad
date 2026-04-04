@@ -642,6 +642,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - agent-first system identity canonized
 - agent-native revenue doctrine defined
 - first organ set specification defined
+- physiological survival lessons captured from body-level coordination
 
 **What remains:**
 
@@ -652,9 +653,11 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - actual runtime deployment
 - human-agent participation boundary system
 - inter-organ coordination rules
+- homeostasis and mixed-speed signaling rules
+- immune, barrier, and repair implementation logic
 - first bounded ecosystem-seeded agent revenue mandate
 
-**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`.
+**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence.
 
 **Dependency:** signal + oracle + later implementation work
 

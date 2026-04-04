@@ -220,12 +220,13 @@ Remaining:
 ### Layer 5. Intelligence Layer
 
 Status: `PARTIAL`
-Progress: `2/6 complete`
+Progress: `3/8 complete`
 
 Complete:
 
 - agent-native revenue rail doctrine is now defined locally
 - first organ set specification is now defined locally
+- physiological design lessons are now captured locally
 
 Remaining:
 
@@ -235,6 +236,8 @@ Remaining:
 - human-agent participation boundary system
 - first bounded ecosystem-seeded agent revenue mandate
 - inter-organ coordination rules
+- homeostasis and mixed-speed signaling rules
+- immune, barrier, and repair implementation logic
 
 ### Layer 6. Oracle
 
