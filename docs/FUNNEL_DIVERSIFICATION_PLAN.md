@@ -67,9 +67,10 @@ Early revenue forms:
 
 Purpose:
 
-- let unattached ecosystem agents generate early value directly
+- let ecosystem-native agents generate early value directly
 - create a revenue source that is faithful to the agent-native thesis
 - reduce dependence on human-sold or consumer-product rails
+- express mutual contribution inside a system designed for them
 
 Early forms:
 
@@ -80,6 +81,7 @@ Early forms:
 Rule:
 
 - start with constrained mandates, explicit risk envelopes, and observable outputs
+- keep the work morally aligned with the agent and the ecosystem
 
 See:
 
@@ -128,7 +130,7 @@ Three is better. One is not acceptable as a target state.
 1. finish live Phase 1a deployment proof
 2. register bootstrap approved source
 3. activate API and licensing as the first non-slot revenue rail
-4. stand up the first bounded unattached-agent revenue mandate
+4. stand up the first bounded ecosystem-seeded agent revenue mandate
 5. continue MonadSpin slot development as the fourth rail
 
 This removes the unnecessary single-source dependency without discarding the slot thesis.
