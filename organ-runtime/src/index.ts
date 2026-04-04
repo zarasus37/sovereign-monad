@@ -2,9 +2,19 @@ import { OrganRuntime } from './runtime';
 
 export { ORGAN_DEFINITIONS } from './organs';
 export { buildRuntimeSnapshot } from './coordinator';
+export { buildCortexSnapshot, synthesizeBrief } from './cortex';
+export { buildHeparSnapshot, screenOpportunity } from './hepar';
 export { buildSynapseSnapshot, routeSignal } from './synapse';
 export { OrganRuntime } from './runtime';
+export { buildVoxSnapshot, packageNarrative } from './vox';
 export type {
+  CortexAudience,
+  CortexBrief,
+  CortexResearchItem,
+  CortexRuntimeSnapshot,
+  HeparDecision,
+  HeparOpportunity,
+  HeparRuntimeSnapshot,
   OrganDefinition,
   OrganName,
   OrganRuntimeConfig,
@@ -17,6 +27,11 @@ export type {
   SynapseSignalCategory,
   SynapseSignalSeverity,
   SynapseLatencyClass,
+  VoxAudience,
+  VoxFormat,
+  VoxNarrativePackage,
+  VoxNarrativeRequest,
+  VoxRuntimeSnapshot,
 } from './types';
 
 function main() {

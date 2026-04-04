@@ -80,7 +80,8 @@ The correct immediate build order is:
 Current zero-capital frontier:
 
 - `Synapse` is implemented in analysis mode
-- `Hepar` is the next organ to build
+- `Hepar`, `Cortex`, and `Vox` are implemented in analysis mode
+- `Pneuma` is the next organ to build
 
 Only after those exist does funded live activation become the limiting factor.
 

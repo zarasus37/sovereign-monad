@@ -91,5 +91,73 @@
         "tags": ["lead", "distribution"]
       }
     ]
+  },
+  "hepar": {
+    "sampleOpportunities": [
+      {
+        "id": "hep-opp-001",
+        "venue": "aerodrome-base",
+        "edgeBps": 21,
+        "liquidityScore": 78,
+        "counterpartyRisk": "low",
+        "structuralRisk": "medium",
+        "opaque": false,
+        "exploitative": false,
+        "summary": "Liquid, bounded opportunity with acceptable edge and moderate structure complexity."
+      },
+      {
+        "id": "hep-opp-002",
+        "venue": "unknown-route",
+        "edgeBps": 9,
+        "liquidityScore": 34,
+        "counterpartyRisk": "high",
+        "structuralRisk": "high",
+        "opaque": true,
+        "exploitative": false,
+        "summary": "Weak edge and poor transparency; should be rejected."
+      }
+    ]
+  },
+  "cortex": {
+    "sampleResearch": [
+      {
+        "id": "ctx-brief-001",
+        "title": "Base venue spread compression",
+        "summary": "Spread persistence is narrowing on the highest-liquidity pairs, which changes acceptable deployment thresholds.",
+        "confidence": "high",
+        "urgency": "normal",
+        "monetizable": true,
+        "audience": "buyers",
+        "recommendedOrgans": ["Vox", "Pneuma", "Hepar"]
+      },
+      {
+        "id": "ctx-brief-002",
+        "title": "Operator runbook refinement",
+        "summary": "Recent runtime changes require a tighter operator review sequence before funded activation resumes.",
+        "confidence": "medium",
+        "urgency": "urgent",
+        "monetizable": false,
+        "audience": "operators",
+        "recommendedOrgans": ["Synapse", "Vox"]
+      }
+    ]
+  },
+  "vox": {
+    "sampleRequests": [
+      {
+        "id": "vox-req-001",
+        "sourceBriefId": "ctx-brief-001",
+        "format": "newsletter",
+        "audience": "buyers",
+        "urgency": "normal"
+      },
+      {
+        "id": "vox-req-002",
+        "sourceBriefId": "ctx-brief-002",
+        "format": "memo",
+        "audience": "operators",
+        "urgency": "fast"
+      }
+    ]
   }
 }

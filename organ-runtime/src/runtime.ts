@@ -36,6 +36,37 @@ export class OrganRuntime {
       );
     }
 
+    if (snapshot.hepar) {
+      this.logger.info(
+        {
+          screenedCount: snapshot.hepar.screenedCount,
+          approvedCount: snapshot.hepar.approvedCount,
+          decisions: snapshot.hepar.decisions,
+        },
+        'hepar screening snapshot',
+      );
+    }
+
+    if (snapshot.cortex) {
+      this.logger.info(
+        {
+          sourceCount: snapshot.cortex.sourceCount,
+          briefs: snapshot.cortex.briefs,
+        },
+        'cortex synthesis snapshot',
+      );
+    }
+
+    if (snapshot.vox) {
+      this.logger.info(
+        {
+          requestCount: snapshot.vox.requestCount,
+          packages: snapshot.vox.packages,
+        },
+        'vox narrative snapshot',
+      );
+    }
+
     snapshot.organs.forEach((organ) => {
       this.logger.info(
         {

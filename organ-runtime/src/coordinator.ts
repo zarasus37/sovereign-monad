@@ -1,6 +1,9 @@
+import { buildCortexSnapshot } from './cortex';
+import { buildHeparSnapshot } from './hepar';
 import { ORGAN_DEFINITIONS } from './organs';
 import { buildSynapseSnapshot } from './synapse';
 import { OrganName, OrganRuntimeConfig, OrganRuntimeSnapshot, OrganSnapshot } from './types';
+import { buildVoxSnapshot } from './vox';
 
 function unique<T>(items: T[]): T[] {
   return [...new Set(items)];
@@ -18,6 +21,9 @@ function validatePrimaryLoop(loop: OrganName[]) {
 
 export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSnapshot {
   validatePrimaryLoop(config.coordination.primaryLoop);
+  const hepar = buildHeparSnapshot(config.hepar?.sampleOpportunities || []);
+  const cortex = buildCortexSnapshot(config.cortex?.sampleResearch || []);
+  const vox = buildVoxSnapshot(config.vox?.sampleRequests || [], cortex.briefs);
 
   const organs: OrganSnapshot[] = config.coordination.primaryLoop.map((name) => {
     const definition = ORGAN_DEFINITIONS[name];
@@ -58,5 +64,8 @@ export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSn
     coordinationLoop: config.coordination.primaryLoop,
     organs,
     synapse: buildSynapseSnapshot(config.synapse?.sampleSignals || []),
+    hepar,
+    cortex,
+    vox,
   };
 }
