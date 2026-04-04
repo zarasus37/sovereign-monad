@@ -117,12 +117,12 @@ Remaining:
 
 ### F. Later-Layer Sovereign System
 
-Status: `NOT STARTED`
-Progress: `0/9 complete`
+Status: `PARTIAL`
+Progress: `1/9 complete`
 
 Complete:
 
-- none beyond doctrine/spec framing
+- Intelligence Layer runtime scaffold now exists locally
 
 Remaining:
 
@@ -220,19 +220,20 @@ Remaining:
 ### Layer 5. Intelligence Layer
 
 Status: `PARTIAL`
-Progress: `3/8 complete`
+Progress: `5/13 complete`
 
 Complete:
 
 - agent-native revenue rail doctrine is now defined locally
 - first organ set specification is now defined locally
 - physiological design lessons are now captured locally
+- organ runtime scaffold now exists locally
+- zero-capital vs capital-gated build flow is now defined locally
 
 Remaining:
 
-- agent runtime
-- orchestration model
-- agent role implementation
+- organ role implementation
+- orchestration model hardening
 - human-agent participation boundary system
 - first bounded ecosystem-seeded agent revenue mandate
 - inter-organ coordination rules

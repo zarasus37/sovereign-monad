@@ -6,6 +6,7 @@ This repository contains the canonical Sovereign Monad materials plus the runtim
 
 - `docs/sovereign_monad_MOF_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
+- `docs/BUILD_EXECUTION_FLOW.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - `docs/FIRST_ORGAN_SET.md`
 - `docs/Gnosis_Integrity_Layer_Spec_v1.2.md`

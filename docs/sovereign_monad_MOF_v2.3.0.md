@@ -643,11 +643,13 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - agent-native revenue doctrine defined
 - first organ set specification defined
 - physiological survival lessons captured from body-level coordination
+- organ runtime scaffold exists
+- zero-capital vs capital-gated build flow defined
 
 **What remains:**
 
-- runtime design
-- orchestration layer
+- organ role implementation
+- orchestration hardening
 - inter-agent protocol
 - production-grade event system
 - actual runtime deployment
@@ -657,7 +659,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - immune, barrier, and repair implementation logic
 - first bounded ecosystem-seeded agent revenue mandate
 
-**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence.
+**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`.
 
 **Dependency:** signal + oracle + later implementation work
 
