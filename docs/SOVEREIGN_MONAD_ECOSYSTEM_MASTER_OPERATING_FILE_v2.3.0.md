@@ -1990,6 +1990,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - agent NFTs are still not implemented and remain explicitly blocked
 - next zero-capital frontier becomes Data Rail preparation and behavioral capture policy surfaces
 
+## v2.3.13 — April 4, 2026
+
+**Change Type:** Patch — local Data Rail preparation scaffold introduction
+
+**Summary of changes:**
+
+- added `data-rail-core` as the first local Data Rail preparation scaffold
+- behavioral capture policy and reward/data schema logic now exist locally
+- Data Rail remains internal-only and explicitly non-productized until diversity thresholds are defined
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Layer 14 now has a real local preparation surface instead of doctrine only
+- behavioral capture is schema-first and does not reward sensitive or unattributable events
+- next zero-capital frontier becomes Data Rail routing logic and internal reward ledger surfaces
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD

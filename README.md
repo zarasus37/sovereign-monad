@@ -122,6 +122,7 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Platform builder infrastructure: `platform-builder/`
 - Controlled expansion framework: `expansion-control/`
 - Keys scaffold and delegation policy: `keys-core/`
+- Data Rail preparation scaffold: `data-rail-core/`
 - Speech I/O gateway: `speech-gateway/`
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.

@@ -88,6 +88,7 @@ The correct immediate build order is:
 18. initial Keys scaffolding and delegation boundary system
 19. identity surface policies and local key activation logic
 20. Data Rail preparation and behavioral capture policy surfaces
+21. Data Rail routing logic and internal reward ledger surfaces
 
 Current zero-capital frontier:
 
@@ -102,7 +103,8 @@ Current zero-capital frontier:
 - `platform-builder` now provides local builder infrastructure on top of the shared platform surface
 - `expansion-control` now provides a policy-driven controlled expansion framework
 - `keys-core` now provides local key activation scaffolding and delegation boundary enforcement
-- the next no-cost priority is Data Rail preparation and behavioral capture policy surfaces
+- `data-rail-core` now provides a local behavioral capture policy surface and reward/data schema scaffold
+- the next no-cost priority is Data Rail routing logic and internal reward ledger surfaces
 
 Only after those exist does funded live activation become the limiting factor.
 

@@ -81,6 +81,11 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'data-rail-core'
+    Path = 'data-rail-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'speech-gateway'
     Path = 'speech-gateway'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
@@ -99,6 +104,9 @@ foreach ($check in $checks) {
     Push-Location $targetPath
     try {
       Invoke-Expression $command
+      if ($LASTEXITCODE -ne 0) {
+        throw "Command failed with exit code $LASTEXITCODE: $command"
+      }
     }
     finally {
       Pop-Location

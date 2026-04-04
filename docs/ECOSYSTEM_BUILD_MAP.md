@@ -129,7 +129,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `11/16 complete`
+Progress: `13/18 complete`
 
 Complete:
 
@@ -144,6 +144,8 @@ Complete:
 - controlled expansion framework now exists locally
 - local key activation scaffold now exists
 - local delegation boundary system now exists
+- behavioral capture policy surface now exists locally
+- reward/data schema scaffold now exists locally
 
 Remaining:
 
@@ -393,19 +395,18 @@ Remaining:
 
 ### Layer 14. Data Rail
 
-Status: `NOT STARTED`
-Progress: `0/4 complete`
+Status: `PARTIAL`
+Progress: `2/4 complete`
 
 Complete:
 
-- none
+- behavioral capture policy surface now exists locally
+- reward/data schema scaffold now exists locally
 
 Remaining:
 
-- productization
-- routing logic
-- monetization implementation
-- live revenue loop
+- routing and monetization implementation
+- live revenue loop and external productization
 
 ### Layer 15. Emergent Protocol System
 
