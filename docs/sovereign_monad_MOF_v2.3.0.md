@@ -1922,6 +1922,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - a real local analysis surface now exists for stress posture instead of only doctrine text
 - next zero-capital frontier becomes platform integration and a shared internal state/API surface around the verified local stack
 
+## v2.3.9 — April 4, 2026
+
+**Change Type:** Patch — shared internal state/API surface introduction
+
+**Summary of changes:**
+
+- added `ecosystem-state-api` as the first shared local state/API surface joining `organ-runtime`, `signal-layer`, `oracle-core`, `gnosis-core`, and `boundary-stress-monitor`
+- local state can now be consumed through one internal snapshot instead of package-by-package inspection only
+- synchronized build-order docs so the next no-cost frontier shifts from shared-state construction to platform consumers and internal dashboard/operator views
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- the new state surface is local-analysis-only and does not claim live onchain truth
+- Layer 8 now has a real local internal state surface instead of doctrine only
+- next zero-capital frontier becomes platform consumers and internal dashboard/operator views on top of the shared state surface
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
