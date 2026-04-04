@@ -220,7 +220,7 @@ Remaining:
 ### Layer 5. Intelligence Layer
 
 Status: `PARTIAL`
-Progress: `5/13 complete`
+Progress: `6/13 complete`
 
 Complete:
 
@@ -229,6 +229,7 @@ Complete:
 - physiological design lessons are now captured locally
 - organ runtime scaffold now exists locally
 - zero-capital vs capital-gated build flow is now defined locally
+- `Synapse` is now implemented in analysis mode
 
 Remaining:
 

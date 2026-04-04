@@ -77,6 +77,11 @@ The correct immediate build order is:
 7. barrier, immune, repair, and cadence logic
 8. `Cardia` simulation and band logic in analysis mode
 
+Current zero-capital frontier:
+
+- `Synapse` is implemented in analysis mode
+- `Hepar` is the next organ to build
+
 Only after those exist does funded live activation become the limiting factor.
 
 ## Why this is the truthful build order
