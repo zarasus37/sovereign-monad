@@ -84,6 +84,7 @@ The correct immediate build order is:
 14. platform integration surfaces around verified intelligence, signal, Oracle, Gnosis, and stress posture
 15. first shared internal state/API surface joining the zero-capital stack
 16. first internal dashboard and operator views consuming the shared state surface
+17. builder infrastructure and controlled expansion framework on top of the local platform surface
 
 Current zero-capital frontier:
 
@@ -94,7 +95,8 @@ Current zero-capital frontier:
 - `gnosis-core` now provides retrospective-only decompression and hollow-convergence analysis in analysis mode
 - `boundary-stress-monitor` now provides sheath pressure, turbulence, and escalation posture in analysis mode
 - `ecosystem-state-api` now exposes a shared local state surface across the verified zero-capital stack
-- the next no-cost priority is platform consumers and internal dashboard/operator views on top of the shared state surface
+- `ecosystem-dashboard` now provides the first internal dashboard/operator view on top of that shared state surface
+- the next no-cost priority is builder infrastructure and controlled expansion controls on top of the local platform surface
 
 Only after those exist does funded live activation become the limiting factor.
 

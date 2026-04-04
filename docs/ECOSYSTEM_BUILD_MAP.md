@@ -129,7 +129,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `6/9 complete`
+Progress: `7/9 complete`
 
 Complete:
 
@@ -139,6 +139,7 @@ Complete:
 - Gnosis analysis scaffold now exists locally
 - Boundary stress analysis scaffold now exists locally
 - shared internal state/API surface now exists locally
+- first internal dashboard/operator surface now exists locally
 
 Remaining:
 
@@ -296,16 +297,16 @@ Remaining:
 ### Layer 8. Platform
 
 Status: `PARTIAL`
-Progress: `1/3 complete`
+Progress: `2/3 complete`
 
 Complete:
 
 - shared internal state/API surface now exists locally
+- first internal dashboard/operator surface now exists locally
 
 Remaining:
 
 - builder infrastructure
-- ecosystem access surface beyond the local internal API
 - controlled expansion framework
 
 ### Layer 9. Keys
