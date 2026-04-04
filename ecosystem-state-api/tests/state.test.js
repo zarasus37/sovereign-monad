@@ -98,6 +98,20 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
         readiness: 'forming',
       }),
       loadExampleDataRailEvents: () => [],
+      loadPopulationGrowthSnapshot: () => ({
+        gapCount: 2,
+      }),
+      loadRightsReviewSnapshot: () => ({
+        blockedCount: 1,
+        conditionalCount: 1,
+        manualReviewCount: 0,
+      }),
+      loadExternalizationReadinessSnapshot: () => ({
+        status: 'blocked',
+      }),
+      loadEmergenceBaselineSnapshot: () => ({
+        baselineStatus: 'forming',
+      }),
     },
     'C:\\runtime.json',
     1710000000000,
@@ -111,6 +125,7 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
   assert.equal(snapshot.summary.integrityStatus, 'contain');
   assert.equal(snapshot.summary.dataRailExternalizationAllowed, false);
   assert.equal(snapshot.summary.emergenceReadiness, 'forming');
+  assert.equal(snapshot.summary.externalizationReadiness, 'blocked');
   assert.deepEqual(snapshot.summary.capitalGatedOrgans, ['Cardia']);
 });
 
@@ -183,6 +198,20 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
         readiness: 'observable',
       }),
       loadExampleDataRailEvents: () => [],
+      loadPopulationGrowthSnapshot: () => ({
+        gapCount: 0,
+      }),
+      loadRightsReviewSnapshot: () => ({
+        blockedCount: 0,
+        conditionalCount: 0,
+        manualReviewCount: 0,
+      }),
+      loadExternalizationReadinessSnapshot: () => ({
+        status: 'ready',
+      }),
+      loadEmergenceBaselineSnapshot: () => ({
+        baselineStatus: 'stable',
+      }),
     },
     'C:\\runtime.json',
     1710000000001,
@@ -192,4 +221,5 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
   assert.equal(snapshot.summary.escalationTier, 'tier0');
   assert.equal(snapshot.summary.dataRailExternalizationAllowed, true);
   assert.equal(snapshot.summary.emergenceReadiness, 'observable');
+  assert.equal(snapshot.summary.externalizationReadiness, 'ready');
 });

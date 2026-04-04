@@ -11,6 +11,10 @@ export interface RuntimeConfigPathSet {
   rewardLedgerModulePath: string;
   dataRailGovernanceModulePath: string;
   emergenceObserverModulePath: string;
+  populationGrowthModulePath: string;
+  rightsReviewModulePath: string;
+  externalizationReadinessModulePath: string;
+  emergenceBaselineModulePath: string;
 }
 
 export interface SharedStateSummary {
@@ -26,6 +30,7 @@ export interface SharedStateSummary {
   escalationTier: string;
   dataRailExternalizationAllowed: boolean;
   emergenceReadiness: string;
+  externalizationReadiness: string;
   nextFrontier: string[];
 }
 
@@ -44,7 +49,11 @@ export interface EcosystemStateSnapshot {
     dataRailRouting: unknown;
     rewardLedger: unknown;
     dataRailGovernance: unknown;
+    populationGrowth: unknown;
+    rightsReview: unknown;
+    externalizationReadiness: unknown;
     emergenceObservation: unknown;
+    emergenceBaseline: unknown;
   };
   summary: SharedStateSummary;
 }
@@ -61,6 +70,10 @@ export interface BuilderBundle {
   buildGovernanceSnapshot: (events: any[]) => any;
   buildEmergenceObservationSnapshot: (input: any) => any;
   loadExampleDataRailEvents: () => any[];
+  loadPopulationGrowthSnapshot: () => any;
+  loadRightsReviewSnapshot: () => any;
+  loadExternalizationReadinessSnapshot: () => any;
+  loadEmergenceBaselineSnapshot: () => any;
 }
 
 export interface StateApiConfig {

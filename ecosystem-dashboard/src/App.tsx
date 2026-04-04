@@ -103,6 +103,10 @@ export default function App() {
               <span>Emergence Readiness</span>
               <strong>{data.summary.emergenceReadiness}</strong>
             </div>
+            <div className="metric-card">
+              <span>Externalization Readiness</span>
+              <strong>{data.summary.externalizationReadiness}</strong>
+            </div>
           </section>
 
           <Section title="Summary">
@@ -214,6 +218,65 @@ export default function App() {
                 <ul>
                   {data.surfaces.emergenceObservation.blockedBy.map((reason) => (
                     <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </Section>
+
+          <Section title="Growth / Rights / Activation">
+            <div className="triple-grid">
+              <article className="subpanel">
+                <h3>Population Growth</h3>
+                <p>Thresholds Met: {data.surfaces.populationGrowth.thresholdsMet ? 'yes' : 'no'}</p>
+                <p>Gap Count: {data.surfaces.populationGrowth.gapCount}</p>
+                <ul>
+                  {data.surfaces.populationGrowth.recommendations.map((item, index) => (
+                    <li key={`${item.priority}-${index}`}>{item.priority}: {item.action}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Rights Review</h3>
+                <p>Review Cases: {data.surfaces.rightsReview.reviewCaseCount}</p>
+                <p>Blocked: {data.surfaces.rightsReview.blockedCount}</p>
+                <p>Conditional: {data.surfaces.rightsReview.conditionalCount}</p>
+                <p>Manual Review: {data.surfaces.rightsReview.manualReviewCount}</p>
+              </article>
+              <article className="subpanel">
+                <h3>Activation Readiness</h3>
+                <p>Status: {data.surfaces.externalizationReadiness.status}</p>
+                <ul>
+                  {data.surfaces.externalizationReadiness.blockers.map((reason) => (
+                    <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </Section>
+
+          <Section title="Longitudinal Baseline">
+            <div className="triple-grid">
+              <article className="subpanel">
+                <h3>Baseline</h3>
+                <p>Windows: {data.surfaces.emergenceBaseline.windowCount}</p>
+                <p>Status: {data.surfaces.emergenceBaseline.baselineStatus}</p>
+                <p>Readiness Trend: {data.surfaces.emergenceBaseline.readinessTrend}</p>
+                <p>Continuity Trend: {data.surfaces.emergenceBaseline.continuityTrend}</p>
+              </article>
+              <article className="subpanel">
+                <h3>Observation Targets</h3>
+                <ul>
+                  {data.surfaces.emergenceObservation.nextCollectionTargets.map((reason) => (
+                    <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Baseline Notes</h3>
+                <ul>
+                  {data.surfaces.emergenceBaseline.notes.map((note) => (
+                    <li key={note}>{note}</li>
                   ))}
                 </ul>
               </article>

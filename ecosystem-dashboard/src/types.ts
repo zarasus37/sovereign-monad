@@ -11,6 +11,7 @@ export interface EcosystemStateSummary {
   escalationTier: string;
   dataRailExternalizationAllowed: boolean;
   emergenceReadiness: string;
+  externalizationReadiness: string;
   nextFrontier: string[];
 }
 
@@ -99,12 +100,37 @@ export interface EcosystemStateSnapshot {
         };
       };
     };
+    populationGrowth: {
+      thresholdsMet: boolean;
+      gapCount: number;
+      gaps: Array<{ dimension: string; reason: string }>;
+      recommendations: Array<{ priority: string; action: string }>;
+    };
+    rightsReview: {
+      reviewCaseCount: number;
+      blockedCount: number;
+      conditionalCount: number;
+      manualReviewCount: number;
+      cases: Array<{ eventId: string; disposition: string }>;
+    };
+    externalizationReadiness: {
+      status: string;
+      blockers: string[];
+      checklist: string[];
+    };
     emergenceObservation: {
       readiness: string;
       evidenceWindow: string;
       blockedBy: string[];
       nextCollectionTargets: string[];
       markers: Array<{ marker: string; level: string; reasons: string[] }>;
+    };
+    emergenceBaseline: {
+      windowCount: number;
+      baselineStatus: string;
+      readinessTrend: string;
+      continuityTrend: string;
+      notes: string[];
     };
   };
   summary: EcosystemStateSummary;

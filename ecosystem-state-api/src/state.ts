@@ -86,6 +86,23 @@ function buildModulePaths(packageRoot: string, runtimeConfigPath: string): Runti
       'index.js',
     ),
     emergenceObserverModulePath: path.resolve(packageRoot, '..', 'emergence-observer-core', 'dist', 'index.js'),
+    populationGrowthModulePath: path.resolve(packageRoot, '..', 'population-growth-core', 'dist', 'index.js'),
+    rightsReviewModulePath: path.resolve(packageRoot, '..', 'rights-review-core', 'dist', 'index.js'),
+    externalizationReadinessModulePath: path.resolve(
+      packageRoot,
+      '..',
+      'externalization-readiness-core',
+      'dist',
+      'index.js',
+    ),
+    emergenceBaselineModulePath: path.resolve(
+      packageRoot,
+      '..',
+      'emergence-baseline-core',
+      'dist',
+      'src',
+      'index.js',
+    ),
   };
 }
 
@@ -139,6 +156,26 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
       'buildEmergenceObservationSnapshot',
     ),
     loadExampleDataRailEvents: loadBuiltModule(paths.dataRailCoreModulePath, 'loadExampleEvents'),
+    loadPopulationGrowthSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.populationGrowthModulePath,
+        'loadLocalPopulationGrowthSnapshot',
+      )(packageRoot),
+    loadRightsReviewSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.rightsReviewModulePath,
+        'loadLocalRightsReviewSnapshot',
+      )(packageRoot),
+    loadExternalizationReadinessSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.externalizationReadinessModulePath,
+        'loadLocalExternalizationReadinessSnapshot',
+      )(packageRoot),
+    loadEmergenceBaselineSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.emergenceBaselineModulePath,
+        'loadLocalEmergenceBaselineSnapshot',
+      )(packageRoot),
   };
 }
 
@@ -159,6 +196,7 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
   const gnosis = snapshot.gnosis as any;
   const boundaryStress = snapshot.boundaryStress as any;
   const dataRailGovernance = snapshot.dataRailGovernance as any;
+  const externalizationReadiness = snapshot.externalizationReadiness as any;
   const emergenceObservation = snapshot.emergenceObservation as any;
 
   return {
@@ -174,7 +212,11 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
       'data-rail-router',
       'reward-ledger-core',
       'data-rail-governance',
+      'population-growth-core',
+      'rights-review-core',
+      'externalization-readiness-core',
       'emergence-observer-core',
+      'emergence-baseline-core',
     ],
     zeroCapitalReadyOrgans: organRuntime.zeroCapitalBuildQueue || [],
     capitalGatedOrgans: organRuntime.capitalGatedQueue || [],
@@ -187,11 +229,12 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     escalationTier: boundaryStress.escalationTier,
     dataRailExternalizationAllowed: dataRailGovernance?.externalizationAllowed || false,
     emergenceReadiness: emergenceObservation?.readiness || 'insufficient',
+    externalizationReadiness: externalizationReadiness?.status || 'blocked',
     nextFrontier: [
-      'data_rail_population_growth',
-      'rights_review_workflow',
-      'externalization_activation_readiness',
-      'emergence_longitudinal_baseline',
+      'population_growth_execution',
+      'rights_review_resolution',
+      'externalization_activation_closure',
+      'emergence_window_accumulation',
     ],
   };
 }
@@ -287,6 +330,9 @@ export function buildEcosystemStateFromRuntimeConfig(
       rewardBand: rewardBandMap.get(event.id) || 'none',
     }));
   const rewardLedger = builders.buildRewardLedgerSnapshot(rewardLedgerInputs);
+  const populationGrowth = builders.loadPopulationGrowthSnapshot();
+  const rightsReview = builders.loadRightsReviewSnapshot();
+  const externalizationReadiness = builders.loadExternalizationReadinessSnapshot();
   const emergenceObservation = builders.buildEmergenceObservationSnapshot({
     runtime: {
       organCount: organRuntime.organs?.length || 0,
@@ -316,6 +362,7 @@ export function buildEcosystemStateFromRuntimeConfig(
       externalizationAllowed: dataRailGovernance.externalizationAllowed,
     },
   });
+  const emergenceBaseline = builders.loadEmergenceBaselineSnapshot();
 
   const surfaces = {
     organRuntime,
@@ -327,7 +374,11 @@ export function buildEcosystemStateFromRuntimeConfig(
     dataRailRouting,
     rewardLedger,
     dataRailGovernance,
+    populationGrowth,
+    rightsReview,
+    externalizationReadiness,
     emergenceObservation,
+    emergenceBaseline,
   };
 
   return {

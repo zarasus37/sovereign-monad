@@ -91,6 +91,8 @@ The correct immediate build order is:
 21. Data Rail routing logic and internal reward ledger surfaces
 22. Data Rail externalization gates: diversity thresholds, rights policy, and product boundary conditions
 23. emergence observation preparation and longitudinal baseline surfaces
+24. population growth planning, rights review workflow, and externalization activation readiness
+25. longitudinal emergence baselining
 
 Current zero-capital frontier:
 
@@ -110,7 +112,11 @@ Current zero-capital frontier:
 - `reward-ledger-core` now provides an internal non-monetary reward ledger surface
 - `data-rail-governance` now provides local diversity thresholds, rights policy, and externalization gate evaluation
 - `emergence-observer-core` now provides local observation-only emergence readiness and longitudinal baselining
-- the next no-cost priority is population growth against the defined thresholds, rights review workflow, and longitudinal emergence observation
+- `population-growth-core` now provides the explicit plan for closing threshold gaps
+- `rights-review-core` now provides a local review workflow around non-externalizable and conditional events
+- `externalization-readiness-core` now provides the blocked / conditional / ready activation gate for future externalization
+- `emergence-baseline-core` now provides a seed longitudinal baseline across observation windows
+- the next no-cost priority is executing population growth against the thresholds, resolving the rights review queue, and extending the emergence baseline with real windows
 
 Only after those exist does funded live activation become the limiting factor.
 

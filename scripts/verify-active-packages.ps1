@@ -101,8 +101,28 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'population-growth-core'
+    Path = 'population-growth-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'rights-review-core'
+    Path = 'rights-review-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'externalization-readiness-core'
+    Path = 'externalization-readiness-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'emergence-observer-core'
     Path = 'emergence-observer-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'emergence-baseline-core'
+    Path = 'emergence-baseline-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
