@@ -1956,6 +1956,40 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 8 now has its first real internal operator-facing surface
 - next zero-capital frontier becomes builder infrastructure and controlled expansion framework on top of the local platform surface
 
+## v2.3.11 — April 4, 2026
+
+**Change Type:** Patch — local platform completion
+
+**Summary of changes:**
+
+- added `platform-builder` as local builder infrastructure on top of the shared platform surface
+- added `expansion-control` as the policy-driven controlled expansion framework
+- synchronized build-order docs so Layer 8 is now locally complete and the next zero-capital frontier shifts to Layer 9 Keys scaffolding
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Layer 8 now has a real local builder lane, shared state lane, dashboard lane, and controlled expansion lane
+- platform completion remains local-analysis-only and does not imply live public expansion
+- next zero-capital frontier becomes Keys scaffolding, delegation boundary logic, and identity surface policy work
+
+## v2.3.12 — April 4, 2026
+
+**Change Type:** Patch — local Keys scaffold introduction
+
+**Summary of changes:**
+
+- added `keys-core` as the first local Keys scaffold for activation classes, delegation boundaries, and key policy
+- NFT-dependent identity activation is explicitly blocked inside the scaffold until agent NFTs exist
+- synchronized build-order docs so the next zero-capital frontier shifts from local Keys scaffolding to Data Rail preparation and behavioral capture policy work
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Layer 9 now has a real local activation/boundary scaffold instead of doctrine only
+- agent NFTs are still not implemented and remain explicitly blocked
+- next zero-capital frontier becomes Data Rail preparation and behavioral capture policy surfaces
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD

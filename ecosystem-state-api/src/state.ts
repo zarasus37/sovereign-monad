@@ -138,9 +138,9 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     integrityStatus: gnosis.integrityStatus,
     escalationTier: boundaryStress.escalationTier,
     nextFrontier: [
-      'platform_integration_surfaces',
-      'shared_internal_state_consumers',
-      'first_internal_dashboard_and_operator_views',
+      'keys_scaffolding',
+      'delegation_boundary_system',
+      'identity_surface_policies',
     ],
   };
 }

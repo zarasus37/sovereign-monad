@@ -66,6 +66,21 @@ $checks = @(
     Commands = @('cmd /c npm run build')
   },
   @{
+    Name = 'platform-builder'
+    Path = 'platform-builder'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'expansion-control'
+    Path = 'expansion-control'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'keys-core'
+    Path = 'keys-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'speech-gateway'
     Path = 'speech-gateway'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
