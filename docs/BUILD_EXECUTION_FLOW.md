@@ -85,6 +85,9 @@ The correct immediate build order is:
 15. first shared internal state/API surface joining the zero-capital stack
 16. first internal dashboard and operator views consuming the shared state surface
 17. builder infrastructure and controlled expansion framework on top of the local platform surface
+18. initial Keys scaffolding and delegation boundary system
+19. identity surface policies and local key activation logic
+20. Data Rail preparation and behavioral capture policy surfaces
 
 Current zero-capital frontier:
 
@@ -96,7 +99,10 @@ Current zero-capital frontier:
 - `boundary-stress-monitor` now provides sheath pressure, turbulence, and escalation posture in analysis mode
 - `ecosystem-state-api` now exposes a shared local state surface across the verified zero-capital stack
 - `ecosystem-dashboard` now provides the first internal dashboard/operator view on top of that shared state surface
-- the next no-cost priority is builder infrastructure and controlled expansion controls on top of the local platform surface
+- `platform-builder` now provides local builder infrastructure on top of the shared platform surface
+- `expansion-control` now provides a policy-driven controlled expansion framework
+- `keys-core` now provides local key activation scaffolding and delegation boundary enforcement
+- the next no-cost priority is Data Rail preparation and behavioral capture policy surfaces
 
 Only after those exist does funded live activation become the limiting factor.
 

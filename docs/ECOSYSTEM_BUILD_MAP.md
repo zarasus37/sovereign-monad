@@ -118,7 +118,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `7/9 complete`
+Progress: `11/16 complete`
 
 Complete:
 
@@ -129,13 +129,17 @@ Complete:
 - Boundary stress analysis scaffold now exists locally
 - shared internal state/API surface now exists locally
 - first internal dashboard/operator surface now exists locally
+- builder infrastructure now exists locally
+- controlled expansion framework now exists locally
+- local key activation scaffold now exists
+- local delegation boundary system now exists
 
 Remaining:
 
 - Treasury live maturity
 - governance system
 - Oracle maturity beyond repo-local surfaces
-- Platform
+- agent NFTs
 - Keys
 - Data Rail
 - Emergent Protocol System
@@ -285,33 +289,32 @@ Remaining:
 
 ### Layer 8. Platform
 
-Status: `PARTIAL`
-Progress: `2/3 complete`
+Status: `DONE`
+Progress: `3/3 complete`
 
 Complete:
 
 - shared internal state/API surface now exists locally
 - first internal dashboard/operator surface now exists locally
+- builder infrastructure and controlled expansion framework now exist locally
 
 Remaining:
 
-- builder infrastructure
-- controlled expansion framework
+- none
 
 ### Layer 9. Keys
 
-Status: `NOT STARTED`
-Progress: `0/3 complete`
+Status: `PARTIAL`
+Progress: `2/3 complete`
 
 Complete:
 
-- none
+- local user-linked key activation scaffold now exists
+- local delegation boundary system now exists
 
 Remaining:
 
 - agent NFTs
-- user-linked key logic
-- delegation boundary system
 
 ### Layer 10. Narrative
 
