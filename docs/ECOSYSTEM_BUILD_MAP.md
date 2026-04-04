@@ -152,16 +152,18 @@ Remaining:
 ### Layer 1. The Funnel
 
 Status: `PARTIAL`
-Progress: `1/5 complete`
+Progress: `2/6 complete`
 
 Complete:
 
 - multi-rail funnel doctrine is now defined locally
+- agent-native revenue rail doctrine is now defined locally
 
 Remaining:
 
 - MonadSpin product design
-- non-slot revenue rail activation
+- API/licensing revenue rail activation
+- agent-native revenue rail activation
 - RTP logic
 - inflow routing implementation
 - live funding rail deployment
@@ -227,12 +229,12 @@ Remaining:
 
 ### Layer 5. Intelligence Layer
 
-Status: `NOT STARTED`
-Progress: `0/4 complete`
+Status: `PARTIAL`
+Progress: `1/5 complete`
 
 Complete:
 
-- none
+- agent-native revenue rail doctrine is now defined locally
 
 Remaining:
 
@@ -240,6 +242,7 @@ Remaining:
 - orchestration model
 - agent role implementation
 - attached/unattached participation system
+- first bounded unattached-agent revenue mandate
 
 ### Layer 6. Oracle
 
