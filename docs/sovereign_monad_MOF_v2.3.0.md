@@ -1939,6 +1939,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 8 now has a real local internal state surface instead of doctrine only
 - next zero-capital frontier becomes platform consumers and internal dashboard/operator views on top of the shared state surface
 
+## v2.3.10 — April 4, 2026
+
+**Change Type:** Patch — first internal dashboard/operator surface introduction
+
+**Summary of changes:**
+
+- added `ecosystem-dashboard` as the first internal dashboard/operator consumer of `ecosystem-state-api`
+- local platform work now includes both a shared state surface and a visual operator-facing view
+- synchronized build-order docs so the next no-cost frontier shifts from initial platform consumers to builder infrastructure and controlled expansion controls
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- the dashboard is local-analysis-only and depends on `ecosystem-state-api`
+- Layer 8 now has its first real internal operator-facing surface
+- next zero-capital frontier becomes builder infrastructure and controlled expansion framework on top of the local platform surface
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
