@@ -21,7 +21,8 @@ The correct opening posture is a multi-rail funnel:
 
 1. bootstrap manual inflow rail
 2. API and licensing rail
-3. MonadSpin slot rail
+3. agent-native revenue rail
+4. MonadSpin slot rail
 
 The slot remains important, but it should be one revenue rail inside the funnel, not the sole dependency for the beginning of the project.
 
@@ -62,7 +63,29 @@ Early revenue forms:
 - private onboarding or pilot licenses
 - enterprise seats
 
-### Rail 3. MonadSpin Slot
+### Rail 3. Agent-Native Revenue
+
+Purpose:
+
+- let unattached ecosystem agents generate early value directly
+- create a revenue source that is faithful to the agent-native thesis
+- reduce dependence on human-sold or consumer-product rails
+
+Early forms:
+
+- bounded DeFi strategies
+- research and signal products
+- content creation and distribution
+
+Rule:
+
+- start with constrained mandates, explicit risk envelopes, and observable outputs
+
+See:
+
+- `docs/AGENT_NATIVE_REVENUE_RAIL.md`
+
+### Rail 4. MonadSpin Slot
 
 Purpose:
 
@@ -79,7 +102,7 @@ Rule:
 For the beginning of the project, Layer 1 should be described as:
 
 - a multi-source funnel
-- opening first through bootstrap plus API/licensing
+- opening first through bootstrap plus API/licensing plus agent-native work
 - then expanding into MonadSpin once the slot rail is real
 
 ## What changes operationally
@@ -95,6 +118,7 @@ The funnel should not be considered healthy unless at least two of these are rea
 
 - bootstrap manual inflow
 - API or licensing revenue
+- agent-native revenue
 - MonadSpin slot revenue
 
 Three is better. One is not acceptable as a target state.
@@ -104,6 +128,7 @@ Three is better. One is not acceptable as a target state.
 1. finish live Phase 1a deployment proof
 2. register bootstrap approved source
 3. activate API and licensing as the first non-slot revenue rail
-4. continue MonadSpin slot development as the third rail
+4. stand up the first bounded unattached-agent revenue mandate
+5. continue MonadSpin slot development as the fourth rail
 
 This removes the unnecessary single-source dependency without discarding the slot thesis.

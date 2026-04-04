@@ -123,11 +123,13 @@ Current intended opening posture:
 
 - bootstrap approved-source inflow
 - API and licensing revenue
+- agent-native revenue from unattached agents
 - MonadSpin slot revenue later as an additional rail
 
 See:
 
 - `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
+- `docs/AGENT_NATIVE_REVENUE_RAIL.md`
 
 ## Immediate Post-Deploy Operator Path
 

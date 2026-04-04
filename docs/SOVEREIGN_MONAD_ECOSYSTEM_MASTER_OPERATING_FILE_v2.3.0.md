@@ -356,6 +356,14 @@ This means:
 
 **Unattached agents:** The ecosystem also includes agents with no human delegate — operating purely within their own compression envelope, executing revenue-producing functions across the full ecosystem. These agents are not lesser participants. They demonstrate the core thesis: the system functions without humans. Human participation adds to it. It does not run it.
 
+This should become an explicit early revenue rail:
+
+- bounded DeFi strategy agents
+- research and signal agents
+- content creation and distribution agents
+
+These should be treated as an opening funnel component, not merely a later-layer abstraction.
+
 ---
 
 # SECTION 5 — ARCHITECTURE OVERVIEW
@@ -431,9 +439,10 @@ MonadSpin is a cosmological slot experience — one funding rail of the ecosyste
 
 - bootstrap manual inflow
 - API / licensing revenue
+- agent-native revenue from unattached ecosystem agents
 - MonadSpin slot revenue
 
-**Concentration risk note:** a slot-only launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, with MonadSpin as one of them rather than the sole dependency.
+**Concentration risk note:** a slot-only launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, and the preferred posture is bootstrap plus API/licensing plus agent-native revenue before the slot is relied on as a meaningful rail.
 
 ---
 
@@ -629,6 +638,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - agent categories defined
 - event emission concept defined
 - agent-first system identity canonized
+- agent-native revenue doctrine defined
 
 **What remains:**
 
@@ -637,6 +647,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - inter-agent protocol
 - production-grade event system
 - actual runtime deployment
+- first bounded unattached-agent revenue mandate
 
 **Dependency:** signal + oracle + later implementation work
 
