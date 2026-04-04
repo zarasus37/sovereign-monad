@@ -118,7 +118,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `11/16 complete`
+Progress: `15/20 complete`
 
 Complete:
 
@@ -133,6 +133,10 @@ Complete:
 - controlled expansion framework now exists locally
 - local key activation scaffold now exists
 - local delegation boundary system now exists
+- behavioral capture policy surface now exists locally
+- reward/data schema scaffold now exists locally
+- local internal Data Rail routing now exists
+- local internal reward ledger now exists
 
 Remaining:
 
@@ -141,6 +145,7 @@ Remaining:
 - Oracle maturity beyond repo-local surfaces
 - agent NFTs
 - Keys
+- Data Rail externalization thresholds and rights policy
 - Data Rail
 - Emergent Protocol System
 
@@ -382,19 +387,20 @@ Remaining:
 
 ### Layer 14. Data Rail
 
-Status: `NOT STARTED`
-Progress: `0/4 complete`
+Status: `PARTIAL`
+Progress: `4/6 complete`
 
 Complete:
 
-- none
+- behavioral capture policy surface now exists locally
+- reward/data schema scaffold now exists locally
+- internal routing logic now exists locally
+- internal reward ledger now exists locally
 
 Remaining:
 
-- productization
-- routing logic
-- monetization implementation
-- live revenue loop
+- population diversity thresholds and externalization gates
+- live revenue loop and external productization
 
 ### Layer 15. Emergent Protocol System
 
