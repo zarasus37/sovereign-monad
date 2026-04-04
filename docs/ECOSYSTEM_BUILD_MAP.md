@@ -129,7 +129,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `4/9 complete`
+Progress: `5/9 complete`
 
 Complete:
 
@@ -137,6 +137,7 @@ Complete:
 - Signal Layer analysis substrate now exists locally
 - Oracle analysis scaffold now exists locally
 - Gnosis analysis scaffold now exists locally
+- Boundary stress analysis scaffold now exists locally
 
 Remaining:
 
@@ -339,12 +340,13 @@ Remaining:
 ### Layer 11. Dove Protocol
 
 Status: `PARTIAL`
-Progress: `2/4 complete`
+Progress: `3/4 complete`
 
 Complete:
 
 - `DoveCore.sol` exists
 - `DoveRouterObserver.sol` exists in reconstructed Phase 1a suite
+- local `BoundaryStressMonitor v1` analysis scaffold now exists
 
 Remaining:
 

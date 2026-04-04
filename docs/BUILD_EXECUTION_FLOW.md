@@ -81,7 +81,8 @@ The correct immediate build order is:
 11. Oracle scaffolding around verified signal surfaces
 12. Gnosis scaffolding and integration surfaces around verified intelligence and signal posture
 13. `BoundaryStressMonitor v1` analysis scaffold
-14. platform integration surfaces around verified intelligence, signal, Oracle, and Gnosis posture
+14. platform integration surfaces around verified intelligence, signal, Oracle, Gnosis, and stress posture
+15. first shared internal state/API surface joining the zero-capital stack
 
 Current zero-capital frontier:
 
@@ -90,7 +91,8 @@ Current zero-capital frontier:
 - `signal-layer` now provides schema, aggregation, and interpretation in analysis mode
 - `oracle-core` now provides local regime and posture classification in analysis mode
 - `gnosis-core` now provides retrospective-only decompression and hollow-convergence analysis in analysis mode
-- the next no-cost priority is `BoundaryStressMonitor v1` and platform integration around these verified local surfaces
+- `boundary-stress-monitor` now provides sheath pressure, turbulence, and escalation posture in analysis mode
+- the next no-cost priority is platform integration and a shared internal state/API surface across the verified local stack
 
 Only after those exist does funded live activation become the limiting factor.
 
