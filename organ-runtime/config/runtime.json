@@ -1,0 +1,64 @@
+{
+  "runtimeMode": "analysis",
+  "organs": {
+    "Cardia": {
+      "enabled": true,
+      "capitalRequired": true,
+      "buildReady": false,
+      "notes": [
+        "Cardia depends on funded capital bands and live treasury posture."
+      ]
+    },
+    "Pneuma": {
+      "enabled": true,
+      "capitalRequired": false,
+      "buildReady": true,
+      "notes": [
+        "Pneuma can begin with lead, partnership, and distribution workflows."
+      ]
+    },
+    "Hepar": {
+      "enabled": true,
+      "capitalRequired": false,
+      "buildReady": true,
+      "notes": [
+        "Hepar can start in analysis mode using opportunity screening and rejection logic."
+      ]
+    },
+    "Cortex": {
+      "enabled": true,
+      "capitalRequired": false,
+      "buildReady": true,
+      "notes": [
+        "Cortex can start immediately through research, synthesis, and planning outputs."
+      ]
+    },
+    "Synapse": {
+      "enabled": true,
+      "capitalRequired": false,
+      "buildReady": true,
+      "notes": [
+        "Synapse is the first coordination organ and should run before the others."
+      ]
+    },
+    "Vox": {
+      "enabled": true,
+      "capitalRequired": false,
+      "buildReady": true,
+      "notes": [
+        "Vox can begin with documentation, explanations, and public-facing narrative packaging."
+      ]
+    }
+  },
+  "coordination": {
+    "primaryLoop": [
+      "Synapse",
+      "Hepar",
+      "Cortex",
+      "Cardia",
+      "Vox",
+      "Pneuma"
+    ],
+    "allowCapitalGatedOrgansInAnalysis": true
+  }
+}

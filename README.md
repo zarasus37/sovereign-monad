@@ -111,6 +111,7 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Slot lifecycle monitor: `slot-core/`
 - Slot lifecycle API: `slot-api/`
 - Slot operator UI: `slot-frontend/`
+- Organ coordination runtime: `organ-runtime/`
 - Speech I/O gateway: `speech-gateway/`
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
@@ -140,6 +141,7 @@ See:
 - `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
 - `docs/AGENT_NATIVE_REVENUE_RAIL.md`
 - `docs/FIRST_ORGAN_SET.md`
+- `docs/BUILD_EXECUTION_FLOW.md`
 
 ## Immediate Post-Deploy Operator Path
 
