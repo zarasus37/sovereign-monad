@@ -13,6 +13,10 @@ It provides a zero-capital runtime surface for:
 - Cortex research synthesis in analysis mode
 - Vox narrative packaging in analysis mode
 - Pneuma exchange qualification in analysis mode
+- Cardia capital-band and reserve logic in analysis mode
+- orchestration hardening snapshot
+- human-agent participation boundary snapshot
+- first bounded ecosystem-seeded mandate snapshot
 - homeostasis and mixed-speed signaling snapshots
 - immune, barrier, and repair snapshots
 - build-order separation between zero-capital and capital-gated work
@@ -74,6 +78,10 @@ cmd /c npm start
 - Cortex briefs for sample research inputs
 - Vox narrative packages built from Cortex briefs
 - Pneuma exchange decisions for sample leads
+- Cardia capital-band decisions
+- orchestration bottlenecks
+- participation-boundary decisions
+- first bounded mandate sequence and gate checks
 - homeostasis breaches and correction actions
 - fast-lane vs slow-lane signaling separation
 - immune containment and repair decisions

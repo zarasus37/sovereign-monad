@@ -78,6 +78,49 @@ export class OrganRuntime {
       );
     }
 
+    if (snapshot.cardia) {
+      this.logger.info(
+        {
+          reserveHealthy: snapshot.cardia.reserveHealthy,
+          deploymentMode: snapshot.cardia.deploymentMode,
+          decisions: snapshot.cardia.decisions,
+        },
+        'cardia capital-band snapshot',
+      );
+    }
+
+    if (snapshot.orchestration) {
+      this.logger.info(
+        {
+          phases: snapshot.orchestration.phases,
+          bottlenecks: snapshot.orchestration.bottlenecks,
+        },
+        'orchestration hardening snapshot',
+      );
+    }
+
+    if (snapshot.participation) {
+      this.logger.info(
+        {
+          actorCount: snapshot.participation.actorCount,
+          decisions: snapshot.participation.decisions,
+        },
+        'human-agent participation boundary snapshot',
+      );
+    }
+
+    if (snapshot.mandate) {
+      this.logger.info(
+        {
+          title: snapshot.mandate.title,
+          status: snapshot.mandate.status,
+          sequence: snapshot.mandate.sequence,
+          gateChecks: snapshot.mandate.gateChecks,
+        },
+        'first bounded mandate snapshot',
+      );
+    }
+
     if (snapshot.homeostasis) {
       this.logger.info(
         {

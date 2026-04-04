@@ -1,7 +1,11 @@
+import { buildCardiaSnapshot } from './cardia';
 import { buildHomeostasisSnapshot, buildImmuneSnapshot, buildSignalingSnapshot } from './controls';
 import { buildCortexSnapshot } from './cortex';
 import { buildHeparSnapshot } from './hepar';
+import { buildFirstMandateSnapshot } from './mandate';
 import { ORGAN_DEFINITIONS } from './organs';
+import { buildOrchestrationSnapshot } from './orchestration';
+import { buildParticipationSnapshot } from './participation';
 import { buildPneumaSnapshot } from './pneuma';
 import { buildSynapseSnapshot } from './synapse';
 import { OrganName, OrganRuntimeConfig, OrganRuntimeSnapshot, OrganSnapshot } from './types';
@@ -23,6 +27,14 @@ function validatePrimaryLoop(loop: OrganName[]) {
 
 export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSnapshot {
   validatePrimaryLoop(config.coordination.primaryLoop);
+  const cardia = buildCardiaSnapshot(
+    config.cardia?.sampleCapitalState || {
+      reserveRatioPercent: 0,
+      minReserveRatioPercent: 20,
+      deploymentReadiness: 'blocked',
+      lanes: [],
+    },
+  );
   const hepar = buildHeparSnapshot(config.hepar?.sampleOpportunities || []);
   const cortex = buildCortexSnapshot(config.cortex?.sampleResearch || []);
   const vox = buildVoxSnapshot(config.vox?.sampleRequests || [], cortex.briefs);
@@ -31,6 +43,7 @@ export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSn
   const homeostasis = buildHomeostasisSnapshot(config.controls?.homeostasis?.sampleMetrics || []);
   const signaling = buildSignalingSnapshot(config.synapse?.sampleSignals || []);
   const immune = buildImmuneSnapshot(config.controls?.immune?.sampleIncidents || []);
+  const participation = buildParticipationSnapshot(config.participation?.sampleActors || []);
 
   const organs: OrganSnapshot[] = config.coordination.primaryLoop.map((name) => {
     const definition = ORGAN_DEFINITIONS[name];
@@ -64,6 +77,22 @@ export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSn
     };
   });
 
+  const implementedOrgans = organs
+    .filter((organ) => organ.buildReady)
+    .map((organ) => organ.name);
+  const orchestration = buildOrchestrationSnapshot(implementedOrgans);
+  const mandate = buildFirstMandateSnapshot({
+    title: config.mandate?.title || 'First bounded ecosystem-seeded internal mandate',
+    synapse,
+    hepar,
+    cortex,
+    vox,
+    pneuma,
+    cardia,
+    immune,
+    participation,
+  });
+
   return {
     runtimeMode: config.runtimeMode,
     zeroCapitalBuildQueue: organs.filter((o) => o.zeroCapitalReady).map((o) => o.name),
@@ -75,6 +104,10 @@ export function buildRuntimeSnapshot(config: OrganRuntimeConfig): OrganRuntimeSn
     cortex,
     vox,
     pneuma,
+    cardia,
+    orchestration,
+    participation,
+    mandate,
     homeostasis,
     signaling,
     immune,

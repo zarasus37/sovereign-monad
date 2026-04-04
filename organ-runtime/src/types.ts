@@ -46,6 +46,16 @@ export interface OrganRuntimeConfig {
   pneuma?: {
     sampleLeads?: PneumaLead[];
   };
+  cardia?: {
+    sampleCapitalState?: CardiaCapitalState;
+  };
+  participation?: {
+    sampleActors?: ParticipationActor[];
+  };
+  mandate?: {
+    enabled?: boolean;
+    title?: string;
+  };
   controls?: {
     homeostasis?: {
       sampleMetrics?: HomeostasisMetric[];
@@ -79,6 +89,10 @@ export interface OrganRuntimeSnapshot {
   cortex?: CortexRuntimeSnapshot;
   vox?: VoxRuntimeSnapshot;
   pneuma?: PneumaRuntimeSnapshot;
+  cardia?: CardiaRuntimeSnapshot;
+  orchestration?: OrchestrationRuntimeSnapshot;
+  participation?: ParticipationRuntimeSnapshot;
+  mandate?: MandateRuntimeSnapshot;
   homeostasis?: HomeostasisRuntimeSnapshot;
   signaling?: SignalingRuntimeSnapshot;
   immune?: ImmuneRuntimeSnapshot;
@@ -230,6 +244,32 @@ export interface PneumaRuntimeSnapshot {
   decisions: PneumaDecision[];
 }
 
+export interface CardiaCapitalLane {
+  name: string;
+  allocatedPercent: number;
+  maxPercent: number;
+}
+
+export interface CardiaCapitalState {
+  reserveRatioPercent: number;
+  minReserveRatioPercent: number;
+  deploymentReadiness: 'blocked' | 'bounded' | 'ready';
+  lanes: CardiaCapitalLane[];
+}
+
+export interface CardiaDecision {
+  lane: string;
+  healthy: boolean;
+  reason: string;
+}
+
+export interface CardiaRuntimeSnapshot {
+  implemented: true;
+  reserveHealthy: boolean;
+  deploymentMode: 'analysis_only' | 'bounded_ready' | 'blocked';
+  decisions: CardiaDecision[];
+}
+
 export interface HomeostasisMetric {
   name: string;
   current: number;
@@ -284,4 +324,50 @@ export interface ImmuneRuntimeSnapshot {
   barrierTriggerCount: number;
   repairQueueCount: number;
   decisions: ImmuneResponseDecision[];
+}
+
+export type ParticipationMode =
+  | 'ecosystem_native'
+  | 'delegated_human'
+  | 'operator_override';
+
+export interface ParticipationActor {
+  id: string;
+  mode: ParticipationMode;
+  hasDelegateAgent: boolean;
+  canTouchCapital: boolean;
+  canOverrideBoundaries: boolean;
+  summary: string;
+}
+
+export interface ParticipationDecision {
+  actorId: string;
+  allowedSurface: string;
+  blockedReasons: string[];
+}
+
+export interface ParticipationRuntimeSnapshot {
+  implemented: true;
+  actorCount: number;
+  decisions: ParticipationDecision[];
+}
+
+export interface OrchestrationPhase {
+  name: string;
+  owner: OrganName;
+  dependsOn?: string[];
+}
+
+export interface OrchestrationRuntimeSnapshot {
+  implemented: true;
+  phases: OrchestrationPhase[];
+  bottlenecks: string[];
+}
+
+export interface MandateRuntimeSnapshot {
+  implemented: true;
+  title: string;
+  status: 'analysis_ready';
+  sequence: string[];
+  gateChecks: string[];
 }

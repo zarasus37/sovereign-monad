@@ -2,6 +2,7 @@ import { OrganRuntime } from './runtime';
 
 export { ORGAN_DEFINITIONS } from './organs';
 export { buildRuntimeSnapshot } from './coordinator';
+export { buildCardiaSnapshot } from './cardia';
 export {
   buildHomeostasisSnapshot,
   buildImmuneSnapshot,
@@ -9,11 +10,18 @@ export {
 } from './controls';
 export { buildCortexSnapshot, synthesizeBrief } from './cortex';
 export { buildHeparSnapshot, screenOpportunity } from './hepar';
+export { buildFirstMandateSnapshot } from './mandate';
+export { buildOrchestrationSnapshot } from './orchestration';
+export { buildParticipationSnapshot } from './participation';
 export { buildPneumaSnapshot, qualifyLead } from './pneuma';
 export { buildSynapseSnapshot, routeSignal } from './synapse';
 export { OrganRuntime } from './runtime';
 export { buildVoxSnapshot, packageNarrative } from './vox';
 export type {
+  CardiaCapitalLane,
+  CardiaCapitalState,
+  CardiaDecision,
+  CardiaRuntimeSnapshot,
   CortexAudience,
   CortexBrief,
   CortexResearchItem,
@@ -28,11 +36,18 @@ export type {
   ImmuneIncidentCategory,
   ImmuneResponseDecision,
   ImmuneRuntimeSnapshot,
+  MandateRuntimeSnapshot,
   OrganDefinition,
   OrganName,
   OrganRuntimeConfig,
   OrganRuntimeSnapshot,
   OrganSnapshot,
+  OrchestrationPhase,
+  OrchestrationRuntimeSnapshot,
+  ParticipationActor,
+  ParticipationDecision,
+  ParticipationMode,
+  ParticipationRuntimeSnapshot,
   PneumaDecision,
   PneumaLead,
   PneumaReadiness,

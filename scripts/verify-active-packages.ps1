@@ -36,6 +36,16 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'signal-layer'
+    Path = 'signal-layer'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'oracle-core'
+    Path = 'oracle-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'speech-gateway'
     Path = 'speech-gateway'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')

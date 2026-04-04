@@ -4,9 +4,9 @@
     "Cardia": {
       "enabled": true,
       "capitalRequired": true,
-      "buildReady": false,
+      "buildReady": true,
       "notes": [
-        "Cardia depends on funded capital bands and live treasury posture."
+        "Cardia is implemented in analysis mode and remains capital-gated for live deployment."
       ]
     },
     "Pneuma": {
@@ -190,6 +190,57 @@
         "summary": "Low-fit counterpart that should remain outside direct exchange."
       }
     ]
+  },
+  "cardia": {
+    "sampleCapitalState": {
+      "reserveRatioPercent": 26,
+      "minReserveRatioPercent": 20,
+      "deploymentReadiness": "bounded",
+      "lanes": [
+        {
+          "name": "research-commercialization",
+          "allocatedPercent": 18,
+          "maxPercent": 25
+        },
+        {
+          "name": "defi-exploration",
+          "allocatedPercent": 12,
+          "maxPercent": 15
+        }
+      ]
+    }
+  },
+  "participation": {
+    "sampleActors": [
+      {
+        "id": "native-synapse",
+        "mode": "ecosystem_native",
+        "hasDelegateAgent": false,
+        "canTouchCapital": false,
+        "canOverrideBoundaries": false,
+        "summary": "Core ecosystem-native organ participant."
+      },
+      {
+        "id": "delegated-research-user",
+        "mode": "delegated_human",
+        "hasDelegateAgent": true,
+        "canTouchCapital": false,
+        "canOverrideBoundaries": false,
+        "summary": "Human participant acting through a delegate agent."
+      },
+      {
+        "id": "operator-review",
+        "mode": "operator_override",
+        "hasDelegateAgent": false,
+        "canTouchCapital": false,
+        "canOverrideBoundaries": true,
+        "summary": "Operator review identity with explicit boundary limits."
+      }
+    ]
+  },
+  "mandate": {
+    "enabled": true,
+    "title": "Bounded research-to-exchange internal loop"
   },
   "controls": {
     "homeostasis": {
