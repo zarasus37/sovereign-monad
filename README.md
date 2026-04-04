@@ -115,6 +115,20 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
 
+## Funnel Direction
+
+The beginning-of-project funnel should not depend on MonadSpin alone.
+
+Current intended opening posture:
+
+- bootstrap approved-source inflow
+- API and licensing revenue
+- MonadSpin slot revenue later as an additional rail
+
+See:
+
+- `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
+
 ## Immediate Post-Deploy Operator Path
 
 Once the live Phase 1a deployment succeeds in `sovereign-monad`, use:

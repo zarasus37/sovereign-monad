@@ -151,16 +151,17 @@ Remaining:
 
 ### Layer 1. The Funnel
 
-Status: `NOT STARTED`
-Progress: `0/4 complete`
+Status: `PARTIAL`
+Progress: `1/5 complete`
 
 Complete:
 
-- none
+- multi-rail funnel doctrine is now defined locally
 
 Remaining:
 
 - MonadSpin product design
+- non-slot revenue rail activation
 - RTP logic
 - inflow routing implementation
 - live funding rail deployment
