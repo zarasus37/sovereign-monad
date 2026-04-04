@@ -1905,6 +1905,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Gnosis now has a real local analysis surface rather than doctrine only
 - next zero-capital frontier becomes `BoundaryStressMonitor v1` and platform integration around the verified intelligence, signal, Oracle, and Gnosis local surfaces
 
+## v2.3.8 — April 4, 2026
+
+**Change Type:** Patch — local BoundaryStressMonitor v1 scaffold introduction
+
+**Summary of changes:**
+
+- added `boundary-stress-monitor` as an executable local `BoundaryStressMonitor v1` scaffold
+- local stress logic now produces sheath pressure, turbulence, escalation tier, and pause/review guidance
+- synchronized build-order docs so the next no-cost frontier shifts from stress scaffolding to platform integration and shared internal-state surfaces
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- BoundaryStressMonitor is still not live and not wired into onchain governance
+- a real local analysis surface now exists for stress posture instead of only doctrine text
+- next zero-capital frontier becomes platform integration and a shared internal state/API surface around the verified local stack
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
