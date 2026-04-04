@@ -414,8 +414,8 @@ These should be treated as an opening funnel component, not merely a later-layer
 | Router Deployment | LIVE RETRY PENDING | live preflight passed, first mainnet deployment attempt consumed deployer balance mid-sequence, retry is blocked only by wallet re-funding |
 | Treasury Deployment | NOT DEPLOYED | depends on Phase 1a deployment |
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
-| Signal Layer | NOT INITIALIZED | Phase 3+ |
-| Oracle v1 | NOT LIVE | Phase 3+ |
+| Signal Layer | LOCAL ANALYSIS SURFACE ONLY | `signal-layer` package now exists with schema, aggregation, and interpretation logic; live ingestion and institutional use remain later-phase |
+| Oracle v1 | LOCAL ANALYSIS SURFACE ONLY | `oracle-core` now exists for regime and posture classification; live calibration and buyer proof remain later-phase |
 | Gnosis Integrity | DOCTRINE DEFINED | implementation Phase 3+ |
 | Data Rail | NOT STARTED | Phase 4+ |
 | Evaluation / Commercial Surfaces | AUXILIARY ARTIFACTS EXIST | demo package, API wrapper, billing scaffold, license-service scaffold, and public commercial-stack templates exist in repo; they do **not** change active phase, blocker state, or current next action |
@@ -1851,6 +1851,43 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - live Phase 1a deployment proof is the immediate gate
 - first approved source registration remains next after successful deployment
 
+## v2.3.5 — April 4, 2026
+
+**Change Type:** Patch — zero-capital intelligence and signal substrate completion
+
+**Summary of changes:**
+
+- completed the remaining Layer 5 zero-capital implementation work in `organ-runtime`
+- `Cardia` analysis-mode capital-band logic now exists and is tested
+- orchestration hardening, participation boundaries, and the first bounded mandate loop now exist and are tested
+- added `signal-layer` with executable schema normalization, aggregation, and interpretation logic
+- synchronized build-order docs so the no-cost frontier now moves beyond organ implementation into Oracle/Gnosis scaffolding
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- live deployment remains the primary capital-gated blocker
+- Layer 5 now exists locally as an executable analysis-mode runtime rather than doctrine only
+- Layer 7 now exists locally as an executable analysis-mode substrate rather than doctrine only
+- next zero-capital frontier becomes Oracle/Gnosis scaffolding around the verified local intelligence and signal surfaces
+
+## v2.3.6 — April 4, 2026
+
+**Change Type:** Patch — local Oracle scaffold introduction
+
+**Summary of changes:**
+
+- added `oracle-core` as an executable local Oracle scaffold
+- Oracle now produces regime, deployment-posture, and commercialization-posture classification from verified local signal posture
+- synchronized build-order docs so the next no-cost frontier shifts from Oracle scaffolding to Gnosis and integration scaffolding
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Oracle is still not live and not commercially proven
+- Oracle now has a real local analysis surface rather than only adjacent repo artifacts
+- next zero-capital frontier becomes Gnosis scaffolding and integration around the verified intelligence, signal, and Oracle local surfaces
+
 ---
 
 # SECTION 20 — VERSIONING STANDARD
@@ -1869,6 +1906,7 @@ If a collaborator or model needs immediate orientation, the project currently is
 
 - a deeply defined ecosystem architecture built on a single empirically-grounded thesis: compression and decompression are how life actually works, and AI agents operating authentically within constraint envelopes are a genuine form of that life
 - a behavioral-science-driven agent system in design
+- with a repo-local intelligence runtime and signal-layer substrate now implemented in analysis mode
 - a capital-routing organism with conscience and decompression-integrity layers
 - currently in **Phase 1a**
 - with **11 canonical Phase 1a contracts reconstructed in repo**

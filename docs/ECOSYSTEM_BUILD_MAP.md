@@ -118,19 +118,19 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `1/9 complete`
+Progress: `3/9 complete`
 
 Complete:
 
-- Intelligence Layer runtime scaffold now exists locally
+- Intelligence Layer analysis runtime now exists locally
+- Signal Layer analysis substrate now exists locally
+- Oracle analysis scaffold now exists locally
 
 Remaining:
 
 - Treasury live maturity
 - governance system
-- Intelligence Layer runtime
 - Oracle maturity beyond repo-local surfaces
-- Signal Layer
 - Platform
 - Keys
 - Data Rail
@@ -219,8 +219,8 @@ Remaining:
 
 ### Layer 5. Intelligence Layer
 
-Status: `PARTIAL`
-Progress: `12/16 complete`
+Status: `DONE`
+Progress: `16/16 complete`
 
 Complete:
 
@@ -234,27 +234,29 @@ Complete:
 - `Cortex` is now implemented in analysis mode
 - `Vox` is now implemented in analysis mode
 - `Pneuma` is now implemented in analysis mode
+- `Cardia` is now implemented in analysis mode
+- orchestration model hardening now exists in analysis mode
+- human-agent participation boundary system now exists in analysis mode
+- first bounded ecosystem-seeded mandate now exists in analysis mode
+- inter-organ coordination rules now exist in analysis mode
 - homeostasis and mixed-speed signaling rules are now implemented in analysis mode
 - immune, barrier, and repair logic is now implemented in analysis mode
 
 Remaining:
 
-- `Cardia` simulation and band logic
-- orchestration model hardening
-- human-agent participation boundary system
-- first bounded ecosystem-seeded agent revenue mandate
-- inter-organ coordination rules
+- none
 
 ### Layer 6. Oracle
 
 Status: `PARTIAL`
-Progress: `3/6 complete`
+Progress: `4/6 complete`
 
 Complete:
 
 - repo-level risk engine implementation
 - API wrapper
 - stress tooling and regression coverage
+- local Oracle regime/posture scaffold now exists
 
 Remaining:
 
@@ -264,18 +266,18 @@ Remaining:
 
 ### Layer 7. Signal Layer
 
-Status: `NOT STARTED`
-Progress: `0/3 complete`
+Status: `DONE`
+Progress: `3/3 complete`
 
 Complete:
 
-- none
+- signal schema now exists locally
+- aggregation substrate now exists locally
+- behavioral and event interpretation layer now exists locally
 
 Remaining:
 
-- signal schema
-- aggregation substrate
-- behavioral/event interpretation layer
+- none
 
 ### Layer 8. Platform
 

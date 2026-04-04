@@ -76,14 +76,18 @@ The correct immediate build order is:
 6. `Pneuma` implementation
 7. barrier, immune, repair, and cadence logic
 8. `Cardia` simulation and band logic in analysis mode
+9. `signal-layer` schema and aggregation substrate
+10. initial behavioral and event interpretation layer
+11. Oracle scaffolding around verified signal surfaces
+12. Gnosis scaffolding and integration surfaces around verified intelligence and signal posture
 
 Current zero-capital frontier:
 
-- `Synapse` is implemented in analysis mode
-- `Hepar`, `Cortex`, and `Vox` are implemented in analysis mode
-- `Pneuma` is implemented in analysis mode
-- homeostasis, mixed-speed signaling, and immune/barrier/repair logic are implemented in analysis mode
-- `Cardia` simulation and band logic is now the next organ/control build step
+- the first organ set is implemented locally in analysis mode, including `Cardia`
+- orchestration, participation boundaries, and the first bounded mandate loop now exist locally
+- `signal-layer` now provides schema, aggregation, and interpretation in analysis mode
+- `oracle-core` now provides local regime and posture classification in analysis mode
+- the next no-cost priority is Gnosis scaffolding and platform integration around these verified local surfaces
 
 Only after those exist does funded live activation become the limiting factor.
 
