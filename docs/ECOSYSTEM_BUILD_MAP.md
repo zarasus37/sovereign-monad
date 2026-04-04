@@ -220,7 +220,7 @@ Remaining:
 ### Layer 5. Intelligence Layer
 
 Status: `PARTIAL`
-Progress: `9/16 complete`
+Progress: `12/16 complete`
 
 Complete:
 
@@ -233,17 +233,17 @@ Complete:
 - `Hepar` is now implemented in analysis mode
 - `Cortex` is now implemented in analysis mode
 - `Vox` is now implemented in analysis mode
+- `Pneuma` is now implemented in analysis mode
+- homeostasis and mixed-speed signaling rules are now implemented in analysis mode
+- immune, barrier, and repair logic is now implemented in analysis mode
 
 Remaining:
 
-- `Pneuma` implementation
 - `Cardia` simulation and band logic
 - orchestration model hardening
 - human-agent participation boundary system
 - first bounded ecosystem-seeded agent revenue mandate
 - inter-organ coordination rules
-- homeostasis and mixed-speed signaling rules
-- immune, barrier, and repair implementation logic
 
 ### Layer 6. Oracle
 

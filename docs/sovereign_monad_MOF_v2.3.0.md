@@ -649,21 +649,22 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - `Hepar` implemented in analysis mode
 - `Cortex` implemented in analysis mode
 - `Vox` implemented in analysis mode
+- `Pneuma` implemented in analysis mode
+- homeostasis and mixed-speed signaling implemented in analysis mode
+- immune, barrier, and repair logic implemented in analysis mode
 
 **What remains:**
 
-- organ role implementation
+- `Cardia` simulation and band logic
 - orchestration hardening
 - inter-agent protocol
 - production-grade event system
 - actual runtime deployment
 - human-agent participation boundary system
 - inter-organ coordination rules
-- homeostasis and mixed-speed signaling rules
-- immune, barrier, and repair implementation logic
 - first bounded ecosystem-seeded agent revenue mandate
 
-**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, and `Vox` are now implemented in analysis mode inside `organ-runtime`.
+**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, `Vox`, and `Pneuma` are now implemented in analysis mode inside `organ-runtime`, along with control-layer analysis for homeostasis, mixed-speed signaling, and immune/barrier/repair handling.
 
 **Dependency:** signal + oracle + later implementation work
 
