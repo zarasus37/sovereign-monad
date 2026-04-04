@@ -1,4 +1,9 @@
-# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
+﻿# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
+
+> Local mirror kept in `monad-mev` for operator convenience.
+> Canonical maintenance target: `C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md`
+> If the two copies ever diverge, the `sovereign-monad` copy wins and this mirror must be resynced.
+>
 
 > This is the single canonical source of truth for the Sovereign Monad Ecosystem.
 > All participants — human or AI — synchronize to this file.
@@ -414,15 +419,21 @@ This means:
 
 ## LAYER 1 — THE FUNNEL
 
-**Canonical Name:** MonadSpin Protocol
-**Role:** Primary external revenue inflow / funding rail
+**Canonical Name:** MonadSpin Protocol + Funnel Gateway Set
+**Role:** External revenue inflow / funding rail layer
 **Status:** IN DESIGN
 
-MonadSpin is a cosmological slot experience — the first funding rail of the ecosystem. The cosmological symbolism is embedded in the slot's visual identity — readable as a normal slot theme to casual players, revealing deeper meaning only to those who seek it.
+MonadSpin is a cosmological slot experience — one funding rail of the ecosystem. The cosmological symbolism is embedded in the slot's visual identity — readable as a normal slot theme to casual players, revealing deeper meaning only to those who seek it.
 
 **RTP philosophy:** Higher RTP for player retention and sustainable house edge. Long-term volume over short-term extraction.
 
-**Concentration risk note:** MonadSpin is the sole inflow source at launch. The entire capital loop is dependent on its performance until Oracle licensing, data fees, and protocol access fees mature in later phases. This is acknowledged as a known concentration risk, not a hidden assumption.
+**Funnel rule:** the slot should not be the sole opening inflow source. The beginning-of-project funnel should use multiple rails:
+
+- bootstrap manual inflow
+- API / licensing revenue
+- MonadSpin slot revenue
+
+**Concentration risk note:** a slot-only launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, with MonadSpin as one of them rather than the sole dependency.
 
 ---
 
@@ -1095,7 +1106,7 @@ Legacy phrasing "trait-gated protocols" is deprecated.
 |---|---|---|---|
 | Phase 0 | Blueprint / Architecture / Axioms | COMPLETE | conceptual base locked |
 | Phase 1a | Revenue Router Build | IN PROGRESS | contracts complete, testing next |
-| Phase 1b | MonadSpin Integration | QUEUED | depends on Phase 1a deployment |
+| Phase 1b | Funnel Diversification + MonadSpin Integration | QUEUED | depends on Phase 1a deployment |
 | Phase 2 | MEV Mainnet | QUEUED | depends on live routing + issue resolution |
 | Phase 3 | Personality Science + Oracle + Signal Foundation | QUEUED | depends on stable live foundation |
 | Phase 4 | Agent Framework + Data Rail Activation | QUEUED | depends on Phase 3 maturity |
@@ -1360,11 +1371,17 @@ A deployment safety profile must be active before mainnet deployment.
 
 Deploy all 11 contracts in the locked order.
 
-### 7. Register MonadSpin as first inflow source
+### 7. Register bootstrap source as first inflow source
 
 ### 8. Run first live inflow test
 
 Verify receiver, router, sinks, Dove, and health snapshot.
+
+### 8a. Activate first non-slot revenue rail
+
+Preferred first non-slot rail:
+
+- API / licensing revenue through the existing commercial stack
 
 ### 9. Wire RevenueSinkMEV to the live SMMEVAE engine
 
@@ -1861,3 +1878,4 @@ It moves forward through:
 ---
 
 *End of SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0*
+

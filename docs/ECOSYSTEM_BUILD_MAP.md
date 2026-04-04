@@ -1,4 +1,15 @@
-# Ecosystem Build Map
+﻿# Ecosystem Build Map Mirror
+
+This is a local mirror of the ecosystem build map for runtime-side work in `monad-mev`.
+
+Canonical maintenance target:
+
+- `C:\Users\crisc\Dev\agents\sovereign-monad\docs\ECOSYSTEM_BUILD_MAP.md`
+
+If this mirror and the canonical copy diverge, the `sovereign-monad` version wins and this mirror should be resynced.
+
+---
+
 
 This document is the working build tracker for the Sovereign Monad ecosystem.
 
@@ -140,16 +151,17 @@ Remaining:
 
 ### Layer 1. The Funnel
 
-Status: `NOT STARTED`
-Progress: `0/4 complete`
+Status: `PARTIAL`
+Progress: `1/5 complete`
 
 Complete:
 
-- none
+- multi-rail funnel doctrine is now defined locally
 
 Remaining:
 
 - MonadSpin product design
+- non-slot revenue rail activation
 - RTP logic
 - inflow routing implementation
 - live funding rail deployment
@@ -419,3 +431,4 @@ The next build frontier remains:
 4. deploy the runtime/commercial stack with real infrastructure inputs
 
 Everything else should be sequenced relative to those gates.
+
