@@ -7,6 +7,20 @@ This document separates the actual build order into two tracks:
 
 The point is operational. Build momentum should not stop just because a later activation step needs money, liquidity, or recurring infrastructure spend.
 
+## Project-wide rule
+
+This split applies to the whole ecosystem, not just Layer 5.
+
+Until one of these becomes true:
+
+- external project funding is secured
+- recurring infrastructure costs are covered
+- the first organ set produces stable enough revenue to fund the gated work itself
+
+the project should continue to follow the zero-capital build flow as the primary construction path.
+
+Capital-gated work should remain sequenced and documented, but it should not be allowed to halt the broader build.
+
 ## Rule
 
 If a task can be completed without:
@@ -71,5 +85,9 @@ This preserves two truths at once:
 
 - real live deployment and funded activation still require capital
 - actual software construction should not stall on those inputs
+
+It also preserves a third truth:
+
+- if the first organ set later becomes productive enough to fund the project, then capital-gated work can migrate back into the active build path without changing the doctrine
 
 The organism should keep developing every structure that can be built honestly before money enters the loop.
