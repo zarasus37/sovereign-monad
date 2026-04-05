@@ -81,6 +81,12 @@ Run the deployment sequence against the configured `phase1a` network:
 npx hardhat run scripts/deploy-phase1a.js --network phase1a
 ```
 
+Resume a previously interrupted live deployment explicitly from a saved progress report:
+
+```bash
+PHASE1A_RESUME_REPORT=deployments/phase1a-progress-phase1a.json npm run deploy:phase1a
+```
+
 Run the deployment rehearsal with a test inflow and allocation assertions:
 
 ```bash
@@ -99,8 +105,15 @@ Both commands write a JSON report to:
 
 - `deployments/phase1a-deploy-<network>.json`
 - `deployments/phase1a-rehearsal-<network>.json`
+- `deployments/phase1a-progress-<network>.json`
 
 These reports are local deployment artifacts. They do not mean Phase 1a is live onchain.
+
+The progress report is a checkpoint artifact:
+
+- the deploy script updates it after each completed step
+- if the process fails mid-sequence, the latest checkpoint is preserved with failure metadata
+- rerunning the deploy command resumes from the saved checkpoint when possible
 
 ## Live Deployment Inputs
 

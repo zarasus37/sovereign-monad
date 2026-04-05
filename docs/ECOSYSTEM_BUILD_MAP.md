@@ -79,7 +79,7 @@ Complete:
 - Hardhat workspace exists
 - baseline reconstruction test harness exists
 - deeper Phase 1a invariant coverage exists
-- deployment sequence implementation and rehearsal exist
+- deployment sequence implementation, rehearsal, and resumable checkpointed live path exist
 
 Remaining:
 
@@ -107,6 +107,10 @@ Remaining:
 - full bridge truth under live conditions
 - live bankroll routing loop
 - sustained guarded-live operating record
+
+Capital-gated local surface:
+
+- `execution-truth-core` now exists locally in `monad-mev` and currently reports `blocked` until live Phase 1a proof and bootstrap source registration are recorded
 
 ### D. Commercial Support Surface
 
@@ -147,6 +151,11 @@ Remaining:
 - live domain and DNS
 - real Stripe config
 - public verification against production endpoints
+
+Capital-gated local surfaces:
+
+- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `blocked`
+- `public-activation-core` now exists locally in `monad-mev` and currently reports `blocked`
 
 ### F. Later-Layer Sovereign System
 
@@ -553,4 +562,12 @@ Current capital/live frontier:
 3. close remaining execution-truth gaps in the runtime
 4. activate funded `Cardia` and bankroll routing
 5. deploy the runtime/commercial stack with real infrastructure inputs
+
+Current capital/live snapshot:
+
+- live Phase 1a deployment proof now has a resumable checkpoint path but remains blocked by deployer funding restore
+- bootstrap approved-source registration remains blocked until live deployment proof yields canonical live addresses
+- runtime execution-truth closure is now tracked locally by `execution-truth-core` and currently remains `blocked`
+- funded `Cardia` activation is now tracked locally by `cardia-activation-core` and currently remains `blocked`
+- production/public activation is now tracked locally by `public-activation-core` and currently remains `blocked`
 

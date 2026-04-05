@@ -9,7 +9,7 @@ Interpretation Rule: this block is compressed verification metadata; readers mus
 
 const { expect } = require("chai");
 const { ethers } = require("hardhat");
-const { deployPhase1aSequence } = require("../scripts/phase1a-sequence");
+const { deployPhase1aSequence, formatDeploymentReport } = require("../scripts/phase1a-sequence");
 
 describe("Phase 1a expanded invariants", function () {
   it("executes the locked deployment sequence and leaves the system fully wired", async function () {
@@ -28,6 +28,25 @@ describe("Phase 1a expanded invariants", function () {
 
     const observerList = await contracts.dove.getObserverList();
     expect(observerList.length).to.equal(11);
+  });
+
+  it("resumes safely from a deployment checkpoint without redeploying or rewiring", async function () {
+    const firstPass = await deployPhase1aSequence(require("hardhat"));
+    const resumeReport = formatDeploymentReport(require("hardhat"), firstPass);
+    const resumed = await deployPhase1aSequence(require("hardhat"), { resumeReport });
+
+    expect(resumed.steps.map((step) => step.step)).to.deep.equal([
+      1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+    ]);
+
+    expect(await resumed.contracts.dove.getAddress()).to.equal(await firstPass.contracts.dove.getAddress());
+    expect(await resumed.contracts.receiver.getAddress()).to.equal(await firstPass.contracts.receiver.getAddress());
+    expect(await resumed.contracts.router.getAddress()).to.equal(await firstPass.contracts.router.getAddress());
+    expect(resumed.steps.find((step) => step.step === 1)?.resumed).to.equal(true);
+    expect(resumed.steps.find((step) => step.step === 15)?.skipped).to.equal(true);
+    expect(resumed.steps.find((step) => step.step === 18)?.skipped).to.equal(true);
+    expect(resumed.steps.find((step) => step.step === 21)?.skipped).to.equal(true);
+    expect(await resumed.contracts.receiver.approvedSources(firstPass.accounts.approvedSource.address)).to.equal(true);
   });
 
   it("enforces approved-source lifecycle and receiver pause gates", async function () {

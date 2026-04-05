@@ -397,7 +397,7 @@ These should be treated as an opening funnel component, not merely a later-layer
 ## 6.1 Global State
 
 **Current Active Master Phase:** Phase 1a
-**Current Build Gate:** Live Preflight Complete → Funding Restore → Live Deployment Proof → Approved Source Registration
+**Current Build Gate:** Live Preflight Complete → Funding Restore → Resumable Live Deployment Proof → Approved Source Registration
 **System Maturity:** Architecture mature, implementation partial, deployment incomplete
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
 **Immediate Priority:** complete live Phase 1a deployment proof, register the initial approved source truthfully, and preserve guarded-live deployment path discipline
@@ -2224,6 +2224,16 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - the single largest unresolved live gate remains Phase 1a deployment proof
 - the MOF now carries the explicit completion interpretation needed to avoid overstating progress
 
+### 6.1.2 Capital-Gated Frontier Snapshot
+
+The current live frontier now has executable local tracking surfaces, but they do not replace live proof:
+
+- live Phase 1a deployment proof now has a resumable checkpoint path in this repo; current blocker remains deployer funding restore
+- bootstrap approved-source registration remains blocked until the live deployment report yields canonical live addresses
+- `execution-truth-core` now exists locally in `monad-mev` and currently reports `blocked` because live Phase 1a proof and bootstrap source registration are not yet recorded
+- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `blocked` because execution truth is blocked and `Cardia` remains analysis-only until funded activation
+- `public-activation-core` now exists locally in `monad-mev` and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
+
 ## v2.3.21 — April 4, 2026
 
 **Change Type:** Patch — zero-capital frontier completion sync
@@ -2242,6 +2252,25 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - the structural zero-capital layer frontier is complete locally
 - the primary live gate remains Phase 1a deployment proof
 - externalization remains unactivated pending explicit activation decision and live ecosystem maturity
+
+## v2.3.22 — April 5, 2026
+
+**Change Type:** Patch — capital-gated frontier surface sync
+
+**Summary of changes:**
+
+- added resumable checkpoint/retry language for live Phase 1a deployment proof
+- synchronized the local runtime execution-truth, funded `Cardia`, and production/public activation surfaces into the canonical status language
+- clarified that these new local surfaces track live blockers but do not satisfy them
+- updated the current build gate wording from generic live deployment proof to resumable live deployment proof
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- live Phase 1a deployment proof remains blocked by deployer funding restore
+- bootstrap approved-source registration remains downstream of successful live deployment proof
+- runtime execution-truth closure, funded `Cardia`, and production/public activation now each have explicit local blocker-tracking surfaces
+- the primary live gate remains Phase 1a deployment proof
 
 ## v2.3.20 — April 4, 2026
 

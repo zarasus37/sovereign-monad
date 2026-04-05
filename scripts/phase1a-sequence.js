@@ -10,6 +10,27 @@ const SINK_REGISTRY = [
   ["FOUNDER", "founderSink"],
 ];
 
+function normalizeAddress(value) {
+  return typeof value === "string" ? value.toLowerCase() : null;
+}
+
+function sameAddress(left, right) {
+  return normalizeAddress(left) === normalizeAddress(right);
+}
+
+async function contractAddress(contract) {
+  if (!contract) return null;
+  if (typeof contract.getAddress === "function") {
+    return contract.getAddress();
+  }
+  return contract.target || contract.address || null;
+}
+
+function getResumeAddress(resumeReport, key) {
+  const candidate = resumeReport?.addresses?.[key];
+  return typeof candidate === "string" && candidate ? candidate : null;
+}
+
 async function deployPhase1aSequence(hre, options = {}) {
   const { ethers } = hre;
   const signers = await ethers.getSigners();
@@ -21,11 +42,46 @@ async function deployPhase1aSequence(hre, options = {}) {
   const founderAddress = options.founderAddress || founderSigner.address;
   const approvedSourceAddress = options.approvedSourceAddress || approvedSourceSigner.address;
   const approvedSourceLabel = options.approvedSourceLabel || "Bootstrap Revenue Source";
+  const resumeReport = options.resumeReport || null;
 
   const steps = [];
+  const system = {
+    accounts: {
+      owner: ownerSigner,
+      approvedSource: approvedSourceSigner,
+      founder: founderSigner,
+      founderAddress,
+      approvedSourceAddress,
+      engine,
+      delegateRecipient,
+      alternateGovernor,
+    },
+    contracts: {},
+    steps,
+  };
 
   function record(step, label, extra = {}) {
-    steps.push({ step, label, ...extra });
+    const next = { step, label, ...extra };
+    const existingIndex = steps.findIndex((entry) => entry.step === step);
+    if (existingIndex === -1) {
+      steps.push(next);
+      return;
+    }
+    steps[existingIndex] = { ...steps[existingIndex], label, ...extra };
+  }
+
+  async function publish(status = "in_progress", extra = {}) {
+    if (typeof options.onProgress !== "function") {
+      return;
+    }
+    await options.onProgress(formatDeploymentReport(hre, system, { status, ...extra }));
+  }
+
+  async function codeExists(address) {
+    if (!address || !ethers.isAddress(address)) {
+      return false;
+    }
+    return (await ethers.provider.getCode(address)) !== "0x";
   }
 
   const DoveCore = await ethers.getContractFactory("DoveCore");
@@ -40,190 +96,277 @@ async function deployPhase1aSequence(hre, options = {}) {
   const RevenueSinkDelegatePools = await ethers.getContractFactory("RevenueSinkDelegatePools");
   const DoveRouterObserver = await ethers.getContractFactory("DoveRouterObserver");
 
-  const dove = await DoveCore.connect(ownerSigner).deploy(ownerSigner.address);
-  await dove.waitForDeployment();
-  record(1, "Deploy DoveCore.sol", { address: await dove.getAddress() });
+  async function attachOrDeploy(factory, key, step, label, args = []) {
+    const resumedAddress = getResumeAddress(resumeReport, key);
+    if (await codeExists(resumedAddress)) {
+      const contract = factory.attach(resumedAddress);
+      system.contracts[key] = contract;
+      record(step, label, { address: resumedAddress, resumed: true });
+      await publish();
+      return contract;
+    }
 
-  const governance = await GovernanceController.connect(ownerSigner).deploy(
-    await dove.getAddress(),
-    ownerSigner.address
+    const contract = await factory.connect(ownerSigner).deploy(...args);
+    await contract.waitForDeployment();
+    const deployedAddress = await contractAddress(contract);
+    system.contracts[key] = contract;
+    record(step, label, { address: deployedAddress });
+    await publish();
+    return contract;
+  }
+
+  const dove = await attachOrDeploy(DoveCore, "dove", 1, "Deploy DoveCore.sol", [ownerSigner.address]);
+  const governance = await attachOrDeploy(
+    GovernanceController,
+    "governance",
+    2,
+    "Deploy GovernanceController.sol(doveCore)",
+    [await contractAddress(dove), ownerSigner.address],
   );
-  await governance.waitForDeployment();
-  record(2, "Deploy GovernanceController.sol(doveCore)", { address: await governance.getAddress() });
 
-  await dove.connect(ownerSigner).registerObserver(await governance.getAddress(), "GovernanceController");
-  record(3, "Register GovernanceController as observer");
+  async function ensureObserver(contract, observerLabel) {
+    const address = await contractAddress(contract);
+    const observerRecord = await dove.getObserver(address);
 
-  const receiver = await InboundReceiver.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+    if (observerRecord.active) {
+      return { address, skipped: true, reason: "already-active", observerLabel };
+    }
+
+    if (observerRecord.registeredAt && observerRecord.registeredAt > 0n) {
+      await dove.connect(ownerSigner).reactivateObserver(address);
+      return { address, reactivated: true, observerLabel };
+    }
+
+    await dove.connect(ownerSigner).registerObserver(address, observerLabel);
+    return { address, observerLabel };
+  }
+
+  record(
+    3,
+    "Register GovernanceController as observer",
+    await ensureObserver(governance, "GovernanceController"),
   );
-  await receiver.waitForDeployment();
-  record(4, "Deploy InboundReceiver.sol", { address: await receiver.getAddress() });
+  await publish();
 
-  await dove.connect(ownerSigner).registerObserver(await receiver.getAddress(), "InboundReceiver");
-  record(5, "Register InboundReceiver as observer");
-
-  const treasury = await RevenueSinkTreasury.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+  const receiver = await attachOrDeploy(
+    InboundReceiver,
+    "receiver",
+    4,
+    "Deploy InboundReceiver.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
   );
-  await treasury.waitForDeployment();
-  record(6, "Deploy RevenueSinkTreasury.sol", { address: await treasury.getAddress() });
 
-  const mev = await RevenueSinkMEV.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+  record(
+    5,
+    "Register InboundReceiver as observer",
+    await ensureObserver(receiver, "InboundReceiver"),
   );
-  await mev.waitForDeployment();
-  record(7, "Deploy RevenueSinkMEV.sol", { address: await mev.getAddress() });
+  await publish();
 
-  const ops = await RevenueSinkOpsDev.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+  const treasury = await attachOrDeploy(
+    RevenueSinkTreasury,
+    "treasury",
+    6,
+    "Deploy RevenueSinkTreasury.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
   );
-  await ops.waitForDeployment();
-  record(8, "Deploy RevenueSinkOpsDev.sol", { address: await ops.getAddress() });
-
-  const dataYield = await RevenueSinkDataYield.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+  const mev = await attachOrDeploy(
+    RevenueSinkMEV,
+    "mev",
+    7,
+    "Deploy RevenueSinkMEV.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
   );
-  await dataYield.waitForDeployment();
-  record(9, "Deploy RevenueSinkDataYield.sol", { address: await dataYield.getAddress() });
-
-  const founderSink = await RevenueSinkFounder.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress(),
-    founderAddress
+  const ops = await attachOrDeploy(
+    RevenueSinkOpsDev,
+    "ops",
+    8,
+    "Deploy RevenueSinkOpsDev.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
   );
-  await founderSink.waitForDeployment();
-  record(10, "Deploy RevenueSinkFounder.sol", { address: await founderSink.getAddress() });
-
-  const delegatePools = await RevenueSinkDelegatePools.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+  const dataYield = await attachOrDeploy(
+    RevenueSinkDataYield,
+    "dataYield",
+    9,
+    "Deploy RevenueSinkDataYield.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
   );
-  await delegatePools.waitForDeployment();
-  record(11, "Deploy RevenueSinkDelegatePools.sol", { address: await delegatePools.getAddress() });
-
-  const router = await RevenueRouter.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+  const founderSink = await attachOrDeploy(
+    RevenueSinkFounder,
+    "founderSink",
+    10,
+    "Deploy RevenueSinkFounder.sol",
+    [await contractAddress(governance), await contractAddress(dove), founderAddress],
   );
-  await router.waitForDeployment();
-  record(12, "Deploy RevenueRouter.sol", { address: await router.getAddress() });
+  const delegatePools = await attachOrDeploy(
+    RevenueSinkDelegatePools,
+    "delegatePools",
+    11,
+    "Deploy RevenueSinkDelegatePools.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
+  );
+  const router = await attachOrDeploy(
+    RevenueRouter,
+    "router",
+    12,
+    "Deploy RevenueRouter.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
+  );
 
   async function govExec(contract, fn, args = []) {
     const data = contract.interface.encodeFunctionData(fn, args);
-    return governance.connect(ownerSigner).execute(await contract.getAddress(), 0, data);
+    return governance.connect(ownerSigner).execute(await contractAddress(contract), 0, data);
   }
 
-  await dove.connect(ownerSigner).registerObserver(await router.getAddress(), "RevenueRouter");
-  await dove.connect(ownerSigner).registerObserver(await treasury.getAddress(), "RevenueSinkTreasury");
-  await dove.connect(ownerSigner).registerObserver(await mev.getAddress(), "RevenueSinkMEV");
-  await dove.connect(ownerSigner).registerObserver(await ops.getAddress(), "RevenueSinkOpsDev");
-  await dove.connect(ownerSigner).registerObserver(await dataYield.getAddress(), "RevenueSinkDataYield");
-  await dove.connect(ownerSigner).registerObserver(await founderSink.getAddress(), "RevenueSinkFounder");
-  await dove.connect(ownerSigner).registerObserver(await delegatePools.getAddress(), "RevenueSinkDelegatePools");
-  record(13, "Register router and sinks as observers");
+  system.govExec = govExec;
+
+  const observerResults = [];
+  for (const [observerLabel, contract] of [
+    ["RevenueRouter", router],
+    ["RevenueSinkTreasury", treasury],
+    ["RevenueSinkMEV", mev],
+    ["RevenueSinkOpsDev", ops],
+    ["RevenueSinkDataYield", dataYield],
+    ["RevenueSinkFounder", founderSink],
+    ["RevenueSinkDelegatePools", delegatePools],
+  ]) {
+    observerResults.push(await ensureObserver(contract, observerLabel));
+  }
+  record(13, "Register router and sinks as observers", { observerResults });
+  await publish();
 
   for (const [sinkName, key] of SINK_REGISTRY) {
-    await govExec(router, "registerSink", [sinkName, await ({ treasury, mev, ops, dataYield, delegatePools, founderSink })[key].getAddress(), true]);
+    const sinkAddress = await contractAddress(
+      ({ treasury, mev, ops, dataYield, delegatePools, founderSink })[key],
+    );
+    if (!sameAddress(await router.getSinkAddress(sinkName), sinkAddress)) {
+      await govExec(router, "registerSink", [sinkName, sinkAddress, true]);
+    }
   }
   record(14, "Initialize router sinks");
+  await publish();
 
-  await govExec(router, "setReceiver", [await receiver.getAddress()]);
-  record(15, "Set receiver on router");
+  const receiverAddress = await contractAddress(receiver);
+  const routerAddress = await contractAddress(router);
 
-  await govExec(receiver, "setRouter", [await router.getAddress()]);
-  for (const sink of [treasury, mev, ops, dataYield, founderSink, delegatePools]) {
-    await govExec(sink, "setRouter", [await router.getAddress()]);
+  const currentReceiver = await router.receiver();
+  if (sameAddress(currentReceiver, receiverAddress)) {
+    record(15, "Set receiver on router", { skipped: true, reason: "already-set" });
+  } else {
+    if (!sameAddress(currentReceiver, ethers.ZeroAddress)) {
+      throw new Error(`router.receiver already set to unexpected address ${currentReceiver}`);
+    }
+    await govExec(router, "setReceiver", [receiverAddress]);
+    record(15, "Set receiver on router");
+  }
+  await publish();
+
+  for (const target of [receiver, treasury, mev, ops, dataYield, founderSink, delegatePools]) {
+    const current = await target.router();
+    if (sameAddress(current, routerAddress)) {
+      continue;
+    }
+    if (!sameAddress(current, ethers.ZeroAddress)) {
+      throw new Error(
+        `router address already set to unexpected address ${current} on ${await contractAddress(target)}`,
+      );
+    }
+    await govExec(target, "setRouter", [routerAddress]);
   }
   record(16, "Set router / receiver addresses across system");
+  await publish();
 
-  const observer = await DoveRouterObserver.connect(ownerSigner).deploy(
-    await governance.getAddress(),
-    await dove.getAddress()
+  const observer = await attachOrDeploy(
+    DoveRouterObserver,
+    "observer",
+    17,
+    "Deploy DoveRouterObserver.sol",
+    [await contractAddress(governance), await contractAddress(dove)],
   );
-  await observer.waitForDeployment();
-  record(17, "Deploy DoveRouterObserver.sol", { address: await observer.getAddress() });
 
-  await dove.connect(ownerSigner).registerObserver(await observer.getAddress(), "DoveRouterObserver");
-  record(18, "Register DoveRouterObserver");
+  record(18, "Register DoveRouterObserver", await ensureObserver(observer, "DoveRouterObserver"));
+  await publish();
 
-  await govExec(observer, "initialize", [
-    await receiver.getAddress(),
-    await router.getAddress(),
-    await treasury.getAddress(),
-    await mev.getAddress(),
-    await ops.getAddress(),
-    await dataYield.getAddress(),
-    await delegatePools.getAddress(),
-    await founderSink.getAddress(),
-  ]);
-  record(19, "Initialize DoveRouterObserver with system addresses");
+  if (await observer.initialized()) {
+    record(19, "Initialize DoveRouterObserver with system addresses", {
+      skipped: true,
+      reason: "already-initialized",
+    });
+  } else {
+    await govExec(observer, "initialize", [
+      receiverAddress,
+      routerAddress,
+      await contractAddress(treasury),
+      await contractAddress(mev),
+      await contractAddress(ops),
+      await contractAddress(dataYield),
+      await contractAddress(delegatePools),
+      await contractAddress(founderSink),
+    ]);
+    record(19, "Initialize DoveRouterObserver with system addresses");
+  }
+  await publish();
 
-  await govExec(dataYield, "setMevSink", [await mev.getAddress()]);
-  await govExec(mev, "setDataYieldSource", [await dataYield.getAddress()]);
+  if (!sameAddress(await dataYield.mevSink(), await contractAddress(mev))) {
+    await govExec(dataYield, "setMevSink", [await contractAddress(mev)]);
+  }
+  if (!sameAddress(await mev.dataYieldSource(), await contractAddress(dataYield))) {
+    await govExec(mev, "setDataYieldSource", [await contractAddress(dataYield)]);
+  }
   record(20, "Wire stipend / treasury references", {
     note: "Current reconstructed executable subset wires the DataYield -> MEV redirection linkage; no separate treasury-reference setter exists in the present Phase 1a contracts.",
   });
+  await publish();
 
-  await govExec(receiver, "setApprovedSource", [
-    approvedSourceAddress,
-    true,
-    approvedSourceLabel,
-  ]);
-  record(21, "Register initial approved source", {
-    approvedSource: approvedSourceAddress,
-    approvedSourceLabel,
-    note: "Use a bootstrap source if the Stake-linked MonadSpin source is not yet deployed.",
-  });
-
-  return {
-    accounts: {
-      owner: ownerSigner,
-      approvedSource: approvedSourceSigner,
-      founder: founderSigner,
-      founderAddress,
+  if (await receiver.approvedSources(approvedSourceAddress)) {
+    record(21, "Register initial approved source", {
+      approvedSource: approvedSourceAddress,
+      approvedSourceLabel,
+      skipped: true,
+      reason: "already-approved",
+      note: "Use a bootstrap source if the Stake-linked MonadSpin source is not yet deployed.",
+    });
+  } else {
+    await govExec(receiver, "setApprovedSource", [
       approvedSourceAddress,
-      engine,
-      delegateRecipient,
-      alternateGovernor,
-    },
-    contracts: {
-      dove,
-      governance,
-      receiver,
-      router,
-      treasury,
-      mev,
-      ops,
-      dataYield,
-      founderSink,
-      delegatePools,
-      observer,
-    },
-    steps,
-    govExec,
-  };
+      true,
+      approvedSourceLabel,
+    ]);
+    record(21, "Register initial approved source", {
+      approvedSource: approvedSourceAddress,
+      approvedSourceLabel,
+      note: "Use a bootstrap source if the Stake-linked MonadSpin source is not yet deployed.",
+    });
+  }
+  await publish();
+
+  return system;
 }
 
-function formatDeploymentReport(hre, system) {
+function formatDeploymentReport(hre, system, metadata = {}) {
   const report = {
     network: hre.network.name,
     chainId: hre.network.config.chainId || null,
     generatedAt: new Date().toISOString(),
-    deployer: system.accounts.owner.address,
-    founderAddress: system.accounts.founderAddress,
-    approvedSourceAddress: system.accounts.approvedSourceAddress,
+    status: metadata.status || "complete",
+    deployer: system.accounts?.owner?.address || null,
+    founderAddress: system.accounts?.founderAddress || null,
+    approvedSourceAddress: system.accounts?.approvedSourceAddress || null,
+    completedStep: system.steps.reduce((max, entry) => Math.max(max, entry.step || 0), 0),
     addresses: {},
     steps: system.steps,
   };
 
+  for (const [key, value] of Object.entries(metadata)) {
+    if (key === "status") continue;
+    report[key] = value;
+  }
+
   for (const [name, contract] of Object.entries(system.contracts)) {
-    report.addresses[name] = contract.target;
+    const address = contract?.target || contract?.address || null;
+    if (address) {
+      report.addresses[name] = address;
+    }
   }
 
   return report;

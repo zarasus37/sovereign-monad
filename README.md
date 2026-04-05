@@ -29,9 +29,10 @@ Current status:
 
 - the original Phase 1a Solidity source set was not recovered
 - Phase 1a contracts were reconstructed from the canonical MOF, the surviving `DoveCore.sol`, and the surviving Revenue Router specification
-- the reconstructed contract workspace compiles, has `13` passing Hardhat tests, and includes a locked deployment-sequence runner plus local rehearsal flow
+- the reconstructed contract workspace compiles, has `14` passing Hardhat tests, and includes a locked deployment-sequence runner plus local rehearsal flow
 - live preflight uses a native-token gas floor on Monad mainnet, not Ethereum-mainnet USD assumptions
 - live deploy guidance now distinguishes the hard fail floor from the recommended deploy budget (`1 MON` minimum, `10 MON` recommended)
+- live deploy now supports resumable checkpoint/retry via `deployments/phase1a-progress-<network>.json`
 
 Canonical rule:
 
@@ -75,6 +76,16 @@ npm run rehearse:phase1a
 npm run verify:phase1a
 npx hardhat run scripts/slot-source-handoff.js --network phase1a
 ```
+
+Resumable live deployment notes:
+
+- `npm run deploy:phase1a` now writes `deployments/phase1a-progress-<network>.json`
+- rerunning the deploy command resumes from the saved checkpoint when possible
+- `PHASE1A_RESUME_REPORT` can be set explicitly to point at a specific progress report
+
+Current live blocker:
+
+- live Phase 1a deployment proof is still blocked until the deployer wallet is re-funded above the preflight floor
 
 For the initial approved source:
 

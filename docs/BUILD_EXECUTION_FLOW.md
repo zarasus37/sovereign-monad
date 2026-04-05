@@ -150,6 +150,16 @@ Current capital/live frontier:
 - funded `Cardia` activation
 - production/public activation
 
+## Capital-Gated Frontier Snapshot
+
+The capital-gated frontier now has executable local tracking surfaces:
+
+- live Phase 1a deployment proof has a resumable checkpoint path and currently remains blocked by deployer balance restore
+- bootstrap approved-source registration remains blocked until live deployment proof yields canonical live addresses
+- `execution-truth-core` exists locally in `monad-mev` and currently reports `blocked` because live Phase 1a proof and bootstrap source registration are not yet recorded
+- `cardia-activation-core` exists locally in `monad-mev` and currently reports `blocked` because execution truth is blocked and `Cardia` remains analysis-only until funded activation
+- `public-activation-core` exists locally in `monad-mev` and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
+
 Only after the zero-capital layer surfaces existed did funded live activation become the limiting factor. That condition is now true.
 
 ## Why this is the truthful build order
