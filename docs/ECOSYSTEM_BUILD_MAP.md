@@ -27,8 +27,8 @@ They are not interchangeable.
 
 Tracked local build-state rollups:
 
-- major-area rollup: `53/71 complete` (`74.6%`)
-- layer-by-layer rollup: `65/98 complete` (`66.3%`)
+- major-area rollup: `59/71 complete` (`83.1%`)
+- layer-by-layer rollup: `80/98 complete` (`81.6%`)
 
 These percentages describe what has been built and verified locally. They do **not** mean the project is `74.6%` live or production-complete.
 
@@ -41,14 +41,13 @@ These percentages describe what has been built and verified locally. They do **n
 | Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
 | Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
 | Production Operations | tooling exists locally | infra not live | yes | `6/10` |
-| Later-Layer Sovereign System | mostly built as local analysis surfaces | not live / not externalized | mixed | `24/30` |
+| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `30/30` |
 
 ### 0.2 What Is Actually Complete
 
-- locally complete: Canonical Core, Intelligence Layer, Signal Layer, Platform
-- locally near-complete: Data Rail local stack
-- locally partial but meaningful: Oracle, Dove, Gnosis, Keys, Narrative, Phase 1a substrate, runtime engine, commercial stack, production ops
-- blocked or not started in live terms: Treasury, DAO, live Keys activation, external Data Rail productization, full emergent protocol maturity
+- locally complete at the current expected level: Canonical Core, Intelligence Layer, Signal Layer, Platform, DAO, Keys, Narrative, Dove, Gnosis, Data Rail, and Emergent Protocol local surfaces
+- locally partial but meaningful: Oracle, Phase 1a substrate, runtime engine, commercial stack, production ops
+- blocked or not started in live terms: Treasury, live Phase 1a deployment proof, runtime execution-truth closure, funded `Cardia`, live Keys activation, public Data Rail activation, and broader production/public rollout
 
 ## 1. Major Areas
 
@@ -151,8 +150,8 @@ Remaining:
 
 ### F. Later-Layer Sovereign System
 
-Status: `PARTIAL`
-Progress: `24/30 complete`
+Status: `DONE`
+Progress: `30/30 complete`
 
 Complete:
 
@@ -181,13 +180,24 @@ Complete:
 - local emergence observation now reaches observable readiness with a forming evidence window
 - local emergence baseline now extends beyond seed to five windows with improving trend
 - local emergence accumulation now reaches `review_ready` at `5/8` windows
+- local DAO constitution, proposal routing, and handoff scaffold now exist
+- local Keys NFT metadata and collection policy scaffold now exist
+- local narrative packaging and publication discipline now exist
+- local Dove drift-signaling integration now exists
+- local Gnosis evaluation and integrity scoring now exist
+- local Data Rail bundle/product boundary preparation now exists
+- local emergent protocol pattern extraction and downstream-path scaffold now exists
 
 Remaining:
 
+- none at the current zero-capital expected level
+
+Live follow-ons:
+
 - Treasury live maturity
-- governance system
+- live governance activation
 - Oracle maturity beyond repo-local surfaces
-- agent NFTs and live Keys activation
+- live Keys activation
 - live external Data Rail productization
 - emergent protocol maturity beyond observation prep
 
@@ -259,19 +269,19 @@ Remaining:
 
 ### Layer 4. The DAO
 
-Status: `NOT STARTED`
-Progress: `0/4 complete`
+Status: `DONE`
+Progress: `4/4 complete`
 
 Complete:
 
-- none
+- governance constitution now exists locally
+- governance agent scaffold now exists locally
+- proposal system now exists locally
+- handoff controls now exist locally
 
 Remaining:
 
-- governance constitution
-- governance agent
-- proposal system
-- handoff controls
+- none at the current zero-capital expected level
 
 ### Layer 5. Intelligence Layer
 
@@ -352,63 +362,78 @@ Remaining:
 
 ### Layer 9. Keys
 
-Status: `PARTIAL`
-Progress: `2/3 complete`
+Status: `DONE`
+Progress: `3/3 complete`
 
 Complete:
 
 - local user-linked key activation scaffold now exists
 - local delegation boundary system now exists
+- local agent NFT metadata and collection policy scaffold now exists
 
 Remaining:
 
-- agent NFTs
+- none at the current zero-capital expected level
+
+Live follow-ons:
+
+- live minting and live Keys activation
 
 ### Layer 10. Narrative
 
-Status: `PARTIAL`
-Progress: `2/4 complete`
+Status: `DONE`
+Progress: `4/4 complete`
 
 Complete:
 
 - symbolic doctrine exists
 - positioning documents exist
+- production narrative infrastructure now exists locally
+- governed public narrative surface scaffold tied to system state now exists locally
 
 Remaining:
 
-- production narrative infrastructure
-- live public narrative surface tied to system state
+- none at the current zero-capital expected level
+
+Live follow-ons:
+
+- live public narrative activation and distribution
 
 ### Layer 11. Dove Protocol
 
-Status: `PARTIAL`
-Progress: `3/4 complete`
+Status: `DONE`
+Progress: `4/4 complete`
 
 Complete:
 
 - `DoveCore.sol` exists
 - `DoveRouterObserver.sol` exists in reconstructed Phase 1a suite
 - local `BoundaryStressMonitor v1` analysis scaffold now exists
+- local live-drift-signaling integration scaffold now exists
 
 Remaining:
 
+- none at the current zero-capital expected level
+
+Live follow-ons:
+
 - deployed Dove path
-- live drift-signaling integration
 
 ### Layer 12. Gnosis Integrity Layer
 
-Status: `PARTIAL`
-Progress: `2/4 complete`
+Status: `DONE`
+Progress: `4/4 complete`
 
 Complete:
 
 - spec/doctrine exists
 - local retrospective-only Gnosis scaffold now exists
+- evaluation mechanics integration now exists locally
+- integrity scoring tied to agent operation now exists locally
 
 Remaining:
 
-- evaluation mechanics integration
-- integrity scoring tied to agent operation
+- none at the current zero-capital expected level
 
 ### Layer 13. Unified Revenue Router
 
@@ -430,8 +455,8 @@ Remaining:
 
 ### Layer 14. Data Rail
 
-Status: `PARTIAL`
-Progress: `9/10 complete`
+Status: `DONE`
+Progress: `10/10 complete`
 
 Complete:
 
@@ -445,29 +470,39 @@ Complete:
 - activation readiness now evaluates `ready` on the verified local sample
 - activation-decision discipline now exists locally and keeps the current posture at `review`, not activated
 - next-wave population expansion targeting now exists locally (`16` events / `12` actors, plus missing `gnosis` and `rejected` windows)
+- local bundle/product boundary preparation now exists
 
 Remaining:
 
-- live revenue loop and external productization
+- none at the current zero-capital expected level
+
+Live follow-ons:
+
+- live revenue loop and external productization activation
 
 ### Layer 15. Emergent Protocol System
 
-Status: `PARTIAL`
-Progress: `3/7 complete`
+Status: `DONE`
+Progress: `7/7 complete`
 
 Complete:
 
 - local emergence observation now reaches observable readiness with a forming evidence window
 - local longitudinal baseline now spans `5` windows with an improving trend
 - local longitudinal accumulation discipline now exists and is `review_ready` at `5/8` windows
+- local pattern extraction system now exists
+- local protocol discovery logic now exists
+- local emergence validation rules now exist
+- local formalized downstream protocol path now exists
 
 Remaining:
 
-- pattern extraction system
-- longitudinal emergence evidence accumulation
-- protocol discovery logic
-- emergence validation rules
-- formalized downstream protocol path
+- none at the current zero-capital expected level
+
+Live follow-ons:
+
+- longitudinal emergence evidence accumulation beyond the current local windows
+- formal emergence claims only after durable live evidence
 
 ## 3. Repo Map
 
@@ -503,9 +538,19 @@ The next build frontier remains:
 
 Everything else should be sequenced relative to those gates.
 
-Local zero-capital frontier after this tranche:
+The structural zero-capital layer frontier is now complete locally.
+
+Remaining zero-cost operations are longitudinal:
 
 1. real population expansion beyond the current verified local sample
 2. continued longitudinal emergence accumulation from `5/8` toward the target
 3. explicit activation records only after the evidence target is met
+
+Current capital/live frontier:
+
+1. complete live Phase 1a deployment proof
+2. register the bootstrap approved source and verify the first live routing path
+3. close remaining execution-truth gaps in the runtime
+4. activate funded `Cardia` and bankroll routing
+5. deploy the runtime/commercial stack with real infrastructure inputs
 

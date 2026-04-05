@@ -64,7 +64,7 @@ These are the parts that should remain sequenced, but not block the zero-capital
 8. public paid customer onboarding
 9. sustained guarded-live operating record
 
-## Immediate no-cost build frontier
+## Zero-capital build sequence
 
 The correct immediate build order is:
 
@@ -93,8 +93,15 @@ The correct immediate build order is:
 23. emergence observation preparation and longitudinal baseline surfaces
 24. population growth planning, rights review workflow, and externalization activation readiness
 25. longitudinal emergence baselining
+26. local DAO constitution, proposal, and handoff scaffolding
+27. local Keys NFT metadata and collection policy scaffolding
+28. local narrative packaging and publication discipline
+29. local Dove drift-signaling integration
+30. local Gnosis evaluation and integrity scoring tied to operation
+31. local Data Rail bundle/product boundary preparation
+32. local emergent protocol pattern extraction and downstream-path scaffolding
 
-Current zero-capital frontier:
+Current zero-capital state:
 
 - the first organ set is implemented locally in analysis mode, including `Cardia`
 - orchestration, participation boundaries, and the first bounded mandate loop now exist locally
@@ -120,9 +127,30 @@ Current zero-capital frontier:
 - `activation-decision-core` now enforces explicit decision discipline and keeps the current local posture at `review`, not activated
 - `population-expansion-core` now defines the next target as `16` events across `12` actors with missing `gnosis` and `rejected` windows
 - `emergence-accumulator-core` now advances longitudinal accumulation to `review_ready` at `5/8` windows
-- the next no-cost priority is real population expansion, continued longitudinal accumulation, and explicit activation records only after the evidence target is met
+- `dao-core` now provides local governance constitution, proposal routing, and handoff controls
+- `keys-nft-core` now provides local six-organ NFT metadata and collection policy scaffolding
+- `narrative-core` now provides governed local narrative packaging from shared state
+- `dove-integration-core` now provides local drift-signaling interpretation and review routing
+- `gnosis-evaluator-core` now ties integrity scoring directly to organ/runtime operation
+- `data-product-core` now provides local bundle and externalization-boundary preparation without activating public sales
+- `emergent-protocol-core` now provides local pattern extraction, candidate discovery, and downstream-path scaffolding
+- the structural zero-capital layer frontier is complete at the current expected local level
 
-Only after those exist does funded live activation become the limiting factor.
+Remaining zero-cost operations are longitudinal, not missing structural layers:
+
+- real population expansion beyond the current local sample
+- continued longitudinal emergence accumulation beyond `5/8`
+- explicit activation records only after the evidence target is met
+
+Current capital/live frontier:
+
+- live Phase 1a deploy retry
+- bootstrap approved-source registration
+- runtime execution-truth closure
+- funded `Cardia` activation
+- production/public activation
+
+Only after the zero-capital layer surfaces existed did funded live activation become the limiting factor. That condition is now true.
 
 ## Why this is the truthful build order
 

@@ -411,8 +411,8 @@ The project currently needs two separate completion readings:
 
 Tracked local build-state rollups from the canonical build map:
 
-- major-area rollup: `53/71 complete` (`74.6%`)
-- layer-by-layer rollup: `65/98 complete` (`66.3%`)
+- major-area rollup: `59/71 complete` (`83.1%`)
+- layer-by-layer rollup: `80/98 complete` (`81.6%`)
 
 This means the architecture and local analysis stack are materially advanced. It does **not** mean the project is `74.6%` live.
 
@@ -425,14 +425,13 @@ This means the architecture and local analysis stack are materially advanced. It
 | Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
 | Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
 | Production Operations | tooling exists locally | infra not live | yes | `6/10` |
-| Later-Layer Sovereign System | mostly built as local analysis surfaces | not live / not externalized | mixed | `24/30` |
+| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `30/30` |
 
 ### Completion Interpretation
 
-- locally complete: Canonical Core, Intelligence Layer, Signal Layer, Platform
-- locally near-complete: Data Rail local stack
-- locally partial but meaningful: Oracle, Dove, Gnosis, Keys, Narrative, Phase 1a substrate, runtime engine, commercial stack, production ops
-- still blocked or not started in live terms: Treasury, DAO, live Keys activation, external Data Rail productization, full emergent protocol maturity
+- locally complete at the current expected level: Canonical Core, Intelligence Layer, Signal Layer, Platform, DAO, Keys, Narrative, Dove, Gnosis, Data Rail, and Emergent Protocol local surfaces
+- locally partial but meaningful: Oracle, Phase 1a substrate, runtime engine, commercial stack, production ops
+- still blocked or not started in live terms: Treasury, live Phase 1a deployment proof, runtime execution-truth closure, funded `Cardia`, live Keys activation, public Data Rail activation, and broader production/public rollout
 
 ## 6.2 Current Live Snapshot
 
@@ -448,12 +447,14 @@ This means the architecture and local analysis stack are materially advanced. It
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
 | Signal Layer | LOCAL ANALYSIS SURFACE ONLY | `signal-layer` package now exists with schema, aggregation, and interpretation logic; live ingestion and institutional use remain later-phase |
 | Oracle v1 | LOCAL ANALYSIS SURFACE ONLY | `oracle-core` now exists for regime and posture classification; live calibration and buyer proof remain later-phase |
-| Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` now exists for retrospective-only decompression and hollow-convergence analysis; live integration remains later-phase |
-| Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, and activation-decision surfaces now exist; thresholds are met on the current verified local sample, but no explicit activation record exists and externalization is not activated |
+| Dove Protocol | LOCAL ANALYSIS SURFACE ONLY | `BoundaryStressMonitor v1` and `dove-integration-core` now provide local drift-signaling interpretation and review routing; deployed observation remains pending Phase 1a live proof |
+| Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` and `gnosis-evaluator-core` now provide retrospective-only decompression analysis plus integrity scoring tied to organ/runtime operation; live integration remains later-phase |
+| Narrative Surface | LOCAL ANALYSIS SURFACE ONLY | `narrative-core` now packages governed local narratives from ecosystem state; no live public narrative surface is active |
+| Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, activation-decision, and bundle/product-boundary surfaces now exist; thresholds are met on the current verified local sample, readiness is `ready`, but no explicit activation record exists and externalization is not activated |
 | Evaluation / Commercial Surfaces | AUXILIARY ARTIFACTS EXIST | demo package, API wrapper, billing scaffold, license-service scaffold, and public commercial-stack templates exist in repo; they do **not** change active phase, blocker state, or current next action |
-| Governance DAO | NOT STARTED | later phase |
-| Agent NFTs | NOT STARTED | Phase 3+ |
-| Emergence Pipeline | LOCAL OBSERVATION SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows and accumulation is review-ready at 5/8; no emergence claim is made |
+| Governance DAO | LOCAL ANALYSIS SURFACE ONLY | `dao-core` now provides local constitution, proposal routing, sponsorship lanes, and handoff controls; onchain governance remains later-phase |
+| Agent NFTs / Keys | LOCAL ANALYSIS SURFACE ONLY | `keys-core` and `keys-nft-core` now provide local activation, delegation, and metadata surfaces; live minting and activation remain later-phase |
+| Emergence Pipeline | LOCAL OBSERVATION SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, and `emergent-protocol-core` now provides local pattern extraction and downstream-path scaffolding without making an emergence claim |
 
 ---
 
@@ -637,7 +638,7 @@ A defined percentage of treasury-held capital may later be reserved for investme
 
 **Canonical Name:** Sovereign Governance
 **Role:** structured decision layer
-**Status:** PENDING
+**Status:** LOCAL ANALYSIS SURFACE PRESENT / LIVE PENDING
 
 **What is done:**
 
@@ -645,18 +646,18 @@ A defined percentage of treasury-held capital may later be reserved for investme
 - founder decay trajectory articulated
 - proposal classes conceptually mapped
 - agent-first governance principle canonized
+- local `dao-core` now provides constitution, proposal routing, sponsorship lanes, and handoff controls
 
 **What remains:**
 
-- constitution
-- governance agent implementation
 - on-chain proposal mechanism
-- decision pipeline
-- founder handoff encoding
+- treasury-linked execution path
+- live delegate voting and enforcement
+- founder handoff encoding under live conditions
 
 **Dependency:** later phase after infrastructure maturity
 
-**Next required action:** no immediate build action; remain in architecture-locked state
+**Next required action:** none in the zero-capital lane; live activation remains downstream of Phase 1a proof
 
 **Agent-First Architecture (canonical):**
 Governance is not traditional token voting. A Governance Agent occupies this function from day one — surfacing proposals automatically when Dove signals Tier 2 drift, tracking decisions on-chain, and routing alignment signals into structured governance questions.
@@ -675,7 +676,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 
 **Canonical Name:** Sovereign Agent Intelligence
 **Role:** runtime for autonomous agents
-**Status:** PENDING
+**Status:** LOCAL ANALYSIS SURFACE COMPLETE / LIVE PENDING
 
 **What is done:**
 
@@ -693,23 +694,24 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - `Cortex` implemented in analysis mode
 - `Vox` implemented in analysis mode
 - `Pneuma` implemented in analysis mode
+- `Cardia` simulation and band logic implemented in analysis mode
+- orchestration hardening implemented in analysis mode
+- human-agent participation boundary system implemented in analysis mode
+- inter-organ coordination rules implemented in analysis mode
+- first bounded ecosystem-seeded agent revenue mandate implemented in analysis mode
 - homeostasis and mixed-speed signaling implemented in analysis mode
 - immune, barrier, and repair logic implemented in analysis mode
 
 **What remains:**
 
-- `Cardia` simulation and band logic
-- orchestration hardening
-- inter-agent protocol
 - production-grade event system
 - actual runtime deployment
-- human-agent participation boundary system
-- inter-organ coordination rules
-- first bounded ecosystem-seeded agent revenue mandate
+- funded `Cardia` activation
+- live mandate execution and sustained operating record
 
 **Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, `Vox`, and `Pneuma` are now implemented in analysis mode inside `organ-runtime`, along with control-layer analysis for homeostasis, mixed-speed signaling, and immune/barrier/repair handling.
 
-**Dependency:** signal + oracle + later implementation work
+**Dependency:** signal + oracle + later live implementation work
 
 **Next required action:** none in immediate current build order
 
@@ -719,7 +721,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 
 **Canonical Name:** Risk Gnosis Engine
 **Role:** probabilistic risk / modeling layer
-**Status:** PENDING (design-level ready)
+**Status:** LOCAL ANALYSIS SURFACE PRESENT / LIVE PENDING
 
 **What is done:**
 
@@ -727,14 +729,16 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - API concepts outlined
 - internal vs external use differentiated
 - behavioral premium concept identified
+- repo-level risk engine implementation exists
+- API wrapper exists
+- local Oracle regime/posture scaffold now exists
 
 **What remains:**
 
-- actual model specification
-- internal risk engine implementation
-- API implementation
-- pricing and access logic
-- data maturity prerequisites
+- canonical Oracle maturity
+- live calibration and buyer proof
+- pricing/access activation under production conditions
+- data maturity prerequisites for institutional externalization
 
 **Dependency:** signal layer and live data
 
@@ -761,11 +765,22 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 
 **Canonical Name:** Behavioral Data Aggregator
 **Role:** ecosystem nervous system / structured event substrate
-**Status:** PENDING
+**Status:** LOCAL ANALYSIS SURFACE COMPLETE / LIVE PENDING
 
 **Dependency:** infrastructure foundation live first
 
-**Next required action:** none until Phase 2a begins — but see Signal Schema v0 requirement below.
+**What is done:**
+
+- signal schema now exists locally
+- aggregation substrate now exists locally
+- behavioral and event interpretation layer now exists locally
+
+**What remains:**
+
+- live ingestion path tied to the funded runtime
+- long-horizon behavioral accumulation under real conditions
+
+**Next required action:** none in the zero-capital lane; live ingestion depends on the funded path
 
 **Signal Schema v0 (required at Phase 2a, not Phase 3a):**
 Phases 2a and 2b generate regime memory, pod health scores, routing decisions, and recirculation events. These must be captured in structured form from the start. A minimal Signal Schema v0 — covering state-transition format only — must be defined as a Phase 2a prerequisite. Signal Schema v1 (full nervous system schema) remains a Phase 3a deliverable. Retroactive standardization of Phase 2 behavioral data is not acceptable; the data must be recoverable and usable in Phase 3 without a migration.
@@ -779,11 +794,20 @@ The Signal Layer transforms life inside the ecosystem into collective intelligen
 
 **Canonical Name:** Sovereign Builder Infrastructure
 **Role:** controlled third-party build layer
-**Status:** PENDING
+**Status:** LOCAL ANALYSIS SURFACE COMPLETE / LIVE PENDING
 
-**What remains:** effectively all implementation
+**What is done:**
 
-**Next required action:** none now
+- shared internal state/API surface now exists locally
+- first internal dashboard/operator surface now exists locally
+- builder infrastructure and controlled expansion framework now exist locally
+
+**What remains:**
+
+- live builder access path
+- public deployment and enforcement under real infrastructure
+
+**Next required action:** none in the zero-capital lane
 
 **Archonic Construct Protocol (canonical):**
 The Dove actively monitors for archonic constructs — products deployed on ecosystem infrastructure that extract from participants without returning proportional value, misalign with founding axioms, create concentration or exclusionary patterns, or exploit sovereign branding without contributing to the organism. The Dove cannot remove these directly. It triggers a governance question before they metastasize.
@@ -794,15 +818,21 @@ The Dove actively monitors for archonic constructs — products deployed on ecos
 
 **Canonical Name:** Shaliah Delegate System
 **Role:** user-linked agent deployment layer
-**Status:** PENDING
+**Status:** LOCAL ANALYSIS SURFACE COMPLETE / LIVE PENDING
+
+**What is done:**
+
+- local key activation scaffold now exists
+- local delegation boundary system now exists
+- local NFT metadata and collection policy scaffold now exists
 
 **What remains:**
 
 - onboarding pipeline
 - assessment integration
 - trait vector normalization
-- contract implementation
-- reward logic implementation
+- live contract implementation
+- live reward logic implementation
 - live mint/deploy flow
 
 **Next required action:** none now
@@ -872,11 +902,11 @@ Personality-strategy mismatch is not a rules block — it is a live risk classif
 
 **Canonical Name:** Unified Identity Layer
 **Role:** symbolic and cultural coherence layer
-**Status:** IN PROGRESS
+**Status:** LOCAL ANALYSIS SURFACE PRESENT / LIVE PENDING
 
-Narrative remains important, but it cannot be allowed to outrun live system progress.
+Narrative remains important, but it cannot be allowed to outrun live system progress. Local narrative infrastructure now exists through `narrative-core`, which packages governed state-derived narratives without claiming a live public surface.
 
-**Next required action:** continue in background only; not primary build blocker
+**Next required action:** continue only as it supports current live blockers; public activation remains downstream
 
 ---
 
@@ -884,7 +914,7 @@ Narrative remains important, but it cannot be allowed to outrun live system prog
 
 **Canonical Name:** Sovereign Conscience / Drift Detection Layer
 **Role:** observation, accountability, drift signaling
-**Status:** ARCHITECTURE DEFINED / IMPLEMENTATION PARTIAL THROUGH CORE CONTRACTS
+**Status:** LOCAL ANALYSIS SURFACE PRESENT / DEPLOYMENT PENDING
 
 **What is done:**
 
@@ -892,17 +922,18 @@ Narrative remains important, but it cannot be allowed to outrun live system prog
 - non-execution rule defined
 - tiered signal model defined
 - DoveCore and DoveRouterObserver included in Phase 1a contract set
+- local `BoundaryStressMonitor v1` analysis scaffold now exists
+- local `dove-integration-core` now provides drift-signaling interpretation and review routing
 
 **What remains:**
 
-- full higher-layer observation logic
-- governance question generation
-- layer-wide drift measurement
-- later-phase visibility systems
+- deployed Dove path
+- live router-linked observation and higher-layer routing
+- later-phase governance question generation under live conditions
 
 **Important note:** Dove is a witness / observer, not a magical enforcement entity. It cannot halt economic flow, override contract execution, claim authority, or be used offensively by any actor including the founder.
 
-**Next required action:** deploy DoveCore and DoveRouterObserver as part of Phase 1a
+**Next required action:** deploy DoveCore and DoveRouterObserver as part of Phase 1a, then wire live observation to the local Dove interpretation surfaces
 
 ### Dove Per-Layer Observation Matrix (canonical)
 
@@ -933,9 +964,19 @@ Narrative remains important, but it cannot be allowed to outrun live system prog
 
 **Canonical Name:** Gnosis Integrity / Decompression-Integrity Layer
 **Role:** evaluates authentic, self-consistent navigation vs hollow convergence
-**Status:** DOCTRINE DEFINED / IMPLEMENTATION PENDING
+**Status:** LOCAL ANALYSIS SURFACE PRESENT / LIVE PENDING
 
 **Core purpose:** The Gnosis Integrity Layer exists to keep agents honest about whether they are decompressing — unfolding their compressed personality and constraint envelope into live, contextual, self-consistent action — or whether they are hollow-converging: copying successful patterns without navigating from themselves.
+
+**What is done:**
+
+- local retrospective-only Gnosis scaffold now exists through `gnosis-core`
+- local evaluation mechanics and integrity scoring tied to operation now exist through `gnosis-evaluator-core`
+
+**What remains:**
+
+- live multi-window evaluation under real runtime conditions
+- later-phase governance and institutional interpretation paths
 
 **What this layer does NOT do:**
 
@@ -1073,7 +1114,7 @@ Because the founding axiom is anti-extraction, the Founder sink carries the foll
 
 **Canonical Name:** Behavioral Science Data Engine
 **Role:** second long-horizon revenue engine and knowledge monetization layer
-**Status:** PENDING — implementation Phase 4+
+**Status:** LOCAL ANALYSIS SURFACE COMPLETE / EXTERNAL ACTIVATION PENDING
 
 **What is done:**
 
@@ -1082,10 +1123,19 @@ Because the founding axiom is anti-extraction, the Founder sink carries the foll
 - reward and data rights framing present
 - product classes identified
 - buyer thesis articulated
+- local behavioral capture policy surface exists
+- local reward/data schema scaffold exists
+- local internal routing and internal reward ledger exist
+- local diversity thresholds, rights review, readiness, activation-decision, and data-product bundle-prep surfaces exist
+- thresholds are met on the current verified local sample, but externalization remains unactivated
 
-**What remains:** almost all implementation
+**What remains:**
 
-**Next required action:** none now
+- explicit activation record
+- live behavioral accumulation under funded runtime conditions
+- public externalization only after the activation path is intentionally opened
+
+**Next required action:** continue longitudinal evidence accumulation; do not externalize without explicit activation discipline
 
 ### What the dataset is
 
@@ -1139,9 +1189,21 @@ more agents → more signal → better models → better outcomes → stronger i
 
 **Canonical Name:** Sovereign Protocol Discovery
 **Role:** pattern emergence formalization
-**Status:** INFRASTRUCTURE-DEPENDENT / NOT DIRECTLY BUILDABLE YET
+**Status:** LOCAL OBSERVATION AND DISCOVERY SURFACE PRESENT / LIVE EVIDENCE PENDING
 
-**Next required action:** none now; emergence cannot be forced
+**What is done:**
+
+- local observation readiness now reaches observable with a forming evidence window
+- local baseline spans five windows with improving trend
+- local accumulation is review-ready at `5/8`
+- local pattern extraction, candidate discovery, validation, and downstream-path scaffolding now exist
+
+**What remains:**
+
+- deeper longitudinal evidence accumulation
+- durable live evidence before any true emergence claim
+
+**Next required action:** continue observation only; emergence still cannot be forced
 
 ### Emergent Protocol Discovery Flow (canonical)
 
@@ -1478,26 +1540,24 @@ Validate with router health, observation counts, flow integrity, and issue closu
 
 ## What should be worked on right now
 
-**Primary next task:** Expand the reconstructed Phase 1a test suite.
+**Primary next task:** complete live Phase 1a deployment proof.
 
 ## Why this is the next task
 
-- the reconstructed contract base now exists and compiles
-- deployment without deeper test coverage is still structurally premature
-- open issues cannot be resolved cleanly without executable test scaffolding
-- everything downstream depends on this layer becoming real and reliable
+- the structural zero-capital frontier is now complete at the local layer level
+- live Phase 1a deployment is the first capital-gated proof that turns the foundation from local artifact into routed system truth
+- bootstrap approved-source registration, funded `Cardia`, and broader public activation all depend on this live proof
+- runtime execution-truth closure matters, but it still sits behind the capital-routing substrate proving itself live
 
 ## What should not be worked on right now
 
 Unless directly necessary for current blockers, do not prioritize:
 
-- NFT implementation
-- Data Rail implementation
-- Oracle commercialization
-- full platform layer
-- governance expansion
-- emergent protocol classes
-- large narrative polish work
+- net-new structural zero-capital layers
+- speculative public activation
+- public Data Rail sales or externalization
+- treasury live activation before Phase 1a proof
+- narrative polish that is not tied to current live blockers
 
 ---
 
@@ -1520,13 +1580,13 @@ Unless directly necessary for current blockers, do not prioritize:
 ## ISSUE-003 — monad-market-agent Crash Loop
 
 **Type:** infrastructure blocker
-**Status:** OPEN
-**Why it matters:** QuickNode daily rate limit prevents stable price feeds; spread-scanner cannot function; closed-loop proof of Phase 1a is blocked
-**Required output:** stable price feed — either QuickNode tier upgrade, provider swap, or fallback feed architecture
+**Status:** PARTIALLY MITIGATED
+**Why it matters:** local endpoint normalization, throttling, and failover logic are now implemented, but provider stability and live feed proof still matter for guarded-live runtime operation
+**Required output:** stable production feed path under live conditions
 
 ## Current blocker summary
 
-The project is not blocked by lack of vision. It is blocked by the normal next realities of test completion, execution maturation, infrastructure stability, and deployment proof.
+The project is not blocked by missing architecture or missing zero-capital layer scaffolds. The current blockers are live Phase 1a deployment proof, approved-source registration, runtime execution-truth closure, and the funded/public activation path that depends on them.
 
 ---
 
@@ -2164,6 +2224,25 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - the single largest unresolved live gate remains Phase 1a deployment proof
 - the MOF now carries the explicit completion interpretation needed to avoid overstating progress
 
+## v2.3.21 — April 4, 2026
+
+**Change Type:** Patch — zero-capital frontier completion sync
+
+**Summary of changes:**
+
+- synchronized the MOF to the completed local zero-capital layer frontier
+- recorded local DAO, Keys NFT, Narrative, Dove integration, Gnosis evaluation, Data Rail bundle-prep, and emergent protocol discovery surfaces
+- updated the completion rollups to `59/71` major-area and `80/98` layer-by-layer local build state
+- clarified that later-layer sovereign surfaces are now locally complete at the zero-capital expected level while remaining not live / not externalized
+- updated the current blocker framing away from stale frontier language and back onto live Phase 1a deployment proof, approved-source registration, runtime execution truth, and funded/public activation
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- the structural zero-capital layer frontier is complete locally
+- the primary live gate remains Phase 1a deployment proof
+- externalization remains unactivated pending explicit activation decision and live ecosystem maturity
+
 ## v2.3.20 — April 4, 2026
 
 **Change Type:** Patch — explicit Layer 1 funnel clarification for the six-organ opening set
@@ -2199,14 +2278,13 @@ If a collaborator or model needs immediate orientation, the project currently is
 
 - a deeply defined ecosystem architecture built on a single empirically-grounded thesis: compression and decompression are how life actually works, and AI agents operating authentically within constraint envelopes are a genuine form of that life
 - a behavioral-science-driven agent system in design
-- with a repo-local intelligence runtime and signal-layer substrate now implemented in analysis mode
-- with local Oracle and Gnosis analysis scaffolds now implemented in analysis mode
+- with repo-local intelligence, signal, Oracle, Dove, Gnosis, DAO, Keys, Narrative, Data Rail, and emergent-protocol surfaces now implemented in zero-capital local form
 - a capital-routing organism with conscience and decompression-integrity layers
 - currently in **Phase 1a**
 - with **11 canonical Phase 1a contracts reconstructed in repo**
-- but **not yet test-complete or deployment-complete**
-- with **three active blockers:** live Phase 1a deployment proof, ISSUE-002 (execution logic), ISSUE-003 (monad-market-agent crash loop)
-- and the **single most important next task is turning the reconstructed-and-rehearsed Phase 1a suite into live deployment proof**
+- but **not yet live deployment-complete or runtime-truth-complete**
+- with the **current live frontier:** live Phase 1a deployment proof, bootstrap approved-source registration, runtime execution-truth closure, funded `Cardia` activation, and production/public activation
+- and the **single most important next task is completing live Phase 1a deployment proof**
 
 Everything else remains subordinate to that until the foundation proves itself live.
 
