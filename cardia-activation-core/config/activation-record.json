@@ -1,0 +1,11 @@
+{
+  "walletFunded": false,
+  "multisigDefined": false,
+  "guardedLiveCapApproved": false,
+  "firstDisbursementExecuted": false,
+  "liveBankrollRouted": false,
+  "notes": [
+    "Cardia remains analysis-only until runtime execution truth and Phase 1a live proof are in place.",
+    "Funding alone is not sufficient without a guarded-live cap and operator control."
+  ]
+}

@@ -104,6 +104,24 @@ function buildModulePaths(packageRoot: string, runtimeConfigPath: string): Runti
       'dist',
       'index.js',
     ),
+    executionTruthModulePath: path.resolve(
+      repoRoot,
+      'execution-truth-core',
+      'dist',
+      'index.js',
+    ),
+    cardiaActivationModulePath: path.resolve(
+      repoRoot,
+      'cardia-activation-core',
+      'dist',
+      'index.js',
+    ),
+    publicActivationModulePath: path.resolve(
+      repoRoot,
+      'public-activation-core',
+      'dist',
+      'index.js',
+    ),
     populationExpansionModulePath: path.resolve(
       repoRoot,
       'population-expansion-core',
@@ -208,6 +226,21 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
         paths.activationDecisionModulePath,
         'loadLocalActivationDecisionSnapshot',
       )(repoRoot),
+    loadExecutionTruthSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.executionTruthModulePath,
+        'loadLocalExecutionTruthSnapshot',
+      )(repoRoot),
+    loadCardiaActivationSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.cardiaActivationModulePath,
+        'loadLocalCardiaActivationSnapshot',
+      )(repoRoot),
+    loadPublicActivationSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.publicActivationModulePath,
+        'loadLocalPublicActivationSnapshot',
+      )(repoRoot),
     loadEmergenceBaselineSnapshot: () =>
       loadBuiltModule<(packageRoot: string) => any>(
         paths.emergenceBaselineModulePath,
@@ -275,6 +308,9 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
   const dataRailGovernance = snapshot.dataRailGovernance as any;
   const externalizationReadiness = snapshot.externalizationReadiness as any;
   const activationDecision = snapshot.activationDecision as any;
+  const executionTruth = snapshot.executionTruth as any;
+  const cardiaActivation = snapshot.cardiaActivation as any;
+  const publicActivation = snapshot.publicActivation as any;
   const emergenceObservation = snapshot.emergenceObservation as any;
   const populationExpansion = snapshot.populationExpansion as any;
   const emergenceAccumulation = snapshot.emergenceAccumulation as any;
@@ -304,6 +340,9 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
       'rights-review-core',
       'externalization-readiness-core',
       'activation-decision-core',
+      'execution-truth-core',
+      'cardia-activation-core',
+      'public-activation-core',
       'emergence-observer-core',
       'emergence-baseline-core',
       'emergence-accumulator-core',
@@ -327,6 +366,11 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     dataRailExternalizationAllowed: dataRailGovernance?.externalizationAllowed || false,
     dataRailExternalizationActivated: activationDecision?.activationAllowed || false,
     activationDecisionStatus: activationDecision?.status || 'blocked',
+    phase1aLiveProofRecorded: executionTruth?.phase1aLiveProofRecorded || false,
+    bootstrapSourceRegistered: executionTruth?.bootstrapSourceRegistered || false,
+    executionTruthStatus: executionTruth?.status || 'blocked',
+    cardiaActivationStatus: cardiaActivation?.status || 'blocked',
+    publicActivationStatus: publicActivation?.status || 'blocked',
     emergenceReadiness: emergenceObservation?.readiness || 'insufficient',
     externalizationReadiness: externalizationReadiness?.status || 'blocked',
     populationExpansionStatus: populationExpansion?.status || 'ready_to_expand',
@@ -444,6 +488,9 @@ export function buildEcosystemStateFromRuntimeConfig(
   const populationExpansion = builders.loadPopulationExpansionSnapshot();
   const rightsReview = builders.loadRightsReviewSnapshot();
   const externalizationReadiness = builders.loadExternalizationReadinessSnapshot();
+  const executionTruth = builders.loadExecutionTruthSnapshot();
+  const cardiaActivation = builders.loadCardiaActivationSnapshot();
+  const publicActivation = builders.loadPublicActivationSnapshot();
   const emergenceObservation = builders.buildEmergenceObservationSnapshot({
     runtime: {
       organCount: organRuntime.organs?.length || 0,
@@ -499,6 +546,9 @@ export function buildEcosystemStateFromRuntimeConfig(
     rightsReview,
     externalizationReadiness,
     activationDecision,
+    executionTruth,
+    cardiaActivation,
+    publicActivation,
     emergenceObservation,
     emergenceBaseline,
     emergenceAccumulation,

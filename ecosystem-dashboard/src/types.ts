@@ -12,6 +12,11 @@ export interface EcosystemStateSummary {
   dataRailExternalizationAllowed: boolean;
   dataRailExternalizationActivated: boolean;
   activationDecisionStatus: string;
+  phase1aLiveProofRecorded: boolean;
+  bootstrapSourceRegistered: boolean;
+  executionTruthStatus: string;
+  cardiaActivationStatus: string;
+  publicActivationStatus: string;
   emergenceReadiness: string;
   externalizationReadiness: string;
   populationExpansionStatus: string;
@@ -163,6 +168,43 @@ export interface EcosystemStateSnapshot {
       explicitDecisionPresent: boolean;
       reasons: string[];
       pendingActions: string[];
+    };
+    executionTruth: {
+      status: string;
+      phase1aLiveProofRecorded: boolean;
+      bootstrapSourceRegistered: boolean;
+      observedGuardedLiveSession: boolean;
+      receiptTruthValidated: boolean;
+      incidentQueueClear: boolean;
+      blockers: string[];
+      nextActions: string[];
+    };
+    cardiaActivation: {
+      status: string;
+      executionTruthStatus: string;
+      cardiaDeploymentMode: string;
+      reserveHealthy: boolean;
+      walletFunded: boolean;
+      multisigDefined: boolean;
+      guardedLiveCapApproved: boolean;
+      firstDisbursementExecuted: boolean;
+      liveBankrollRouted: boolean;
+      recommendedFirstFundingMon: string;
+      blockers: string[];
+      nextActions: string[];
+    };
+    publicActivation: {
+      status: string;
+      executionTruthStatus: string;
+      cardiaActivationStatus: string;
+      productionInfraConfigured: boolean;
+      licensedPrivatePathValidated: boolean;
+      operatorMonitoringReady: boolean;
+      publicSurfaceReady: boolean;
+      activationApproved: boolean;
+      publicActivationLive: boolean;
+      blockers: string[];
+      nextActions: string[];
     };
     emergenceObservation: {
       readiness: string;

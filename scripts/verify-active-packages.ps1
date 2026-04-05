@@ -151,8 +151,23 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'execution-truth-core'
+    Path = 'execution-truth-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'cardia-activation-core'
+    Path = 'cardia-activation-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'population-expansion-core'
     Path = 'population-expansion-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'public-activation-core'
+    Path = 'public-activation-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{

@@ -143,6 +143,9 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Emergent protocol discovery scaffold: `emergent-protocol-core/`
 - Internal reward ledger surface: `reward-ledger-core/`
 - Speech I/O gateway: `speech-gateway/`
+- Runtime execution-truth closure surface: `execution-truth-core/`
+- Funded `Cardia` activation surface: `cardia-activation-core/`
+- Production/public activation surface: `public-activation-core/`
 
 Current local zero-capital sovereign state:
 
@@ -158,6 +161,24 @@ Current local zero-capital sovereign state:
 - emergence observation is `observable`, longitudinal accumulation is `review_ready` at `5/8` windows, and emergent protocol discovery now has a local pattern-extraction surface
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
+
+## Current Capital-Gated Frontier
+
+These surfaces now exist locally, but they are not live-complete:
+
+- live Phase 1a deployment proof uses a resumable checkpoint path in `sovereign-monad` and is currently blocked by deployer funding
+- bootstrap approved-source registration stays blocked until live Phase 1a deployment proof produces canonical live addresses
+- `execution-truth-core/` tracks runtime execution-truth closure and currently reports `blocked`
+- `cardia-activation-core/` tracks funded `Cardia` activation and currently reports `blocked`
+- `public-activation-core/` tracks production/public activation and currently reports `blocked`
+
+Current shared-state summary:
+
+- `phase1aLiveProofRecorded: false`
+- `bootstrapSourceRegistered: false`
+- `executionTruthStatus: blocked`
+- `cardiaActivationStatus: blocked`
+- `publicActivationStatus: blocked`
 
 ## Funnel Direction
 

@@ -104,6 +104,26 @@ export default function App() {
               <strong>{data.summary.activationDecisionStatus}</strong>
             </div>
             <div className="metric-card">
+              <span>Phase 1a Live Proof</span>
+              <strong>{data.summary.phase1aLiveProofRecorded ? 'recorded' : 'pending'}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Bootstrap Source</span>
+              <strong>{data.summary.bootstrapSourceRegistered ? 'registered' : 'pending'}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Execution Truth</span>
+              <strong>{data.summary.executionTruthStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Cardia Activation</span>
+              <strong>{data.summary.cardiaActivationStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Public Activation</span>
+              <strong>{data.summary.publicActivationStatus}</strong>
+            </div>
+            <div className="metric-card">
               <span>Externalization Active</span>
               <strong>{data.summary.dataRailExternalizationActivated ? 'yes' : 'no'}</strong>
             </div>
@@ -327,6 +347,53 @@ export default function App() {
                     ))}
                   </ul>
                 )}
+              </article>
+            </div>
+          </Section>
+
+          <Section title="Capital-Gated Frontier">
+            <div className="triple-grid">
+              <article className="subpanel">
+                <h3>Execution Truth</h3>
+                <p>Status: {data.surfaces.executionTruth.status}</p>
+                <p>Phase 1a Live Proof: {data.surfaces.executionTruth.phase1aLiveProofRecorded ? 'yes' : 'no'}</p>
+                <p>Bootstrap Source: {data.surfaces.executionTruth.bootstrapSourceRegistered ? 'yes' : 'no'}</p>
+                <p>Guarded-Live Session: {data.surfaces.executionTruth.observedGuardedLiveSession ? 'yes' : 'no'}</p>
+                <p>Receipt Truth: {data.surfaces.executionTruth.receiptTruthValidated ? 'yes' : 'no'}</p>
+                <ul>
+                  {data.surfaces.executionTruth.blockers.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Cardia Activation</h3>
+                <p>Status: {data.surfaces.cardiaActivation.status}</p>
+                <p>Runtime Mode: {data.surfaces.cardiaActivation.cardiaDeploymentMode}</p>
+                <p>Reserve Healthy: {data.surfaces.cardiaActivation.reserveHealthy ? 'yes' : 'no'}</p>
+                <p>Wallet Funded: {data.surfaces.cardiaActivation.walletFunded ? 'yes' : 'no'}</p>
+                <p>Multisig Defined: {data.surfaces.cardiaActivation.multisigDefined ? 'yes' : 'no'}</p>
+                <p>Cap Approved: {data.surfaces.cardiaActivation.guardedLiveCapApproved ? 'yes' : 'no'}</p>
+                <p>Recommended First Funding: {data.surfaces.cardiaActivation.recommendedFirstFundingMon} MON</p>
+                <ul>
+                  {data.surfaces.cardiaActivation.nextActions.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Production / Public Activation</h3>
+                <p>Status: {data.surfaces.publicActivation.status}</p>
+                <p>Infra Configured: {data.surfaces.publicActivation.productionInfraConfigured ? 'yes' : 'no'}</p>
+                <p>Licensed Path Validated: {data.surfaces.publicActivation.licensedPrivatePathValidated ? 'yes' : 'no'}</p>
+                <p>Operator Monitoring: {data.surfaces.publicActivation.operatorMonitoringReady ? 'yes' : 'no'}</p>
+                <p>Public Surface Ready: {data.surfaces.publicActivation.publicSurfaceReady ? 'yes' : 'no'}</p>
+                <p>Activation Approved: {data.surfaces.publicActivation.activationApproved ? 'yes' : 'no'}</p>
+                <ul>
+                  {data.surfaces.publicActivation.nextActions.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
               </article>
             </div>
           </Section>

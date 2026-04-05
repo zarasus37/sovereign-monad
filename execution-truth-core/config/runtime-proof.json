@@ -1,0 +1,12 @@
+{
+  "phase1aLiveProofRecorded": false,
+  "bootstrapSourceRegistered": false,
+  "observedGuardedLiveSession": false,
+  "receiptTruthValidated": false,
+  "incidentQueueClear": false,
+  "notes": [
+    "Live Phase 1a deployment proof is still pending.",
+    "Bootstrap approved-source registration is still pending.",
+    "Guarded-live runtime proof should only be marked true after a funded observed session."
+  ]
+}

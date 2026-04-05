@@ -18,6 +18,9 @@ export interface RuntimeConfigPathSet {
   activationDecisionModulePath: string;
   populationExpansionModulePath: string;
   emergenceAccumulatorModulePath: string;
+  executionTruthModulePath: string;
+  cardiaActivationModulePath: string;
+  publicActivationModulePath: string;
   daoCoreModulePath: string;
   keysNftModulePath: string;
   narrativeCoreModulePath: string;
@@ -41,6 +44,11 @@ export interface SharedStateSummary {
   dataRailExternalizationAllowed: boolean;
   dataRailExternalizationActivated: boolean;
   activationDecisionStatus: string;
+  phase1aLiveProofRecorded: boolean;
+  bootstrapSourceRegistered: boolean;
+  executionTruthStatus: string;
+  cardiaActivationStatus: string;
+  publicActivationStatus: string;
   emergenceReadiness: string;
   externalizationReadiness: string;
   populationExpansionStatus: string;
@@ -75,6 +83,9 @@ export interface EcosystemStateSnapshot {
     rightsReview: unknown;
     externalizationReadiness: unknown;
     activationDecision: unknown;
+    executionTruth: unknown;
+    cardiaActivation: unknown;
+    publicActivation: unknown;
     emergenceObservation: unknown;
     emergenceBaseline: unknown;
     emergenceAccumulation: unknown;
@@ -106,6 +117,9 @@ export interface BuilderBundle {
   loadRightsReviewSnapshot: () => any;
   loadExternalizationReadinessSnapshot: () => any;
   loadActivationDecisionSnapshot: () => any;
+  loadExecutionTruthSnapshot: () => any;
+  loadCardiaActivationSnapshot: () => any;
+  loadPublicActivationSnapshot: () => any;
   loadEmergenceBaselineSnapshot: () => any;
   loadEmergenceAccumulatorSnapshot: () => any;
   loadDaoSnapshot: () => any;

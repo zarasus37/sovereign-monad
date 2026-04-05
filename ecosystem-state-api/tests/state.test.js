@@ -118,6 +118,17 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
         activationAllowed: false,
         recommendedScope: 'none',
       }),
+      loadExecutionTruthSnapshot: () => ({
+        status: 'blocked',
+        phase1aLiveProofRecorded: false,
+        bootstrapSourceRegistered: false,
+      }),
+      loadCardiaActivationSnapshot: () => ({
+        status: 'blocked',
+      }),
+      loadPublicActivationSnapshot: () => ({
+        status: 'blocked',
+      }),
       loadEmergenceBaselineSnapshot: () => ({
         baselineStatus: 'forming',
       }),
@@ -159,6 +170,11 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
   assert.equal(snapshot.summary.dataRailExternalizationAllowed, false);
   assert.equal(snapshot.summary.dataRailExternalizationActivated, false);
   assert.equal(snapshot.summary.activationDecisionStatus, 'blocked');
+  assert.equal(snapshot.summary.phase1aLiveProofRecorded, false);
+  assert.equal(snapshot.summary.bootstrapSourceRegistered, false);
+  assert.equal(snapshot.summary.executionTruthStatus, 'blocked');
+  assert.equal(snapshot.summary.cardiaActivationStatus, 'blocked');
+  assert.equal(snapshot.summary.publicActivationStatus, 'blocked');
   assert.equal(snapshot.summary.emergenceReadiness, 'forming');
   assert.equal(snapshot.summary.externalizationReadiness, 'blocked');
   assert.equal(snapshot.summary.populationExpansionStatus, 'ready_to_expand');
@@ -258,6 +274,17 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
         activationAllowed: false,
         recommendedScope: 'limited_private',
       }),
+      loadExecutionTruthSnapshot: () => ({
+        status: 'closed',
+        phase1aLiveProofRecorded: true,
+        bootstrapSourceRegistered: true,
+      }),
+      loadCardiaActivationSnapshot: () => ({
+        status: 'ready_for_guarded_live',
+      }),
+      loadPublicActivationSnapshot: () => ({
+        status: 'private_ready',
+      }),
       loadEmergenceBaselineSnapshot: () => ({
         baselineStatus: 'stable',
       }),
@@ -295,6 +322,11 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
   assert.equal(snapshot.summary.dataRailExternalizationAllowed, true);
   assert.equal(snapshot.summary.dataRailExternalizationActivated, false);
   assert.equal(snapshot.summary.activationDecisionStatus, 'review');
+  assert.equal(snapshot.summary.phase1aLiveProofRecorded, true);
+  assert.equal(snapshot.summary.bootstrapSourceRegistered, true);
+  assert.equal(snapshot.summary.executionTruthStatus, 'closed');
+  assert.equal(snapshot.summary.cardiaActivationStatus, 'ready_for_guarded_live');
+  assert.equal(snapshot.summary.publicActivationStatus, 'private_ready');
   assert.equal(snapshot.summary.emergenceReadiness, 'observable');
   assert.equal(snapshot.summary.externalizationReadiness, 'ready');
   assert.equal(snapshot.summary.populationExpansionStatus, 'ready_to_expand');
