@@ -13,8 +13,34 @@
     "tags": ["signal", "coordination"]
   },
   {
-    "id": "evt-vox-package-001",
+    "id": "evt-hepar-screen-001",
+    "timestampMs": 1710000000500,
+    "actorId": "native-hepar",
+    "actorClass": "ecosystem_native",
+    "surface": "oracle",
+    "action": "publish_filtered_opportunity",
+    "outcome": "accepted",
+    "attributable": true,
+    "containsSensitivePayload": false,
+    "contributionScore": 78,
+    "tags": ["analysis", "screening"]
+  },
+  {
+    "id": "evt-cortex-brief-001",
     "timestampMs": 1710000001000,
+    "actorId": "native-cortex",
+    "actorClass": "ecosystem_native",
+    "surface": "signal_layer",
+    "action": "publish_structured_brief",
+    "outcome": "published",
+    "attributable": true,
+    "containsSensitivePayload": false,
+    "contributionScore": 84,
+    "tags": ["research", "brief"]
+  },
+  {
+    "id": "evt-vox-package-001",
+    "timestampMs": 1710000001500,
     "actorId": "native-vox",
     "actorClass": "ecosystem_native",
     "surface": "platform",
@@ -26,8 +52,47 @@
     "tags": ["narrative", "distribution"]
   },
   {
-    "id": "evt-operator-review-001",
+    "id": "evt-pneuma-qualify-001",
     "timestampMs": 1710000002000,
+    "actorId": "native-pneuma",
+    "actorClass": "ecosystem_native",
+    "surface": "platform",
+    "action": "qualify_exchange_path",
+    "outcome": "qualified",
+    "attributable": true,
+    "containsSensitivePayload": false,
+    "contributionScore": 83,
+    "tags": ["exchange", "partnership"]
+  },
+  {
+    "id": "evt-delegate-research-001",
+    "timestampMs": 1710000002500,
+    "actorId": "delegated-research-user",
+    "actorClass": "delegated_human",
+    "surface": "signal_layer",
+    "action": "submit_annotated_brief",
+    "outcome": "qualified",
+    "attributable": true,
+    "containsSensitivePayload": false,
+    "contributionScore": 76,
+    "tags": ["research", "delegation"]
+  },
+  {
+    "id": "evt-partner-intro-001",
+    "timestampMs": 1710000003000,
+    "actorId": "delegated-partner-user",
+    "actorClass": "delegated_human",
+    "surface": "platform",
+    "action": "accept_partner_intro",
+    "outcome": "accepted",
+    "attributable": true,
+    "containsSensitivePayload": false,
+    "contributionScore": 72,
+    "tags": ["partnership", "growth"]
+  },
+  {
+    "id": "evt-operator-review-001",
+    "timestampMs": 1710000003500,
     "actorId": "operator-review",
     "actorClass": "operator_review",
     "surface": "keys",
@@ -40,7 +105,7 @@
   },
   {
     "id": "evt-user-sensitive-001",
-    "timestampMs": 1710000003000,
+    "timestampMs": 1710000004000,
     "actorId": "future-buyer",
     "actorClass": "user_linked",
     "surface": "platform",

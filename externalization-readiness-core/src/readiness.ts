@@ -5,13 +5,18 @@ export function buildExternalizationReadinessSnapshot(
   input: ExternalizationReadinessInput,
 ): ExternalizationReadinessSnapshot {
   const blockers: string[] = [];
+  const clearedGates: string[] = [];
 
   if (!input.governance.thresholdsMet) {
     blockers.push('population diversity thresholds are not met');
+  } else {
+    clearedGates.push('population diversity thresholds are met');
   }
 
   if (!input.governance.externalizationAllowed) {
     blockers.push('governance does not allow externalization yet');
+  } else {
+    clearedGates.push('governance allows structural externalization');
   }
 
   if (input.rightsReview.blockedCount > 0) {
@@ -22,16 +27,26 @@ export function buildExternalizationReadinessSnapshot(
     blockers.push('manual rights review queue is not empty');
   }
 
+  if (input.rightsReview.openCaseCount === 0) {
+    clearedGates.push('rights review queue is resolved');
+  }
+
   if (input.gnosis.integrityStatus !== 'clear') {
     blockers.push('integrity posture is not clear');
+  } else {
+    clearedGates.push('integrity posture is clear');
   }
 
   if (input.boundaryStress.pauseSuggested || input.boundaryStress.escalationTier === 'tier2') {
     blockers.push('boundary stress posture is too elevated');
+  } else {
+    clearedGates.push('boundary stress posture is within bounded activation bands');
   }
 
   if (input.emergenceObservation.readiness === 'insufficient') {
     blockers.push('emergence observation baseline is too thin');
+  } else {
+    clearedGates.push('emergence observation baseline is sufficient for activation review');
   }
 
   let status: ExternalizationReadinessSnapshot['status'] = 'ready';
@@ -49,6 +64,7 @@ export function buildExternalizationReadinessSnapshot(
     implemented: true,
     status,
     blockers,
+    clearedGates,
     checklist: [
       'thresholds met',
       'rights review queue resolved',
@@ -62,22 +78,15 @@ export function buildExternalizationReadinessSnapshot(
 export function loadLocalExternalizationReadinessSnapshot(
   packageRoot: string,
 ): ExternalizationReadinessSnapshot {
-  const governanceModulePath = path.resolve(
-    packageRoot,
-    '..',
-    'data-rail-governance',
-    'dist',
-    'src',
-    'index.js',
-  );
-  const rightsModulePath = path.resolve(packageRoot, '..', 'rights-review-core', 'dist', 'index.js');
-  const gnosisModulePath = path.resolve(packageRoot, '..', 'gnosis-core', 'dist', 'index.js');
-  const boundaryModulePath = path.resolve(packageRoot, '..', 'boundary-stress-monitor', 'dist', 'index.js');
-  const emergenceModulePath = path.resolve(packageRoot, '..', 'emergence-observer-core', 'dist', 'index.js');
-  const signalModulePath = path.resolve(packageRoot, '..', 'signal-layer', 'dist', 'index.js');
-  const oracleModulePath = path.resolve(packageRoot, '..', 'oracle-core', 'dist', 'index.js');
-  const organRuntimeModulePath = path.resolve(packageRoot, '..', 'organ-runtime', 'dist', 'index.js');
-  const runtimeConfigPath = path.resolve(packageRoot, '..', 'organ-runtime', 'config', 'runtime.json');
+  const governanceModulePath = path.resolve(packageRoot, 'data-rail-governance', 'dist', 'src', 'index.js');
+  const rightsModulePath = path.resolve(packageRoot, 'rights-review-core', 'dist', 'index.js');
+  const gnosisModulePath = path.resolve(packageRoot, 'gnosis-core', 'dist', 'index.js');
+  const boundaryModulePath = path.resolve(packageRoot, 'boundary-stress-monitor', 'dist', 'index.js');
+  const emergenceModulePath = path.resolve(packageRoot, 'emergence-observer-core', 'dist', 'index.js');
+  const signalModulePath = path.resolve(packageRoot, 'signal-layer', 'dist', 'index.js');
+  const oracleModulePath = path.resolve(packageRoot, 'oracle-core', 'dist', 'index.js');
+  const organRuntimeModulePath = path.resolve(packageRoot, 'organ-runtime', 'dist', 'index.js');
+  const runtimeConfigPath = path.resolve(packageRoot, 'organ-runtime', 'config', 'runtime.json');
 
   const { loadLocalGovernanceSnapshot } = require(governanceModulePath) as {
     loadLocalGovernanceSnapshot: (packageRoot: string) => any;
@@ -105,8 +114,8 @@ export function loadLocalExternalizationReadinessSnapshot(
   };
   const runtimeConfig = require(runtimeConfigPath);
 
-  const governance = loadLocalGovernanceSnapshot(path.resolve(packageRoot, '..'));
-  const rightsReview = loadLocalRightsReviewSnapshot(path.resolve(packageRoot, '..'));
+  const governance = loadLocalGovernanceSnapshot(packageRoot);
+  const rightsReview = loadLocalRightsReviewSnapshot(packageRoot);
   const runtime = buildRuntimeSnapshot(runtimeConfig);
   const signal = buildSignalLayerSnapshot(runtimeConfig?.synapse?.sampleSignals || []);
   const oracle = buildOracleSnapshot({
@@ -163,7 +172,7 @@ export function loadLocalExternalizationReadinessSnapshot(
           .length || 0,
     },
   });
-  const emergence = loadLocalEmergenceObservationSnapshot(path.resolve(packageRoot, '..'));
+  const emergence = loadLocalEmergenceObservationSnapshot(packageRoot);
 
   return buildExternalizationReadinessSnapshot({
     governance: {
@@ -174,6 +183,7 @@ export function loadLocalExternalizationReadinessSnapshot(
       blockedCount: rightsReview.blockedCount,
       manualReviewCount: rightsReview.manualReviewCount,
       conditionalCount: rightsReview.conditionalCount,
+      openCaseCount: rightsReview.openCaseCount,
     },
     gnosis: {
       integrityStatus: gnosis.integrityStatus,

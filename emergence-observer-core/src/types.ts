@@ -54,7 +54,7 @@ export interface EmergenceObservationSnapshot {
   observationOnly: true;
   emergenceClaimed: false;
   readiness: ObservationReadiness;
-  evidenceWindow: 'seed';
+  evidenceWindow: 'seed' | 'forming' | 'extended';
   markers: EmergenceMarkerAssessment[];
   blockedBy: string[];
   nextCollectionTargets: string[];

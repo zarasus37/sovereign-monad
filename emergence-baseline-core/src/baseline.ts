@@ -70,18 +70,12 @@ export function buildEmergenceBaselineSnapshot(
 export function loadLocalEmergenceBaselineSnapshot(
   packageRoot: string,
 ): EmergenceBaselineSnapshot {
-  const emergenceModulePath = path.resolve(
-    packageRoot,
-    '..',
-    'emergence-observer-core',
-    'dist',
-    'index.js',
-  );
+  const emergenceModulePath = path.resolve(packageRoot, 'emergence-observer-core', 'dist', 'index.js');
   const { loadLocalEmergenceObservationSnapshot } = require(emergenceModulePath) as {
     loadLocalEmergenceObservationSnapshot: (packageRoot: string) => any;
   };
 
-  const current = loadLocalEmergenceObservationSnapshot(path.resolve(packageRoot, '..'));
+  const current = loadLocalEmergenceObservationSnapshot(packageRoot);
   const windows: EmergenceObservationWindow[] = [
     ...(seedWindows as EmergenceObservationWindow[]),
     {

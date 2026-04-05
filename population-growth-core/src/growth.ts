@@ -158,30 +158,25 @@ export function buildPopulationGrowthSnapshot(
     implemented: true,
     thresholdsDefined: true,
     thresholdsMet: gaps.length === 0,
+    metrics,
     gapCount: gaps.length,
     gaps,
     recommendations: buildRecommendations(gaps, events),
+    executedActions:
+      gaps.length === 0
+        ? [
+            `population now spans ${metrics.totalEvents} attributable events`,
+            `population now spans ${metrics.distinctActors} distinct actors across ${metrics.actorClassCount} actor classes`,
+            `population now spans ${metrics.surfaceCount} surfaces and ${metrics.outcomeCount} outcomes`,
+          ]
+        : [],
   };
 }
 
 export function loadLocalPopulationGrowthSnapshot(packageRoot: string): PopulationGrowthSnapshot {
-  const governanceModulePath = path.resolve(
-    packageRoot,
-    '..',
-    'data-rail-governance',
-    'dist',
-    'src',
-    'index.js',
-  );
-  const dataRailModulePath = path.resolve(packageRoot, '..', 'data-rail-core', 'dist', 'src', 'index.js');
-  const thresholdsPath = path.resolve(
-    packageRoot,
-    '..',
-    'data-rail-governance',
-    'dist',
-    'config',
-    'thresholds.json',
-  );
+  const governanceModulePath = path.resolve(packageRoot, 'data-rail-governance', 'dist', 'src', 'index.js');
+  const dataRailModulePath = path.resolve(packageRoot, 'data-rail-core', 'dist', 'src', 'index.js');
+  const thresholdsPath = path.resolve(packageRoot, 'data-rail-governance', 'dist', 'config', 'thresholds.json');
   const { buildGovernanceSnapshot } = require(governanceModulePath) as {
     buildGovernanceSnapshot: (events: PopulationGrowthEvent[]) => {
       diversity: { metrics: PopulationGrowthMetrics };

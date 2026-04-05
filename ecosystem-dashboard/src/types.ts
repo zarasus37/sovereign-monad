@@ -102,20 +102,31 @@ export interface EcosystemStateSnapshot {
     };
     populationGrowth: {
       thresholdsMet: boolean;
+      metrics: {
+        totalEvents: number;
+        distinctActors: number;
+        actorClassCount: number;
+        surfaceCount: number;
+        outcomeCount: number;
+      };
       gapCount: number;
       gaps: Array<{ dimension: string; reason: string }>;
       recommendations: Array<{ priority: string; action: string }>;
+      executedActions: string[];
     };
     rightsReview: {
       reviewCaseCount: number;
+      openCaseCount: number;
+      resolvedCaseCount: number;
       blockedCount: number;
       conditionalCount: number;
       manualReviewCount: number;
-      cases: Array<{ eventId: string; disposition: string }>;
+      cases: Array<{ eventId: string; disposition: string; open: boolean; resolution?: string }>;
     };
     externalizationReadiness: {
       status: string;
       blockers: string[];
+      clearedGates: string[];
       checklist: string[];
     };
     emergenceObservation: {

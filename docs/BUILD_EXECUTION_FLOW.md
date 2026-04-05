@@ -112,11 +112,12 @@ Current zero-capital frontier:
 - `reward-ledger-core` now provides an internal non-monetary reward ledger surface
 - `data-rail-governance` now provides local diversity thresholds, rights policy, and externalization gate evaluation
 - `emergence-observer-core` now provides local observation-only emergence readiness and longitudinal baselining
-- `population-growth-core` now provides the explicit plan for closing threshold gaps
-- `rights-review-core` now provides a local review workflow around non-externalizable and conditional events
-- `externalization-readiness-core` now provides the blocked / conditional / ready activation gate for future externalization
-- `emergence-baseline-core` now provides a seed longitudinal baseline across observation windows
-- the next no-cost priority is executing population growth against the thresholds, resolving the rights review queue, and extending the emergence baseline with real windows
+- `population-growth-core` now records a threshold-clearing local population across `9` attributable events, `9` actors, `4` actor classes, `5` surfaces, and `5` outcomes
+- `rights-review-core` now resolves the local queue with `0` open cases while preserving closed internal denials and redactions
+- `externalization-readiness-core` now evaluates the verified local sample as structurally `ready`
+- `emergence-observer-core` now reports `observable` readiness with a forming evidence window
+- `emergence-baseline-core` now extends the baseline to `5` windows with an improving readiness trend
+- the next no-cost priority is activation-decision discipline, continued longitudinal emergence accumulation, and live population expansion beyond the local sample
 
 Only after those exist does funded live activation become the limiting factor.
 

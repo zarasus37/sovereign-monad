@@ -9,7 +9,7 @@ export { buildEmergenceBaselineSnapshot, loadLocalEmergenceBaselineSnapshot };
 export type { EmergenceBaselineSnapshot, EmergenceObservationWindow };
 
 function main() {
-  const snapshot = loadLocalEmergenceBaselineSnapshot(path.resolve(__dirname, '..', '..'));
+  const snapshot = loadLocalEmergenceBaselineSnapshot(path.resolve(__dirname, '..', '..', '..'));
   process.stdout.write(`${JSON.stringify(snapshot, null, 2)}\n`);
 }
 

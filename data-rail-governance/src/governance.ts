@@ -180,7 +180,7 @@ export function evaluateExternalizationDecision(
 }
 
 export function loadLocalGovernanceSnapshot(packageRoot: string): DataRailGovernanceSnapshot {
-  const modulePath = path.resolve(packageRoot, '..', 'data-rail-core', 'dist', 'src', 'core.js');
+  const modulePath = path.resolve(packageRoot, 'data-rail-core', 'dist', 'src', 'core.js');
   const { buildDataRailSnapshot, loadExampleEvents } = require(modulePath) as {
     buildDataRailSnapshot: (events: GovernedBehaviorEvent[]) => { events: GovernedBehaviorEvent[] };
     loadExampleEvents: () => GovernedBehaviorEvent[];

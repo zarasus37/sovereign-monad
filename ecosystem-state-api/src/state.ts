@@ -46,58 +46,53 @@ function readJsonFile(filePath: string) {
 }
 
 function buildModulePaths(packageRoot: string, runtimeConfigPath: string): RuntimeConfigPathSet {
+  const repoRoot = path.resolve(packageRoot, '..');
   return {
     packageRoot,
     runtimeConfigPath,
-    organRuntimeModulePath: path.resolve(packageRoot, '..', 'organ-runtime', 'dist', 'index.js'),
-    signalLayerModulePath: path.resolve(packageRoot, '..', 'signal-layer', 'dist', 'index.js'),
-    oracleCoreModulePath: path.resolve(packageRoot, '..', 'oracle-core', 'dist', 'index.js'),
-    gnosisCoreModulePath: path.resolve(packageRoot, '..', 'gnosis-core', 'dist', 'index.js'),
+    organRuntimeModulePath: path.resolve(repoRoot, 'organ-runtime', 'dist', 'index.js'),
+    signalLayerModulePath: path.resolve(repoRoot, 'signal-layer', 'dist', 'index.js'),
+    oracleCoreModulePath: path.resolve(repoRoot, 'oracle-core', 'dist', 'index.js'),
+    gnosisCoreModulePath: path.resolve(repoRoot, 'gnosis-core', 'dist', 'index.js'),
     boundaryStressModulePath: path.resolve(
-      packageRoot,
-      '..',
+      repoRoot,
       'boundary-stress-monitor',
       'dist',
       'index.js',
     ),
-    dataRailCoreModulePath: path.resolve(packageRoot, '..', 'data-rail-core', 'dist', 'src', 'index.js'),
+    dataRailCoreModulePath: path.resolve(repoRoot, 'data-rail-core', 'dist', 'src', 'index.js'),
     dataRailRouterModulePath: path.resolve(
-      packageRoot,
-      '..',
+      repoRoot,
       'data-rail-router',
       'dist',
       'src',
       'index.js',
     ),
     rewardLedgerModulePath: path.resolve(
-      packageRoot,
-      '..',
+      repoRoot,
       'reward-ledger-core',
       'dist',
       'src',
       'index.js',
     ),
     dataRailGovernanceModulePath: path.resolve(
-      packageRoot,
-      '..',
+      repoRoot,
       'data-rail-governance',
       'dist',
       'src',
       'index.js',
     ),
-    emergenceObserverModulePath: path.resolve(packageRoot, '..', 'emergence-observer-core', 'dist', 'index.js'),
-    populationGrowthModulePath: path.resolve(packageRoot, '..', 'population-growth-core', 'dist', 'index.js'),
-    rightsReviewModulePath: path.resolve(packageRoot, '..', 'rights-review-core', 'dist', 'index.js'),
+    emergenceObserverModulePath: path.resolve(repoRoot, 'emergence-observer-core', 'dist', 'index.js'),
+    populationGrowthModulePath: path.resolve(repoRoot, 'population-growth-core', 'dist', 'index.js'),
+    rightsReviewModulePath: path.resolve(repoRoot, 'rights-review-core', 'dist', 'index.js'),
     externalizationReadinessModulePath: path.resolve(
-      packageRoot,
-      '..',
+      repoRoot,
       'externalization-readiness-core',
       'dist',
       'index.js',
     ),
     emergenceBaselineModulePath: path.resolve(
-      packageRoot,
-      '..',
+      repoRoot,
       'emergence-baseline-core',
       'dist',
       'src',
@@ -128,6 +123,7 @@ function loadBuiltModule<T>(modulePath: string, exportName: string): T {
 
 export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string): BuilderBundle {
   const paths = buildModulePaths(packageRoot, runtimeConfigPath);
+  const repoRoot = path.resolve(packageRoot, '..');
 
   return {
     buildRuntimeSnapshot: loadBuiltModule(paths.organRuntimeModulePath, 'buildRuntimeSnapshot'),
@@ -160,22 +156,22 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
       loadBuiltModule<(packageRoot: string) => any>(
         paths.populationGrowthModulePath,
         'loadLocalPopulationGrowthSnapshot',
-      )(packageRoot),
+      )(repoRoot),
     loadRightsReviewSnapshot: () =>
       loadBuiltModule<(packageRoot: string) => any>(
         paths.rightsReviewModulePath,
         'loadLocalRightsReviewSnapshot',
-      )(packageRoot),
+      )(repoRoot),
     loadExternalizationReadinessSnapshot: () =>
       loadBuiltModule<(packageRoot: string) => any>(
         paths.externalizationReadinessModulePath,
         'loadLocalExternalizationReadinessSnapshot',
-      )(packageRoot),
+      )(repoRoot),
     loadEmergenceBaselineSnapshot: () =>
       loadBuiltModule<(packageRoot: string) => any>(
         paths.emergenceBaselineModulePath,
         'loadLocalEmergenceBaselineSnapshot',
-      )(packageRoot),
+      )(repoRoot),
   };
 }
 
@@ -231,10 +227,10 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     emergenceReadiness: emergenceObservation?.readiness || 'insufficient',
     externalizationReadiness: externalizationReadiness?.status || 'blocked',
     nextFrontier: [
-      'population_growth_execution',
-      'rights_review_resolution',
-      'externalization_activation_closure',
-      'emergence_window_accumulation',
+      'externalization_activation_decision',
+      'longitudinal_emergence_accumulation',
+      'live_population_expansion',
+      'capital_gated_phase1a_resume',
     ],
   };
 }

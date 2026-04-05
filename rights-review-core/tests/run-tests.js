@@ -23,6 +23,7 @@ test('rights review classifies threshold-only blockers as conditional', () => {
   ]);
 
   assert.equal(snapshot.conditionalCount, 1);
+  assert.equal(snapshot.openCaseCount, 1);
   assert.equal(snapshot.cases[0].disposition, 'eligible_if_thresholds_met');
 });
 
@@ -49,4 +50,30 @@ test('rights review classifies sensitive payload as redact and retain internal',
   ]);
 
   assert.equal(snapshot.cases[0].disposition, 'redact_and_retain_internal');
+});
+
+test('rights review excludes resolved denials from the open queue', () => {
+  const snapshot = buildRightsReviewSnapshot(
+    [
+      {
+        eventId: 'evt-4',
+        allowed: false,
+        reasons: ['event contains blocked tags: review'],
+      },
+    ],
+    [
+      {
+        eventId: 'evt-4',
+        closed: true,
+        resolution: 'deny_internal',
+        notes: 'resolved internally',
+      },
+    ],
+  );
+
+  assert.equal(snapshot.reviewCaseCount, 1);
+  assert.equal(snapshot.openCaseCount, 0);
+  assert.equal(snapshot.resolvedCaseCount, 1);
+  assert.equal(snapshot.blockedCount, 0);
+  assert.equal(snapshot.cases[0].open, false);
 });

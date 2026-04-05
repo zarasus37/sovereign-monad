@@ -229,16 +229,31 @@ export default function App() {
               <article className="subpanel">
                 <h3>Population Growth</h3>
                 <p>Thresholds Met: {data.surfaces.populationGrowth.thresholdsMet ? 'yes' : 'no'}</p>
+                <p>
+                  Population:{' '}
+                  {data.surfaces.populationGrowth.metrics.totalEvents} events /{' '}
+                  {data.surfaces.populationGrowth.metrics.distinctActors} actors
+                </p>
                 <p>Gap Count: {data.surfaces.populationGrowth.gapCount}</p>
-                <ul>
-                  {data.surfaces.populationGrowth.recommendations.map((item, index) => (
-                    <li key={`${item.priority}-${index}`}>{item.priority}: {item.action}</li>
-                  ))}
-                </ul>
+                {data.surfaces.populationGrowth.recommendations.length > 0 ? (
+                  <ul>
+                    {data.surfaces.populationGrowth.recommendations.map((item, index) => (
+                      <li key={`${item.priority}-${index}`}>{item.priority}: {item.action}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <ul>
+                    {data.surfaces.populationGrowth.executedActions.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
               </article>
               <article className="subpanel">
                 <h3>Rights Review</h3>
                 <p>Review Cases: {data.surfaces.rightsReview.reviewCaseCount}</p>
+                <p>Open Queue: {data.surfaces.rightsReview.openCaseCount}</p>
+                <p>Resolved: {data.surfaces.rightsReview.resolvedCaseCount}</p>
                 <p>Blocked: {data.surfaces.rightsReview.blockedCount}</p>
                 <p>Conditional: {data.surfaces.rightsReview.conditionalCount}</p>
                 <p>Manual Review: {data.surfaces.rightsReview.manualReviewCount}</p>
@@ -246,11 +261,19 @@ export default function App() {
               <article className="subpanel">
                 <h3>Activation Readiness</h3>
                 <p>Status: {data.surfaces.externalizationReadiness.status}</p>
-                <ul>
-                  {data.surfaces.externalizationReadiness.blockers.map((reason) => (
-                    <li key={reason}>{reason}</li>
-                  ))}
-                </ul>
+                {data.surfaces.externalizationReadiness.blockers.length > 0 ? (
+                  <ul>
+                    {data.surfaces.externalizationReadiness.blockers.map((reason) => (
+                      <li key={reason}>{reason}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <ul>
+                    {data.surfaces.externalizationReadiness.clearedGates.map((reason) => (
+                      <li key={reason}>{reason}</li>
+                    ))}
+                  </ul>
+                )}
               </article>
             </div>
           </Section>

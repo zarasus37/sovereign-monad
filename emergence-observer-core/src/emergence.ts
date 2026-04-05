@@ -185,12 +185,20 @@ export function buildEmergenceObservationSnapshot(
     blockedBy.push('integrity containment is still active');
   }
 
+  let evidenceWindow: EmergenceObservationSnapshot['evidenceWindow'] = 'seed';
+  if (input.dataRail.normalizedCount >= 8 && input.governance.thresholdsMet) {
+    evidenceWindow = 'forming';
+  }
+  if (input.dataRail.normalizedCount >= 16 && input.governance.externalizationAllowed) {
+    evidenceWindow = 'extended';
+  }
+
   return {
     implemented: true,
     observationOnly: true,
     emergenceClaimed: false,
     readiness: deriveReadiness(markers),
-    evidenceWindow: 'seed',
+    evidenceWindow,
     markers,
     blockedBy,
     nextCollectionTargets: [
@@ -202,20 +210,13 @@ export function buildEmergenceObservationSnapshot(
 }
 
 export function loadLocalEmergenceObservationSnapshot(packageRoot: string): EmergenceObservationSnapshot {
-  const runtimeModulePath = path.resolve(packageRoot, '..', 'organ-runtime', 'dist', 'index.js');
-  const signalModulePath = path.resolve(packageRoot, '..', 'signal-layer', 'dist', 'index.js');
-  const oracleModulePath = path.resolve(packageRoot, '..', 'oracle-core', 'dist', 'index.js');
-  const gnosisModulePath = path.resolve(packageRoot, '..', 'gnosis-core', 'dist', 'index.js');
-  const dataRailModulePath = path.resolve(packageRoot, '..', 'data-rail-core', 'dist', 'src', 'core.js');
-  const governanceModulePath = path.resolve(
-    packageRoot,
-    '..',
-    'data-rail-governance',
-    'dist',
-    'src',
-    'index.js',
-  );
-  const runtimeConfigPath = path.resolve(packageRoot, '..', 'organ-runtime', 'config', 'runtime.json');
+  const runtimeModulePath = path.resolve(packageRoot, 'organ-runtime', 'dist', 'index.js');
+  const signalModulePath = path.resolve(packageRoot, 'signal-layer', 'dist', 'index.js');
+  const oracleModulePath = path.resolve(packageRoot, 'oracle-core', 'dist', 'index.js');
+  const gnosisModulePath = path.resolve(packageRoot, 'gnosis-core', 'dist', 'index.js');
+  const dataRailModulePath = path.resolve(packageRoot, 'data-rail-core', 'dist', 'src', 'core.js');
+  const governanceModulePath = path.resolve(packageRoot, 'data-rail-governance', 'dist', 'src', 'index.js');
+  const runtimeConfigPath = path.resolve(packageRoot, 'organ-runtime', 'config', 'runtime.json');
 
   const { buildRuntimeSnapshot } = require(runtimeModulePath) as {
     buildRuntimeSnapshot: (config: any) => any;

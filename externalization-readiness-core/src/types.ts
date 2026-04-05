@@ -9,6 +9,7 @@ export interface ExternalizationReadinessInput {
     blockedCount: number;
     manualReviewCount: number;
     conditionalCount: number;
+    openCaseCount: number;
   };
   gnosis: {
     integrityStatus: string;
@@ -26,5 +27,6 @@ export interface ExternalizationReadinessSnapshot {
   implemented: true;
   status: ExternalizationReadinessStatus;
   blockers: string[];
+  clearedGates: string[];
   checklist: string[];
 }

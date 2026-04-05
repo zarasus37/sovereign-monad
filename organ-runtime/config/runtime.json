@@ -82,6 +82,14 @@
         "tags": ["research", "brief"]
       },
       {
+        "id": "sig-research-002",
+        "category": "research",
+        "severity": "medium",
+        "latency": "normal",
+        "summary": "Rights closure and threshold progress need synthesis before activation review.",
+        "tags": ["rights", "activation"]
+      },
+      {
         "id": "sig-growth-001",
         "category": "growth",
         "severity": "medium",
@@ -229,12 +237,12 @@
         "summary": "Human participant acting through a delegate agent."
       },
       {
-        "id": "operator-review",
-        "mode": "operator_override",
-        "hasDelegateAgent": false,
+        "id": "delegated-partner-user",
+        "mode": "delegated_human",
+        "hasDelegateAgent": true,
         "canTouchCapital": false,
-        "canOverrideBoundaries": true,
-        "summary": "Operator review identity with explicit boundary limits."
+        "canOverrideBoundaries": false,
+        "summary": "Human-linked exchange participant acting through a bounded delegate agent."
       }
     ]
   },
@@ -255,7 +263,7 @@
         },
         {
           "name": "operator_queue_depth",
-          "current": 11,
+          "current": 5,
           "min": 0,
           "max": 8,
           "unit": "items",
@@ -268,11 +276,11 @@
         {
           "id": "imm-001",
           "category": "integrity",
-          "severity": "high",
-          "selfBoundaryViolated": true,
-          "contained": false,
-          "needsRepair": true,
-          "summary": "Boundary violation detected in a proposed routing path."
+          "severity": "medium",
+          "selfBoundaryViolated": false,
+          "contained": true,
+          "needsRepair": false,
+          "summary": "Prior boundary-sensitive routing issue was contained and converted into a bounded rule."
         },
         {
           "id": "imm-002",

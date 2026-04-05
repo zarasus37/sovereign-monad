@@ -49,6 +49,7 @@ test('emergence snapshot stays observational and forming under seed-stage eviden
   assert.equal(snapshot.observationOnly, true);
   assert.equal(snapshot.emergenceClaimed, false);
   assert.equal(snapshot.readiness, 'forming');
+  assert.equal(snapshot.evidenceWindow, 'seed');
   assert.ok(snapshot.blockedBy.some((reason) => reason.includes('diversity thresholds are not met')));
 });
 
@@ -84,5 +85,6 @@ test('emergence snapshot becomes observable only with stronger continuity and cl
   });
 
   assert.equal(snapshot.readiness, 'observable');
+  assert.equal(snapshot.evidenceWindow, 'forming');
   assert.equal(snapshot.blockedBy.length, 0);
 });

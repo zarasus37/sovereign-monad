@@ -134,6 +134,13 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Internal reward ledger surface: `reward-ledger-core/`
 - Speech I/O gateway: `speech-gateway/`
 
+Current local Data Rail state:
+
+- thresholds are met on the current verified local sample (`9` events, `9` actors, `4` actor classes, `5` surfaces, `5` outcomes)
+- the rights review queue is resolved with `0` open cases
+- externalization readiness is structurally `ready` in local analysis mode
+- emergence observation is `observable` with a forming evidence window, and the baseline now spans `5` windows
+
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
 
 ## Funnel Direction

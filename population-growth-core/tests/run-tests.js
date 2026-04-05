@@ -68,4 +68,6 @@ test('population growth snapshot clears once thresholds are met', () => {
 
   assert.equal(snapshot.thresholdsMet, true);
   assert.equal(snapshot.gapCount, 0);
+  assert.equal(snapshot.metrics.totalEvents, 10);
+  assert.ok(snapshot.executedActions.some((item) => item.includes('10 attributable events')));
 });

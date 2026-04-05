@@ -31,7 +31,7 @@ export type {
 
 function main() {
   const snapshot: DataRailGovernanceSnapshot = loadLocalGovernanceSnapshot(
-    path.resolve(__dirname, '..', '..'),
+    path.resolve(__dirname, '..', '..', '..'),
   );
   process.stdout.write(`${JSON.stringify(snapshot, null, 2)}\n`);
 }

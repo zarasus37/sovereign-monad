@@ -22,5 +22,29 @@
       "continuity": "partial",
       "boundary_integrity": "partial"
     }
+  },
+  {
+    "windowId": "growth-window-c",
+    "timestampMs": 1710007200000,
+    "readiness": "forming",
+    "markerLevels": {
+      "role_differentiation": "present",
+      "mutual_contribution": "present",
+      "adaptive_feedback": "present",
+      "continuity": "partial",
+      "boundary_integrity": "partial"
+    }
+  },
+  {
+    "windowId": "review-window-d",
+    "timestampMs": 1710010800000,
+    "readiness": "forming",
+    "markerLevels": {
+      "role_differentiation": "present",
+      "mutual_contribution": "present",
+      "adaptive_feedback": "present",
+      "continuity": "present",
+      "boundary_integrity": "partial"
+    }
   }
 ]

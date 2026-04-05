@@ -52,7 +52,9 @@ export interface PopulationGrowthSnapshot {
   implemented: true;
   thresholdsDefined: true;
   thresholdsMet: boolean;
+  metrics: PopulationGrowthMetrics;
   gapCount: number;
   gaps: PopulationGap[];
   recommendations: PopulationGrowthRecommendation[];
+  executedActions: string[];
 }

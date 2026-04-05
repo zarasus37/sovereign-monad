@@ -1,5 +1,10 @@
 import path from 'path';
-import { RightsReviewCase, RightsReviewSnapshot } from './types';
+import resolutionConfig from '../config/resolutions.example.json';
+import {
+  RightsResolutionRecord,
+  RightsReviewCase,
+  RightsReviewSnapshot,
+} from './types';
 
 function classifyCase(reasons: string[]): RightsReviewCase['disposition'] {
   if (reasons.some((reason) => reason.includes('sensitive payload'))) {
@@ -43,39 +48,42 @@ function requiredActionsFor(disposition: RightsReviewCase['disposition']): strin
 
 export function buildRightsReviewSnapshot(
   decisions: Array<{ eventId: string; allowed: boolean; reasons: string[] }>,
+  resolutions: RightsResolutionRecord[] = resolutionConfig as RightsResolutionRecord[],
 ): RightsReviewSnapshot {
+  const resolutionMap = new Map(resolutions.map((resolution) => [resolution.eventId, resolution]));
   const cases: RightsReviewCase[] = decisions
     .filter((decision) => !decision.allowed)
     .map((decision) => {
       const disposition = classifyCase(decision.reasons);
+      const resolution = resolutionMap.get(decision.eventId);
       return {
         eventId: decision.eventId,
         disposition,
         reasons: decision.reasons,
         requiredActions: requiredActionsFor(disposition),
+        open: resolution ? !resolution.closed : true,
+        resolution: resolution?.resolution,
+        resolutionNotes: resolution?.notes,
       };
     });
+
+  const openCases = cases.filter((item) => item.open);
 
   return {
     implemented: true,
     reviewCaseCount: cases.length,
-    blockedCount: cases.filter((item) => item.disposition === 'deny').length,
-    conditionalCount: cases.filter((item) => item.disposition === 'eligible_if_thresholds_met').length,
-    manualReviewCount: cases.filter((item) => item.disposition === 'manual_review').length,
+    openCaseCount: openCases.length,
+    resolvedCaseCount: cases.length - openCases.length,
+    blockedCount: openCases.filter((item) => item.disposition === 'deny').length,
+    conditionalCount: openCases.filter((item) => item.disposition === 'eligible_if_thresholds_met').length,
+    manualReviewCount: openCases.filter((item) => item.disposition === 'manual_review').length,
     cases,
   };
 }
 
 export function loadLocalRightsReviewSnapshot(packageRoot: string): RightsReviewSnapshot {
-  const dataRailModulePath = path.resolve(packageRoot, '..', 'data-rail-core', 'dist', 'src', 'index.js');
-  const governanceModulePath = path.resolve(
-    packageRoot,
-    '..',
-    'data-rail-governance',
-    'dist',
-    'src',
-    'index.js',
-  );
+  const dataRailModulePath = path.resolve(packageRoot, 'data-rail-core', 'dist', 'src', 'index.js');
+  const governanceModulePath = path.resolve(packageRoot, 'data-rail-governance', 'dist', 'src', 'index.js');
 
   const { buildDataRailSnapshot, loadExampleEvents } = require(dataRailModulePath) as {
     buildDataRailSnapshot: (events: any[]) => { events: any[] };
