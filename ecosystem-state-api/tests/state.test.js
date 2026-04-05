@@ -101,16 +101,27 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
       loadPopulationGrowthSnapshot: () => ({
         gapCount: 2,
       }),
+      loadPopulationExpansionSnapshot: () => ({
+        status: 'ready_to_expand',
+      }),
       loadRightsReviewSnapshot: () => ({
         blockedCount: 1,
         conditionalCount: 1,
         manualReviewCount: 0,
+        openCaseCount: 1,
       }),
       loadExternalizationReadinessSnapshot: () => ({
         status: 'blocked',
       }),
+      loadActivationDecisionSnapshot: () => ({
+        status: 'blocked',
+        activationAllowed: false,
+      }),
       loadEmergenceBaselineSnapshot: () => ({
         baselineStatus: 'forming',
+      }),
+      loadEmergenceAccumulatorSnapshot: () => ({
+        status: 'collecting',
       }),
     },
     'C:\\runtime.json',
@@ -124,8 +135,12 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
   assert.equal(snapshot.summary.deploymentPosture, 'bounded');
   assert.equal(snapshot.summary.integrityStatus, 'contain');
   assert.equal(snapshot.summary.dataRailExternalizationAllowed, false);
+  assert.equal(snapshot.summary.dataRailExternalizationActivated, false);
+  assert.equal(snapshot.summary.activationDecisionStatus, 'blocked');
   assert.equal(snapshot.summary.emergenceReadiness, 'forming');
   assert.equal(snapshot.summary.externalizationReadiness, 'blocked');
+  assert.equal(snapshot.summary.populationExpansionStatus, 'ready_to_expand');
+  assert.equal(snapshot.summary.emergenceAccumulationStatus, 'collecting');
   assert.deepEqual(snapshot.summary.capitalGatedOrgans, ['Cardia']);
 });
 
@@ -201,16 +216,27 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
       loadPopulationGrowthSnapshot: () => ({
         gapCount: 0,
       }),
+      loadPopulationExpansionSnapshot: () => ({
+        status: 'ready_to_expand',
+      }),
       loadRightsReviewSnapshot: () => ({
         blockedCount: 0,
         conditionalCount: 0,
         manualReviewCount: 0,
+        openCaseCount: 0,
       }),
       loadExternalizationReadinessSnapshot: () => ({
         status: 'ready',
       }),
+      loadActivationDecisionSnapshot: () => ({
+        status: 'review',
+        activationAllowed: false,
+      }),
       loadEmergenceBaselineSnapshot: () => ({
         baselineStatus: 'stable',
+      }),
+      loadEmergenceAccumulatorSnapshot: () => ({
+        status: 'review_ready',
       }),
     },
     'C:\\runtime.json',
@@ -220,6 +246,10 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
   assert.equal(snapshot.summary.deploymentBlockedByCapital, false);
   assert.equal(snapshot.summary.escalationTier, 'tier0');
   assert.equal(snapshot.summary.dataRailExternalizationAllowed, true);
+  assert.equal(snapshot.summary.dataRailExternalizationActivated, false);
+  assert.equal(snapshot.summary.activationDecisionStatus, 'review');
   assert.equal(snapshot.summary.emergenceReadiness, 'observable');
   assert.equal(snapshot.summary.externalizationReadiness, 'ready');
+  assert.equal(snapshot.summary.populationExpansionStatus, 'ready_to_expand');
+  assert.equal(snapshot.summary.emergenceAccumulationStatus, 'review_ready');
 });

@@ -10,8 +10,12 @@ export interface EcosystemStateSummary {
   integrityStatus: string;
   escalationTier: string;
   dataRailExternalizationAllowed: boolean;
+  dataRailExternalizationActivated: boolean;
+  activationDecisionStatus: string;
   emergenceReadiness: string;
   externalizationReadiness: string;
+  populationExpansionStatus: string;
+  emergenceAccumulationStatus: string;
   nextFrontier: string[];
 }
 
@@ -114,6 +118,21 @@ export interface EcosystemStateSnapshot {
       recommendations: Array<{ priority: string; action: string }>;
       executedActions: string[];
     };
+    populationExpansion: {
+      status: string;
+      currentMetrics: {
+        totalEvents: number;
+        distinctActors: number;
+        actorClassCount: number;
+        surfaceCount: number;
+        outcomeCount: number;
+      };
+      gapCount: number;
+      remainingEventCount: number;
+      remainingActorCount: number;
+      nextWaveTargets: string[];
+      plannedWindows: string[];
+    };
     rightsReview: {
       reviewCaseCount: number;
       openCaseCount: number;
@@ -129,6 +148,15 @@ export interface EcosystemStateSnapshot {
       clearedGates: string[];
       checklist: string[];
     };
+    activationDecision: {
+      structurallyEligible: boolean;
+      activationAllowed: boolean;
+      status: string;
+      recommendedScope: string;
+      explicitDecisionPresent: boolean;
+      reasons: string[];
+      pendingActions: string[];
+    };
     emergenceObservation: {
       readiness: string;
       evidenceWindow: string;
@@ -142,6 +170,16 @@ export interface EcosystemStateSnapshot {
       readinessTrend: string;
       continuityTrend: string;
       notes: string[];
+    };
+    emergenceAccumulation: {
+      status: string;
+      currentWindowCount: number;
+      targetWindowCount: number;
+      remainingWindowCount: number;
+      observableWindowCount: number;
+      currentStreak: number;
+      reasons: string[];
+      nextCollectionTargets: string[];
     };
   };
   summary: EcosystemStateSummary;

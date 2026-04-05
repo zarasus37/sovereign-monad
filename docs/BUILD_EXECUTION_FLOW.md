@@ -117,7 +117,10 @@ Current zero-capital frontier:
 - `externalization-readiness-core` now evaluates the verified local sample as structurally `ready`
 - `emergence-observer-core` now reports `observable` readiness with a forming evidence window
 - `emergence-baseline-core` now extends the baseline to `5` windows with an improving readiness trend
-- the next no-cost priority is activation-decision discipline, continued longitudinal emergence accumulation, and live population expansion beyond the local sample
+- `activation-decision-core` now enforces explicit decision discipline and keeps the current local posture at `review`, not activated
+- `population-expansion-core` now defines the next target as `16` events across `12` actors with missing `gnosis` and `rejected` windows
+- `emergence-accumulator-core` now advances longitudinal accumulation to `review_ready` at `5/8` windows
+- the next no-cost priority is real population expansion, continued longitudinal accumulation, and explicit activation records only after the evidence target is met
 
 Only after those exist does funded live activation become the limiting factor.
 

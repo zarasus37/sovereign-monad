@@ -15,6 +15,9 @@ export interface RuntimeConfigPathSet {
   rightsReviewModulePath: string;
   externalizationReadinessModulePath: string;
   emergenceBaselineModulePath: string;
+  activationDecisionModulePath: string;
+  populationExpansionModulePath: string;
+  emergenceAccumulatorModulePath: string;
 }
 
 export interface SharedStateSummary {
@@ -29,8 +32,12 @@ export interface SharedStateSummary {
   integrityStatus: string;
   escalationTier: string;
   dataRailExternalizationAllowed: boolean;
+  dataRailExternalizationActivated: boolean;
+  activationDecisionStatus: string;
   emergenceReadiness: string;
   externalizationReadiness: string;
+  populationExpansionStatus: string;
+  emergenceAccumulationStatus: string;
   nextFrontier: string[];
 }
 
@@ -50,10 +57,13 @@ export interface EcosystemStateSnapshot {
     rewardLedger: unknown;
     dataRailGovernance: unknown;
     populationGrowth: unknown;
+    populationExpansion: unknown;
     rightsReview: unknown;
     externalizationReadiness: unknown;
+    activationDecision: unknown;
     emergenceObservation: unknown;
     emergenceBaseline: unknown;
+    emergenceAccumulation: unknown;
   };
   summary: SharedStateSummary;
 }
@@ -71,9 +81,12 @@ export interface BuilderBundle {
   buildEmergenceObservationSnapshot: (input: any) => any;
   loadExampleDataRailEvents: () => any[];
   loadPopulationGrowthSnapshot: () => any;
+  loadPopulationExpansionSnapshot: () => any;
   loadRightsReviewSnapshot: () => any;
   loadExternalizationReadinessSnapshot: () => any;
+  loadActivationDecisionSnapshot: () => any;
   loadEmergenceBaselineSnapshot: () => any;
+  loadEmergenceAccumulatorSnapshot: () => any;
 }
 
 export interface StateApiConfig {

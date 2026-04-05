@@ -100,12 +100,28 @@ export default function App() {
               <strong>{data.summary.dataRailExternalizationAllowed ? 'allowed' : 'blocked'}</strong>
             </div>
             <div className="metric-card">
+              <span>Activation Decision</span>
+              <strong>{data.summary.activationDecisionStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Externalization Active</span>
+              <strong>{data.summary.dataRailExternalizationActivated ? 'yes' : 'no'}</strong>
+            </div>
+            <div className="metric-card">
               <span>Emergence Readiness</span>
               <strong>{data.summary.emergenceReadiness}</strong>
             </div>
             <div className="metric-card">
               <span>Externalization Readiness</span>
               <strong>{data.summary.externalizationReadiness}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Population Expansion</span>
+              <strong>{data.summary.populationExpansionStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Emergence Accumulation</span>
+              <strong>{data.summary.emergenceAccumulationStatus}</strong>
             </div>
           </section>
 
@@ -234,11 +250,16 @@ export default function App() {
                   {data.surfaces.populationGrowth.metrics.totalEvents} events /{' '}
                   {data.surfaces.populationGrowth.metrics.distinctActors} actors
                 </p>
-                <p>Gap Count: {data.surfaces.populationGrowth.gapCount}</p>
-                {data.surfaces.populationGrowth.recommendations.length > 0 ? (
+                <p>Expansion Status: {data.surfaces.populationExpansion.status}</p>
+                <p>
+                  Next Wave:{' '}
+                  {data.surfaces.populationExpansion.remainingEventCount} events /{' '}
+                  {data.surfaces.populationExpansion.remainingActorCount} actors remaining
+                </p>
+                {data.surfaces.populationExpansion.nextWaveTargets.length > 0 ? (
                   <ul>
-                    {data.surfaces.populationGrowth.recommendations.map((item, index) => (
-                      <li key={`${item.priority}-${index}`}>{item.priority}: {item.action}</li>
+                    {data.surfaces.populationExpansion.nextWaveTargets.map((item) => (
+                      <li key={item}>{item}</li>
                     ))}
                   </ul>
                 ) : (
@@ -259,17 +280,21 @@ export default function App() {
                 <p>Manual Review: {data.surfaces.rightsReview.manualReviewCount}</p>
               </article>
               <article className="subpanel">
-                <h3>Activation Readiness</h3>
-                <p>Status: {data.surfaces.externalizationReadiness.status}</p>
-                {data.surfaces.externalizationReadiness.blockers.length > 0 ? (
+                <h3>Activation Discipline</h3>
+                <p>Readiness: {data.surfaces.externalizationReadiness.status}</p>
+                <p>Decision Status: {data.surfaces.activationDecision.status}</p>
+                <p>Structurally Eligible: {data.surfaces.activationDecision.structurallyEligible ? 'yes' : 'no'}</p>
+                <p>Activated: {data.surfaces.activationDecision.activationAllowed ? 'yes' : 'no'}</p>
+                <p>Recommended Scope: {data.surfaces.activationDecision.recommendedScope}</p>
+                {data.surfaces.activationDecision.pendingActions.length > 0 ? (
                   <ul>
-                    {data.surfaces.externalizationReadiness.blockers.map((reason) => (
+                    {data.surfaces.activationDecision.pendingActions.map((reason) => (
                       <li key={reason}>{reason}</li>
                     ))}
                   </ul>
                 ) : (
                   <ul>
-                    {data.surfaces.externalizationReadiness.clearedGates.map((reason) => (
+                    {data.surfaces.activationDecision.reasons.map((reason) => (
                       <li key={reason}>{reason}</li>
                     ))}
                   </ul>
@@ -288,18 +313,25 @@ export default function App() {
                 <p>Continuity Trend: {data.surfaces.emergenceBaseline.continuityTrend}</p>
               </article>
               <article className="subpanel">
-                <h3>Observation Targets</h3>
+                <h3>Accumulation</h3>
+                <p>Status: {data.surfaces.emergenceAccumulation.status}</p>
+                <p>
+                  Windows: {data.surfaces.emergenceAccumulation.currentWindowCount} /{' '}
+                  {data.surfaces.emergenceAccumulation.targetWindowCount}
+                </p>
+                <p>Observable Windows: {data.surfaces.emergenceAccumulation.observableWindowCount}</p>
+                <p>Current Streak: {data.surfaces.emergenceAccumulation.currentStreak}</p>
                 <ul>
-                  {data.surfaces.emergenceObservation.nextCollectionTargets.map((reason) => (
+                  {data.surfaces.emergenceAccumulation.reasons.map((reason) => (
                     <li key={reason}>{reason}</li>
                   ))}
                 </ul>
               </article>
               <article className="subpanel">
-                <h3>Baseline Notes</h3>
+                <h3>Observation Targets</h3>
                 <ul>
-                  {data.surfaces.emergenceBaseline.notes.map((note) => (
-                    <li key={note}>{note}</li>
+                  {data.surfaces.emergenceAccumulation.nextCollectionTargets.map((reason) => (
+                    <li key={reason}>{reason}</li>
                   ))}
                 </ul>
               </article>

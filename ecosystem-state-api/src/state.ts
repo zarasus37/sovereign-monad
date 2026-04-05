@@ -98,6 +98,24 @@ function buildModulePaths(packageRoot: string, runtimeConfigPath: string): Runti
       'src',
       'index.js',
     ),
+    activationDecisionModulePath: path.resolve(
+      repoRoot,
+      'activation-decision-core',
+      'dist',
+      'index.js',
+    ),
+    populationExpansionModulePath: path.resolve(
+      repoRoot,
+      'population-expansion-core',
+      'dist',
+      'index.js',
+    ),
+    emergenceAccumulatorModulePath: path.resolve(
+      repoRoot,
+      'emergence-accumulator-core',
+      'dist',
+      'index.js',
+    ),
   };
 }
 
@@ -157,6 +175,11 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
         paths.populationGrowthModulePath,
         'loadLocalPopulationGrowthSnapshot',
       )(repoRoot),
+    loadPopulationExpansionSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.populationExpansionModulePath,
+        'loadLocalPopulationExpansionSnapshot',
+      )(repoRoot),
     loadRightsReviewSnapshot: () =>
       loadBuiltModule<(packageRoot: string) => any>(
         paths.rightsReviewModulePath,
@@ -167,10 +190,20 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
         paths.externalizationReadinessModulePath,
         'loadLocalExternalizationReadinessSnapshot',
       )(repoRoot),
+    loadActivationDecisionSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.activationDecisionModulePath,
+        'loadLocalActivationDecisionSnapshot',
+      )(repoRoot),
     loadEmergenceBaselineSnapshot: () =>
       loadBuiltModule<(packageRoot: string) => any>(
         paths.emergenceBaselineModulePath,
         'loadLocalEmergenceBaselineSnapshot',
+      )(repoRoot),
+    loadEmergenceAccumulatorSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.emergenceAccumulatorModulePath,
+        'loadLocalEmergenceAccumulatorSnapshot',
       )(repoRoot),
   };
 }
@@ -193,7 +226,10 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
   const boundaryStress = snapshot.boundaryStress as any;
   const dataRailGovernance = snapshot.dataRailGovernance as any;
   const externalizationReadiness = snapshot.externalizationReadiness as any;
+  const activationDecision = snapshot.activationDecision as any;
   const emergenceObservation = snapshot.emergenceObservation as any;
+  const populationExpansion = snapshot.populationExpansion as any;
+  const emergenceAccumulation = snapshot.emergenceAccumulation as any;
 
   return {
     runtimeMode: organRuntime.runtimeMode,
@@ -209,10 +245,13 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
       'reward-ledger-core',
       'data-rail-governance',
       'population-growth-core',
+      'population-expansion-core',
       'rights-review-core',
       'externalization-readiness-core',
+      'activation-decision-core',
       'emergence-observer-core',
       'emergence-baseline-core',
+      'emergence-accumulator-core',
     ],
     zeroCapitalReadyOrgans: organRuntime.zeroCapitalBuildQueue || [],
     capitalGatedOrgans: organRuntime.capitalGatedQueue || [],
@@ -224,12 +263,16 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     integrityStatus: gnosis.integrityStatus,
     escalationTier: boundaryStress.escalationTier,
     dataRailExternalizationAllowed: dataRailGovernance?.externalizationAllowed || false,
+    dataRailExternalizationActivated: activationDecision?.activationAllowed || false,
+    activationDecisionStatus: activationDecision?.status || 'blocked',
     emergenceReadiness: emergenceObservation?.readiness || 'insufficient',
     externalizationReadiness: externalizationReadiness?.status || 'blocked',
+    populationExpansionStatus: populationExpansion?.status || 'ready_to_expand',
+    emergenceAccumulationStatus: emergenceAccumulation?.status || 'collecting',
     nextFrontier: [
-      'externalization_activation_decision',
-      'longitudinal_emergence_accumulation',
-      'live_population_expansion',
+      'explicit_externalization_decision_record',
+      'continued_longitudinal_emergence_accumulation',
+      'continued_population_expansion',
       'capital_gated_phase1a_resume',
     ],
   };
@@ -327,6 +370,7 @@ export function buildEcosystemStateFromRuntimeConfig(
     }));
   const rewardLedger = builders.buildRewardLedgerSnapshot(rewardLedgerInputs);
   const populationGrowth = builders.loadPopulationGrowthSnapshot();
+  const populationExpansion = builders.loadPopulationExpansionSnapshot();
   const rightsReview = builders.loadRightsReviewSnapshot();
   const externalizationReadiness = builders.loadExternalizationReadinessSnapshot();
   const emergenceObservation = builders.buildEmergenceObservationSnapshot({
@@ -359,6 +403,8 @@ export function buildEcosystemStateFromRuntimeConfig(
     },
   });
   const emergenceBaseline = builders.loadEmergenceBaselineSnapshot();
+  const emergenceAccumulation = builders.loadEmergenceAccumulatorSnapshot();
+  const activationDecision = builders.loadActivationDecisionSnapshot();
 
   const surfaces = {
     organRuntime,
@@ -371,10 +417,13 @@ export function buildEcosystemStateFromRuntimeConfig(
     rewardLedger,
     dataRailGovernance,
     populationGrowth,
+    populationExpansion,
     rightsReview,
     externalizationReadiness,
+    activationDecision,
     emergenceObservation,
     emergenceBaseline,
+    emergenceAccumulation,
   };
 
   return {

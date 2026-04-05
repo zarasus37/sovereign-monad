@@ -116,6 +116,16 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'activation-decision-core'
+    Path = 'activation-decision-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'population-expansion-core'
+    Path = 'population-expansion-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'emergence-observer-core'
     Path = 'emergence-observer-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
@@ -123,6 +133,11 @@ $checks = @(
   @{
     Name = 'emergence-baseline-core'
     Path = 'emergence-baseline-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'emergence-accumulator-core'
+    Path = 'emergence-accumulator-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
