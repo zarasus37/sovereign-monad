@@ -11,7 +11,7 @@ If this mirror and the canonical copy diverge, the `sovereign-monad` version win
 ---
 
 
-This document is the working build tracker for the Sovereign Monad ecosystem.
+This document is the canonical working build tracker for the Sovereign Monad ecosystem.
 
 Use it for:
 
@@ -214,6 +214,7 @@ Complete:
 - multi-rail funnel doctrine is now defined locally
 - agent-native revenue rail doctrine is now defined locally
 - first organ set specification is now defined locally
+- the six-organ opening set is now explicitly canonized as part of Layer 1's funnel revenue rail
 
 Remaining:
 
@@ -476,7 +477,6 @@ Remaining:
 - pattern extraction system
 - longitudinal emergence evidence accumulation
 - protocol discovery logic
-- protocol discovery logic
 - emergence validation rules
 - formalized downstream protocol path
 
@@ -519,4 +519,5 @@ Local zero-capital frontier after this tranche:
 1. real population expansion beyond the current verified local sample
 2. continued longitudinal emergence accumulation from `5/8` toward the target
 3. explicit activation records only after the evidence target is met
+
 
