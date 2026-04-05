@@ -16,6 +16,40 @@ Status legend:
 - `BLOCKED`: the next step is known, but external inputs or upstream dependencies are blocking it
 - `NOT STARTED`: doctrine/spec exists but build work has not materially begun
 
+## 0. Completion View
+
+This project needs two completion readings:
+
+- local build-state completion
+- live / production completion
+
+They are not interchangeable.
+
+Tracked local build-state rollups:
+
+- major-area rollup: `53/71 complete` (`74.6%`)
+- layer-by-layer rollup: `65/98 complete` (`66.3%`)
+
+These percentages describe what has been built and verified locally. They do **not** mean the project is `74.6%` live or production-complete.
+
+### 0.1 Major Area Completion Matrix
+
+| Major Area | Local Build State | Live / Production State | Capital-Gated? | Current Read |
+|---|---|---|---|---|
+| Canonical Core | built | canonical and current | no | `5/5` |
+| Phase 1a Routing Substrate | built except live deployment | not live | yes | `5/6` |
+| Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
+| Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
+| Production Operations | tooling exists locally | infra not live | yes | `6/10` |
+| Later-Layer Sovereign System | mostly built as local analysis surfaces | not live / not externalized | mixed | `24/30` |
+
+### 0.2 What Is Actually Complete
+
+- locally complete: Canonical Core, Intelligence Layer, Signal Layer, Platform
+- locally near-complete: Data Rail local stack
+- locally partial but meaningful: Oracle, Dove, Gnosis, Keys, Narrative, Phase 1a substrate, runtime engine, commercial stack, production ops
+- blocked or not started in live terms: Treasury, DAO, live Keys activation, external Data Rail productization, full emergent protocol maturity
+
 ## 1. Major Areas
 
 ### A. Canonical Core

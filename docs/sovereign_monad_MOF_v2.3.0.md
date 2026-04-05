@@ -402,6 +402,38 @@ These should be treated as an opening funnel component, not merely a later-layer
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
 **Immediate Priority:** complete live Phase 1a deployment proof, register the initial approved source truthfully, and preserve guarded-live deployment path discipline
 
+## 6.1.1 Completion Reading
+
+The project currently needs two separate completion readings:
+
+- local build-state completion
+- live / production completion
+
+Tracked local build-state rollups from the canonical build map:
+
+- major-area rollup: `53/71 complete` (`74.6%`)
+- layer-by-layer rollup: `65/98 complete` (`66.3%`)
+
+This means the architecture and local analysis stack are materially advanced. It does **not** mean the project is `74.6%` live.
+
+### Major Area Completion Matrix
+
+| Major Area | Local Build State | Live / Production State | Capital-Gated? | Current Read |
+|---|---|---|---|---|
+| Canonical Core | built | canonical and current | no | `5/5` |
+| Phase 1a Routing Substrate | built except live deployment | not live | yes | `5/6` |
+| Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
+| Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
+| Production Operations | tooling exists locally | infra not live | yes | `6/10` |
+| Later-Layer Sovereign System | mostly built as local analysis surfaces | not live / not externalized | mixed | `24/30` |
+
+### Completion Interpretation
+
+- locally complete: Canonical Core, Intelligence Layer, Signal Layer, Platform
+- locally near-complete: Data Rail local stack
+- locally partial but meaningful: Oracle, Dove, Gnosis, Keys, Narrative, Phase 1a substrate, runtime engine, commercial stack, production ops
+- still blocked or not started in live terms: Treasury, DAO, live Keys activation, external Data Rail productization, full emergent protocol maturity
+
 ## 6.2 Current Live Snapshot
 
 | System | State | Notes |
@@ -2103,6 +2135,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - no explicit activation decision record is present, so externalization is still inactive
 - the next local population target is `16` attributable events across `12` actors, including a `gnosis` surface event and a clean `rejected` outcome
 - longitudinal emergence accumulation is now `review_ready` at `5/8` windows, but still observational only
+
+## v2.3.19 — April 4, 2026
+
+**Change Type:** Patch — explicit completion reading and production-state clarification
+
+**Summary of changes:**
+
+- added a formal completion reading section to distinguish local build-state completion from live / production completion
+- synchronized a major-area completion matrix into the canonical build map and MOF
+- clarified that the current rollups (`53/71` and `65/98`) are local build-state measures, not live deployment percentages
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- local build-state is materially advanced, but live production completion remains much lower
+- the single largest unresolved live gate remains Phase 1a deployment proof
+- the MOF now carries the explicit completion interpretation needed to avoid overstating progress
 
 ---
 
