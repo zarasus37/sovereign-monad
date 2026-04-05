@@ -122,10 +122,16 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Platform builder infrastructure: `platform-builder/`
 - Controlled expansion framework: `expansion-control/`
 - Keys scaffold and delegation policy: `keys-core/`
+- DAO scaffold and governance workflow: `dao-core/`
+- Keys NFT metadata and collection policy scaffold: `keys-nft-core/`
+- Narrative packaging scaffold: `narrative-core/`
+- Dove drift-signaling integration scaffold: `dove-integration-core/`
+- Gnosis evaluation scaffold: `gnosis-evaluator-core/`
 - Data Rail preparation scaffold: `data-rail-core/`
 - Data Rail routing scaffold: `data-rail-router/`
 - Data Rail internal reward ledger scaffold: `reward-ledger-core/`
 - Data Rail governance scaffold: `data-rail-governance/`
+- Data product bundle scaffold: `data-product-core/`
 - Population growth scaffold: `population-growth-core/`
 - Rights review scaffold: `rights-review-core/`
 - Externalization readiness scaffold: `externalization-readiness-core/`
@@ -134,17 +140,22 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Emergence observation scaffold: `emergence-observer-core/`
 - Emergence baseline scaffold: `emergence-baseline-core/`
 - Emergence accumulation scaffold: `emergence-accumulator-core/`
+- Emergent protocol discovery scaffold: `emergent-protocol-core/`
 - Internal reward ledger surface: `reward-ledger-core/`
 - Speech I/O gateway: `speech-gateway/`
 
-Current local Data Rail state:
+Current local zero-capital sovereign state:
+
+- the structural zero-capital frontier is complete at the current expected local layer level
+- DAO, Keys NFT, Narrative, Dove integration, Gnosis evaluation, Data Rail productization prep, and emergent protocol discovery now all exist as locally verified surfaces
+- local externalization remains under explicit activation-decision discipline and is still `review`, not activated
 
 - thresholds are met on the current verified local sample (`9` events, `9` actors, `4` actor classes, `5` surfaces, `5` outcomes)
 - the rights review queue is resolved with `0` open cases
 - externalization readiness is structurally `ready` in local analysis mode
 - activation-decision discipline is now implemented, and the current local posture is `review`, not activated
 - the next local expansion target is `16` events across `12` actors, including a `gnosis` surface event and a clean `rejected` outcome
-- emergence observation is `observable`, and longitudinal accumulation is `review_ready` at `5/8` windows
+- emergence observation is `observable`, longitudinal accumulation is `review_ready` at `5/8` windows, and emergent protocol discovery now has a local pattern-extraction surface
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
 

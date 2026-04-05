@@ -123,6 +123,34 @@ export default function App() {
               <span>Emergence Accumulation</span>
               <strong>{data.summary.emergenceAccumulationStatus}</strong>
             </div>
+            <div className="metric-card">
+              <span>DAO</span>
+              <strong>{data.summary.daoStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Keys NFT</span>
+              <strong>{data.summary.keysNftStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Narrative</span>
+              <strong>{data.summary.narrativeStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Dove</span>
+              <strong>{data.summary.doveStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Gnosis Eval</span>
+              <strong>{data.summary.gnosisEvaluationStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Data Product</span>
+              <strong>{data.summary.dataProductStatus}</strong>
+            </div>
+            <div className="metric-card">
+              <span>Emergent Protocol</span>
+              <strong>{data.summary.emergentProtocolStatus}</strong>
+            </div>
           </section>
 
           <Section title="Summary">
@@ -303,6 +331,50 @@ export default function App() {
             </div>
           </Section>
 
+          <Section title="Governance / Keys / Narrative">
+            <div className="triple-grid">
+              <article className="subpanel">
+                <h3>DAO</h3>
+                <p>Constitution: {data.surfaces.dao.constitutionVersion}</p>
+                <p>Governance Agent: {data.surfaces.dao.governanceAgentStatus}</p>
+                <p>Proposals: {data.surfaces.dao.proposalCount}</p>
+                <p>
+                  Accepted / Review / Deferred: {data.surfaces.dao.acceptedCount} / {data.surfaces.dao.reviewCount} /{' '}
+                  {data.surfaces.dao.deferredCount}
+                </p>
+                <ul>
+                  {data.surfaces.dao.nextActions.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Keys NFT</h3>
+                <p>Collection: {data.surfaces.keysNft.collectionName}</p>
+                <p>Defined: {data.surfaces.keysNft.collectionDefined ? 'yes' : 'no'}</p>
+                <p>Metadata Ready: {data.surfaces.keysNft.readyCount} / {data.surfaces.keysNft.metadataCount}</p>
+                <p>Mint Live: {data.surfaces.keysNft.mintLive ? 'yes' : 'no'}</p>
+                <ul>
+                  {data.surfaces.keysNft.roleCoverage.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Narrative</h3>
+                <p>Infrastructure: {data.surfaces.narrative.infrastructureStatus}</p>
+                <p>Surface: {data.surfaces.narrative.publicSurfaceStatus}</p>
+                <p>{data.surfaces.narrative.headline}</p>
+                <p>{data.surfaces.narrative.internalMemo}</p>
+                <ul>
+                  {data.surfaces.narrative.blockers.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </Section>
+
           <Section title="Longitudinal Baseline">
             <div className="triple-grid">
               <article className="subpanel">
@@ -332,6 +404,80 @@ export default function App() {
                 <ul>
                   {data.surfaces.emergenceAccumulation.nextCollectionTargets.map((reason) => (
                     <li key={reason}>{reason}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </Section>
+
+          <Section title="Dove / Gnosis Evaluation / Emergent Protocol">
+            <div className="triple-grid">
+              <article className="subpanel">
+                <h3>Dove Integration</h3>
+                <p>Observer: {data.surfaces.doveIntegration.observerStatus}</p>
+                <p>Drift: {data.surfaces.doveIntegration.driftStatus}</p>
+                <p>Signals: {data.surfaces.doveIntegration.signalCount}</p>
+                <ul>
+                  {data.surfaces.doveIntegration.recommendedActions.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Gnosis Evaluation</h3>
+                <p>Overall Score: {data.surfaces.gnosisEvaluation.overallScore}</p>
+                <p>Posture: {data.surfaces.gnosisEvaluation.posture}</p>
+                <ul>
+                  {data.surfaces.gnosisEvaluation.organScores.map((item) => (
+                    <li key={item.organ}>
+                      {item.organ}: {item.score} ({item.posture})
+                    </li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Emergent Protocol</h3>
+                <p>Status: {data.surfaces.emergentProtocol.validationStatus}</p>
+                <p>
+                  Candidates: {data.surfaces.emergentProtocol.validatedPatternCount} /{' '}
+                  {data.surfaces.emergentProtocol.patternCount}
+                </p>
+                <ul>
+                  {data.surfaces.emergentProtocol.protocolCandidates.map((item) => (
+                    <li key={item.id}>
+                      {item.id}: {item.status}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </Section>
+
+          <Section title="Data Productization">
+            <div className="triple-grid">
+              <article className="subpanel">
+                <h3>Status</h3>
+                <p>Productization: {data.surfaces.dataProduct.productizationStatus}</p>
+                <p>Scope: {data.surfaces.dataProduct.recommendedScope}</p>
+                <p>External Active: {data.surfaces.dataProduct.externalActivationLive ? 'yes' : 'no'}</p>
+              </article>
+              <article className="subpanel">
+                <h3>Available Bundles</h3>
+                <ul>
+                  {data.surfaces.dataProduct.availableBundles.map((item) => (
+                    <li key={item.bundleId}>
+                      {item.bundleId}: {item.reason}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+              <article className="subpanel">
+                <h3>Blocked Bundles</h3>
+                <ul>
+                  {data.surfaces.dataProduct.blockedBundles.map((item) => (
+                    <li key={item.bundleId}>
+                      {item.bundleId}: {item.reason}
+                    </li>
                   ))}
                 </ul>
               </article>

@@ -81,6 +81,31 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'dao-core'
+    Path = 'dao-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'keys-nft-core'
+    Path = 'keys-nft-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'narrative-core'
+    Path = 'narrative-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'dove-integration-core'
+    Path = 'dove-integration-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'gnosis-evaluator-core'
+    Path = 'gnosis-evaluator-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'data-rail-core'
     Path = 'data-rail-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
@@ -98,6 +123,11 @@ $checks = @(
   @{
     Name = 'data-rail-governance'
     Path = 'data-rail-governance'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'data-product-core'
+    Path = 'data-product-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
@@ -138,6 +168,11 @@ $checks = @(
   @{
     Name = 'emergence-accumulator-core'
     Path = 'emergence-accumulator-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'emergent-protocol-core'
+    Path = 'emergent-protocol-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{

@@ -116,12 +116,34 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
       loadActivationDecisionSnapshot: () => ({
         status: 'blocked',
         activationAllowed: false,
+        recommendedScope: 'none',
       }),
       loadEmergenceBaselineSnapshot: () => ({
         baselineStatus: 'forming',
       }),
       loadEmergenceAccumulatorSnapshot: () => ({
         status: 'collecting',
+      }),
+      loadDaoSnapshot: () => ({
+        governanceAgentStatus: 'local_ready',
+      }),
+      loadKeysNftSnapshot: () => ({
+        collectionDefined: true,
+      }),
+      loadNarrativeSnapshot: () => ({
+        publicSurfaceStatus: 'bounded_review',
+      }),
+      loadDoveIntegrationSnapshot: () => ({
+        driftStatus: 'watch',
+      }),
+      loadGnosisEvaluationSnapshot: () => ({
+        posture: 'watch',
+      }),
+      loadDataProductSnapshot: () => ({
+        productizationStatus: 'prepared',
+      }),
+      loadEmergentProtocolSnapshot: () => ({
+        validationStatus: 'review_ready',
       }),
     },
     'C:\\runtime.json',
@@ -141,6 +163,9 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
   assert.equal(snapshot.summary.externalizationReadiness, 'blocked');
   assert.equal(snapshot.summary.populationExpansionStatus, 'ready_to_expand');
   assert.equal(snapshot.summary.emergenceAccumulationStatus, 'collecting');
+  assert.equal(snapshot.summary.daoStatus, 'local_ready');
+  assert.equal(snapshot.summary.narrativeStatus, 'bounded_review');
+  assert.equal(snapshot.summary.dataProductStatus, 'prepared');
   assert.deepEqual(snapshot.summary.capitalGatedOrgans, ['Cardia']);
 });
 
@@ -231,12 +256,34 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
       loadActivationDecisionSnapshot: () => ({
         status: 'review',
         activationAllowed: false,
+        recommendedScope: 'limited_private',
       }),
       loadEmergenceBaselineSnapshot: () => ({
         baselineStatus: 'stable',
       }),
       loadEmergenceAccumulatorSnapshot: () => ({
         status: 'review_ready',
+      }),
+      loadDaoSnapshot: () => ({
+        governanceAgentStatus: 'local_ready',
+      }),
+      loadKeysNftSnapshot: () => ({
+        collectionDefined: true,
+      }),
+      loadNarrativeSnapshot: () => ({
+        publicSurfaceStatus: 'bounded_review',
+      }),
+      loadDoveIntegrationSnapshot: () => ({
+        driftStatus: 'stable',
+      }),
+      loadGnosisEvaluationSnapshot: () => ({
+        posture: 'clear',
+      }),
+      loadDataProductSnapshot: () => ({
+        productizationStatus: 'prepared',
+      }),
+      loadEmergentProtocolSnapshot: () => ({
+        validationStatus: 'review_ready',
       }),
     },
     'C:\\runtime.json',
@@ -252,4 +299,6 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
   assert.equal(snapshot.summary.externalizationReadiness, 'ready');
   assert.equal(snapshot.summary.populationExpansionStatus, 'ready_to_expand');
   assert.equal(snapshot.summary.emergenceAccumulationStatus, 'review_ready');
+  assert.equal(snapshot.summary.daoStatus, 'local_ready');
+  assert.equal(snapshot.summary.gnosisEvaluationStatus, 'clear');
 });

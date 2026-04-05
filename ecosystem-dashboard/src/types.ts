@@ -16,6 +16,13 @@ export interface EcosystemStateSummary {
   externalizationReadiness: string;
   populationExpansionStatus: string;
   emergenceAccumulationStatus: string;
+  daoStatus: string;
+  narrativeStatus: string;
+  keysNftStatus: string;
+  doveStatus: string;
+  gnosisEvaluationStatus: string;
+  dataProductStatus: string;
+  emergentProtocolStatus: string;
   nextFrontier: string[];
 }
 
@@ -180,6 +187,66 @@ export interface EcosystemStateSnapshot {
       currentStreak: number;
       reasons: string[];
       nextCollectionTargets: string[];
+    };
+    dao: {
+      constitutionVersion: string;
+      governanceAgentStatus: string;
+      proposalSystemStatus: string;
+      handoffControlsStatus: string;
+      proposalCount: number;
+      acceptedCount: number;
+      reviewCount: number;
+      deferredCount: number;
+      nextActions: string[];
+    };
+    keysNft: {
+      collectionDefined: boolean;
+      collectionName: string;
+      mintLive: boolean;
+      metadataCount: number;
+      readyCount: number;
+      roleCoverage: string[];
+      pendingActions: string[];
+    };
+    narrative: {
+      infrastructureStatus: string;
+      publicSurfaceStatus: string;
+      deploymentLive: boolean;
+      headline: string;
+      internalMemo: string;
+      publicPulse: string;
+      distributionTargets: string[];
+      blockers: string[];
+    };
+    doveIntegration: {
+      deployed: boolean;
+      observerStatus: string;
+      driftStatus: string;
+      signalCount: number;
+      recommendedActions: string[];
+      blockedBy: string[];
+    };
+    gnosisEvaluation: {
+      overallScore: number;
+      posture: string;
+      organScores: Array<{ organ: string; score: number; posture: string; reasons: string[] }>;
+      reviewReasons: string[];
+    };
+    dataProduct: {
+      productizationStatus: string;
+      externalActivationLive: boolean;
+      recommendedScope: string;
+      availableBundles: Array<{ bundleId: string; status: string; reason: string }>;
+      blockedBundles: Array<{ bundleId: string; status: string; reason: string }>;
+      blockers: string[];
+    };
+    emergentProtocol: {
+      patternCount: number;
+      validatedPatternCount: number;
+      validationStatus: string;
+      protocolCandidates: Array<{ id: string; status: string; reason: string; downstreamPath: string }>;
+      downstreamPath: string[];
+      notes: string[];
     };
   };
   summary: EcosystemStateSummary;

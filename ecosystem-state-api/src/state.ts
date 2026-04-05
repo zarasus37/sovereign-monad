@@ -116,6 +116,19 @@ function buildModulePaths(packageRoot: string, runtimeConfigPath: string): Runti
       'dist',
       'index.js',
     ),
+    daoCoreModulePath: path.resolve(repoRoot, 'dao-core', 'dist', 'src', 'index.js'),
+    keysNftModulePath: path.resolve(repoRoot, 'keys-nft-core', 'dist', 'src', 'index.js'),
+    narrativeCoreModulePath: path.resolve(repoRoot, 'narrative-core', 'dist', 'index.js'),
+    doveIntegrationModulePath: path.resolve(repoRoot, 'dove-integration-core', 'dist', 'index.js'),
+    gnosisEvaluatorModulePath: path.resolve(repoRoot, 'gnosis-evaluator-core', 'dist', 'index.js'),
+    dataProductModulePath: path.resolve(repoRoot, 'data-product-core', 'dist', 'src', 'index.js'),
+    emergentProtocolModulePath: path.resolve(
+      repoRoot,
+      'emergent-protocol-core',
+      'dist',
+      'src',
+      'index.js',
+    ),
   };
 }
 
@@ -205,6 +218,41 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
         paths.emergenceAccumulatorModulePath,
         'loadLocalEmergenceAccumulatorSnapshot',
       )(repoRoot),
+    loadDaoSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.daoCoreModulePath,
+        'loadLocalDaoSnapshot',
+      )(repoRoot),
+    loadKeysNftSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.keysNftModulePath,
+        'loadLocalAgentNftSnapshot',
+      )(repoRoot),
+    loadNarrativeSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.narrativeCoreModulePath,
+        'loadLocalNarrativeSnapshot',
+      )(repoRoot),
+    loadDoveIntegrationSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.doveIntegrationModulePath,
+        'loadLocalDoveIntegrationSnapshot',
+      )(repoRoot),
+    loadGnosisEvaluationSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.gnosisEvaluatorModulePath,
+        'loadLocalGnosisEvaluationSnapshot',
+      )(repoRoot),
+    loadDataProductSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.dataProductModulePath,
+        'loadLocalDataProductSnapshot',
+      )(repoRoot),
+    loadEmergentProtocolSnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.emergentProtocolModulePath,
+        'loadLocalEmergentProtocolSnapshot',
+      )(repoRoot),
   };
 }
 
@@ -230,6 +278,13 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
   const emergenceObservation = snapshot.emergenceObservation as any;
   const populationExpansion = snapshot.populationExpansion as any;
   const emergenceAccumulation = snapshot.emergenceAccumulation as any;
+  const dao = snapshot.dao as any;
+  const keysNft = snapshot.keysNft as any;
+  const narrative = snapshot.narrative as any;
+  const doveIntegration = snapshot.doveIntegration as any;
+  const gnosisEvaluation = snapshot.gnosisEvaluation as any;
+  const dataProduct = snapshot.dataProduct as any;
+  const emergentProtocol = snapshot.emergentProtocol as any;
 
   return {
     runtimeMode: organRuntime.runtimeMode,
@@ -252,6 +307,13 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
       'emergence-observer-core',
       'emergence-baseline-core',
       'emergence-accumulator-core',
+      'dao-core',
+      'keys-nft-core',
+      'narrative-core',
+      'dove-integration-core',
+      'gnosis-evaluator-core',
+      'data-product-core',
+      'emergent-protocol-core',
     ],
     zeroCapitalReadyOrgans: organRuntime.zeroCapitalBuildQueue || [],
     capitalGatedOrgans: organRuntime.capitalGatedQueue || [],
@@ -269,10 +331,19 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     externalizationReadiness: externalizationReadiness?.status || 'blocked',
     populationExpansionStatus: populationExpansion?.status || 'ready_to_expand',
     emergenceAccumulationStatus: emergenceAccumulation?.status || 'collecting',
+    daoStatus: dao?.governanceAgentStatus || 'not_ready',
+    narrativeStatus: narrative?.publicSurfaceStatus || 'blocked',
+    keysNftStatus: keysNft?.collectionDefined ? 'defined' : 'blocked',
+    doveStatus: doveIntegration?.driftStatus || 'blocked',
+    gnosisEvaluationStatus: gnosisEvaluation?.posture || 'blocked',
+    dataProductStatus: dataProduct?.productizationStatus || 'blocked',
+    emergentProtocolStatus: emergentProtocol?.validationStatus || 'forming',
     nextFrontier: [
-      'explicit_externalization_decision_record',
-      'continued_longitudinal_emergence_accumulation',
-      'continued_population_expansion',
+      'phase1a_live_deploy_retry',
+      'bootstrap_source_registration',
+      'runtime_execution_truth_closure',
+      'funded_cardia_activation',
+      'production_public_activation',
       'capital_gated_phase1a_resume',
     ],
   };
@@ -405,6 +476,13 @@ export function buildEcosystemStateFromRuntimeConfig(
   const emergenceBaseline = builders.loadEmergenceBaselineSnapshot();
   const emergenceAccumulation = builders.loadEmergenceAccumulatorSnapshot();
   const activationDecision = builders.loadActivationDecisionSnapshot();
+  const dao = builders.loadDaoSnapshot();
+  const keysNft = builders.loadKeysNftSnapshot();
+  const narrative = builders.loadNarrativeSnapshot();
+  const doveIntegration = builders.loadDoveIntegrationSnapshot();
+  const gnosisEvaluation = builders.loadGnosisEvaluationSnapshot();
+  const dataProduct = builders.loadDataProductSnapshot();
+  const emergentProtocol = builders.loadEmergentProtocolSnapshot();
 
   const surfaces = {
     organRuntime,
@@ -424,6 +502,13 @@ export function buildEcosystemStateFromRuntimeConfig(
     emergenceObservation,
     emergenceBaseline,
     emergenceAccumulation,
+    dao,
+    keysNft,
+    narrative,
+    doveIntegration,
+    gnosisEvaluation,
+    dataProduct,
+    emergentProtocol,
   };
 
   return {

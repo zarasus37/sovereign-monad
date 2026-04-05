@@ -1,0 +1,23 @@
+[
+  {
+    "id": "behavioral-brief-private",
+    "audience": "limited_private",
+    "requiresExplicitActivation": false,
+    "rightsClass": "derived_safe",
+    "recommendedScope": "limited_private"
+  },
+  {
+    "id": "activation-audit-private",
+    "audience": "operators",
+    "requiresExplicitActivation": false,
+    "rightsClass": "internal_only",
+    "recommendedScope": "limited_private"
+  },
+  {
+    "id": "public-pattern-brief",
+    "audience": "public",
+    "requiresExplicitActivation": true,
+    "rightsClass": "external_sensitive",
+    "recommendedScope": "public"
+  }
+]

@@ -18,6 +18,13 @@ export interface RuntimeConfigPathSet {
   activationDecisionModulePath: string;
   populationExpansionModulePath: string;
   emergenceAccumulatorModulePath: string;
+  daoCoreModulePath: string;
+  keysNftModulePath: string;
+  narrativeCoreModulePath: string;
+  doveIntegrationModulePath: string;
+  gnosisEvaluatorModulePath: string;
+  dataProductModulePath: string;
+  emergentProtocolModulePath: string;
 }
 
 export interface SharedStateSummary {
@@ -38,6 +45,13 @@ export interface SharedStateSummary {
   externalizationReadiness: string;
   populationExpansionStatus: string;
   emergenceAccumulationStatus: string;
+  daoStatus: string;
+  narrativeStatus: string;
+  keysNftStatus: string;
+  doveStatus: string;
+  gnosisEvaluationStatus: string;
+  dataProductStatus: string;
+  emergentProtocolStatus: string;
   nextFrontier: string[];
 }
 
@@ -64,6 +78,13 @@ export interface EcosystemStateSnapshot {
     emergenceObservation: unknown;
     emergenceBaseline: unknown;
     emergenceAccumulation: unknown;
+    dao: unknown;
+    keysNft: unknown;
+    narrative: unknown;
+    doveIntegration: unknown;
+    gnosisEvaluation: unknown;
+    dataProduct: unknown;
+    emergentProtocol: unknown;
   };
   summary: SharedStateSummary;
 }
@@ -87,6 +108,13 @@ export interface BuilderBundle {
   loadActivationDecisionSnapshot: () => any;
   loadEmergenceBaselineSnapshot: () => any;
   loadEmergenceAccumulatorSnapshot: () => any;
+  loadDaoSnapshot: () => any;
+  loadKeysNftSnapshot: () => any;
+  loadNarrativeSnapshot: () => any;
+  loadDoveIntegrationSnapshot: () => any;
+  loadGnosisEvaluationSnapshot: () => any;
+  loadDataProductSnapshot: () => any;
+  loadEmergentProtocolSnapshot: () => any;
 }
 
 export interface StateApiConfig {
