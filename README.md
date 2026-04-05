@@ -55,6 +55,13 @@ See:
 - `docs/FIRST_ORGAN_SET.md`
 - `docs/AGENT_NATIVE_REVENUE_RAIL.md`
 
+## Current Local Data Rail State
+
+- thresholds are met on the current verified local sample (`9` events, `9` actors, `4` actor classes, `5` surfaces, `5` outcomes)
+- the rights review queue is resolved with `0` open cases
+- externalization readiness is structurally `ready` in local analysis mode
+- emergence observation is `observable` with a forming evidence window, and the baseline now spans `5` windows
+
 ## Phase 1a Commands
 
 ```bash

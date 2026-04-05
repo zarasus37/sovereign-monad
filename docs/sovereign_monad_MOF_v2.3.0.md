@@ -417,11 +417,11 @@ These should be treated as an opening funnel component, not merely a later-layer
 | Signal Layer | LOCAL ANALYSIS SURFACE ONLY | `signal-layer` package now exists with schema, aggregation, and interpretation logic; live ingestion and institutional use remain later-phase |
 | Oracle v1 | LOCAL ANALYSIS SURFACE ONLY | `oracle-core` now exists for regime and posture classification; live calibration and buyer proof remain later-phase |
 | Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` now exists for retrospective-only decompression and hollow-convergence analysis; live integration remains later-phase |
-| Data Rail | NOT STARTED | Phase 4+ |
+| Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, and readiness surfaces now exist; thresholds are met on the current verified local sample, but externalization is not yet activated |
 | Evaluation / Commercial Surfaces | AUXILIARY ARTIFACTS EXIST | demo package, API wrapper, billing scaffold, license-service scaffold, and public commercial-stack templates exist in repo; they do **not** change active phase, blocker state, or current next action |
 | Governance DAO | NOT STARTED | later phase |
 | Agent NFTs | NOT STARTED | Phase 3+ |
-| Emergence Pipeline | NOT STARTED | Phase 6 — cannot be forced |
+| Emergence Pipeline | LOCAL OBSERVATION SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window and a five-window baseline; no emergence claim is made |
 
 ---
 
@@ -2061,6 +2061,27 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - external Data Rail productization is still blocked, but the remaining blockers are now explicit rather than implicit
 - Layer 15 now has both observation-prep and baseline surfaces, while emergence remains observational only
 - next zero-capital frontier becomes actual threshold-closing population growth, rights resolution, and accumulation of real longitudinal windows
+
+## v2.3.17 — April 4, 2026
+
+**Change Type:** Patch — local threshold closure, rights resolution, and readiness advancement
+
+**Summary of changes:**
+
+- executed local threshold-closing population growth against the current sample set
+- expanded the verified local sample to `9` attributable events across `9` actors, `4` actor classes, `5` surfaces, and `5` outcomes
+- resolved the local rights review queue with explicit closed resolutions for internal denials and redaction-only cases
+- reduced local readiness blockers to zero and advanced `externalization-readiness-core` to `ready` on the verified local sample
+- extended emergence observation beyond the seed baseline: `emergence-observer-core` now reports `observable` readiness with a forming evidence window, and `emergence-baseline-core` now spans `5` windows with improving trend
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- live Phase 1a deployment proof remains the primary capital-gated blocker
+- local Data Rail governance thresholds are now met
+- the local rights review queue is resolved with no open cases
+- local externalization readiness is structurally ready, but externalization is still not activated
+- emergence remains observational only, but the local baseline is no longer seed-only
 
 ---
 

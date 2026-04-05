@@ -139,10 +139,11 @@ Complete:
 - local internal reward ledger now exists
 - local Data Rail diversity thresholds, rights policy, and externalization gates now exist
 - local emergence observation preparation now exists
-- local population growth planning now exists
-- local rights review workflow now exists
-- local externalization activation readiness now exists
-- local emergence baseline now exists
+- local threshold-closing population execution now exists
+- local rights review queue resolution now exists
+- local externalization activation gate now evaluates ready on the verified local sample
+- local emergence observation now reaches observable readiness with a forming evidence window
+- local emergence baseline now extends beyond seed to five windows with improving trend
 
 Remaining:
 
@@ -401,7 +402,9 @@ Complete:
 - internal routing logic now exists locally
 - internal reward ledger now exists locally
 - diversity thresholds, rights policy, and externalization gate surface now exist locally
-- population growth planning, rights review workflow, and activation readiness now exist locally
+- population thresholds are now met locally across a verified `9`-event / `9`-actor sample
+- rights review queue is now resolved locally with `0` open cases
+- activation readiness now evaluates `ready` on the verified local sample
 
 Remaining:
 
@@ -414,8 +417,8 @@ Progress: `2/5 complete`
 
 Complete:
 
-- local emergence observation preparation surface now exists
-- local longitudinal baseline surface now exists
+- local emergence observation now reaches observable readiness with a forming evidence window
+- local longitudinal baseline now spans `5` windows with an improving trend
 
 Remaining:
 
@@ -458,4 +461,10 @@ The next build frontier remains:
 4. deploy the runtime/commercial stack with real infrastructure inputs
 
 Everything else should be sequenced relative to those gates.
+
+Local zero-capital frontier after this tranche:
+
+1. activation-decision discipline for future externalization
+2. continued longitudinal emergence accumulation
+3. live population expansion beyond the current verified local sample
 
