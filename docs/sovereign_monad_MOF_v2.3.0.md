@@ -417,11 +417,11 @@ These should be treated as an opening funnel component, not merely a later-layer
 | Signal Layer | LOCAL ANALYSIS SURFACE ONLY | `signal-layer` package now exists with schema, aggregation, and interpretation logic; live ingestion and institutional use remain later-phase |
 | Oracle v1 | LOCAL ANALYSIS SURFACE ONLY | `oracle-core` now exists for regime and posture classification; live calibration and buyer proof remain later-phase |
 | Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` now exists for retrospective-only decompression and hollow-convergence analysis; live integration remains later-phase |
-| Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, and readiness surfaces now exist; thresholds are met on the current verified local sample, but externalization is not yet activated |
+| Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, and activation-decision surfaces now exist; thresholds are met on the current verified local sample, but no explicit activation record exists and externalization is not activated |
 | Evaluation / Commercial Surfaces | AUXILIARY ARTIFACTS EXIST | demo package, API wrapper, billing scaffold, license-service scaffold, and public commercial-stack templates exist in repo; they do **not** change active phase, blocker state, or current next action |
 | Governance DAO | NOT STARTED | later phase |
 | Agent NFTs | NOT STARTED | Phase 3+ |
-| Emergence Pipeline | LOCAL OBSERVATION SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window and a five-window baseline; no emergence claim is made |
+| Emergence Pipeline | LOCAL OBSERVATION SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows and accumulation is review-ready at 5/8; no emergence claim is made |
 
 ---
 
@@ -2082,6 +2082,27 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - the local rights review queue is resolved with no open cases
 - local externalization readiness is structurally ready, but externalization is still not activated
 - emergence remains observational only, but the local baseline is no longer seed-only
+
+## v2.3.18 — April 4, 2026
+
+**Change Type:** Patch — activation-decision discipline, next-wave expansion targeting, and emergence accumulation
+
+**Summary of changes:**
+
+- added `activation-decision-core` to separate structural readiness from actual activation
+- added `population-expansion-core` to define the next-wave target beyond the threshold-clearing local sample
+- added `emergence-accumulator-core` to track longitudinal accumulation beyond the five-window baseline
+- updated the shared state API and internal dashboard to expose activation decision status, next-wave population gaps, and accumulation status
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- live Phase 1a deployment proof remains the primary capital-gated blocker
+- local Data Rail governance thresholds remain met on the current verified sample
+- local externalization readiness remains structurally `ready`, but activation discipline now keeps the actual posture at `review`
+- no explicit activation decision record is present, so externalization is still inactive
+- the next local population target is `16` attributable events across `12` actors, including a `gnosis` surface event and a clean `rejected` outcome
+- longitudinal emergence accumulation is now `review_ready` at `5/8` windows, but still observational only
 
 ---
 

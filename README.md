@@ -60,7 +60,9 @@ See:
 - thresholds are met on the current verified local sample (`9` events, `9` actors, `4` actor classes, `5` surfaces, `5` outcomes)
 - the rights review queue is resolved with `0` open cases
 - externalization readiness is structurally `ready` in local analysis mode
-- emergence observation is `observable` with a forming evidence window, and the baseline now spans `5` windows
+- activation-decision discipline is now implemented, and the current local posture is `review`, not activated
+- the next local expansion target is `16` events across `12` actors, including a `gnosis` surface event and a clean `rejected` outcome
+- emergence observation is `observable`, and longitudinal accumulation is `review_ready` at `5/8` windows
 
 ## Phase 1a Commands
 

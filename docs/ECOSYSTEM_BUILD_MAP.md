@@ -118,7 +118,7 @@ Remaining:
 ### F. Later-Layer Sovereign System
 
 Status: `PARTIAL`
-Progress: `21/27 complete`
+Progress: `24/30 complete`
 
 Complete:
 
@@ -142,8 +142,11 @@ Complete:
 - local threshold-closing population execution now exists
 - local rights review queue resolution now exists
 - local externalization activation gate now evaluates ready on the verified local sample
+- local activation-decision discipline now exists and keeps externalization at `review`, not activated
+- local next-wave population expansion target now exists beyond the threshold-clearing sample
 - local emergence observation now reaches observable readiness with a forming evidence window
 - local emergence baseline now extends beyond seed to five windows with improving trend
+- local emergence accumulation now reaches `review_ready` at `5/8` windows
 
 Remaining:
 
@@ -393,7 +396,7 @@ Remaining:
 ### Layer 14. Data Rail
 
 Status: `PARTIAL`
-Progress: `6/7 complete`
+Progress: `9/10 complete`
 
 Complete:
 
@@ -405,6 +408,8 @@ Complete:
 - population thresholds are now met locally across a verified `9`-event / `9`-actor sample
 - rights review queue is now resolved locally with `0` open cases
 - activation readiness now evaluates `ready` on the verified local sample
+- activation-decision discipline now exists locally and keeps the current posture at `review`, not activated
+- next-wave population expansion targeting now exists locally (`16` events / `12` actors, plus missing `gnosis` and `rejected` windows)
 
 Remaining:
 
@@ -413,12 +418,13 @@ Remaining:
 ### Layer 15. Emergent Protocol System
 
 Status: `PARTIAL`
-Progress: `2/5 complete`
+Progress: `3/7 complete`
 
 Complete:
 
 - local emergence observation now reaches observable readiness with a forming evidence window
 - local longitudinal baseline now spans `5` windows with an improving trend
+- local longitudinal accumulation discipline now exists and is `review_ready` at `5/8` windows
 
 Remaining:
 
@@ -464,7 +470,7 @@ Everything else should be sequenced relative to those gates.
 
 Local zero-capital frontier after this tranche:
 
-1. activation-decision discipline for future externalization
-2. continued longitudinal emergence accumulation
-3. live population expansion beyond the current verified local sample
+1. real population expansion beyond the current verified local sample
+2. continued longitudinal emergence accumulation from `5/8` toward the target
+3. explicit activation records only after the evidence target is met
 
