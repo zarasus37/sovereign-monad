@@ -30,6 +30,12 @@ The canonical role model for these opening agents is the first organ set:
 
 They operate under defined boundaries and feed revenue back into the ecosystem.
 
+Canonical Layer 1 rule:
+
+- this first organ set is not adjacent to the funnel
+- it is one of the funnel's opening revenue rails
+- these six organs are part of the revenue structure intended to keep the ecosystem alive in its beginning phase
+
 Early domains:
 
 - DeFi strategy execution

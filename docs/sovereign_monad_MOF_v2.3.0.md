@@ -476,6 +476,17 @@ MonadSpin is a cosmological slot experience — one funding rail of the ecosyste
 - agent-native revenue from ecosystem-native organ agents
 - MonadSpin slot revenue
 
+**Canonical Layer 1 clarification:** the six-organ opening set is itself part of Layer 1. It is not a later helper abstraction sitting outside the funnel. The agent-native Layer 1 rail is the first organ set:
+
+- `Cardia` for capital circulation once funded
+- `Pneuma` for external exchange and converted demand
+- `Hepar` for opportunity filtering into viable mandates
+- `Cortex` for research products and strategic intelligence
+- `Synapse` for signal routing and monetizable coordination
+- `Vox` for narrative, media, and distribution outputs
+
+These six agents are one of the revenue streams intended to keep the ecosystem alive at the beginning. In current build order, `Cardia` remains capital-gated while the other five operate in zero-capital analysis mode, but canonically all six belong to the Layer 1 funnel rail.
+
 **Concentration risk note:** a slot-only launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, and the preferred posture is bootstrap plus API/licensing plus agent-native revenue before the slot is relied on as a meaningful rail.
 
 ---
@@ -2152,6 +2163,23 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - local build-state is materially advanced, but live production completion remains much lower
 - the single largest unresolved live gate remains Phase 1a deployment proof
 - the MOF now carries the explicit completion interpretation needed to avoid overstating progress
+
+## v2.3.20 — April 4, 2026
+
+**Change Type:** Patch — explicit Layer 1 funnel clarification for the six-organ opening set
+
+**Summary of changes:**
+
+- clarified in Layer 1 that the six-organ opening set is canonically part of the funnel itself
+- removed ambiguity between “agent-native revenue” as a general idea and the actual six-organ opening set
+- made explicit that these six agents are one of the intended sustaining revenue streams for the beginning of the ecosystem
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Layer 1 now states directly that `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox` belong to the opening funnel
+- the agent-native rail is now explicitly documented as part of the revenue structure meant to keep the ecosystem alive
+- `Cardia` remains capital-gated in current build order, while the rest of the organ set remains available for zero-capital build progression
 
 ---
 

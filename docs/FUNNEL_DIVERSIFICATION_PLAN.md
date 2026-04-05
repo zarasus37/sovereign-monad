@@ -73,6 +73,21 @@ Purpose:
 - express mutual contribution inside a system designed for them
 - seed the first organ-functions the organism needs to survive
 
+Canonical clarification:
+
+- this rail is part of Layer 1 itself
+- it is not outside the funnel and not a later helper layer
+- the first six-organ opening set is the canonical agent-native Layer 1 rail
+
+Opening organ set:
+
+- `Cardia`
+- `Pneuma`
+- `Hepar`
+- `Cortex`
+- `Synapse`
+- `Vox`
+
 Early forms:
 
 - bounded DeFi strategies
@@ -106,6 +121,7 @@ Rule:
 For the beginning of the project, Layer 1 should be described as:
 
 - a multi-source funnel
+- explicitly including the six-organ opening set as one of its revenue rails
 - opening first through bootstrap plus API/licensing plus agent-native work
 - then expanding into MonadSpin once the slot rail is real
 

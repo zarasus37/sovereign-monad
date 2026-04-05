@@ -203,6 +203,7 @@ Complete:
 - multi-rail funnel doctrine is now defined locally
 - agent-native revenue rail doctrine is now defined locally
 - first organ set specification is now defined locally
+- the six-organ opening set is now explicitly canonized as part of Layer 1's funnel revenue rail
 
 Remaining:
 
