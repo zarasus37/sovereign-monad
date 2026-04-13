@@ -119,6 +119,63 @@ That is enough for:
 
 It does not by itself create a sustainable monthly infra runway, but it gives you operational breathing room.
 
+### If you spend `$100`
+
+At the current MON reference, `$100` buys about `3,053 MON`.
+
+That is enough for:
+
+- the full recommended guarded-live range
+- a meaningfully larger first routing proof
+- multiple retries without funding stress
+- a modest first private-production reserve if your RPC is already covered
+
+What it does **not** justify by itself:
+
+- skipping execution-truth closure
+- skipping guarded-live controls
+- treating `Cardia` as mature before proof
+
+### If you spend `$250`
+
+At the current MON reference, `$250` buys about `7,634 MON`.
+
+That is enough for:
+
+- strong guarded-live headroom
+- a larger live bankroll for post-proof `Cardia` activation
+- private-production runway if you need to start covering recurring infra
+- more than one serious proof cycle without capital starvation
+
+This is where capital stops being the immediate constraint and operational discipline becomes the dominant constraint.
+
+### If you spend `$500`
+
+At the current MON reference, `$500` buys about `15,267 MON`.
+
+That is enough for:
+
+- repeated guarded-live sessions
+- larger `Cardia` activation with real reserve logic
+- early private-production continuity
+- room for both proof and commercial activation prep
+
+At this point, the main mistake would be over-scaling before the runtime has a clean empirical record.
+
+### If you spend `$1,000+`
+
+At the current MON reference, `$1,000` buys about `30,534 MON`.
+
+That is enough to stop thinking in terms of “can we afford the next step” and start thinking in terms of:
+
+- capital allocation discipline
+- treasury policy
+- exposure caps
+- how much should remain idle until the proof record is stronger
+
+Above this level, the bottleneck is no longer money first.
+It is whether the system has earned the right to use that money.
+
 ## 7. Capital Leverage Model
 
 This is the correct mental model:
@@ -141,6 +198,10 @@ At the current stage, each dollar is doing three things:
 | `$10` | about `305 MON` | enough room for a disciplined live-proof attempt with reserve |
 | `$20` | about `610 MON` | enough to move through live proof, bootstrap registration, execution-truth staging, and first `Cardia` policy funding |
 | `$40` | about `1,221 MON` | enough to run the lane with less fragility and more meaningful guarded-live proof size |
+| `$100` | about `3,053 MON` | enough for strong proof headroom and the beginning of private-production flexibility |
+| `$250` | about `7,634 MON` | enough for serious guarded-live continuity and early recurring infra coverage |
+| `$500` | about `15,267 MON` | enough for multiple disciplined live cycles, but still not an excuse to skip proof sequencing |
+| `$1,000` | about `30,534 MON` | enough that the constraint shifts from money to allocation discipline |
 
 ### Immediate Leverage
 
@@ -182,6 +243,42 @@ Those are revenue tiers, not guaranteed profit. But they are the right scale ref
 | Fund | `125x` |
 | Enterprise | `250x+` |
 
+#### If the outlay is `$100`
+
+| Tier | Monthly revenue multiple vs `$100` outlay |
+|---|---:|
+| Starter | `10x` |
+| Pro | `25x` |
+| Fund | `50x` |
+| Enterprise | `100x+` |
+
+#### If the outlay is `$250`
+
+| Tier | Monthly revenue multiple vs `$250` outlay |
+|---|---:|
+| Starter | `4x` |
+| Pro | `10x` |
+| Fund | `20x` |
+| Enterprise | `40x+` |
+
+#### If the outlay is `$500`
+
+| Tier | Monthly revenue multiple vs `$500` outlay |
+|---|---:|
+| Starter | `2x` |
+| Pro | `5x` |
+| Fund | `10x` |
+| Enterprise | `20x+` |
+
+#### If the outlay is `$1,000`
+
+| Tier | Monthly revenue multiple vs `$1,000` outlay |
+|---|---:|
+| Starter | `1x` |
+| Pro | `2.5x` |
+| Fund | `5x` |
+| Enterprise | `10x+` |
+
 That does not mean those customers appear automatically.
 It means the capital required to reach the next proof gates is tiny relative to the first real commercial upside already defined in the repo.
 
@@ -201,6 +298,16 @@ With your current stated budget, the pragmatic path is:
 2. keep a larger contingency buffer
 3. avoid turning every retry into a capital problem
 
+### If you move above `$40`
+
+Use higher amounts in this order:
+
+1. increase proof reliability, not ego
+2. increase reserve and retry room
+3. cover private-production recurring costs only after proof is moving cleanly
+4. scale `Cardia` only after execution-truth closure
+5. keep treasury discipline tighter as the amount rises
+
 ## 9. Bottom Line
 
 The project does not currently need large money to move.
@@ -217,3 +324,12 @@ That is why the first `$20-$40` matters so much.
 
 It is not fueling a mature machine yet.
 It is removing the last small barrier between a fully built local organism and the first real evidence that it can function live.
+
+Higher funding does matter, but only if it stays sequenced.
+
+The correct rule is:
+
+- more money should increase reliability and runway
+- not bypass proof
+- not bypass control
+- not bypass execution truth
