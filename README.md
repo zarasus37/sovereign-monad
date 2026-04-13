@@ -15,6 +15,7 @@ Canonical project status does not live in this repo. Use the separate `sovereign
 - Local mirrored MOF for workspace use: `docs/SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md`
 - Local mirrored build map for workspace use: `docs/ECOSYSTEM_BUILD_MAP.md`
 - Local mirrored sync discipline for workspace use: `docs/CANONICAL_SYNC_DISCIPLINE.md`
+- Cortical control overlay reference: `docs/CORTICAL_OVERLAY_MODEL.md`
 - Base/Arbitrum repo migration notes: `docs/MIGRATION-BASE-ARB.md`
 - Service and topic flow artifacts: `ARCHITECTURE.md`
 - Proposed funded operating envelope: `docs/GUARDED-LIVE-PROFILE.md`
