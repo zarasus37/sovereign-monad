@@ -9,6 +9,7 @@ This repository contains the canonical Sovereign Monad materials plus the runtim
 - `docs/BUILD_EXECUTION_FLOW.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - `docs/FIRST_ORGAN_SET.md`
+- `docs/CORTICAL_OVERLAY_MODEL.md`
 - `docs/Gnosis_Integrity_Layer_Spec_v1.2.md`
 - `docs/data_buyer_thesis.md`
 - `DoveCore.sol`

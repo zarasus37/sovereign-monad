@@ -502,6 +502,36 @@ The minimum physiological lessons to preserve are:
 
 These are not optional decorative analogies. They are design rules if the ecosystem is meant to function like a living organism rather than a collection of modules.
 
+## Cortical overlay relationship
+
+The organ model is still the primary body model.
+
+But the ecosystem also benefits from a cortical overlay for the intelligence and control surfaces.
+
+That overlay should not replace the six organs. It should clarify how they participate inside cognition:
+
+- occipital = perception and first-pass signal intake
+- parietal = integrated body-state and coordination
+- temporal = memory, identity, continuity, and meaning
+- frontal = planning, inhibition, executive gating, and controlled action
+
+This is useful because the organism already has the parts required for a brain-like control architecture:
+
+- `signal-layer` for perception
+- `Synapse` and shared state for integration
+- `Gnosis`, `Data Rail`, `Keys`, and `Narrative` for memory/identity continuity
+- `Oracle`, activation gates, DAO, and `Cardia` controls for executive decisions
+
+Canonical rule:
+
+- keep the organ model as the functional body map
+- use the cortical overlay only as a control-and-cognition map
+- do not create a second competing organ set
+
+Reference:
+
+- `docs/CORTICAL_OVERLAY_MODEL.md`
+
 ## Immediate implementation rule
 
 Do not launch all six at full power at once.

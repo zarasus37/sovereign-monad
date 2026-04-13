@@ -686,7 +686,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - agent-first system identity canonized
 - agent-native revenue doctrine defined
 - first organ set specification defined
-- physiological survival lessons captured from body-level coordination
+- physiological survival lessons and cortical overlay discipline captured from body-level coordination
 - organ runtime scaffold exists
 - zero-capital vs capital-gated build flow defined
 - `Synapse` implemented in analysis mode
@@ -709,7 +709,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - funded `Cardia` activation
 - live mandate execution and sustained operating record
 
-**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, `Vox`, and `Pneuma` are now implemented in analysis mode inside `organ-runtime`, along with control-layer analysis for homeostasis, mixed-speed signaling, and immune/barrier/repair handling.
+**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The cortical control overlay is defined in `docs/CORTICAL_OVERLAY_MODEL.md` and maps the existing intelligence/control surfaces into four cognitive domains: perception, integration, memory-identity, and executive control. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, `Vox`, and `Pneuma` are now implemented in analysis mode inside `organ-runtime`, along with control-layer analysis for homeostasis, mixed-speed signaling, and immune/barrier/repair handling.
 
 **Dependency:** signal + oracle + later live implementation work
 
@@ -2270,6 +2270,24 @@ The current live frontier now has executable local tracking surfaces, but they d
 - live Phase 1a deployment proof remains blocked by deployer funding restore
 - bootstrap approved-source registration remains downstream of successful live deployment proof
 - runtime execution-truth closure, funded `Cardia`, and production/public activation now each have explicit local blocker-tracking surfaces
+- the primary live gate remains Phase 1a deployment proof
+
+## v2.3.23 — April 13, 2026
+
+**Change Type:** Patch — cortical overlay clarification
+
+**Summary of changes:**
+
+- added a cortical overlay model as a control-and-cognition map for the existing organism architecture
+- clarified that the four-lobe model is an overlay on existing intelligence/control surfaces, not a new layer or replacement for the six-organ set
+- aligned the existing surfaces into four useful domains: perception, integration, memory-identity, and executive control
+- kept the change intentionally narrow so it reduces ambiguity without adding subsystem sprawl
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- no new package or formal layer was introduced
+- the ecosystem now has a clearer brain-map vocabulary for future control-boundary decisions
 - the primary live gate remains Phase 1a deployment proof
 
 ## v2.3.20 — April 4, 2026

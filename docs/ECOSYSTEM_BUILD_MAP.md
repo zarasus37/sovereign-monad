@@ -301,7 +301,7 @@ Complete:
 
 - agent-native revenue rail doctrine is now defined locally
 - first organ set specification is now defined locally
-- physiological design lessons are now captured locally
+- physiological design lessons and cortical overlay discipline are now captured locally
 - organ runtime scaffold now exists locally
 - zero-capital vs capital-gated build flow is now defined locally
 - `Synapse` is now implemented in analysis mode
