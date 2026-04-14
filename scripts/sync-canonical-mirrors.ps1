@@ -7,7 +7,8 @@ $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $scripts = @(
   'sync-mof-mirror.ps1',
   'sync-build-map-mirror.ps1',
-  'sync-canonical-sync-discipline-mirror.ps1'
+  'sync-canonical-sync-discipline-mirror.ps1',
+  'sync-candidate-standard-kernel-v0-mirror.ps1'
 )
 
 foreach ($scriptName in $scripts) {
