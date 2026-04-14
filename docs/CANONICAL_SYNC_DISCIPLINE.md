@@ -29,6 +29,7 @@ Mirror set:
 - `docs/SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
+- `docs/CANDIDATE_STANDARD_KERNEL_V0.md`
 
 Rule:
 
@@ -49,11 +50,13 @@ Primary subordinate docs in `monad-mev`:
 - `docs/ONE-PAGER.md`
 - `docs/PAYMENTS.md`
 - `docs/GUARDED-LIVE-PROFILE.md`
+- `docs/CANDIDATE_STANDARD_KERNEL_V0.md`
 - `risk-engine/MEV_LICENSING_BUILD_GUIDE.md`
 
 Primary subordinate docs in `sovereign-monad`:
 
 - `README.md`
+- `docs/CANDIDATE_STANDARD_KERNEL_V0.md`
 - `docs/data_buyer_thesis.md`
 - `docs/SLOT_SOURCE_HANDOFF.md`
 

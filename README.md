@@ -16,6 +16,12 @@ This repository contains the canonical Sovereign Monad materials plus the runtim
 - `Revenue_Router_Specification_—_Phase_1a.pdf`
 - `Revenue_Router_Specification_—_Phase_1a.zip`
 
+## Current Standardization Artifact
+
+- `docs/CANDIDATE_STANDARD_KERNEL_V0.md`
+  - subordinate to the MOF
+  - freezes the current internal standard-kernel candidate and its first conformance matrix
+
 ## Phase 1a Contract Workspace
 
 - `contracts/`
