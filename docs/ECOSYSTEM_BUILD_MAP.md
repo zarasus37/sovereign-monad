@@ -62,7 +62,7 @@ Complete:
 - Gnosis Integrity Layer spec exists
 - `DoveCore.sol` exists
 - Revenue Router specification artifact exists
-- canonical sync discipline exists for mirrors and subordinate docs
+- canonical sync discipline and constitutional engineering brief exist for mirrors, subordinate docs, and implementation discipline
 
 Remaining:
 

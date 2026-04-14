@@ -11,6 +11,7 @@ Canonical documents and artifacts:
 - `docs/sovereign_monad_MOF_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
+- `docs/CONSTITUTIONAL_ENGINEERING_BRIEF.md`
 - `docs/Gnosis_Integrity_Layer_Spec_v1.2.md`
 - `DoveCore.sol`
 - `Revenue_Router_Specification_—_Phase_1a.pdf`
@@ -29,6 +30,7 @@ Mirror set:
 - `docs/SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
+- `docs/CONSTITUTIONAL_ENGINEERING_BRIEF.md`
 
 Rule:
 
@@ -56,6 +58,12 @@ Primary subordinate docs in `sovereign-monad`:
 - `README.md`
 - `docs/data_buyer_thesis.md`
 - `docs/SLOT_SOURCE_HANDOFF.md`
+
+Canonical implementation-discipline note:
+
+- `docs/CONSTITUTIONAL_ENGINEERING_BRIEF.md` is canonical but subordinate to the MOF
+- it is allowed to constrain implementation behavior
+- it is not allowed to redefine doctrine, live state, or phase truth
 
 Rule:
 
