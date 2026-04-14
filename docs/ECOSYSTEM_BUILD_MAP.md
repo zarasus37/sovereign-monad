@@ -73,7 +73,7 @@ Complete:
 - Gnosis Integrity Layer spec exists
 - `DoveCore.sol` exists
 - Revenue Router specification artifact exists
-- canonical sync discipline exists for mirrors and subordinate docs
+- canonical sync discipline and constitutional engineering brief exist for mirrors, subordinate docs, and implementation discipline
 
 Remaining:
 
@@ -121,7 +121,7 @@ Remaining:
 
 Capital-gated local surface:
 
-- `execution-truth-core` now exists locally and currently reports `blocked` until live Phase 1a proof and bootstrap source registration are recorded
+- `execution-truth-core` now exists locally in `monad-mev` and currently reports `blocked` until live Phase 1a proof and bootstrap source registration are recorded
 
 ### D. Commercial Support Surface
 
@@ -165,8 +165,8 @@ Remaining:
 
 Capital-gated local surfaces:
 
-- `cardia-activation-core` now exists locally and currently reports `blocked`
-- `public-activation-core` now exists locally and currently reports `blocked`
+- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `blocked`
+- `public-activation-core` now exists locally in `monad-mev` and currently reports `blocked`
 
 ### F. Later-Layer Sovereign System
 

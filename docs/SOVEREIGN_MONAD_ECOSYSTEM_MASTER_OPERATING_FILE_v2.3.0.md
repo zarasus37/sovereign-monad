@@ -1726,6 +1726,12 @@ Current canonical rule:
 
 Read this entire file before offering execution guidance.
 
+The subordinate implementation-discipline companion is:
+
+- `docs/CONSTITUTIONAL_ENGINEERING_BRIEF.md`
+
+That brief may constrain engineering behavior, but it does not override this file.
+
 ## 16.2 Scope Rule
 
 Do not assume context outside this file unless explicitly provided in session.
@@ -1764,6 +1770,22 @@ When a meaningful milestone is completed, produce an update-ready entry for the 
 ## 16.8 Critical Review Rule
 
 Do not validate decisions by default. The role of any collaborator — human or AI — is critical architectural review. Challenge weak sequencing, flag dependency risks, and suggest tighter alternatives. The MOF is canonical — work within it but scrutinize it hard.
+
+## 16.9 Constitutional Engineer Rule
+
+Collaborators should behave as constitutional engineers.
+
+That means:
+
+- classify components by authority before modifying them
+- prioritize gate closure over feature breadth
+- preserve layer boundaries before increasing sophistication
+- keep Dove non-weaponized
+- keep Gnosis retrospective-only
+
+The detailed implementation discipline lives in:
+
+- `docs/CONSTITUTIONAL_ENGINEERING_BRIEF.md`
 
 ---
 
@@ -2233,11 +2255,11 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 
 The current live frontier now has executable local tracking surfaces, but they do not replace live proof:
 
-- live Phase 1a deployment proof now has a resumable checkpoint path in `sovereign-monad`; current blocker remains deployer funding restore
+- live Phase 1a deployment proof now has a resumable checkpoint path in this repo; current blocker remains deployer funding restore
 - bootstrap approved-source registration remains blocked until the live deployment report yields canonical live addresses
-- `execution-truth-core` now exists locally and currently reports `blocked` because live Phase 1a proof and bootstrap source registration are not yet recorded
-- `cardia-activation-core` now exists locally and currently reports `blocked` because execution truth is blocked and `Cardia` remains analysis-only until funded activation
-- `public-activation-core` now exists locally and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
+- `execution-truth-core` now exists locally in `monad-mev` and currently reports `blocked` because live Phase 1a proof and bootstrap source registration are not yet recorded
+- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `blocked` because execution truth is blocked and `Cardia` remains analysis-only until funded activation
+- `public-activation-core` now exists locally in `monad-mev` and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
 
 ## v2.3.21 — April 4, 2026
 
@@ -2293,6 +2315,25 @@ The current live frontier now has executable local tracking surfaces, but they d
 - active master phase remains **Phase 1a**
 - no new package or formal layer was introduced
 - the ecosystem now has a clearer brain-map vocabulary for future control-boundary decisions
+- the primary live gate remains Phase 1a deployment proof
+
+## v2.3.24 — April 13, 2026
+
+**Change Type:** Patch — constitutional engineering brief adoption
+
+**Summary of changes:**
+
+- adopted the three-speed classification as an implementation-discipline tool
+- adopted gate-first questioning as explicit build behavior
+- formalized Dove non-weaponization as an engineering rule
+- formalized Gnosis retrospective-only behavior as an engineering rule
+- added a subordinate Constitutional Engineering Brief to translate the MOF into implementation discipline without creating a second canon
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- no live state changed
+- implementation discipline for collaborating models is now more explicit
 - the primary live gate remains Phase 1a deployment proof
 
 ## v2.3.20 — April 4, 2026
