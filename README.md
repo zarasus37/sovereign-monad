@@ -71,6 +71,7 @@ See:
 - activation-decision discipline is now implemented, and the current local posture is `review`, not activated
 - the next local expansion target is `16` events across `12` actors, including a `gnosis` surface event and a clean `rejected` outcome
 - emergence observation is `observable`, and longitudinal accumulation is `review_ready` at `5/8` windows
+- bounded local emergence claim and history artifacts now exist, but they remain evidence scaffolding only and do not create a live recognition layer or operating-surface authority
 
 ## Phase 1a Commands
 

@@ -114,6 +114,12 @@ Revenue forms:
 - private research feeds
 - premium intelligence briefs
 
+Certification boundary:
+
+- premium institutional data bundles may carry a `LightVerified` commercial seal only after de-identification, rights review, Dove evidence, and Gnosis-aligned coherence review all clear
+- `LightVerified` is a commercial certification and provenance mark, not a runtime execution token
+- lower-confidence bundles can exist as separate commercial classes, but they must not reuse the `LightVerified` public seal
+
 ### 3. Narrative and exchange organs
 
 Purpose:

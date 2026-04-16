@@ -27,8 +27,8 @@ They are not interchangeable.
 
 Tracked local build-state rollups:
 
-- major-area rollup: `59/71 complete` (`83.1%`)
-- layer-by-layer rollup: `80/98 complete` (`81.6%`)
+- major-area rollup: `60/72 complete` (`83.3%`)
+- layer-by-layer rollup: `81/99 complete` (`81.8%`)
 
 These percentages describe what has been built and verified locally. They do **not** mean the project is `74.6%` live or production-complete.
 
@@ -41,7 +41,7 @@ These percentages describe what has been built and verified locally. They do **n
 | Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
 | Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
 | Production Operations | tooling exists locally | infra not live | yes | `6/10` |
-| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `30/30` |
+| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `31/31` |
 
 ### 0.2 What Is Actually Complete
 
@@ -160,7 +160,7 @@ Capital-gated local surfaces:
 ### F. Later-Layer Sovereign System
 
 Status: `DONE`
-Progress: `30/30 complete`
+Progress: `31/31 complete`
 
 Complete:
 
@@ -195,6 +195,7 @@ Complete:
 - local Dove drift-signaling integration now exists
 - local Gnosis evaluation and integrity scoring now exist
 - local Data Rail bundle/product boundary preparation now exists
+- local LightVerify commercial certification/provenance surface now exists
 - local emergent protocol pattern extraction and downstream-path scaffold now exists
 
 Remaining:
@@ -465,7 +466,7 @@ Remaining:
 ### Layer 14. Data Rail
 
 Status: `DONE`
-Progress: `10/10 complete`
+Progress: `11/11 complete`
 
 Complete:
 
@@ -480,6 +481,7 @@ Complete:
 - activation-decision discipline now exists locally and keeps the current posture at `review`, not activated
 - next-wave population expansion targeting now exists locally (`16` events / `12` actors, plus missing `gnosis` and `rejected` windows)
 - local bundle/product boundary preparation now exists
+- local LightVerify certification/provenance artifact now exists with a binary public seal, internal scorecard, and no runtime execution gating
 
 Remaining:
 
@@ -502,7 +504,7 @@ Complete:
 - local pattern extraction system now exists
 - local protocol discovery logic now exists
 - local emergence validation rules now exist
-- local formalized downstream protocol path now exists
+- local formalized downstream protocol path plus bounded claim/history evidence-artifact scaffolding now exist
 
 Remaining:
 
@@ -512,6 +514,7 @@ Live follow-ons:
 
 - longitudinal emergence evidence accumulation beyond the current local windows
 - formal emergence claims only after durable live evidence
+- any true recognition layer, human ratification workflow, or downstream read-path expansion beyond the isolated historical record
 
 ## 3. Repo Map
 

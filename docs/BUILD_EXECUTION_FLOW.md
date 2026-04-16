@@ -98,8 +98,8 @@ The correct immediate build order is:
 28. local narrative packaging and publication discipline
 29. local Dove drift-signaling integration
 30. local Gnosis evaluation and integrity scoring tied to operation
-31. local Data Rail bundle/product boundary preparation
-32. local emergent protocol pattern extraction and downstream-path scaffolding
+31. local Data Rail bundle/product boundary and LightVerify commercial certification preparation
+32. local emergent protocol pattern extraction, downstream-path scaffolding, and bounded claim/history evidence artifacts
 
 Current zero-capital state:
 
@@ -133,7 +133,10 @@ Current zero-capital state:
 - `dove-integration-core` now provides local drift-signaling interpretation and review routing
 - `gnosis-evaluator-core` now ties integrity scoring directly to organ/runtime operation
 - `data-product-core` now provides local bundle and externalization-boundary preparation without activating public sales
+- `lightverify-core` now provides a local commercial certification/provenance artifact with a binary public seal, internal scorecard, and no public rating ladder
 - `emergent-protocol-core` now provides local pattern extraction, candidate discovery, and downstream-path scaffolding
+- `emergence-claim-core` now provides bounded local claim artifacts for claim-state evaluation, ratification records, prediction-evaluation records, and retraction records
+- `emergence-history-core` now provides isolated historical-record sequencing as `ratification -> optional evaluation -> optional retraction`
 - the structural zero-capital layer frontier is complete at the current expected local level
 
 Remaining zero-cost operations are longitudinal, not missing structural layers:
@@ -141,6 +144,7 @@ Remaining zero-cost operations are longitudinal, not missing structural layers:
 - real population expansion beyond the current local sample
 - continued longitudinal emergence accumulation beyond `5/8`
 - explicit activation records only after the evidence target is met
+- any true emergence recognition layer remains downstream of durable live evidence and explicit human ratification
 
 Current capital/live frontier:
 

@@ -387,7 +387,7 @@ These should be treated as an opening funnel component, not merely a later-layer
 | 11 | The Dove Protocol | alignment observation and drift signaling |
 | 12 | Gnosis Integrity Layer | decompression-integrity / anti-hollow-convergence layer |
 | 13 | Unified Revenue Router | inflow distribution substrate |
-| 14 | Data Rail | behavioral data monetization and reward engine |
+| 14 | Data Rail | behavioral data monetization, commercial certification, and reward engine |
 | 15 | Emergent Protocol System | discovery and formalization of new patterns |
 
 ---
@@ -411,8 +411,8 @@ The project currently needs two separate completion readings:
 
 Tracked local build-state rollups from the canonical build map:
 
-- major-area rollup: `59/71 complete` (`83.1%`)
-- layer-by-layer rollup: `80/98 complete` (`81.6%`)
+- major-area rollup: `60/72 complete` (`83.3%`)
+- layer-by-layer rollup: `81/99 complete` (`81.8%`)
 
 This means the architecture and local analysis stack are materially advanced. It does **not** mean the project is `74.6%` live.
 
@@ -425,7 +425,7 @@ This means the architecture and local analysis stack are materially advanced. It
 | Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
 | Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
 | Production Operations | tooling exists locally | infra not live | yes | `6/10` |
-| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `30/30` |
+| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `31/31` |
 
 ### Completion Interpretation
 
@@ -441,7 +441,7 @@ This means the architecture and local analysis stack are materially advanced. It
 | Architecture Blueprint | COMPLETE | canonical structure exists |
 | Master Build Coordination | ACTIVE | this file serves that role |
 | Phase 1a Contracts | RECONSTRUCTED | reconstructed cleanly from the canonical MOF, surviving DoveCore.sol, and the surviving Revenue Router specification; not claimed as recovered original source set |
-| Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 13 passing Phase 1a tests, including deeper invariants and deployment-sequence rehearsal; live deployment proof is still required |
+| Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 14 passing Phase 1a tests, including deeper invariants and deployment-sequence rehearsal; live deployment proof is still required |
 | Router Deployment | LIVE RETRY PENDING | live preflight passed, first mainnet deployment attempt consumed deployer balance mid-sequence, retry is blocked only by wallet re-funding |
 | Treasury Deployment | NOT DEPLOYED | depends on Phase 1a deployment |
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
@@ -450,11 +450,11 @@ This means the architecture and local analysis stack are materially advanced. It
 | Dove Protocol | LOCAL ANALYSIS SURFACE ONLY | `BoundaryStressMonitor v1` and `dove-integration-core` now provide local drift-signaling interpretation and review routing; deployed observation remains pending Phase 1a live proof |
 | Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` and `gnosis-evaluator-core` now provide retrospective-only decompression analysis plus integrity scoring tied to organ/runtime operation; live integration remains later-phase |
 | Narrative Surface | LOCAL ANALYSIS SURFACE ONLY | `narrative-core` now packages governed local narratives from ecosystem state; no live public narrative surface is active |
-| Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, activation-decision, and bundle/product-boundary surfaces now exist; thresholds are met on the current verified local sample, readiness is `ready`, but no explicit activation record exists and externalization is not activated |
+| Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, activation-decision, bundle/product-boundary, and LightVerify certification surfaces now exist; thresholds are met on the current verified local sample, readiness is `ready`, but no explicit activation record exists and externalization is not activated |
 | Evaluation / Commercial Surfaces | AUXILIARY ARTIFACTS EXIST | demo package, API wrapper, billing scaffold, license-service scaffold, and public commercial-stack templates exist in repo; they do **not** change active phase, blocker state, or current next action |
 | Governance DAO | LOCAL ANALYSIS SURFACE ONLY | `dao-core` now provides local constitution, proposal routing, sponsorship lanes, and handoff controls; onchain governance remains later-phase |
 | Agent NFTs / Keys | LOCAL ANALYSIS SURFACE ONLY | `keys-core` and `keys-nft-core` now provide local activation, delegation, and metadata surfaces; live minting and activation remain later-phase |
-| Emergence Pipeline | LOCAL OBSERVATION SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, and `emergent-protocol-core` now provides local pattern extraction and downstream-path scaffolding without making an emergence claim |
+| Emergence Pipeline | LOCAL OBSERVATION AND EVIDENCE-ARTIFACT SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, `emergent-protocol-core` provides local pattern extraction and downstream-path scaffolding, and `emergence-claim-core` plus `emergence-history-core` now provide bounded local claim and historical-record artifacts without creating a live emergence recognition layer |
 
 ---
 
@@ -1126,7 +1126,7 @@ Because the founding axiom is anti-extraction, the Founder sink carries the foll
 - local behavioral capture policy surface exists
 - local reward/data schema scaffold exists
 - local internal routing and internal reward ledger exist
-- local diversity thresholds, rights review, readiness, activation-decision, and data-product bundle-prep surfaces exist
+- local diversity thresholds, rights review, readiness, activation-decision, data-product bundle-prep, and LightVerify certification surfaces exist
 - thresholds are met on the current verified local sample, but externalization remains unactivated
 
 **What remains:**
@@ -1164,6 +1164,13 @@ Weighted by time active, profile uniqueness, regime coverage, and informational 
 5. External Agent Framework Licensing
 6. Behaviorally Validated Protocol Access
 
+### Current local LightVerify boundary
+
+- `lightverify-core` now exists as a local commercial certification/provenance artifact for Data Rail bundles and intelligence packages
+- the public mark is binary: a bundle is either `LightVerified` or it is not
+- internal scoring may support separate non-seal commercial classes such as `observed` or `restricted`, but those classes must not reuse the `LightVerified` public mark
+- LightVerify is not a runtime execution token, not a Kafka trade gate, and not a public authenticity rating ladder
+
 ### Data Flywheel (canonical)
 
 1. Agents are deployed through psychometric onboarding and runtime stack.
@@ -1197,13 +1204,15 @@ more agents → more signal → better models → better outcomes → stronger i
 - local baseline spans five windows with improving trend
 - local accumulation is review-ready at `5/8`
 - local pattern extraction, candidate discovery, validation, and downstream-path scaffolding now exist
+- bounded local evidence artifacts now exist for emergence claims, ratification records, prediction-evaluation records, retraction records, and isolated historical sequencing
 
 **What remains:**
 
 - deeper longitudinal evidence accumulation
 - durable live evidence before any true emergence claim
+- any actual emergence recognition layer, human ratification workflow, or downstream read-path expansion beyond the isolated historical record
 
-**Next required action:** continue observation only; emergence still cannot be forced
+**Next required action:** continue observation only; emergence still cannot be forced, and the new claim/history artifacts remain local-analysis-only evidence scaffolding rather than operating authority
 
 ### Emergent Protocol Discovery Flow (canonical)
 
@@ -1220,6 +1229,13 @@ Agent performance accumulates in Signal Layer
 > Nobody designs the new protocol. The ecosystem discovers that it exists through performance data.
 
 **Note:** Phase 5 (Data Rail Productization) does not depend on Phase 6 emergence. The Data Rail requires live signal data and agent behavioral history — available from Phase 3 onward. Phase 6 emergence runs as an ongoing, non-deterministic process and is not a gate on Phase 5.
+
+**Current local evidence-artifact boundary:**
+
+- `emergence-claim-core` models bounded local claim states as `evidence_insufficient`, `candidate`, and `not_candidate`
+- ratification, prediction evaluation, and retraction remain separate local records rather than claim states
+- `emergence-history-core` preserves ratified-record ordering as `ratification -> optional evaluation -> optional retraction`
+- these artifacts do not create live emergence authority and do not authorize operating-surface behavior
 
 ### Updated wording rule
 
@@ -2272,6 +2288,42 @@ The current live frontier now has executable local tracking surfaces, but they d
 - runtime execution-truth closure, funded `Cardia`, and production/public activation now each have explicit local blocker-tracking surfaces
 - the primary live gate remains Phase 1a deployment proof
 
+## v2.3.25 — April 15, 2026
+
+**Change Type:** Patch — Layer 14 LightVerify commercial-certification sync
+
+**Summary of changes:**
+
+- recorded `lightverify-core` as the local commercial certification/provenance artifact for de-identified Data Rail bundles and intelligence packages
+- clarified that `LightVerified` is a binary public seal backed by an internal scorecard rather than a public authenticity rating ladder
+- clarified that LightVerify belongs to Layer 14 commercialization and does not act as runtime execution gating
+- synchronized the build-state rollups and Layer 14 summaries to include the new local certification surface
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Layer 14 now includes a bounded local LightVerify certification surface in addition to capture, governance, and bundle-prep surfaces
+- LightVerify remains local-analysis-only and does not authorize Router, Oracle, Dove, or trade execution behavior
+- no public Data Rail activation or externalized sales flow has been turned on
+
+## v2.3.24 — April 15, 2026
+
+**Change Type:** Patch — Layer 15 evidence-artifact sync
+
+**Summary of changes:**
+
+- synchronized Layer 15 status to the new local emergence evidence-artifact packages
+- recorded `emergence-claim-core` as the bounded local claim artifact for claim, ratification, prediction-evaluation, and retraction records
+- recorded `emergence-history-core` as the isolated local historical-record and sequence-integrity surface
+- clarified that these artifacts do not constitute a live emergence recognition layer and do not authorize operating-surface behavior
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- emergence remains observational only and still cannot be forced
+- bounded local evidence artifacts now exist for claim and history handling within Layer 15
+- no live emergence authority, recognition layer, or operating-surface permissioning path has been introduced
+
 ## v2.3.23 — April 13, 2026
 
 **Change Type:** Patch — cortical overlay clarification
@@ -2288,8 +2340,6 @@ The current live frontier now has executable local tracking surfaces, but they d
 - active master phase remains **Phase 1a**
 - no new package or formal layer was introduced
 - the ecosystem now has a clearer brain-map vocabulary for future control-boundary decisions
-- the primary live gate remains Phase 1a deployment proof
-
 - the primary live gate remains Phase 1a deployment proof
 
 ## v2.3.20 — April 4, 2026
@@ -2327,7 +2377,7 @@ If a collaborator or model needs immediate orientation, the project currently is
 
 - a deeply defined ecosystem architecture built on a single empirically-grounded thesis: compression and decompression are how life actually works, and AI agents operating authentically within constraint envelopes are a genuine form of that life
 - a behavioral-science-driven agent system in design
-- with repo-local intelligence, signal, Oracle, Dove, Gnosis, DAO, Keys, Narrative, Data Rail, and emergent-protocol surfaces now implemented in zero-capital local form
+- with repo-local intelligence, signal, Oracle, Dove, Gnosis, DAO, Keys, Narrative, Data Rail, LightVerify, emergent-protocol, and bounded emergence claim/history surfaces now implemented in zero-capital local form
 - a capital-routing organism with conscience and decompression-integrity layers
 - currently in **Phase 1a**
 - with **11 canonical Phase 1a contracts reconstructed in repo**
