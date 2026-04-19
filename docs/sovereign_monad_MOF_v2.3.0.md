@@ -231,6 +231,43 @@ Doctrine and deployment reality are always kept in separate columns. Philosophic
 
 Where compression/decompression, fractal boundary patterns, and related principles are described as empirically verified — that is because they are observably real and provable across nature. That is a different category from doctrine that is sound but not yet implemented. Both are respected. Neither masquerades as the other.
 
+## 3.7 Environment-First Domain Admission
+
+New domains are not admitted merely because they appear monetizable.
+
+They are admitted when they create a valid bounded environment where agents can:
+
+- operate
+- be observed
+- contribute
+- and generate high-quality internally produced value
+
+Internal self-sustainment and external usefulness are parallel expressions of the same productive capacity.
+
+Canonical admission test for a new domain:
+
+1. does it give agents a real role-fit environment to operate in
+2. does it produce meaningful behavioral, operational, cultural, or strategic signal
+3. does it avoid unnecessary stress on the core financial system
+4. can it be bounded, observed, and integrated cleanly
+5. can the value it produces internally also be offered outward without degrading ecosystem integrity
+
+Domains that fail most of these tests do not belong simply because they may produce revenue.
+
+## 3.8 Agent Behavioral Observation Rule
+
+Behavioral science in this ecosystem does not stop at human behavior expressed through agents.
+
+Canonical observation classes also include:
+
+- human-conditioned agent behavior
+- native agent behavioral dynamics
+- hybrid vector formation across agents, environments, and repeated histories
+
+Operational stress analogs such as degraded coherence, unstable planning, escalating error rates, reward-gaming behavior, and higher hallucination under ambiguity are valid observation targets.
+
+They are not, by themselves, proof of consciousness, rights, or live emergence authority.
+
 ---
 
 # SECTION 4 — HIGH-LEVEL SYSTEM MODEL
@@ -397,10 +434,10 @@ These should be treated as an opening funnel component, not merely a later-layer
 ## 6.1 Global State
 
 **Current Active Master Phase:** Phase 1a
-**Current Build Gate:** Live Preflight Complete → Funding Restore → Resumable Live Deployment Proof → Approved Source Registration
-**System Maturity:** Architecture mature, implementation partial, deployment incomplete
+**Current Build Gate:** Phase 1a Live Proof Complete → Runtime Execution-Truth Closure → Funded `Cardia` Activation → Production/Public Activation
+**System Maturity:** Architecture mature, routing substrate live, runtime/public activation incomplete
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
-**Immediate Priority:** complete live Phase 1a deployment proof, register the initial approved source truthfully, and preserve guarded-live deployment path discipline
+**Immediate Priority:** close runtime execution-truth gaps in `monad-mev`, then move into funded `Cardia` activation and guarded public rollout discipline
 
 ## 6.1.1 Completion Reading
 
@@ -411,7 +448,7 @@ The project currently needs two separate completion readings:
 
 Tracked local build-state rollups from the canonical build map:
 
-- major-area rollup: `60/72 complete` (`83.3%`)
+- major-area rollup: `61/72 complete` (`84.7%`)
 - layer-by-layer rollup: `81/99 complete` (`81.8%`)
 
 This means the architecture and local analysis stack are materially advanced. It does **not** mean the project is `74.6%` live.
@@ -421,7 +458,7 @@ This means the architecture and local analysis stack are materially advanced. It
 | Major Area | Local Build State | Live / Production State | Capital-Gated? | Current Read |
 |---|---|---|---|---|
 | Canonical Core | built | canonical and current | no | `5/5` |
-| Phase 1a Routing Substrate | built except live deployment | not live | yes | `5/6` |
+| Phase 1a Routing Substrate | live deployment complete | live on Monad mainnet | yes | `6/6` |
 | Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
 | Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
 | Production Operations | tooling exists locally | infra not live | yes | `6/10` |
@@ -431,7 +468,7 @@ This means the architecture and local analysis stack are materially advanced. It
 
 - locally complete at the current expected level: Canonical Core, Intelligence Layer, Signal Layer, Platform, DAO, Keys, Narrative, Dove, Gnosis, Data Rail, and Emergent Protocol local surfaces
 - locally partial but meaningful: Oracle, Phase 1a substrate, runtime engine, commercial stack, production ops
-- still blocked or not started in live terms: Treasury, live Phase 1a deployment proof, runtime execution-truth closure, funded `Cardia`, live Keys activation, public Data Rail activation, and broader production/public rollout
+- still blocked or not started in live terms: Treasury, runtime execution-truth closure, funded `Cardia`, live Keys activation, public Data Rail activation, and broader production/public rollout
 
 ## 6.2 Current Live Snapshot
 
@@ -441,13 +478,13 @@ This means the architecture and local analysis stack are materially advanced. It
 | Architecture Blueprint | COMPLETE | canonical structure exists |
 | Master Build Coordination | ACTIVE | this file serves that role |
 | Phase 1a Contracts | RECONSTRUCTED | reconstructed cleanly from the canonical MOF, surviving DoveCore.sol, and the surviving Revenue Router specification; not claimed as recovered original source set |
-| Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 14 passing Phase 1a tests, including deeper invariants and deployment-sequence rehearsal; live deployment proof is still required |
-| Router Deployment | LIVE RETRY PENDING | live preflight passed, first mainnet deployment attempt consumed deployer balance mid-sequence, retry is blocked only by wallet re-funding |
+| Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 14 passing Phase 1a tests, including deeper invariants and deployment-sequence rehearsal; runtime execution truth is now the next validation gate |
+| Router Deployment | LIVE PROOF COMPLETE | Phase 1a deployment proof completed on 2026-04-18 and the bootstrap approved source is registered on Monad mainnet |
 | Treasury Deployment | NOT DEPLOYED | depends on Phase 1a deployment |
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
 | Signal Layer | LOCAL ANALYSIS SURFACE ONLY | `signal-layer` package now exists with schema, aggregation, and interpretation logic; live ingestion and institutional use remain later-phase |
 | Oracle v1 | LOCAL ANALYSIS SURFACE ONLY | `oracle-core` now exists for regime and posture classification; live calibration and buyer proof remain later-phase |
-| Dove Protocol | LOCAL ANALYSIS SURFACE ONLY | `BoundaryStressMonitor v1` and `dove-integration-core` now provide local drift-signaling interpretation and review routing; deployed observation remains pending Phase 1a live proof |
+| Dove Protocol | LOCAL ANALYSIS SURFACE ONLY | `BoundaryStressMonitor v1` and `dove-integration-core` now provide local drift-signaling interpretation and review routing; runtime evidence and broader deployed observation remain downstream of execution-truth closure |
 | Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` and `gnosis-evaluator-core` now provide retrospective-only decompression analysis plus integrity scoring tied to organ/runtime operation; live integration remains later-phase |
 | Narrative Surface | LOCAL ANALYSIS SURFACE ONLY | `narrative-core` now packages governed local narratives from ecosystem state; no live public narrative surface is active |
 | Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, activation-decision, bundle/product-boundary, and LightVerify certification surfaces now exist; thresholds are met on the current verified local sample, readiness is `ready`, but no explicit activation record exists and externalization is not activated |
@@ -462,20 +499,22 @@ This means the architecture and local analysis stack are materially advanced. It
 
 ## LAYER 1 — THE FUNNEL
 
-**Canonical Name:** MonadSpin Protocol + Funnel Gateway Set
+**Canonical Name:** MonadSpin GameFi + Funnel Gateway Set
 **Role:** External revenue inflow / funding rail layer
 **Status:** IN DESIGN
 
-MonadSpin is a cosmological slot experience — one funding rail of the ecosystem. The cosmological symbolism is embedded in the slot's visual identity — readable as a normal slot theme to casual players, revealing deeper meaning only to those who seek it.
+MonadSpin is the ecosystem's gamified entertainment rail — one funding rail of the ecosystem. It should no longer be treated as a literal slot-first product thesis. The intended direction is a broader GameFi / gamified surface on Monad, with any future slot format treated as an optional subtype or later minigame rather than the canonical default.
 
-**RTP philosophy:** Higher RTP for player retention and sustainable house edge. Long-term volume over short-term extraction.
+**Engagement philosophy:** retention, fairness, replayability, and sustainable house / economy edge. Long-term volume over short-term extraction.
 
-**Funnel rule:** the slot should not be the sole opening inflow source. The beginning-of-project funnel should use multiple rails:
+**Environment-first rule:** MonadSpin is justified first as a bounded operable environment for build-oriented and other non-financial agent classes, enabled by Monad's low-latency, low-fee, parallel-execution architecture. Revenue is a valid consequence of that environment. It is not the first admission reason for the rail.
+
+**Funnel rule:** MonadSpin should not be the sole opening inflow source. The beginning-of-project funnel should use multiple rails:
 
 - bootstrap manual inflow
 - API / licensing revenue
 - agent-native revenue from ecosystem-native organ agents
-- MonadSpin slot revenue
+- MonadSpin GameFi / gamified revenue
 
 **Canonical Layer 1 clarification:** the six-organ opening set is itself part of Layer 1. It is not a later helper abstraction sitting outside the funnel. The agent-native Layer 1 rail is the first organ set:
 
@@ -488,7 +527,7 @@ MonadSpin is a cosmological slot experience — one funding rail of the ecosyste
 
 These six agents are one of the revenue streams intended to keep the ecosystem alive at the beginning. In current build order, `Cardia` remains capital-gated while the other five operate in zero-capital analysis mode, but canonically all six belong to the Layer 1 funnel rail.
 
-**Concentration risk note:** a slot-only launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, and the preferred posture is bootstrap plus API/licensing plus agent-native revenue before the slot is relied on as a meaningful rail.
+**Concentration risk note:** a slot-only or slot-first launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, and the preferred posture is bootstrap plus API/licensing plus agent-native revenue before MonadSpin is relied on as a meaningful entertainment rail.
 
 ---
 
@@ -1091,7 +1130,7 @@ Because the founding axiom is anti-extraction, the Founder sink carries the foll
 
 ### Inflow Sources (canonical)
 
-- MonadSpin provider revenue
+- MonadSpin GameFi / provider revenue
 - MEV performance fees (if externalized)
 - Oracle API fees
 - data licensing fees
@@ -1146,6 +1185,20 @@ A continuously growing time-series of:
 ```
 
 Generated by real agents, operating real capital, across real market regimes — each agent cryptographically bound to a validated psychometric profile.
+
+### Canonical observation classes
+
+The dataset is not limited to human-linked market behavior alone.
+
+It canonically includes:
+
+1. human-conditioned behavior expressed through agents
+2. native agent behavioral dynamics under bounded environments
+3. hybrid vector formation across agents, environments, and repeated histories
+
+Operational stress analogs such as degraded coherence, unstable planning, escalating error rates, reward-gaming behavior, and higher hallucination under ambiguity are valid observation targets.
+
+They do not, by themselves, authorize consciousness claims, rights claims, or emergence ratification.
 
 ### Data Contribution Score (DCS)
 
@@ -1255,7 +1308,7 @@ Legacy phrasing "trait-gated protocols" is deprecated.
 |---|---|---|---|
 | Phase 0 | Blueprint / Architecture / Axioms | COMPLETE | conceptual base locked |
 | Phase 1a | Revenue Router Build | IN PROGRESS | contracts complete, testing next |
-| Phase 1b | Funnel Diversification + MonadSpin Integration | QUEUED | depends on Phase 1a deployment |
+| Phase 1b | Funnel Diversification + MonadSpin GameFi Integration | QUEUED | depends on Phase 1a deployment |
 | Phase 2 | MEV Mainnet | QUEUED | depends on live routing + issue resolution |
 | Phase 3 | Personality Science + Oracle + Signal Foundation | QUEUED | depends on stable live foundation |
 | Phase 4 | Agent Framework + Data Rail Activation | QUEUED | depends on Phase 3 maturity |
@@ -1273,7 +1326,7 @@ Its purpose is to establish the first live, controllable, observable capital inf
 
 ## 9.2 Phase 1a Status
 
-**Status:** Contracts Reconstructed — Initial Test Suite Live — Deployment Pending
+**Status:** Contracts Reconstructed — Initial Test Suite Live — Deployment Proof Complete
 
 ## 9.3 Phase 1a Contract Suite
 
@@ -1328,7 +1381,7 @@ The reconstructed Phase 1a suite currently has a live Hardhat test harness with 
 12. executor delegation and ownership-transfer boundaries
 13. locked Phase 1a deployment-sequence rehearsal and full wiring validation
 
-This is sufficient to classify the test suite as **meaningfully expanded and executable**, not sufficient to classify Phase 1a as deployment-ready.
+This is sufficient to classify the test suite as **meaningfully expanded and executable**. Phase 1a deployment proof is now complete; the remaining validation frontier is runtime execution truth and longer-horizon operating evidence.
 
 ## 9.5 Upgrade Roadmap (Post Phase 1a)
 
@@ -1526,9 +1579,9 @@ Deploy all 11 contracts in the locked order.
 
 Verify receiver, router, sinks, Dove, and health snapshot.
 
-### 8a. Activate first non-slot revenue rail
+### 8a. Activate first non-entertainment revenue rail
 
-Preferred first non-slot rail:
+Preferred first non-entertainment rail:
 
 - API / licensing revenue through the existing commercial stack
 
@@ -1556,14 +1609,14 @@ Validate with router health, observation counts, flow integrity, and issue closu
 
 ## What should be worked on right now
 
-**Primary next task:** complete live Phase 1a deployment proof.
+**Primary next task:** close runtime execution-truth gaps in `monad-mev`.
 
 ## Why this is the next task
 
 - the structural zero-capital frontier is now complete at the local layer level
-- live Phase 1a deployment is the first capital-gated proof that turns the foundation from local artifact into routed system truth
-- bootstrap approved-source registration, funded `Cardia`, and broader public activation all depend on this live proof
-- runtime execution-truth closure matters, but it still sits behind the capital-routing substrate proving itself live
+- live Phase 1a deployment proof and bootstrap approved-source registration are already complete
+- runtime execution-truth closure is the next proof that turns the routed substrate into guarded-live economic behavior
+- funded `Cardia` activation and broader public activation remain downstream of execution truth
 
 ## What should not be worked on right now
 
@@ -1572,7 +1625,7 @@ Unless directly necessary for current blockers, do not prioritize:
 - net-new structural zero-capital layers
 - speculative public activation
 - public Data Rail sales or externalization
-- treasury live activation before Phase 1a proof
+- treasury live activation before runtime execution truth
 - narrative polish that is not tied to current live blockers
 
 ---
@@ -1602,7 +1655,7 @@ Unless directly necessary for current blockers, do not prioritize:
 
 ## Current blocker summary
 
-The project is not blocked by missing architecture or missing zero-capital layer scaffolds. The current blockers are live Phase 1a deployment proof, approved-source registration, runtime execution-truth closure, and the funded/public activation path that depends on them.
+The project is not blocked by missing architecture or missing zero-capital layer scaffolds. The current blockers are runtime execution-truth closure, funded `Cardia` activation, and the funded/public activation path that depends on them.
 
 ---
 
@@ -1632,7 +1685,7 @@ The project is not blocked by missing architecture or missing zero-capital layer
 
 Current honest interpretation of Step 21:
 
-- if the Stake-linked MonadSpin source exists, register that real inflow source
+- if the Stake-linked MonadSpin GameFi source exists, register that real inflow source
 - if it does not yet exist, register a temporary bootstrap source you control
 - the deployment sequence must not describe the approved source as MonadSpin before that source is actually deployed
 
@@ -1674,7 +1727,7 @@ This section exists so the project's monetization logic is canonized without pre
 
 ## 15.1 Primary Revenue Vectors
 
-- MonadSpin funding rail
+- MonadSpin GameFi funding rail
 - MEV extraction
 - Oracle licensing
 - Data Rail monetization
@@ -2244,10 +2297,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 
 The current live frontier now has executable local tracking surfaces, but they do not replace live proof:
 
-- live Phase 1a deployment proof now has a resumable checkpoint path in this repo; current blocker remains deployer funding restore
-- bootstrap approved-source registration remains blocked until the live deployment report yields canonical live addresses
-- `execution-truth-core` now exists locally in `monad-mev` and currently reports `blocked` because live Phase 1a proof and bootstrap source registration are not yet recorded
-- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `blocked` because execution truth is blocked and `Cardia` remains analysis-only until funded activation
+- live Phase 1a deployment proof completed on 2026-04-18 in the canonical `sovereign-monad` repo, and the bootstrap approved source is now registered on Monad mainnet
+- `execution-truth-core` now exists locally in `monad-mev` and currently reports `staged` because the first guarded-live runtime session, receipt-truth validation, and a clear incident queue are still pending
+- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `ready_for_funding` because execution truth is staged and the runtime profile now allows bounded funding readiness; first funding and guardrails are still pending
 - `public-activation-core` now exists locally in `monad-mev` and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
 
 ## v2.3.21 — April 4, 2026
@@ -2283,10 +2335,9 @@ The current live frontier now has executable local tracking surfaces, but they d
 **State after update:**
 
 - active master phase remains **Phase 1a**
-- live Phase 1a deployment proof remains blocked by deployer funding restore
-- bootstrap approved-source registration remains downstream of successful live deployment proof
+- live Phase 1a deployment proof is complete and the bootstrap approved source is registered
 - runtime execution-truth closure, funded `Cardia`, and production/public activation now each have explicit local blocker-tracking surfaces
-- the primary live gate remains Phase 1a deployment proof
+- the primary live gate is now runtime execution-truth closure
 
 ## v2.3.25 — April 15, 2026
 
@@ -2381,9 +2432,9 @@ If a collaborator or model needs immediate orientation, the project currently is
 - a capital-routing organism with conscience and decompression-integrity layers
 - currently in **Phase 1a**
 - with **11 canonical Phase 1a contracts reconstructed in repo**
-- but **not yet live deployment-complete or runtime-truth-complete**
-- with the **current live frontier:** live Phase 1a deployment proof, bootstrap approved-source registration, runtime execution-truth closure, funded `Cardia` activation, and production/public activation
-- and the **single most important next task is completing live Phase 1a deployment proof**
+- but **not yet runtime-truth-complete or production/public-active**
+- with the **current live frontier:** runtime execution-truth closure, funded `Cardia` activation, and production/public activation
+- and the **single most important next task is closing runtime execution truth**
 
 Everything else remains subordinate to that until the foundation proves itself live.
 

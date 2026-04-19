@@ -47,8 +47,16 @@ These are the parts that should continue regardless of current funding:
 7. immune and alert logic implementation
 8. mixed-speed signaling architecture
 9. waste-clearance and repair workflows
-10. slot/product/UI/build surfaces that do not require live spend
+10. game/product/UI/build surfaces that do not require live spend
 11. docs, runbooks, health models, and operator tooling
+
+Environment-first admission rule for zero-capital domains:
+
+- the domain must give agents a real role-fit environment to operate in
+- it must produce meaningful signal
+- it must avoid unnecessary stress on the core financial system
+- it must remain bounded and integrable
+- and it should be capable of producing internally generated value that can later be offered outward
 
 ## Capital-gated build flow
 
@@ -115,6 +123,7 @@ Current zero-capital state:
 - `expansion-control` now provides a policy-driven controlled expansion framework
 - `keys-core` now provides local key activation scaffolding and delegation boundary enforcement
 - `data-rail-core` now provides a local behavioral capture policy surface and reward/data schema scaffold
+- the canonical Data Rail observation scope now includes human-conditioned behavior, native agent behavioral dynamics, and hybrid vector formation under bounded environments
 - `data-rail-router` now provides local internal routing logic while external productization remains blocked
 - `reward-ledger-core` now provides an internal non-monetary reward ledger surface
 - `data-rail-governance` now provides local diversity thresholds, rights policy, and externalization gate evaluation
@@ -148,8 +157,6 @@ Remaining zero-cost operations are longitudinal, not missing structural layers:
 
 Current capital/live frontier:
 
-- live Phase 1a deploy retry
-- bootstrap approved-source registration
 - runtime execution-truth closure
 - funded `Cardia` activation
 - production/public activation
@@ -158,10 +165,9 @@ Current capital/live frontier:
 
 The capital-gated frontier now has executable local tracking surfaces:
 
-- live Phase 1a deployment proof has a resumable checkpoint path and currently remains blocked by deployer balance restore
-- bootstrap approved-source registration remains blocked until live deployment proof yields canonical live addresses
-- `execution-truth-core` exists locally in `monad-mev` and currently reports `blocked` because live Phase 1a proof and bootstrap source registration are not yet recorded
-- `cardia-activation-core` exists locally in `monad-mev` and currently reports `blocked` because execution truth is blocked and `Cardia` remains analysis-only until funded activation
+- live Phase 1a deployment proof completed on 2026-04-18 and the bootstrap approved source is now registered on Monad mainnet
+- `execution-truth-core` exists locally in `monad-mev` and currently reports `staged` because the first guarded-live runtime session, receipt-truth validation, and a clear incident queue are still pending
+- `cardia-activation-core` exists locally in `monad-mev` and currently reports `ready_for_funding` because execution truth is staged and the runtime profile now allows bounded funding readiness; first funding and guardrails are still pending
 - `public-activation-core` exists locally in `monad-mev` and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
 
 Only after the zero-capital layer surfaces existed did funded live activation become the limiting factor. That condition is now true.

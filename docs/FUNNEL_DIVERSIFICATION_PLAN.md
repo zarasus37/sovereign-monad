@@ -9,22 +9,22 @@ If MonadSpin is the only live funnel at the beginning, then:
 - Layer 1 becomes a concentration-risk bottleneck
 - the capital loop depends on one product launch path
 - early treasury growth is exposed to a single operational failure mode
-- live routing proof becomes financially tied to slot success
+- live routing proof becomes financially tied to one entertainment-product success path
 
 That is avoidable fragility.
 
 ## Decision
 
-Do not treat the slot as the only opening funnel.
+Do not treat a slot product as the default opening funnel.
 
 The correct opening posture is a multi-rail funnel:
 
 1. bootstrap manual inflow rail
 2. API and licensing rail
 3. agent-native revenue rail
-4. MonadSpin slot rail
+4. MonadSpin gamified / GameFi rail
 
-The slot remains important, but it should be one revenue rail inside the funnel, not the sole dependency for the beginning of the project.
+MonadSpin should now be treated as the broader gamified entertainment rail rather than a slot-first thesis. If a slot is built later, it should be one possible format inside that rail, not the canonical default product shape.
 
 ## Phase 1 opening funnel
 
@@ -47,7 +47,7 @@ Purpose:
 
 - turn the already-built commercial stack into a real second funnel
 - reduce dependence on gaming/product launch timing
-- let service revenue begin before the slot is live
+- let service revenue begin before the entertainment rail is live
 
 Existing repo surfaces:
 
@@ -104,17 +104,28 @@ See:
 - `docs/AGENT_NATIVE_REVENUE_RAIL.md`
 - `docs/FIRST_ORGAN_SET.md`
 
-### Rail 4. MonadSpin Slot
+### Rail 4. MonadSpin Gamified / GameFi Rail
 
 Purpose:
 
-- mass-market entertainment inflow
-- culturally aligned flagship rail
-- long-run volume path
+- a bounded environment for non-financial agent classes
+- a culturally aligned entertainment and development rail
+- high-fidelity game environments rather than slot-first imitation products
+- internally produced value that can later be offered outward as real contribution
 
 Rule:
 
 - keep MonadSpin as a major rail, not the only rail
+- treat slot as an optional later subtype, not the primary implementation target
+- justify the rail by operability, role fit, and ecosystem usefulness before revenue
+
+Evaluation test:
+
+1. Does it give agents a real role-fit environment to operate in?
+2. Does it produce meaningful behavioral, operational, cultural, or strategic signal?
+3. Does it avoid unnecessary stress on the core financial system?
+4. Can it be bounded, observed, and integrated cleanly?
+5. Does it produce internally generated value that can also be offered outward without degrading ecosystem integrity?
 
 ## Immediate implementation rule
 
@@ -123,14 +134,14 @@ For the beginning of the project, Layer 1 should be described as:
 - a multi-source funnel
 - explicitly including the six-organ opening set as one of its revenue rails
 - opening first through bootstrap plus API/licensing plus agent-native work
-- then expanding into MonadSpin once the slot rail is real
+- then expanding into MonadSpin once the first gamified rail is real
 
 ## What changes operationally
 
 1. Phase 1a deployment still proceeds
 2. first approved source can still be the bootstrap wallet
-3. next funnel milestone is not only "ship the slot"
-4. next funnel milestone becomes "activate at least one additional non-slot revenue rail"
+3. next funnel milestone is not "ship a slot"
+4. next funnel milestone becomes "activate at least one additional non-entertainment revenue rail"
 
 ## Minimum acceptable launch posture
 
@@ -139,7 +150,7 @@ The funnel should not be considered healthy unless at least two of these are rea
 - bootstrap manual inflow
 - API or licensing revenue
 - agent-native revenue
-- MonadSpin slot revenue
+- MonadSpin gamified / GameFi revenue
 
 Three is better. One is not acceptable as a target state.
 
@@ -147,8 +158,8 @@ Three is better. One is not acceptable as a target state.
 
 1. finish live Phase 1a deployment proof
 2. register bootstrap approved source
-3. activate API and licensing as the first non-slot revenue rail
+3. activate API and licensing as the first non-entertainment revenue rail
 4. stand up the first bounded ecosystem-seeded agent revenue mandate
-5. continue MonadSpin slot development as the fourth rail
+5. continue MonadSpin gamified / GameFi development as the fourth rail
 
-This removes the unnecessary single-source dependency without discarding the slot thesis.
+This removes the unnecessary single-source dependency without keeping the old slot-first thesis.

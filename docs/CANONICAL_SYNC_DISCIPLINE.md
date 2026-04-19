@@ -10,6 +10,8 @@ Canonical documents and artifacts:
 
 - `docs/sovereign_monad_MOF_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
+- `docs/BUILD_EXECUTION_FLOW.md`
+- `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - `docs/Gnosis_Integrity_Layer_Spec_v1.2.md`
 - `DoveCore.sol`
@@ -28,6 +30,8 @@ Mirror set:
 
 - `docs/SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
+- `docs/BUILD_EXECUTION_FLOW.md`
+- `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - `docs/CANDIDATE_STANDARD_KERNEL_V0.md`
 

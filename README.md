@@ -93,7 +93,7 @@ Resumable live deployment notes:
 
 Current live blocker:
 
-- live Phase 1a deployment proof is still blocked until the deployer wallet is re-funded above the preflight floor
+- live Phase 1a deployment proof is complete; the next blocker is runtime execution-truth closure in `monad-mev`
 
 For the initial approved source:
 
