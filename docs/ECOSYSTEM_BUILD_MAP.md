@@ -32,6 +32,15 @@ Tracked local build-state rollups:
 
 These percentages describe what has been built and verified locally. They do **not** mean the project is `74.6%` live or production-complete.
 
+### 0.0 Accepted Upgrade Tracks
+
+These tracks are accepted as ecosystem upgrades, but they remain under final specification and activation discipline:
+
+- Agent 0 guarded-live progression: use shadow-paper markouts for the first 50 to 100 would-have trades before any funded authority discussion.
+- High-Fidelity DeFi Gaming: treat MonadSpin as a broader GameFi / gamified environment rail, not a slot-first product.
+- Six-organ institutional depth: hold `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` to institutional analysis standards.
+- Commercial intelligence surfaces: package Hepar forensic reports, risk feeds, LightVerify, and Data Rail licensing only after evidence and activation gates are clear.
+
 ### 0.1 Major Area Completion Matrix
 
 | Major Area | Local Build State | Live / Production State | Capital-Gated? | Current Read |
@@ -224,10 +233,11 @@ Complete:
 - agent-native revenue rail doctrine is now defined locally
 - first organ set specification is now defined locally
 - the six-organ opening set is now explicitly canonized as part of Layer 1's funnel revenue rail
+- High-Fidelity DeFi Gaming is accepted as the default entertainment direction for the MonadSpin / GameFi rail
 
 Remaining:
 
-- MonadSpin / GameFi product design
+- final High-Fidelity DeFi Gaming product specification
 - API/licensing revenue rail activation
 - agent-native revenue rail activation
 - game-economy / fairness logic
@@ -238,6 +248,7 @@ Canonical Layer 1 framing:
 
 - the fourth rail is the broader MonadSpin GameFi / gamified environment, not a slot-first product thesis
 - the rail is justified as a bounded role-fit domain for non-financial agents and internally produced outward-facing value
+- transitional GameFi control scaffolds can be used for state/API/operator flow, but they are not proof that the final product is live
 
 ### Layer 2. The Engine
 
@@ -322,10 +333,11 @@ Complete:
 - inter-organ coordination rules now exist in analysis mode
 - homeostasis and mixed-speed signaling rules are now implemented in analysis mode
 - immune, barrier, and repair logic is now implemented in analysis mode
+- institutional-depth companion standards now exist for all six organs, including forensic Hepar, causal Cortex, adaptive Synapse, allocation-aware Cardia, execution-intelligent Pneuma, and proof-linked Vox
 
 Remaining:
 
-- none
+- final calibration against live telemetry, historical incidents, market outcomes, and governed override policy
 
 ### Layer 6. Oracle
 
@@ -556,6 +568,12 @@ The next build frontier remains:
 1. close remaining execution-truth gaps in the runtime
 2. activate funded `Cardia` and bankroll routing
 3. deploy the runtime/commercial stack with real infrastructure inputs
+
+Accepted implementation tracks that should proceed in parallel at specification depth:
+
+1. Agent 0 shadow-paper markout review for the first 50 to 100 would-have trades
+2. High-Fidelity DeFi Gaming product/economy/fairness specification
+3. six-organ institutional-depth calibration and Data Rail evidence packaging
 
 Everything else should be sequenced relative to those gates.
 

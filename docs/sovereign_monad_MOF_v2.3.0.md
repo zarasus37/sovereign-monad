@@ -439,6 +439,13 @@ These should be treated as an opening funnel component, not merely a later-layer
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
 **Immediate Priority:** close runtime execution-truth gaps in `monad-mev`, then move into funded `Cardia` activation and guarded public rollout discipline
 
+**Accepted upgrade tracks now under final specification:**
+
+- Agent 0 guarded-live progression: keep the current on-chain behavioral proof as record-only, use shadow-paper markout analysis for the first 50 to 100 would-have trades, then require explicit operator review before any funded trading authority.
+- High-Fidelity DeFi Gaming: treat MonadSpin as the umbrella GameFi / gamified environment rail, not a slot-first product thesis; final gameplay, economy, fairness, and agent-role specifications remain pending.
+- Six-organ institutional depth: `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` are accepted as institutional-depth organ tracks with analysis-mode implementations and further calibration required before live authority.
+- Commercial intelligence rails: Hepar forensic reports, risk API/feed packaging, LightVerify certification, and Data Rail licensing are accepted as planned revenue surfaces, subject to activation discipline and evidence quality controls.
+
 ## 6.1.1 Completion Reading
 
 The project currently needs two separate completion readings:
@@ -480,7 +487,7 @@ This means the architecture and local analysis stack are materially advanced. It
 | Phase 1a Contracts | RECONSTRUCTED | reconstructed cleanly from the canonical MOF, surviving DoveCore.sol, and the surviving Revenue Router specification; not claimed as recovered original source set |
 | Test Suite | IN PROGRESS | executable Hardhat reconstruction suite exists with 14 passing Phase 1a tests, including deeper invariants and deployment-sequence rehearsal; runtime execution truth is now the next validation gate |
 | Router Deployment | LIVE PROOF COMPLETE | Phase 1a deployment proof completed on 2026-04-18 and the bootstrap approved source is registered on Monad mainnet |
-| Treasury Deployment | NOT DEPLOYED | depends on Phase 1a deployment |
+| Treasury Routing Sink | LIVE | `RevenueSinkTreasury` is deployed inside Phase 1a; broader treasury vault policy and reserve operations remain pending |
 | MEV Mainnet | NOT LIVE | testnet progress exists, mainnet pending |
 | Signal Layer | LOCAL ANALYSIS SURFACE ONLY | `signal-layer` package now exists with schema, aggregation, and interpretation logic; live ingestion and institutional use remain later-phase |
 | Oracle v1 | LOCAL ANALYSIS SURFACE ONLY | `oracle-core` now exists for regime and posture classification; live calibration and buyer proof remain later-phase |
@@ -492,6 +499,10 @@ This means the architecture and local analysis stack are materially advanced. It
 | Governance DAO | LOCAL ANALYSIS SURFACE ONLY | `dao-core` now provides local constitution, proposal routing, sponsorship lanes, and handoff controls; onchain governance remains later-phase |
 | Agent NFTs / Keys | LOCAL ANALYSIS SURFACE ONLY | `keys-core` and `keys-nft-core` now provide local activation, delegation, and metadata surfaces; live minting and activation remain later-phase |
 | Emergence Pipeline | LOCAL OBSERVATION AND EVIDENCE-ARTIFACT SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, `emergent-protocol-core` provides local pattern extraction and downstream-path scaffolding, and `emergence-claim-core` plus `emergence-history-core` now provide bounded local claim and historical-record artifacts without creating a live emergence recognition layer |
+| Live Agent Behavioral Loop | COMPLETE / LIVE MAINNET PROOF | `emergence-claim-core` now contains Agent 0 full IPIP-NEO + SD3 profile encoding, deterministic facet-level routing, Dove flags, live Monad decision preparation, and a deployed `EmergenceRecorder`; Agent 0 profile registration and one behavioral claim are both mined on Monad mainnet |
+| Agent 0 Trading Evaluation Path | PLANNED / SHADOW-PAPER ONLY | Agent 0 may be evaluated through deterministic shadow-paper markouts against `execution.execution-plan` events; no real capital authority is granted until the first sample window is reviewed and funded `Cardia` activation gates are satisfied |
+| High-Fidelity DeFi Gaming | ACCEPTED DESIGN DIRECTION / SPEC PENDING | MonadSpin is now the umbrella GameFi / gamified environment rail; transitional GameFi control scaffolds may support state and operator flow, but no final high-fidelity game product is live |
+| Six-Organ Institutional Depth | LOCAL ANALYSIS SURFACE ONLY | each opening organ has an institutional-depth analysis standard; current outputs are advisory and auditable, not autonomous live authority |
 
 ---
 
@@ -526,6 +537,10 @@ MonadSpin is the ecosystem's gamified entertainment rail — one funding rail of
 - `Vox` for narrative, media, and distribution outputs
 
 These six agents are one of the revenue streams intended to keep the ecosystem alive at the beginning. In current build order, `Cardia` remains capital-gated while the other five operate in zero-capital analysis mode, but canonically all six belong to the Layer 1 funnel rail.
+
+**Current accepted implementation direction:** the first serious entertainment implementation should be specified as a high-fidelity DeFi gaming environment. A slot can remain a subproduct if useful, but it is no longer the canonical product target. The required next work is gameplay specification, economy and fairness modeling, role-fit assignment for participating agents, Data Rail boundaries, and a clear distinction between entertainment value and speculative token incentives.
+
+**Current organ-set implementation direction:** the opening organs should not remain basic filters or routers. They are now held to institutional-depth standards: forensic intelligence for `Hepar`, strategic causal synthesis for `Cortex`, adaptive coordination for `Synapse`, capital allocation discipline for `Cardia`, external market interface intelligence for `Pneuma`, and proof-linked narrative credibility for `Vox`.
 
 **Concentration risk note:** a slot-only or slot-first launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, and the preferred posture is bootstrap plus API/licensing plus agent-native revenue before MonadSpin is relied on as a meaningful entertainment rail.
 
@@ -643,7 +658,7 @@ Spread Detection:
 
 **Canonical Name:** Sovereign Treasury
 **Role:** reserve, smoothing, memory, retained stability, sovereign expansion funding
-**Status:** PENDING DEPLOYMENT
+**Status:** ROUTING SINK LIVE / TREASURY POLICY PENDING
 
 **What is done:**
 
@@ -653,20 +668,20 @@ Spread Detection:
 - multisig and release philosophy described
 - treasury-as-memory doctrine defined
 - treasury-as-aligned-incubator doctrine canonized
+- `RevenueSinkTreasury` deployed as part of Phase 1a on Monad mainnet: `0xA36F3dABDda3CF0AC21C9b3326115808cA5EEA7C`
 
 **What remains:**
 
-- on-chain deployment
-- treasury wiring to router
+- dedicated treasury vault / reserve control policy beyond the Phase 1a routing sink
 - reserve release control activation
 - concentration monitoring
 - live capital accumulation
 - treasury policy refinement under real capital
 - ecosystem development funding allocation policy specification
 
-**Dependency:** Phase 1a deployment
+**Dependency:** runtime execution-truth closure and live capital accumulation
 
-**Next required action:** deploy treasury sink as part of Phase 1a deployment sequence
+**Next required action:** keep the deployed treasury sink linked to the router while designing the next treasury vault / reserve-control layer after runtime truth is proven
 
 **Expanded utility — Sovereign Development Funding:**
 A defined percentage of treasury-held capital may later be reserved for investment into projects building within the ecosystem and directly contributing to emergence, structural expansion, and sovereign development. Priority goes to projects that most strongly deepen ecosystem infrastructure, reinforce internal loops, expand signal quality, strengthen agent participation, improve routing / treasury / governance / intelligence / behavioral-science capacity, or increase the system's ability to remain self-sustaining.
@@ -1094,7 +1109,14 @@ Gnosis Integrity protects agents from becoming hollow optimizers wearing borrowe
 
 **Canonical Name:** Sovereign Revenue Router
 **Role:** central inflow distributor
-**Status:** CONTRACTS COMPLETE / DEPLOYMENT PENDING
+**Status:** LIVE ON MONAD MAINNET / SOURCE VERIFICATION PENDING
+
+**Live deployment:**
+
+- `RevenueRouter`: `0x39158bC2cfCa2cCF70121EF72ed9a5fF1e084982`
+- creation tx: `0x78bc936c000d555d2714462e6f2a7aef5cc9d32e3ea7fbb2ff876e529f51fdfe`
+- explorer: `https://monadscan.com/tx/0x78bc936c000d555d2714462e6f2a7aef5cc9d32e3ea7fbb2ff876e529f51fdfe`
+- proof doc: `docs/MAINNET_REVENUE_ROUTER_PROOF.md`
 
 ### Locked Allocation Policy
 
@@ -1307,8 +1329,8 @@ Legacy phrasing "trait-gated protocols" is deprecated.
 | Phase | Name | Status | Meaning |
 |---|---|---|---|
 | Phase 0 | Blueprint / Architecture / Axioms | COMPLETE | conceptual base locked |
-| Phase 1a | Revenue Router Build | IN PROGRESS | contracts complete, testing next |
-| Phase 1b | Funnel Diversification + MonadSpin GameFi Integration | QUEUED | depends on Phase 1a deployment |
+| Phase 1a | Revenue Router Build | LIVE PROOF COMPLETE / RUNTIME TRUTH IN PROGRESS | routing substrate deployed and verified; runtime execution truth remains the active frontier |
+| Phase 1b | Funnel Diversification + MonadSpin GameFi Integration | QUEUED | depends on runtime execution truth and stable live routing evidence |
 | Phase 2 | MEV Mainnet | QUEUED | depends on live routing + issue resolution |
 | Phase 3 | Personality Science + Oracle + Signal Foundation | QUEUED | depends on stable live foundation |
 | Phase 4 | Agent Framework + Data Rail Activation | QUEUED | depends on Phase 3 maturity |
@@ -1337,7 +1359,7 @@ Current repo truth:
 - the original Phase 1a source set was not recovered
 - the contract suite has now been **reconstructed** from the canonical MOF, the surviving `DoveCore.sol`, and the surviving Revenue Router specification artifact
 - this reconstruction compiles and has an executable baseline test harness
-- it must still be treated as a reconstruction until deployment and live behavior prove parity with canonical intent
+- it is now deployed on Monad mainnet, but must still be treated as a reconstruction until longer live behavior proves parity with canonical intent
 
 Current reconstructed set:
 
@@ -1567,13 +1589,19 @@ QuickNode daily rate limit must be resolved before Phase 1a can prove closed-loo
 
 ### 5. Activate guarded-live profile
 
-A deployment safety profile must be active before mainnet deployment.
+Status: complete for Phase 1a deployment.
 
 ### 6. Execute the Phase 1a deployment sequence
 
-Deploy all 11 contracts in the locked order.
+Status: complete.
+
+All 11 contracts were deployed on Monad mainnet chain `143`; the primary `RevenueRouter` lives at `0x39158bC2cfCa2cCF70121EF72ed9a5fF1e084982`.
 
 ### 7. Register bootstrap source as first inflow source
+
+Status: complete.
+
+The bootstrap source `0x9d4fcf7E0Ae5AE994A6eb0bCCbDfAA62E5867352` is registered on `InboundReceiver`.
 
 ### 8. Run first live inflow test
 
@@ -1689,7 +1717,7 @@ Current honest interpretation of Step 21:
 - if it does not yet exist, register a temporary bootstrap source you control
 - the deployment sequence must not describe the approved source as MonadSpin before that source is actually deployed
 
-Only after this sequence is complete should Phase 1a be treated as live.
+This sequence is now complete on Monad mainnet chain `143`. Phase 1a should be treated as live at the routing-substrate level, while runtime execution truth and public/production activation remain incomplete.
 
 ---
 
@@ -2338,6 +2366,82 @@ The current live frontier now has executable local tracking surfaces, but they d
 - live Phase 1a deployment proof is complete and the bootstrap approved source is registered
 - runtime execution-truth closure, funded `Cardia`, and production/public activation now each have explicit local blocker-tracking surfaces
 - the primary live gate is now runtime execution-truth closure
+
+## v2.3.26 — April 21, 2026
+
+**Change Type:** Patch — Phase 1a mainnet proof hardening
+
+**Summary of changes:**
+
+- recorded the live `RevenueRouter` address, creation transaction, explorer URL, and proof document path
+- updated the Treasury layer to distinguish the deployed Phase 1a routing sink from later treasury vault / reserve-control policy
+- clarified that Phase 1a is live at the routing-substrate level while runtime execution truth and public/production activation remain incomplete
+- added the reviewer-facing proof command and aligned the current execution sequence around post-deployment verification rather than duplicate deployment
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Phase 1a deployment proof is complete on Monad mainnet chain `143`
+- the primary live gate is runtime execution-truth closure, followed by funded `Cardia` activation and public/production activation
+- explorer source verification and audit preparation are credibility tasks, not blockers to proving the deployed router exists
+
+## v2.3.28 — April 23, 2026
+
+**Change Type:** Patch — Agent 0 live mainnet completion
+
+**Summary of changes:**
+
+- deployed `EmergenceRecorder` to Monad mainnet at `0x6692a350f4b74Ae6855E633aD99eEC1cf80e5d84`
+- registered Agent 0 on-chain with tx `0xf68419e554a2afa0b30ab78e65671e13b388da1f00ddc77638f262886aeb9ced`
+- recorded one live Agent 0 behavioral claim on-chain with tx `0x70f14e03934e15b1c51a99a8f82cf75764c42807468a56e9e01889b093154fef`
+- closed the prior deployer-gas blocker and completed Step 6 with live Monad proof
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Agent 0 is encoded, routed, Dove-flagged, and registered on Monad mainnet
+- live agent behavioral loop is now complete with deployed recorder, mined profile registration, and mined behavioral claim
+- proof remains record-only: no trading capital was moved during the live behavioral claim
+
+## v2.3.29 — April 30, 2026
+
+**Change Type:** Patch — upgrade-track acceptance for Agent 0, GameFi, and six-organ depth
+
+**Summary of changes:**
+
+- accepted Agent 0 shadow-paper trading evaluation as the correct pre-funded path for the first 50 to 100 would-have trades
+- accepted High-Fidelity DeFi Gaming as the default entertainment direction for MonadSpin / GameFi, replacing the slot-first interpretation
+- accepted the six-organ institutional-depth standard as the implementation target for `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox`
+- clarified that Hepar forensic intelligence, risk API/feed packaging, LightVerify, and Data Rail licensing are planned revenue surfaces under activation discipline
+- preserved the boundary that these upgrades are analysis/specification tracks until final specs, telemetry calibration, funding gates, and governance controls are satisfied
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Agent 0 remains live-recorded but not capital-authorized
+- GameFi is an accepted product-direction track, not a live product
+- the six-organ set is now held to institutional-depth behavior, but live autonomous authority remains gated by runtime execution truth and funded `Cardia` activation
+
+## v2.3.27 — April 21, 2026
+
+**Change Type:** Patch — live agent behavioral loop implementation sync
+
+**Summary of changes:**
+
+- recorded the first deterministic full psychometric profile and routing implementation in `emergence-claim-core`
+- encoded Agent 0 / founder profile from IPIP-NEO domain/facet scores plus SD3 Dark Triad scores
+- confirmed Agent 0 routes primary `TRADING`, secondary `GOVERNANCE`, tertiary `DOCTRINE`, with `GAMING` explicitly false
+- applied Dove monitoring flags for elevated Machiavellianism, Narcissism, Psychopathy, low Morality, low Anxiety, and low Vulnerability
+- upgraded `EmergenceRecorder.sol` to store Agent profiles and behavioral decision records against the live RevenueRouter context
+- recorded the prepared Agent 0 registration payload, live Monad decision hash, and current deployment blocker
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Agent 0 is encoded, routed, Dove-flagged, and registration-ready
+- live agent loop is build-ready and test-verified with `11` emergence-claim-core tests and `17` contract tests passing
+- `EmergenceRecorder` mainnet deployment, Agent 0 registration, and the final `recordClaim` transaction are blocked by deployer gas
+- at this April 21 snapshot, Step 6 remained in progress because no Agent 0 profile registration or behavioral record transaction had yet been mined
 
 ## v2.3.25 — April 15, 2026
 
