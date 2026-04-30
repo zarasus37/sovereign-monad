@@ -1,9 +1,4 @@
-﻿# Canonical Sync Discipline
-
-> Local mirror kept in `monad-mev` for operator convenience.
-> Canonical maintenance target: `C:\Users\crisc\Dev\agents\sovereign-monad\docs\CANONICAL_SYNC_DISCIPLINE.md`
-> If the two copies ever diverge, the `sovereign-monad` copy wins and this mirror must be resynced.
->
+# Canonical Sync Discipline
 
 This document defines how canonical documents, local mirrors, and subordinate docs stay synchronized across the Sovereign Monad workspace.
 
@@ -15,6 +10,8 @@ Canonical documents and artifacts:
 
 - `docs/sovereign_monad_MOF_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
+- `docs/BUILD_EXECUTION_FLOW.md`
+- `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - `docs/Gnosis_Integrity_Layer_Spec_v1.2.md`
 - `DoveCore.sol`
@@ -33,6 +30,8 @@ Mirror set:
 
 - `docs/SOVEREIGN_MONAD_ECOSYSTEM_MASTER_OPERATING_FILE_v2.3.0.md`
 - `docs/ECOSYSTEM_BUILD_MAP.md`
+- `docs/BUILD_EXECUTION_FLOW.md`
+- `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
 - `docs/CANONICAL_SYNC_DISCIPLINE.md`
 - `docs/CANDIDATE_STANDARD_KERNEL_V0.md`
 
@@ -112,4 +111,3 @@ Cadence rule:
 ## 7. Non-Negotiable Rule
 
 No mirror or subordinate doc is allowed to silently become a competing authority.
-

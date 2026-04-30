@@ -77,10 +77,10 @@ test('buildExecutionTruthSnapshot closes only when live execution proof exists',
   assert.equal(snapshot.blockers.length, 0);
 });
 
-test('loadLocalExecutionTruthSnapshot reflects the current blocked local state', () => {
+test('loadLocalExecutionTruthSnapshot reflects the current local staged state', () => {
   const snapshot = loadLocalExecutionTruthSnapshot(path.resolve(__dirname, '..', '..'));
   assert.equal(snapshot.implemented, true);
-  assert.equal(snapshot.phase1aLiveProofRecorded, false);
-  assert.equal(snapshot.bootstrapSourceRegistered, false);
-  assert.equal(snapshot.status, 'blocked');
+  assert.equal(snapshot.phase1aLiveProofRecorded, true);
+  assert.equal(snapshot.bootstrapSourceRegistered, true);
+  assert.equal(snapshot.status, 'staged');
 });

@@ -16,18 +16,18 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
-    Name = 'slot-core'
-    Path = 'slot-core'
+    Name = 'gamefi-control-core'
+    Path = 'gamefi-control-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
-    Name = 'slot-api'
-    Path = 'slot-api'
+    Name = 'gamefi-control-api'
+    Path = 'gamefi-control-api'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
-    Name = 'slot-frontend'
-    Path = 'slot-frontend'
+    Name = 'gamefi-control-frontend'
+    Path = 'gamefi-control-frontend'
     Commands = @('cmd /c npm run build')
   },
   @{
@@ -131,6 +131,11 @@ $checks = @(
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{
+    Name = 'lightverify-core'
+    Path = 'lightverify-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
     Name = 'population-growth-core'
     Path = 'population-growth-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
@@ -188,6 +193,16 @@ $checks = @(
   @{
     Name = 'emergent-protocol-core'
     Path = 'emergent-protocol-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'emergence-claim-core'
+    Path = 'emergence-claim-core'
+    Commands = @('cmd /c npm run build', 'cmd /c npm test')
+  },
+  @{
+    Name = 'emergence-history-core'
+    Path = 'emergence-history-core'
     Commands = @('cmd /c npm run build', 'cmd /c npm test')
   },
   @{

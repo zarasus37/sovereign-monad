@@ -7,7 +7,9 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "calibrate:intelligence": "ts-node src/tools/calibrate-organ-intelligence.ts",
+    "calibrate:intelligence:live": "ts-node src/tools/calibrate-organ-intelligence.ts --mode live --config config/runtime.json"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

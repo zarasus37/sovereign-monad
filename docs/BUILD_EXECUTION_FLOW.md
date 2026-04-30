@@ -47,8 +47,16 @@ These are the parts that should continue regardless of current funding:
 7. immune and alert logic implementation
 8. mixed-speed signaling architecture
 9. waste-clearance and repair workflows
-10. slot/product/UI/build surfaces that do not require live spend
+10. game/product/UI/build surfaces that do not require live spend
 11. docs, runbooks, health models, and operator tooling
+
+Environment-first admission rule for zero-capital domains:
+
+- the domain must give agents a real role-fit environment to operate in
+- it must produce meaningful signal
+- it must avoid unnecessary stress on the core financial system
+- it must remain bounded and integrable
+- and it should be capable of producing internally generated value that can later be offered outward
 
 ## Capital-gated build flow
 
@@ -98,8 +106,8 @@ The correct immediate build order is:
 28. local narrative packaging and publication discipline
 29. local Dove drift-signaling integration
 30. local Gnosis evaluation and integrity scoring tied to operation
-31. local Data Rail bundle/product boundary preparation
-32. local emergent protocol pattern extraction and downstream-path scaffolding
+31. local Data Rail bundle/product boundary and LightVerify commercial certification preparation
+32. local emergent protocol pattern extraction, downstream-path scaffolding, and bounded claim/history evidence artifacts
 
 Current zero-capital state:
 
@@ -115,6 +123,7 @@ Current zero-capital state:
 - `expansion-control` now provides a policy-driven controlled expansion framework
 - `keys-core` now provides local key activation scaffolding and delegation boundary enforcement
 - `data-rail-core` now provides a local behavioral capture policy surface and reward/data schema scaffold
+- the canonical Data Rail observation scope now includes human-conditioned behavior, native agent behavioral dynamics, and hybrid vector formation under bounded environments
 - `data-rail-router` now provides local internal routing logic while external productization remains blocked
 - `reward-ledger-core` now provides an internal non-monetary reward ledger surface
 - `data-rail-governance` now provides local diversity thresholds, rights policy, and externalization gate evaluation
@@ -133,7 +142,10 @@ Current zero-capital state:
 - `dove-integration-core` now provides local drift-signaling interpretation and review routing
 - `gnosis-evaluator-core` now ties integrity scoring directly to organ/runtime operation
 - `data-product-core` now provides local bundle and externalization-boundary preparation without activating public sales
+- `lightverify-core` now provides a local commercial certification/provenance artifact with a binary public seal, internal scorecard, and no public rating ladder
 - `emergent-protocol-core` now provides local pattern extraction, candidate discovery, and downstream-path scaffolding
+- `emergence-claim-core` now provides bounded local claim artifacts for claim-state evaluation, ratification records, prediction-evaluation records, and retraction records
+- `emergence-history-core` now provides isolated historical-record sequencing as `ratification -> optional evaluation -> optional retraction`
 - the structural zero-capital layer frontier is complete at the current expected local level
 
 Remaining zero-cost operations are longitudinal, not missing structural layers:
@@ -141,11 +153,10 @@ Remaining zero-cost operations are longitudinal, not missing structural layers:
 - real population expansion beyond the current local sample
 - continued longitudinal emergence accumulation beyond `5/8`
 - explicit activation records only after the evidence target is met
+- any true emergence recognition layer remains downstream of durable live evidence and explicit human ratification
 
 Current capital/live frontier:
 
-- live Phase 1a deploy retry
-- bootstrap approved-source registration
 - runtime execution-truth closure
 - funded `Cardia` activation
 - production/public activation
@@ -154,11 +165,10 @@ Current capital/live frontier:
 
 The capital-gated frontier now has executable local tracking surfaces:
 
-- live Phase 1a deployment proof has a resumable checkpoint path in `sovereign-monad` and currently remains blocked by deployer balance restore
-- bootstrap approved-source registration remains blocked until live deployment proof yields canonical live addresses
-- `execution-truth-core` exists locally and currently reports `blocked` because live Phase 1a proof and bootstrap source registration are not yet recorded
-- `cardia-activation-core` exists locally and currently reports `blocked` because execution truth is blocked and `Cardia` remains analysis-only until funded activation
-- `public-activation-core` exists locally and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
+- live Phase 1a deployment proof completed on 2026-04-18 and the bootstrap approved source is now registered on Monad mainnet
+- `execution-truth-core` exists locally in `monad-mev` and currently reports `staged` because the first guarded-live runtime session, receipt-truth validation, and a clear incident queue are still pending
+- `cardia-activation-core` exists locally in `monad-mev` and currently reports `ready_for_funding` because execution truth is staged and the runtime profile now allows bounded funding readiness; first funding and guardrails are still pending
+- `public-activation-core` exists locally in `monad-mev` and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
 
 Only after the zero-capital layer surfaces existed did funded live activation become the limiting factor. That condition is now true.
 

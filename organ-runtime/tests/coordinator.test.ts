@@ -98,4 +98,40 @@ describe('buildRuntimeSnapshot', () => {
 
     expect(() => buildRuntimeSnapshot(config)).toThrow('Primary loop is missing organ definitions');
   });
+
+  it('includes hepar consensus snapshots when campaigns are provided', () => {
+    const config = makeConfig();
+    config.heparConsensus = {
+      sampleCampaigns: [
+        {
+          id: 'cons-1',
+          protocolId: 'proto-x',
+          codeHash: '0x123',
+          agentRuns: [
+            {
+              agentId: 'agent-a',
+              specialty: 'reentrancy',
+              pathSamples: 1000,
+              coverage: 0.8,
+              findings: [
+                {
+                  vectorId: 'reentrancy-line-42',
+                  title: 'Reentrancy in exit()',
+                  severity: 'critical',
+                  estimatedLossUsd: 1000000,
+                  reproducible: true,
+                },
+              ],
+            },
+          ],
+          symbolicVerdicts: [{ vectorId: 'reentrancy-line-42', status: 'counterexample' }],
+        },
+      ],
+    };
+
+    const snapshot = buildRuntimeSnapshot(config);
+    expect(snapshot.heparConsensus?.implemented).toBe(true);
+    expect(snapshot.heparConsensus?.campaignCount).toBe(1);
+    expect(snapshot.heparConsensus?.results[0].decisionBand).toBeDefined();
+  });
 });

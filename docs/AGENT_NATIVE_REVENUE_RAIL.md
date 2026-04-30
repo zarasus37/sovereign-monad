@@ -65,7 +65,7 @@ while still depending only on:
 
 - manual bootstrap inflow
 - human-brokered API sales
-- a future slot product
+- a future gamified product rail
 
 That would be structurally inconsistent.
 
@@ -114,6 +114,12 @@ Revenue forms:
 - private research feeds
 - premium intelligence briefs
 
+Certification boundary:
+
+- premium institutional data bundles may carry a `LightVerified` commercial seal only after de-identification, rights review, Dove evidence, and Gnosis-aligned coherence review all clear
+- `LightVerified` is a commercial certification and provenance mark, not a runtime execution token
+- lower-confidence bundles can exist as separate commercial classes, but they must not reuse the `LightVerified` public seal
+
 ### 3. Narrative and exchange organs
 
 Purpose:
@@ -135,6 +141,27 @@ Revenue forms:
 - paid distribution
 - premium content
 - lead generation into API and enterprise sales
+
+### 4. Forensic risk intelligence organs
+
+Purpose:
+
+- productize Hepar's protocol-forensic output into recurring external risk products
+- convert existing Synapse/Cortex/Vox/Pneuma workflows into institutional risk delivery
+
+Examples:
+
+- continuous protocol risk API monitoring
+- institutional live risk feed
+- pre-mainnet protocol forensic reports
+- underwriting-grade risk dataset licensing
+
+Revenue forms:
+
+- Tier 1 protocol monitoring subscriptions
+- Tier 2 institutional feed licenses
+- Tier 3 forensic report engagements
+- Tier 4 underwriting data licensing
 
 ## Operational rule
 
@@ -171,6 +198,6 @@ The first canonical ecosystem-native agent set is defined in:
 1. bootstrap manual inflow
 2. API and licensing revenue
 3. agent-native revenue rail
-4. MonadSpin slot revenue
+4. MonadSpin GameFi / gamified revenue
 
 This makes the opening funnel both diversified and faithful to the agent-native thesis.

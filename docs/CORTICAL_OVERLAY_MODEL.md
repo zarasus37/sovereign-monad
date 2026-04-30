@@ -147,7 +147,7 @@ Primary ecosystem surfaces:
 - runtime event capture
 - observability and health surfaces
 - market/feed intake
-- slot/source-health intake
+- gamefi/source-health intake
 
 Primary question:
 

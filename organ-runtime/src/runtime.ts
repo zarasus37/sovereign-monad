@@ -36,6 +36,20 @@ export class OrganRuntime {
       );
     }
 
+    if (snapshot.synapseAdaptive) {
+      this.logger.info(
+        {
+          signalCount: snapshot.synapseAdaptive.signalCount,
+          escalations: snapshot.synapseAdaptive.escalations,
+          policyUsed: snapshot.synapseAdaptive.policyUsed,
+          sourceWeights: snapshot.synapseAdaptive.sourceWeights,
+          conflicts: snapshot.synapseAdaptive.conflicts,
+          routes: snapshot.synapseAdaptive.routes,
+        },
+        'synapse adaptive routing snapshot',
+      );
+    }
+
     if (snapshot.hepar) {
       this.logger.info(
         {
@@ -44,6 +58,17 @@ export class OrganRuntime {
           decisions: snapshot.hepar.decisions,
         },
         'hepar screening snapshot',
+      );
+    }
+
+    if (snapshot.heparConsensus) {
+      this.logger.info(
+        {
+          campaignCount: snapshot.heparConsensus.campaignCount,
+          decisionBandCounts: snapshot.heparConsensus.decisionBandCounts,
+          results: snapshot.heparConsensus.results,
+        },
+        'hepar consensus snapshot',
       );
     }
 
@@ -57,6 +82,17 @@ export class OrganRuntime {
       );
     }
 
+    if (snapshot.cortexStrategic) {
+      this.logger.info(
+        {
+          contextCount: snapshot.cortexStrategic.contextCount,
+          averageStressIndex: snapshot.cortexStrategic.averageStressIndex,
+          reports: snapshot.cortexStrategic.reports,
+        },
+        'cortex strategic snapshot',
+      );
+    }
+
     if (snapshot.vox) {
       this.logger.info(
         {
@@ -64,6 +100,19 @@ export class OrganRuntime {
           packages: snapshot.vox.packages,
         },
         'vox narrative snapshot',
+      );
+    }
+
+    if (snapshot.voxIntelligence) {
+      this.logger.info(
+        {
+          inputCount: snapshot.voxIntelligence.inputCount,
+          packageCount: snapshot.voxIntelligence.packageCount,
+          verifiedCount: snapshot.voxIntelligence.verifiedCount,
+          conflictedCount: snapshot.voxIntelligence.conflictedCount,
+          packages: snapshot.voxIntelligence.packages,
+        },
+        'vox narrative intelligence snapshot',
       );
     }
 
@@ -78,6 +127,21 @@ export class OrganRuntime {
       );
     }
 
+    if (snapshot.pneumaMarket) {
+      this.logger.info(
+        {
+          orderCount: snapshot.pneumaMarket.orderCount,
+          acceptedCount: snapshot.pneumaMarket.acceptedCount,
+          fillRatio: snapshot.pneumaMarket.fillRatio,
+          averageCostBps: snapshot.pneumaMarket.averageCostBps,
+          policyUsed: snapshot.pneumaMarket.policyUsed,
+          decisions: snapshot.pneumaMarket.decisions,
+          feedbackSignals: snapshot.pneumaMarket.feedbackSignals,
+        },
+        'pneuma market intelligence snapshot',
+      );
+    }
+
     if (snapshot.cardia) {
       this.logger.info(
         {
@@ -86,6 +150,20 @@ export class OrganRuntime {
           decisions: snapshot.cardia.decisions,
         },
         'cardia capital-band snapshot',
+      );
+    }
+
+    if (snapshot.cardiaAdaptive) {
+      this.logger.info(
+        {
+          candidateCount: snapshot.cardiaAdaptive.candidateCount,
+          netAllocationUsd: snapshot.cardiaAdaptive.netAllocationUsd,
+          blockedCount: snapshot.cardiaAdaptive.blockedCount,
+          coefficientsUsed: snapshot.cardiaAdaptive.coefficientsUsed,
+          stressActions: snapshot.cardiaAdaptive.stressActions,
+          decisions: snapshot.cardiaAdaptive.decisions,
+        },
+        'cardia adaptive allocation snapshot',
       );
     }
 
@@ -118,6 +196,16 @@ export class OrganRuntime {
           gateChecks: snapshot.mandate.gateChecks,
         },
         'first bounded mandate snapshot',
+      );
+    }
+
+    if (snapshot.revenue) {
+      this.logger.info(
+        {
+          thesis: snapshot.revenue.thesis,
+          offers: snapshot.revenue.offers,
+        },
+        'revenue packaging snapshot',
       );
     }
 

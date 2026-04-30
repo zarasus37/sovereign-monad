@@ -92,6 +92,42 @@
       }
     ]
   },
+  "synapseAdaptive": {
+    "sampleSignals": [
+      {
+        "id": "adp-sig-001",
+        "source": "Hepar",
+        "category": "opportunity",
+        "severity": "critical",
+        "confidence": 0.94,
+        "touchesCapital": true,
+        "summary": "Critical exploit path discovered in target protocol."
+      },
+      {
+        "id": "adp-sig-002",
+        "source": "Cardia",
+        "category": "opportunity",
+        "severity": "low",
+        "confidence": 0.59,
+        "touchesCapital": true,
+        "summary": "Allocation engine sees acceptable returns if risk is controlled."
+      }
+    ],
+    "sampleSourceHealth": [
+      { "source": "Hepar", "precision": 0.91, "missRate": 0.05, "stalenessSec": 60 },
+      { "source": "Cortex", "precision": 0.79, "missRate": 0.15, "stalenessSec": 80 },
+      { "source": "Cardia", "precision": 0.73, "missRate": 0.19, "stalenessSec": 120 },
+      { "source": "Pneuma", "precision": 0.76, "missRate": 0.14, "stalenessSec": 75 },
+      { "source": "Vox", "precision": 0.69, "missRate": 0.21, "stalenessSec": 140 },
+      { "source": "DataRail", "precision": 0.84, "missRate": 0.09, "stalenessSec": 45 },
+      { "source": "Market", "precision": 0.7, "missRate": 0.22, "stalenessSec": 30 }
+    ],
+    "policy": {
+      "conflictSeverityGap": 3,
+      "lowConfidenceBlockThreshold": 0.45,
+      "capitalEscalationMinSeverity": 2
+    }
+  },
   "hepar": {
     "sampleOpportunities": [
       {
@@ -103,6 +139,60 @@
         "structuralRisk": "medium",
         "opaque": false,
         "exploitative": false,
+        "forensics": {
+          "bytecode": {
+            "uncheckedOwnerDrainFunctions": 0,
+            "hiddenPauseMechanisms": false,
+            "selfdestructReachable": false,
+            "uninitializedProxyImplementation": false,
+            "ownerAddressCount": 5,
+            "ownerConcentrationScore": 18
+          },
+          "proxyAdmin": {
+            "proxyAdminPresent": true,
+            "upgradeAuthorityAddressCount": 5,
+            "upgradeDelayHours": 72,
+            "proxyPattern": "transparent",
+            "beaconChainDepth": 0,
+            "timelockBypassVector": false
+          },
+          "lpUnlock": {
+            "lpTopHolderConcentrationPct": 32,
+            "daysToMajorUnlock": 365,
+            "majorUnlockPercent": 22,
+            "historicalUnlockViolations": 0,
+            "lpLockerVerified": true
+          },
+          "walletTaint": {
+            "taintedFundingLinks": 0,
+            "knownRugLaunchCount": 0,
+            "ponziAssociationCount": 0,
+            "suddenProtocolExposureCount": 2,
+            "coordinatedPatternScore": 8
+          },
+          "adversarial": {
+            "maxIntPathVulnerabilities": 0,
+            "flashloanInvariantBreaks": 0,
+            "unexpectedCallOrderBreaks": 0,
+            "soleLpWithdrawalExploit": false,
+            "economicInvariantViolations": 0,
+            "estimatedExploitableLossUsd": 0
+          },
+          "honeypotProbability": 0.04,
+          "criticalAuditFindings": 0,
+          "unresolvedIncidents30d": 0,
+          "top10HolderConcentrationPct": 31,
+          "liquidityLockDays": 180,
+          "liquidityLockPercent": 92,
+          "adminKeyModel": "multisig_timelocked",
+          "upgradeability": "timelocked",
+          "privilegedFunctionCount": 3,
+          "oracleDiversityScore": 84,
+          "washTradingScore": 18,
+          "dependencyRiskScore": 22,
+          "counterpartyReputationScore": 79,
+          "contractAgeDays": 420
+        },
         "summary": "Liquid, bounded opportunity with acceptable edge and moderate structure complexity."
       },
       {
@@ -114,7 +204,178 @@
         "structuralRisk": "high",
         "opaque": true,
         "exploitative": false,
+        "forensics": {
+          "bytecode": {
+            "uncheckedOwnerDrainFunctions": 3,
+            "hiddenPauseMechanisms": true,
+            "selfdestructReachable": true,
+            "uninitializedProxyImplementation": true,
+            "ownerAddressCount": 1,
+            "ownerConcentrationScore": 95
+          },
+          "proxyAdmin": {
+            "proxyAdminPresent": true,
+            "upgradeAuthorityAddressCount": 1,
+            "upgradeDelayHours": 0,
+            "proxyPattern": "beacon",
+            "beaconChainDepth": 4,
+            "timelockBypassVector": true
+          },
+          "lpUnlock": {
+            "lpTopHolderConcentrationPct": 85,
+            "daysToMajorUnlock": 21,
+            "majorUnlockPercent": 88,
+            "historicalUnlockViolations": 2,
+            "lpLockerVerified": false
+          },
+          "walletTaint": {
+            "taintedFundingLinks": 2,
+            "knownRugLaunchCount": 6,
+            "ponziAssociationCount": 3,
+            "suddenProtocolExposureCount": 46,
+            "coordinatedPatternScore": 91
+          },
+          "adversarial": {
+            "maxIntPathVulnerabilities": 2,
+            "flashloanInvariantBreaks": 1,
+            "unexpectedCallOrderBreaks": 2,
+            "soleLpWithdrawalExploit": true,
+            "economicInvariantViolations": 3,
+            "estimatedExploitableLossUsd": 2500000
+          },
+          "honeypotProbability": 0.76,
+          "criticalAuditFindings": 3,
+          "unresolvedIncidents30d": 2,
+          "top10HolderConcentrationPct": 78,
+          "liquidityLockDays": 2,
+          "liquidityLockPercent": 24,
+          "adminKeyModel": "single_key",
+          "upgradeability": "unbounded",
+          "privilegedFunctionCount": 12,
+          "oracleDiversityScore": 18,
+          "washTradingScore": 87,
+          "dependencyRiskScore": 81,
+          "counterpartyReputationScore": 21,
+          "contractAgeDays": 9
+        },
         "summary": "Weak edge and poor transparency; should be rejected."
+      }
+    ]
+  },
+  "heparConsensus": {
+    "sampleCampaigns": [
+      {
+        "id": "hep-cons-001",
+        "protocolId": "proto-alpha",
+        "codeHash": "0xabc123ff0042",
+        "agentRuns": [
+          {
+            "agentId": "hepar-privilege",
+            "specialty": "privilege",
+            "pathSamples": 50000,
+            "coverage": 0.79,
+            "findings": [
+              {
+                "vectorId": "reentrancy-line-102",
+                "title": "Reentrancy in withdraw path",
+                "severity": "critical",
+                "estimatedLossUsd": 3100000,
+                "reproducible": true
+              },
+              {
+                "vectorId": "overflow-line-47",
+                "title": "Unchecked arithmetic overflow",
+                "severity": "high",
+                "estimatedLossUsd": 850000,
+                "reproducible": true
+              }
+            ]
+          },
+          {
+            "agentId": "hepar-arithmetic",
+            "specialty": "arithmetic",
+            "pathSamples": 50000,
+            "coverage": 0.76,
+            "findings": [
+              {
+                "vectorId": "reentrancy-line-102",
+                "title": "Reentrancy in withdraw path",
+                "severity": "critical",
+                "estimatedLossUsd": 3100000,
+                "reproducible": true
+              },
+              {
+                "vectorId": "underflow-line-156",
+                "title": "Arithmetic underflow in debt accounting",
+                "severity": "high",
+                "estimatedLossUsd": 730000,
+                "reproducible": true
+              }
+            ]
+          },
+          {
+            "agentId": "hepar-reentrancy",
+            "specialty": "reentrancy",
+            "pathSamples": 50000,
+            "coverage": 0.82,
+            "findings": [
+              {
+                "vectorId": "reentrancy-line-102",
+                "title": "Reentrancy in withdraw path",
+                "severity": "critical",
+                "estimatedLossUsd": 3100000,
+                "reproducible": true
+              },
+              {
+                "vectorId": "overflow-line-47",
+                "title": "Unchecked arithmetic overflow",
+                "severity": "high",
+                "estimatedLossUsd": 850000,
+                "reproducible": true
+              }
+            ]
+          },
+          {
+            "agentId": "hepar-economic",
+            "specialty": "economic",
+            "pathSamples": 50000,
+            "coverage": 0.74,
+            "findings": [
+              {
+                "vectorId": "reentrancy-line-102",
+                "title": "Reentrancy in withdraw path",
+                "severity": "critical",
+                "estimatedLossUsd": 3100000,
+                "reproducible": true
+              }
+            ]
+          },
+          {
+            "agentId": "hepar-state",
+            "specialty": "state",
+            "pathSamples": 50000,
+            "coverage": 0.81,
+            "findings": [
+              {
+                "vectorId": "reentrancy-line-102",
+                "title": "Reentrancy in withdraw path",
+                "severity": "critical",
+                "estimatedLossUsd": 3100000,
+                "reproducible": true
+              }
+            ]
+          }
+        ],
+        "symbolicVerdicts": [
+          {
+            "vectorId": "reentrancy-line-102",
+            "status": "counterexample"
+          },
+          {
+            "vectorId": "overflow-line-47",
+            "status": "unknown"
+          }
+        ]
       }
     ]
   },
@@ -142,6 +403,19 @@
       }
     ]
   },
+  "cortexStrategic": {
+    "sampleContexts": [
+      {
+        "id": "ctx-strat-001",
+        "headline": "Volatility expansion with rising protocol-risk density",
+        "heparCriticalCount": 7,
+        "marketVolatilityPct": 46,
+        "recentPnlUsd": -182000,
+        "agentBehaviorStress": 0.71,
+        "macroRegime": "risk-off tightening"
+      }
+    ]
+  },
   "vox": {
     "sampleRequests": [
       {
@@ -157,6 +431,23 @@
         "format": "memo",
         "audience": "operators",
         "urgency": "fast"
+      }
+    ]
+  },
+  "voxIntelligence": {
+    "sampleInputs": [
+      {
+        "id": "vox-intel-001",
+        "eventTitle": "Protocol exposure blocked after critical forensic consensus",
+        "facts": [
+          "Hepar consensus marked reentrancy vector as high-confidence",
+          "Synapse escalated capital-sensitive conflict for arbitration"
+        ],
+        "proofRefs": [
+          "chain://attestation/hepar-hep-cons-001"
+        ],
+        "contradictionCount": 0,
+        "audiences": ["operators", "buyers", "public"]
       }
     ]
   },
@@ -191,11 +482,52 @@
       }
     ]
   },
+  "pneumaMarket": {
+    "sampleOrders": [
+      {
+        "id": "ord-001",
+        "asset": "ETH/USDC",
+        "side": "buy",
+        "notionalUsd": 150000,
+        "maxSlippageBps": 28,
+        "urgency": "urgent"
+      }
+    ],
+    "sampleVenueQuotes": [
+      {
+        "orderId": "ord-001",
+        "venue": "aerodrome",
+        "availableUsd": 120000,
+        "slippageBps": 18,
+        "feeBps": 4,
+        "latencyMs": 450,
+        "counterparty": "mm-alpha"
+      },
+      {
+        "orderId": "ord-001",
+        "venue": "uniswap",
+        "availableUsd": 220000,
+        "slippageBps": 31,
+        "feeBps": 3,
+        "latencyMs": 390,
+        "counterparty": "mm-beta"
+      }
+    ],
+    "sampleCounterparties": [
+      { "name": "mm-alpha", "solvencyRisk": "low", "settlementReliability": 0.93, "complianceBlocked": false },
+      { "name": "mm-beta", "solvencyRisk": "medium", "settlementReliability": 0.88, "complianceBlocked": false }
+    ],
+    "policy": {
+      "urgentLatencyPenaltyDivisor": 90,
+      "normalLatencyPenaltyDivisor": 180,
+      "minSettlementReliability": 0.72
+    }
+  },
   "cardia": {
     "sampleCapitalState": {
       "reserveRatioPercent": 26,
       "minReserveRatioPercent": 20,
-      "deploymentReadiness": "bounded",
+      "deploymentReadiness": "ready",
       "lanes": [
         {
           "name": "research-commercialization",
@@ -208,6 +540,46 @@
           "maxPercent": 15
         }
       ]
+    }
+  },
+  "cardiaAdaptive": {
+    "sampleState": {
+      "reserveRatioPercent": 26,
+      "minReserveRatioPercent": 20,
+      "portfolioDrawdownPct": 8.4,
+      "volatilityRegime": "elevated",
+      "liquidityStress": false
+    },
+    "sampleCandidates": [
+      {
+        "id": "cad-001",
+        "protocolId": "proto-alpha",
+        "heparRiskScore": 22,
+        "expectedReturnPct": 11.8,
+        "confidence": 0.79,
+        "requiredCapitalUsd": 120000,
+        "currentAllocationUsd": 40000
+      }
+    ],
+    "coefficients": {
+      "returnWeight": 1.2,
+      "riskPenaltyWeight": 0.18,
+      "drawdownPenaltyWeight": 0.06,
+      "elevatedStressPenalty": 2.5,
+      "crashStressPenalty": 11,
+      "allocateThreshold": 2,
+      "reduceThreshold": -4,
+      "hardBlockRiskScore": 70
+    }
+  },
+  "revenue": {
+    "tier3Operational": {
+      "automatedReportTemplating": false,
+      "qualityChecklistSignoff": false,
+      "evidencePackagingAutomation": false,
+      "customerPortalEnabled": false,
+      "slaEnabled": false,
+      "targetTurnaroundHours": 72
     }
   },
   "participation": {

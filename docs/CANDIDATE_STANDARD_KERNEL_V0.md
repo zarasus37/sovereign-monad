@@ -1,15 +1,4 @@
-﻿# Candidate Standard Kernel v0 Mirror
-
-This is a local mirror of the candidate standard kernel v0 artifact for workspace use in `monad-mev`.
-
-Canonical maintenance target:
-
-- `C:\Users\crisc\Dev\agents\sovereign-monad\docs\CANDIDATE_STANDARD_KERNEL_V0.md`
-
-If this mirror and the canonical copy diverge, the `sovereign-monad` version wins and this mirror should be resynced.
-
----
-
+# Candidate Standard Kernel v0
 
 This document records the current internal implementation target for the first
 candidate Sovereign Monad standard kernel.
@@ -100,4 +89,3 @@ No expansion of the kernel should occur unless:
 
 - the matrix exposes a concrete enforcement failure, or
 - live proof exposes a concrete enforcement failure.
-

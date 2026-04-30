@@ -3,35 +3,72 @@ import { OrganRuntime } from './runtime';
 export { ORGAN_DEFINITIONS } from './organs';
 export { buildRuntimeSnapshot } from './coordinator';
 export { buildCardiaSnapshot } from './cardia';
+export { buildCardiaAdaptiveSnapshot } from './cardia-adaptive';
 export {
   buildHomeostasisSnapshot,
   buildImmuneSnapshot,
   buildSignalingSnapshot,
 } from './controls';
 export { buildCortexSnapshot, synthesizeBrief } from './cortex';
+export { buildCortexStrategicSnapshot } from './cortex-strategic';
+export { buildHeparConsensusSnapshot } from './hepar-consensus';
 export { buildHeparSnapshot, screenOpportunity } from './hepar';
 export { buildFirstMandateSnapshot } from './mandate';
 export { buildOrchestrationSnapshot } from './orchestration';
 export { buildParticipationSnapshot } from './participation';
+export { buildPneumaMarketSnapshot } from './pneuma-market';
 export { buildPneumaSnapshot, qualifyLead } from './pneuma';
+export { buildRevenueSnapshot } from './revenue';
+export { buildSynapseAdaptiveSnapshot } from './synapse-adaptive';
 export { buildSynapseSnapshot, routeSignal } from './synapse';
 export { OrganRuntime } from './runtime';
+export { buildVoxNarrativeIntelligenceSnapshot } from './vox-intelligence';
 export { buildVoxSnapshot, packageNarrative } from './vox';
 export type {
+  CardiaAdaptiveDecision,
+  CardiaAdaptiveCoefficients,
+  CardiaAdaptiveRuntimeSnapshot,
+  CardiaAdaptiveState,
+  CardiaAllocationCandidate,
   CardiaCapitalLane,
   CardiaCapitalState,
   CardiaDecision,
   CardiaRuntimeSnapshot,
+  CounterpartyRiskBand,
   CortexAudience,
   CortexBrief,
+  CortexRecommendation,
   CortexResearchItem,
   CortexRuntimeSnapshot,
+  CortexScenario,
+  CortexStrategicContext,
+  CortexStrategicReport,
+  CortexStrategicRuntimeSnapshot,
   HomeostasisBreach,
   HomeostasisMetric,
   HomeostasisRuntimeSnapshot,
   HeparDecision,
+  HeparConfidence,
+  HeparBytecodeSignals,
+  HeparProxyAdminSignals,
+  HeparLpUnlockSignals,
+  HeparWalletTaintSignals,
+  HeparAdversarialSignals,
+  HeparProxyPattern,
+  HeparForensicsSignals,
+  HeparRiskBreakdown,
   HeparOpportunity,
   HeparRuntimeSnapshot,
+  HeparFindingSeverity,
+  HeparSymbolicStatus,
+  HeparConsensusDecisionBand,
+  HeparAgentFinding,
+  HeparAgentRun,
+  HeparSymbolicVectorVerdict,
+  HeparConsensusCampaign,
+  HeparConsensusVector,
+  HeparConsensusResult,
+  HeparConsensusRuntimeSnapshot,
   ImmuneIncident,
   ImmuneIncidentCategory,
   ImmuneResponseDecision,
@@ -48,22 +85,47 @@ export type {
   ParticipationDecision,
   ParticipationMode,
   ParticipationRuntimeSnapshot,
+  RevenueOffer,
+  RevenuePortfolioMetrics,
+  RevenueRuntimeSnapshot,
+  Tier3OperationalMaturity,
+  RevenueUnitEconomics,
+  RevenueValueBandUsd,
   PneumaDecision,
+  PneumaExecutionDecision,
   PneumaLead,
+  PneumaMarketIntelligenceSnapshot,
+  PneumaExecutionPolicy,
+  PneumaOrderIntent,
+  PneumaOrderSide,
   PneumaReadiness,
   PneumaRuntimeSnapshot,
+  PneumaUrgency,
+  PneumaVenueQuote,
+  PneumaCounterpartySignal,
   RuntimeMode,
   SignalingRuntimeSnapshot,
+  SynapseAdaptiveRoute,
+  SynapseAdaptiveRuntimeSnapshot,
+  SynapseAdaptivePolicy,
+  SynapseAdaptiveSignal,
+  SynapseConflictCase,
   SynapseRouteDecision,
   SynapseRuntimeSnapshot,
+  SynapseSource,
+  SynapseSourceHealth,
   SynapseSignal,
   SynapseSignalCategory,
   SynapseSignalSeverity,
   SynapseLatencyClass,
   VoxAudience,
+  VoxAudiencePackage,
   VoxFormat,
+  VoxNarrativeInput,
   VoxNarrativePackage,
+  VoxNarrativeIntelligenceSnapshot,
   VoxNarrativeRequest,
+  VoxNarrativeTruthStatus,
   VoxRuntimeSnapshot,
 } from './types';
 

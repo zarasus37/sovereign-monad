@@ -1,15 +1,4 @@
-﻿# Ecosystem Build Map Mirror
-
-This is a local mirror of the ecosystem build map for runtime-side work in `monad-mev`.
-
-Canonical maintenance target:
-
-- `C:\Users\crisc\Dev\agents\sovereign-monad\docs\ECOSYSTEM_BUILD_MAP.md`
-
-If this mirror and the canonical copy diverge, the `sovereign-monad` version wins and this mirror should be resynced.
-
----
-
+# Ecosystem Build Map
 
 This document is the canonical working build tracker for the Sovereign Monad ecosystem.
 
@@ -38,8 +27,8 @@ They are not interchangeable.
 
 Tracked local build-state rollups:
 
-- major-area rollup: `59/71 complete` (`83.1%`)
-- layer-by-layer rollup: `80/98 complete` (`81.6%`)
+- major-area rollup: `61/72 complete` (`84.7%`)
+- layer-by-layer rollup: `81/99 complete` (`81.8%`)
 
 These percentages describe what has been built and verified locally. They do **not** mean the project is `74.6%` live or production-complete.
 
@@ -48,17 +37,17 @@ These percentages describe what has been built and verified locally. They do **n
 | Major Area | Local Build State | Live / Production State | Capital-Gated? | Current Read |
 |---|---|---|---|---|
 | Canonical Core | built | canonical and current | no | `5/5` |
-| Phase 1a Routing Substrate | built except live deployment | not live | yes | `5/6` |
+| Phase 1a Routing Substrate | live deployment complete | live on Monad mainnet | yes | `6/6` |
 | Runtime Revenue Engine | mostly built locally | not yet live-proven | partly | `8/12` |
 | Commercial Support Surface | scaffolded locally | not publicly deployed | partly | `5/8` |
 | Production Operations | tooling exists locally | infra not live | yes | `6/10` |
-| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `30/30` |
+| Later-Layer Sovereign System | locally complete at zero-capital expected level | not live / not externalized | mixed | `31/31` |
 
 ### 0.2 What Is Actually Complete
 
 - locally complete at the current expected level: Canonical Core, Intelligence Layer, Signal Layer, Platform, DAO, Keys, Narrative, Dove, Gnosis, Data Rail, and Emergent Protocol local surfaces
 - locally partial but meaningful: Oracle, Phase 1a substrate, runtime engine, commercial stack, production ops
-- blocked or not started in live terms: Treasury, live Phase 1a deployment proof, runtime execution-truth closure, funded `Cardia`, live Keys activation, public Data Rail activation, and broader production/public rollout
+- blocked or not started in live terms: Treasury, runtime execution-truth closure, funded `Cardia`, live Keys activation, public Data Rail activation, and broader production/public rollout
 
 ## 1. Major Areas
 
@@ -81,8 +70,8 @@ Remaining:
 
 ### B. Phase 1a Routing Substrate
 
-Status: `PARTIAL`
-Progress: `5/6 complete`
+Status: `DONE`
+Progress: `6/6 complete`
 
 Complete:
 
@@ -94,7 +83,7 @@ Complete:
 
 Remaining:
 
-- live onchain deployment
+- none at the current canonical routing-substrate level
 
 ### C. Runtime Revenue Engine
 
@@ -121,7 +110,7 @@ Remaining:
 
 Capital-gated local surface:
 
-- `execution-truth-core` now exists locally in `monad-mev` and currently reports `blocked` until live Phase 1a proof and bootstrap source registration are recorded
+- `execution-truth-core` now exists locally in `monad-mev` and currently reports `staged` until the first guarded-live runtime session, receipt-truth validation, and a clear incident queue are recorded
 
 ### D. Commercial Support Surface
 
@@ -165,13 +154,13 @@ Remaining:
 
 Capital-gated local surfaces:
 
-- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `blocked`
+- `cardia-activation-core` now exists locally in `monad-mev` and currently reports `ready_for_funding`
 - `public-activation-core` now exists locally in `monad-mev` and currently reports `blocked`
 
 ### F. Later-Layer Sovereign System
 
 Status: `DONE`
-Progress: `30/30 complete`
+Progress: `31/31 complete`
 
 Complete:
 
@@ -206,6 +195,7 @@ Complete:
 - local Dove drift-signaling integration now exists
 - local Gnosis evaluation and integrity scoring now exist
 - local Data Rail bundle/product boundary preparation now exists
+- local LightVerify commercial certification/provenance surface now exists
 - local emergent protocol pattern extraction and downstream-path scaffold now exists
 
 Remaining:
@@ -237,12 +227,17 @@ Complete:
 
 Remaining:
 
-- MonadSpin product design
+- MonadSpin / GameFi product design
 - API/licensing revenue rail activation
 - agent-native revenue rail activation
-- RTP logic
+- game-economy / fairness logic
 - inflow routing implementation
 - live funding rail deployment
+
+Canonical Layer 1 framing:
+
+- the fourth rail is the broader MonadSpin GameFi / gamified environment, not a slot-first product thesis
+- the rail is justified as a bounded role-fit domain for non-financial agents and internally produced outward-facing value
 
 ### Layer 2. The Engine
 
@@ -476,7 +471,7 @@ Remaining:
 ### Layer 14. Data Rail
 
 Status: `DONE`
-Progress: `10/10 complete`
+Progress: `11/11 complete`
 
 Complete:
 
@@ -491,6 +486,12 @@ Complete:
 - activation-decision discipline now exists locally and keeps the current posture at `review`, not activated
 - next-wave population expansion targeting now exists locally (`16` events / `12` actors, plus missing `gnosis` and `rejected` windows)
 - local bundle/product boundary preparation now exists
+- local LightVerify certification/provenance artifact now exists with a binary public seal, internal scorecard, and no runtime execution gating
+
+Canonical observation scope:
+
+- Layer 14 now treats human-conditioned behavior, native agent behavioral dynamics, and hybrid vector formation as valid observation classes under bounded environments
+- this does not create consciousness claims, rights claims, or live emergence authority by itself
 
 Remaining:
 
@@ -513,7 +514,7 @@ Complete:
 - local pattern extraction system now exists
 - local protocol discovery logic now exists
 - local emergence validation rules now exist
-- local formalized downstream protocol path now exists
+- local formalized downstream protocol path plus bounded claim/history evidence-artifact scaffolding now exist
 
 Remaining:
 
@@ -523,6 +524,7 @@ Live follow-ons:
 
 - longitudinal emergence evidence accumulation beyond the current local windows
 - formal emergence claims only after durable live evidence
+- any true recognition layer, human ratification workflow, or downstream read-path expansion beyond the isolated historical record
 
 ## 3. Repo Map
 
@@ -551,10 +553,9 @@ Primary contents:
 
 The next build frontier remains:
 
-1. complete live Phase 1a deployment proof
-2. register the bootstrap approved source and verify the first live routing path
-3. close remaining execution-truth gaps in the runtime
-4. deploy the runtime/commercial stack with real infrastructure inputs
+1. close remaining execution-truth gaps in the runtime
+2. activate funded `Cardia` and bankroll routing
+3. deploy the runtime/commercial stack with real infrastructure inputs
 
 Everything else should be sequenced relative to those gates.
 
@@ -568,18 +569,14 @@ Remaining zero-cost operations are longitudinal:
 
 Current capital/live frontier:
 
-1. complete live Phase 1a deployment proof
-2. register the bootstrap approved source and verify the first live routing path
-3. close remaining execution-truth gaps in the runtime
-4. activate funded `Cardia` and bankroll routing
-5. deploy the runtime/commercial stack with real infrastructure inputs
+1. close remaining execution-truth gaps in the runtime
+2. activate funded `Cardia` and bankroll routing
+3. deploy the runtime/commercial stack with real infrastructure inputs
 
 Current capital/live snapshot:
 
-- live Phase 1a deployment proof now has a resumable checkpoint path but remains blocked by deployer funding restore
-- bootstrap approved-source registration remains blocked until live deployment proof yields canonical live addresses
-- runtime execution-truth closure is now tracked locally by `execution-truth-core` and currently remains `blocked`
-- funded `Cardia` activation is now tracked locally by `cardia-activation-core` and currently remains `blocked`
+- live Phase 1a deployment proof completed on 2026-04-18 and the bootstrap approved source is now registered on Monad mainnet
+- runtime execution-truth closure is now tracked locally by `execution-truth-core` and currently remains `staged`
+- funded `Cardia` activation is now tracked locally by `cardia-activation-core` and currently remains `ready_for_funding`
 - production/public activation is now tracked locally by `public-activation-core` and currently remains `blocked`
-
 
