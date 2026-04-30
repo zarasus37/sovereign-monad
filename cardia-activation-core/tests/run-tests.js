@@ -61,9 +61,9 @@ test('buildCardiaActivationSnapshot reaches ready_for_guarded_live only after fu
   assert.equal(snapshot.status, 'ready_for_guarded_live');
 });
 
-test('loadLocalCardiaActivationSnapshot reflects the current blocked local posture', () => {
+test('loadLocalCardiaActivationSnapshot reflects the current ready_for_funding local posture', () => {
   const snapshot = loadLocalCardiaActivationSnapshot(path.resolve(__dirname, '..', '..'));
   assert.equal(snapshot.implemented, true);
-  assert.equal(snapshot.status, 'blocked');
+  assert.equal(snapshot.status, 'ready_for_funding');
   assert.equal(snapshot.walletFunded, false);
 });

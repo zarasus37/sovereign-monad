@@ -439,6 +439,13 @@ These should be treated as an opening funnel component, not merely a later-layer
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
 **Immediate Priority:** close runtime execution-truth gaps in `monad-mev`, then move into funded `Cardia` activation and guarded public rollout discipline
 
+**Accepted upgrade tracks now under final specification:**
+
+- Agent 0 guarded-live progression: keep the current on-chain behavioral proof as record-only, use shadow-paper markout analysis for the first 50 to 100 would-have trades, then require explicit operator review before any funded trading authority.
+- High-Fidelity DeFi Gaming: treat MonadSpin as the umbrella GameFi / gamified environment rail, not a slot-first product thesis; final gameplay, economy, fairness, and agent-role specifications remain pending.
+- Six-organ institutional depth: `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` are accepted as institutional-depth organ tracks with analysis-mode implementations and further calibration required before live authority.
+- Commercial intelligence rails: Hepar forensic reports, risk API/feed packaging, LightVerify certification, and Data Rail licensing are accepted as planned revenue surfaces, subject to activation discipline and evidence quality controls.
+
 ## 6.1.1 Completion Reading
 
 The project currently needs two separate completion readings:
@@ -493,6 +500,9 @@ This means the architecture and local analysis stack are materially advanced. It
 | Agent NFTs / Keys | LOCAL ANALYSIS SURFACE ONLY | `keys-core` and `keys-nft-core` now provide local activation, delegation, and metadata surfaces; live minting and activation remain later-phase |
 | Emergence Pipeline | LOCAL OBSERVATION AND EVIDENCE-ARTIFACT SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, `emergent-protocol-core` provides local pattern extraction and downstream-path scaffolding, and `emergence-claim-core` plus `emergence-history-core` now provide bounded local claim and historical-record artifacts without creating a live emergence recognition layer |
 | Live Agent Behavioral Loop | COMPLETE / LIVE MAINNET PROOF | `emergence-claim-core` now contains Agent 0 full IPIP-NEO + SD3 profile encoding, deterministic facet-level routing, Dove flags, live Monad decision preparation, and a deployed `EmergenceRecorder`; Agent 0 profile registration and one behavioral claim are both mined on Monad mainnet |
+| Agent 0 Trading Evaluation Path | PLANNED / SHADOW-PAPER ONLY | Agent 0 may be evaluated through deterministic shadow-paper markouts against `execution.execution-plan` events; no real capital authority is granted until the first sample window is reviewed and funded `Cardia` activation gates are satisfied |
+| High-Fidelity DeFi Gaming | ACCEPTED DESIGN DIRECTION / SPEC PENDING | MonadSpin is now the umbrella GameFi / gamified environment rail; transitional GameFi control scaffolds may support state and operator flow, but no final high-fidelity game product is live |
+| Six-Organ Institutional Depth | LOCAL ANALYSIS SURFACE ONLY | each opening organ has an institutional-depth analysis standard; current outputs are advisory and auditable, not autonomous live authority |
 
 ---
 
@@ -527,6 +537,10 @@ MonadSpin is the ecosystem's gamified entertainment rail — one funding rail of
 - `Vox` for narrative, media, and distribution outputs
 
 These six agents are one of the revenue streams intended to keep the ecosystem alive at the beginning. In current build order, `Cardia` remains capital-gated while the other five operate in zero-capital analysis mode, but canonically all six belong to the Layer 1 funnel rail.
+
+**Current accepted implementation direction:** the first serious entertainment implementation should be specified as a high-fidelity DeFi gaming environment. A slot can remain a subproduct if useful, but it is no longer the canonical product target. The required next work is gameplay specification, economy and fairness modeling, role-fit assignment for participating agents, Data Rail boundaries, and a clear distinction between entertainment value and speculative token incentives.
+
+**Current organ-set implementation direction:** the opening organs should not remain basic filters or routers. They are now held to institutional-depth standards: forensic intelligence for `Hepar`, strategic causal synthesis for `Cortex`, adaptive coordination for `Synapse`, capital allocation discipline for `Cardia`, external market interface intelligence for `Pneuma`, and proof-linked narrative credibility for `Vox`.
 
 **Concentration risk note:** a slot-only or slot-first launch path is no longer treated as the target posture. The acceptable opening posture is at least two live rails, and the preferred posture is bootstrap plus API/licensing plus agent-native revenue before MonadSpin is relied on as a meaningful entertainment rail.
 
@@ -2388,6 +2402,25 @@ The current live frontier now has executable local tracking surfaces, but they d
 - Agent 0 is encoded, routed, Dove-flagged, and registered on Monad mainnet
 - live agent behavioral loop is now complete with deployed recorder, mined profile registration, and mined behavioral claim
 - proof remains record-only: no trading capital was moved during the live behavioral claim
+
+## v2.3.29 — April 30, 2026
+
+**Change Type:** Patch — upgrade-track acceptance for Agent 0, GameFi, and six-organ depth
+
+**Summary of changes:**
+
+- accepted Agent 0 shadow-paper trading evaluation as the correct pre-funded path for the first 50 to 100 would-have trades
+- accepted High-Fidelity DeFi Gaming as the default entertainment direction for MonadSpin / GameFi, replacing the slot-first interpretation
+- accepted the six-organ institutional-depth standard as the implementation target for `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox`
+- clarified that Hepar forensic intelligence, risk API/feed packaging, LightVerify, and Data Rail licensing are planned revenue surfaces under activation discipline
+- preserved the boundary that these upgrades are analysis/specification tracks until final specs, telemetry calibration, funding gates, and governance controls are satisfied
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Agent 0 remains live-recorded but not capital-authorized
+- GameFi is an accepted product-direction track, not a live product
+- the six-organ set is now held to institutional-depth behavior, but live autonomous authority remains gated by runtime execution truth and funded `Cardia` activation
 
 ## v2.3.27 — April 21, 2026
 

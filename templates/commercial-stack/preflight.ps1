@@ -49,7 +49,15 @@ function Assert-NonPlaceholder {
         '^price_starter$',
         '^price_pro$',
         '^price_fund$',
-        '^price_enterprise$'
+        '^price_enterprise$',
+        '^price_starter_monthly$',
+        '^price_starter_annual$',
+        '^price_pro_monthly$',
+        '^price_pro_annual$',
+        '^price_fund_monthly$',
+        '^price_fund_annual$',
+        '^price_enterprise_monthly$',
+        '^price_enterprise_annual$'
     )
 
     foreach ($key in $Keys) {
@@ -68,10 +76,40 @@ function Assert-NonPlaceholder {
     }
 }
 
+function Assert-OptionalNonPlaceholder {
+    param(
+        [hashtable]$Map,
+        [string[]]$Keys,
+        [string]$Label
+    )
+
+    $present = @()
+    foreach ($key in $Keys) {
+        $value = $Map[$key]
+        if (
+            $value -and
+            $value -notmatch 'placeholder' -and
+            $value -notmatch '^price_fund_monthly$' -and
+            $value -notmatch '^price_fund_annual$' -and
+            $value -notmatch '^price_enterprise_monthly$' -and
+            $value -notmatch '^price_enterprise_annual$'
+        ) {
+            $present += $key
+        }
+    }
+
+    if ($present.Count -eq 0) {
+        return
+    }
+
+    Assert-NonPlaceholder -Map $Map -Keys $present -Label $Label
+}
+
 Assert-Exists '.env.api'
 Assert-Exists '.env.billing'
 Assert-Exists '.env.license-service'
 Assert-Exists '..\api\config\api-keys.json'
+Assert-Exists '..\billing\config\inquiries.json'
 Assert-Exists '..\license-service\config\licenses.json'
 
 if ($Edge) {
@@ -91,13 +129,20 @@ if ($Edge) {
 Assert-NonPlaceholder -Map $billing -Keys @(
     'STRIPE_SECRET_KEY',
     'STRIPE_WEBHOOK_SECRET',
-    'STRIPE_STARTER_PRICE_ID',
-    'STRIPE_PRO_PRICE_ID',
-    'STRIPE_FUND_PRICE_ID',
-    'STRIPE_ENTERPRISE_PRICE_ID',
+    'STRIPE_STARTER_MONTHLY_PRICE_ID',
+    'STRIPE_STARTER_ANNUAL_PRICE_ID',
+    'STRIPE_PRO_MONTHLY_PRICE_ID',
+    'STRIPE_PRO_ANNUAL_PRICE_ID',
     'CHECKOUT_SUCCESS_URL',
     'CHECKOUT_CANCEL_URL',
     'PORTAL_RETURN_URL'
+) -Label '.env.billing'
+
+Assert-OptionalNonPlaceholder -Map $billing -Keys @(
+    'STRIPE_FUND_MONTHLY_PRICE_ID',
+    'STRIPE_FUND_ANNUAL_PRICE_ID',
+    'STRIPE_ENTERPRISE_MONTHLY_PRICE_ID',
+    'STRIPE_ENTERPRISE_ANNUAL_PRICE_ID'
 ) -Label '.env.billing'
 
 Assert-NonPlaceholder -Map $licenseService -Keys @(

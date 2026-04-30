@@ -21,11 +21,21 @@ services:
     environment:
       MAX_SINGLE_TRADE_PERCENT: "10"
       MAX_BRIDGE_EXPOSURE_PERCENT: "5"
+      SUPPORTED_EXECUTION_MODES: "inventory_based"
 
   arb-bot:
     environment:
       DRY_RUN: "false"
+      ENABLE_LIVE_EXECUTION: "true"
+      ENABLE_SWAP_SUBMISSION: "false"
+      ENABLE_AUTO_APPROVE: "false"
       MAX_SLIPPAGE_BPS: "20"
+      MAX_PLAN_AGE_MS: "15000"
+      EXPECTED_CHAIN_A_ID: "8453"
+      EXPECTED_CHAIN_B_ID: "42161"
+      MIN_GAS_BALANCE_ETH: "0.01"
+      AERODROME_FACTORY_ADDR: "0x420DD381b31aEf6683db6B902084cB0FFECe40Da"
+      CAMELOT_REFERRER_ADDR: "0x0000000000000000000000000000000000000000"
 
   alert-rules:
     environment:

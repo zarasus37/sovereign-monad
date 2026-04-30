@@ -31,8 +31,8 @@ export function getConfig(): Config {
     outputTopic: process.env.OUTPUT_TOPIC || 'execution.execution-plan',
     clientId: process.env.KAFKA_CLIENT_ID || 'portfolio-manager',
     logLevel: process.env.LOG_LEVEL || 'info',
-    maxBridgeExposurePercent: parseFloat(process.env.MAX_BRIDGE_EXPOSURE_PERCENT || '30'),
-    maxChainExposurePercent: parseFloat(process.env.MAX_CHAIN_EXPOSURE_PERCENT || '50'),
+    maxBridgeExposurePercent: parseFloat(process.env.MAX_BRIDGE_EXPOSURE_PERCENT || '5'),
+    maxChainExposurePercent: parseFloat(process.env.MAX_CHAIN_EXPOSURE_PERCENT || '80'),
     maxSingleTradePercent: parseFloat(process.env.MAX_SINGLE_TRADE_PERCENT || '10'),
     supportedExecutionModes: supportedExecutionModes.length > 0 ? supportedExecutionModes : ['inventory_based'],
   };

@@ -102,6 +102,13 @@ def process_execution_results(df):
     exec_df = df[df.get('eventType', pd.Series()) == 'execution.execution-result'].copy()
     return exec_df
 
+def process_execution_plans(df):
+    """Process execution plans"""
+    if df.empty:
+        return df
+    plans_df = df[df.get('eventType', pd.Series()) == 'execution.execution-plan'].copy()
+    return plans_df
+
 
 def safe_series(df, column, default=0.0):
     """Return a numeric series for the requested column"""
@@ -114,6 +121,7 @@ df = filter_time_window(load_feedback_logs(), time_window)
 spread_df = process_spread_signals(df)
 eval_df = process_risk_evaluations(df)
 exec_df = process_execution_results(df)
+plan_df = process_execution_plans(df)
 
 approved_df = eval_df[eval_df.get('data.approved', pd.Series(dtype='bool')) == True].copy()
 rejected_df = eval_df[eval_df.get('data.approved', pd.Series(dtype='bool')) == False].copy()
@@ -123,6 +131,7 @@ spread_count = len(spread_df)
 approved_count = len(approved_df)
 approval_rate = (approved_count / len(eval_df) * 100) if len(eval_df) else 0
 execution_count = len(exec_df)
+plan_count = len(plan_df)
 success_rate = (len(success_df) / execution_count * 100) if execution_count else 0
 net_pnl = safe_series(success_df, 'data.realizedPnl').sum()
 
@@ -136,10 +145,10 @@ with col2:
     st.metric("Opportunities Approved", approved_count, delta=f"{approval_rate:.1f}% approval")
 
 with col3:
-    st.metric("Executions", execution_count, delta=f"{success_rate:.1f}% success")
+    st.metric("Plans", plan_count, delta=time_window)
 
 with col4:
-    st.metric("Net P&L", f"${net_pnl:.2f}", delta="DRY_RUN window")
+    st.metric("Executions", execution_count, delta=f"{success_rate:.1f}% success")
 
 # Main dashboard tabs
 tab1, tab2, tab3, tab4 = st.tabs(["📊 Spreads", "🎯 Risk Evaluations", "⚡ Executions", "📈 Analysis"])

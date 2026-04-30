@@ -4,6 +4,10 @@ export interface DataProductBundle {
   requiresExplicitActivation: boolean;
   rightsClass: 'internal_only' | 'derived_safe' | 'external_sensitive';
   recommendedScope: 'none' | 'limited_private' | 'public';
+  productTier?: string;
+  priceModel?: string;
+  revenueBand?: string;
+  producingOrgans?: string[];
 }
 
 export interface DataProductInput {

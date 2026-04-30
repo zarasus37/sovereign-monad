@@ -41,6 +41,16 @@ $apiEvalBody = @{
 $apiEval = Invoke-RestMethod -Uri 'http://127.0.0.1:3000/evaluate' -Method Post -Headers @{ 'x-api-key' = $ApiKey } -ContentType 'application/json' -Body $apiEvalBody
 
 $billingHealth = Wait-ForHealth -Uri 'http://127.0.0.1:3010/health' -MaxSeconds $MaxWaitSeconds
+$salesRequestBody = @{
+    kind = 'sales_request'
+    tier = 'fund'
+    clientName = 'Commercial Stack Verify'
+    email = 'verify@sovereign.example'
+    organization = 'Sovereign Verification'
+    aumRange = '$25M - $100M'
+    sourcePage = 'commercial-stack-verify'
+} | ConvertTo-Json -Compress
+$billingSalesRequest = Invoke-RestMethod -Uri 'http://127.0.0.1:3010/sales/request' -Method Post -ContentType 'application/json' -Body $salesRequestBody
 $licenseHealth = Wait-ForHealth -Uri 'http://127.0.0.1:4010/health' -MaxSeconds $MaxWaitSeconds
 
 $activateBody = @{
@@ -61,6 +71,7 @@ $licenseValidate = Invoke-RestMethod -Uri 'http://127.0.0.1:4010/licenses/valida
     apiConfig = $apiConfig
     apiEvaluate = $apiEval
     billingHealth = $billingHealth
+    billingSalesRequest = $billingSalesRequest
     licenseHealth = $licenseHealth
     licenseActivate = $licenseActivate
     licenseValidate = $licenseValidate

@@ -156,6 +156,9 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
       loadEmergentProtocolSnapshot: () => ({
         validationStatus: 'review_ready',
       }),
+      loadLightVerifySnapshot: () => ({
+        posture: 'prepared',
+      }),
     },
     'C:\\runtime.json',
     1710000000000,
@@ -182,6 +185,7 @@ test('buildEcosystemStateFromRuntimeConfig composes the zero-capital stack into 
   assert.equal(snapshot.summary.daoStatus, 'local_ready');
   assert.equal(snapshot.summary.narrativeStatus, 'bounded_review');
   assert.equal(snapshot.summary.dataProductStatus, 'prepared');
+  assert.equal(snapshot.summary.lightVerifyStatus, 'prepared');
   assert.deepEqual(snapshot.summary.capitalGatedOrgans, ['Cardia']);
 });
 
@@ -311,6 +315,9 @@ test('buildEcosystemStateFromRuntimeConfig treats bounded-ready cardia as not bl
       }),
       loadEmergentProtocolSnapshot: () => ({
         validationStatus: 'review_ready',
+      }),
+      loadLightVerifySnapshot: () => ({
+        posture: 'prepared',
       }),
     },
     'C:\\runtime.json',

@@ -7,6 +7,7 @@ Local activation-readiness surface for Data Rail externalization.
 - combines diversity status, rights review, integrity, boundary posture, and emergence observation
 - produces an explicit blocked, conditional, or ready posture
 - exposes the exact checklist items that still prevent activation
+- keeps commercial certification downstream: readiness does not issue `LightVerified`, it only determines whether externalization can even be considered
 
 This package does not activate externalization. It only makes the activation gate explicit.
 

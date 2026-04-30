@@ -4,6 +4,7 @@ This package handles Step 6 of the commercialization path:
 
 - Stripe Checkout for recurring subscriptions
 - Stripe Customer Portal for self-service billing changes
+- first-party sales and presale inquiry capture
 - Stripe webhooks that issue or deactivate API keys in the shared key store
 - Manual CLI issuance for USDC-paid customers
 
@@ -11,8 +12,12 @@ This package handles Step 6 of the commercialization path:
 
 - `POST /checkout/session`
 - `POST /portal/session`
+- `POST /sales/request`
 - `POST /webhooks/stripe`
 - `GET /health`
+- `GET /success`
+- `GET /cancel`
+- `GET /account`
 
 For public deployment behind the commercial edge stack, this service should sit behind:
 
@@ -31,6 +36,12 @@ By default this service writes to:
 
 That keeps payment events aligned with the Starter/Pro/Fund API access layer.
 
+Lead and presale intake is persisted to:
+
+`./config/inquiries.json`
+
+That keeps fund, enterprise, demo, and presale requests inside the first-party stack instead of relying on a third-party form sink.
+
 ## Manual USDC path
 
 For crypto-native buyers, the first version stays operationally simple:
@@ -45,7 +56,9 @@ npm run issue-manual-key -- "Client Name" fund client@example.com "USDC tx 0xabc
 
 ## Required Stripe setup
 
-- create four recurring Stripe Prices
+- create recurring Stripe Prices for the tiers you want live checkout on
+- Starter and Pro monthly/annual prices are required for the commercial self-serve path
+- Fund and Enterprise prices are optional unless you want those tiers to go through Stripe Checkout instead of manual sales handling
 - place the Price IDs in `.env`
 - configure the webhook endpoint to point at `/webhooks/stripe`
 - subscribe to:

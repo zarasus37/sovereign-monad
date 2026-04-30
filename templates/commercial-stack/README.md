@@ -64,7 +64,8 @@ Before a real deployment:
 
 - Docker engine availability
 - required env files exist
-- Stripe keys, price IDs, and URLs are no longer placeholders
+- Starter/Pro Stripe keys, price IDs, and URLs are no longer placeholders
+- optional Fund/Enterprise Stripe price IDs are only enforced if you actually set them
 - license-service URL is no longer a placeholder
 - shared state files exist
 
@@ -182,6 +183,7 @@ node ./provision-licenses.mjs ./license-seeds.json
 ## Shared state
 
 The API and billing services share the same API-key file through the mounted `../api/config` directory.
+Billing also persists first-party sales, demo, and presale inquiries through the mounted `../billing/config` directory.
 
 ## Edge deployment
 
@@ -205,6 +207,7 @@ Verification uses:
 - fixed machine id: `commercial-stack-verify`
 
 The fixed machine id avoids consuming a new activation slot on every verification run.
+Verification also posts a sample `POST /sales/request` payload so lead capture is exercised alongside API, billing health, and licensing.
 
 ## Endpoints
 

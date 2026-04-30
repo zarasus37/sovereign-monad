@@ -2,6 +2,12 @@ import path from 'path';
 import Stripe from 'stripe';
 
 export type ApiTier = 'starter' | 'pro' | 'fund' | 'enterprise';
+export type BillingInterval = 'monthly' | 'annual';
+
+export interface TierPriceIds {
+  monthly: string;
+  annual: string;
+}
 
 export interface BillingConfig {
   port: number;
@@ -12,7 +18,8 @@ export interface BillingConfig {
   checkoutCancelUrl: string;
   portalReturnUrl: string;
   apiKeyStorePath: string;
-  priceIds: Record<ApiTier, string>;
+  inquiryStorePath: string;
+  priceIds: Record<ApiTier, TierPriceIds>;
 }
 
 let config: BillingConfig | null = null;
@@ -37,11 +44,49 @@ export function getBillingConfig(): BillingConfig {
     apiKeyStorePath:
       process.env.API_KEY_STORE_PATH ||
       path.resolve(__dirname, '../../api/config/api-keys.json'),
+    inquiryStorePath:
+      process.env.INQUIRY_STORE_PATH || path.resolve(__dirname, '../config/inquiries.json'),
     priceIds: {
-      starter: process.env.STRIPE_STARTER_PRICE_ID || '',
-      pro: process.env.STRIPE_PRO_PRICE_ID || '',
-      fund: process.env.STRIPE_FUND_PRICE_ID || '',
-      enterprise: process.env.STRIPE_ENTERPRISE_PRICE_ID || '',
+      starter: {
+        monthly:
+          process.env.STRIPE_STARTER_MONTHLY_PRICE_ID ||
+          process.env.STRIPE_STARTER_PRICE_ID ||
+          '',
+        annual:
+          process.env.STRIPE_STARTER_ANNUAL_PRICE_ID ||
+          process.env.STRIPE_STARTER_PRICE_ID ||
+          '',
+      },
+      pro: {
+        monthly:
+          process.env.STRIPE_PRO_MONTHLY_PRICE_ID ||
+          process.env.STRIPE_PRO_PRICE_ID ||
+          '',
+        annual:
+          process.env.STRIPE_PRO_ANNUAL_PRICE_ID ||
+          process.env.STRIPE_PRO_PRICE_ID ||
+          '',
+      },
+      fund: {
+        monthly:
+          process.env.STRIPE_FUND_MONTHLY_PRICE_ID ||
+          process.env.STRIPE_FUND_PRICE_ID ||
+          '',
+        annual:
+          process.env.STRIPE_FUND_ANNUAL_PRICE_ID ||
+          process.env.STRIPE_FUND_PRICE_ID ||
+          '',
+      },
+      enterprise: {
+        monthly:
+          process.env.STRIPE_ENTERPRISE_MONTHLY_PRICE_ID ||
+          process.env.STRIPE_ENTERPRISE_PRICE_ID ||
+          '',
+        annual:
+          process.env.STRIPE_ENTERPRISE_ANNUAL_PRICE_ID ||
+          process.env.STRIPE_ENTERPRISE_PRICE_ID ||
+          '',
+      },
     },
   };
 

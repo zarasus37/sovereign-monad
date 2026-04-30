@@ -28,6 +28,7 @@ export interface RuntimeConfigPathSet {
   gnosisEvaluatorModulePath: string;
   dataProductModulePath: string;
   emergentProtocolModulePath: string;
+  lightVerifyModulePath: string;
 }
 
 export interface SharedStateSummary {
@@ -60,6 +61,7 @@ export interface SharedStateSummary {
   gnosisEvaluationStatus: string;
   dataProductStatus: string;
   emergentProtocolStatus: string;
+  lightVerifyStatus: string;
   nextFrontier: string[];
 }
 
@@ -96,6 +98,7 @@ export interface EcosystemStateSnapshot {
     gnosisEvaluation: unknown;
     dataProduct: unknown;
     emergentProtocol: unknown;
+    lightVerify: unknown;
   };
   summary: SharedStateSummary;
 }
@@ -129,6 +132,7 @@ export interface BuilderBundle {
   loadGnosisEvaluationSnapshot: () => any;
   loadDataProductSnapshot: () => any;
   loadEmergentProtocolSnapshot: () => any;
+  loadLightVerifySnapshot: () => any;
 }
 
 export interface StateApiConfig {

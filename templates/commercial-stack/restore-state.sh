@@ -28,6 +28,7 @@ if [[ ! -d "${backup_dir}" ]]; then
 fi
 
 cp "${backup_dir}/api-keys.json" "${stack_dir}/../api/config/api-keys.json"
+cp "${backup_dir}/inquiries.json" "${stack_dir}/../billing/config/inquiries.json"
 cp "${backup_dir}/licenses.json" "${stack_dir}/../license-service/config/licenses.json"
 
 for env_name in .env.api .env.billing .env.license-service .env.edge .env.host; do

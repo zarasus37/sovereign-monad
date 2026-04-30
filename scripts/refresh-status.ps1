@@ -45,7 +45,7 @@ function Get-ContainerRows {
 function Build-GeneratedSection {
     param(
         [hashtable]$EnvMap,
-        [string[]]$ContainerRows
+        [object[]]$ContainerRows
     )
 
     $timestamp = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss UTC')
@@ -55,12 +55,21 @@ function Build-GeneratedSection {
     $lines.Add("### Live Containers")
     $lines.Add("")
 
-    if ($ContainerRows.Count -eq 0) {
+    $containerRowsList = @()
+    if ($null -ne $ContainerRows) {
+        foreach ($row in $ContainerRows) {
+            $containerRowsList += $row
+        }
+    }
+
+    $containerCount = ($containerRowsList | Measure-Object).Count
+
+    if ($containerCount -eq 0) {
         $lines.Add("No mainnet containers detected.")
     } else {
         $lines.Add("| Container | Status |")
         $lines.Add("|---|---|")
-        foreach ($row in $ContainerRows) {
+        foreach ($row in $containerRowsList) {
             $parts = $row -split '\|', 2
             if ($parts.Count -eq 2) {
                 $lines.Add("| ``$($parts[0])`` | $($parts[1]) |")

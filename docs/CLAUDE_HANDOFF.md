@@ -21,7 +21,7 @@ Use `monad-mev` for:
 
 - runtime services
 - commercial stack
-- slot packages
+- GameFi control packages
 - speech service
 
 ## 2. Canonical files
@@ -92,7 +92,7 @@ Current effective local roles in `sovereign-monad`:
 - founder:
   - `0xD86Ed529AB21D84eFF8Fe13261eaeC589BA9Ae66`
 - bootstrap approved source:
-  - `0xd730b17EC7237cdf9707105D453166308B35383a`
+  - `0x9d4fcf7E0Ae5AE994A6eb0bCCbDfAA62E5867352`
 
 Local config files:
 
@@ -118,7 +118,7 @@ Relevant files:
 - `C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md`
 - `C:\Users\crisc\Dev\agents\sovereign-monad\config\phase1a.deploy.example.json`
 
-## 6. Slot work status
+## 6. GameFi control work status
 
 ### 6.1 Slot governance handoff
 
@@ -130,58 +130,58 @@ Files:
 - `C:\Users\crisc\Dev\agents\sovereign-monad\scripts\slot-source-handoff.js`
 - `C:\Users\crisc\Dev\agents\sovereign-monad\config\slot-source-handoff.example.json`
 
-### 6.2 Slot core
+### 6.2 GameFi control core
 
 This now exists and is verified in the main `monad-mev` workspace.
 
 Files:
 
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-core\README.md`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-core\config\slot-source.example.json`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-core\src\source-state.ts`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-core\src\monitor.ts`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-core\tests\source-state.test.ts`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-core\README.md`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-core\config\gamefi-source.example.json`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-core\src\source-state.ts`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-core\src\monitor.ts`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-core\tests\source-state.test.ts`
 
 Verified:
 
 - `cmd /c npm run build`
 - `cmd /c npm test`
 
-### 6.3 Slot frontend
+### 6.3 GameFi control frontend
 
 This now exists and is verified in the main `monad-mev` workspace.
 
 Files:
 
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-frontend\README.md`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-frontend\docs\INTEGRATION.md`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-frontend\src\App.tsx`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-frontend\src\components\SourceStatus.tsx`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-frontend\README.md`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-frontend\docs\INTEGRATION.md`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-frontend\src\App.tsx`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-frontend\src\components\SourceStatus.tsx`
 
 Modes:
 
-- API mode via `VITE_SLOT_API_URL`
-- config mode via `VITE_SLOT_SOURCE_CONFIG_URL`
+- API mode via `VITE_GAMEFI_API_URL`
+- config mode via `VITE_GAMEFI_SOURCE_CONFIG_URL`
 
 Verified:
 
 - `cmd /c npm run build`
 
-### 6.4 Slot API
+### 6.4 GameFi control API
 
 This now exists and is verified in the main `monad-mev` workspace.
 
 Files:
 
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-api\README.md`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-api\src\index.ts`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-api\src\source-state.ts`
-- `C:\Users\crisc\Dev\agents\monad-mev\slot-api\tests\source-state.test.js`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-api\README.md`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-api\src\index.ts`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-api\src\source-state.ts`
+- `C:\Users\crisc\Dev\agents\monad-mev\gamefi-control-api\tests\source-state.test.js`
 
 Behavior:
 
 - `GET /health`
-- `GET /slot/source-health`
+- `GET /gamefi/source-health`
 - config-driven only
 - returns `503` when the source config is missing or invalid
 
@@ -249,7 +249,7 @@ Verified:
 - Phase 1a contracts are reconstructed, not recovered originals
 - live Phase 1a deployment has not completed yet
 - Stake-linked source is still not real
-- slot packages are config-driven until the on-chain path is live
+- GameFi control packages are config-driven until the on-chain path is live
 - speech-gateway is backend-complete for first pass, but not yet wired into the main user-facing chat surface
 
 ## 10. Safe next actions
@@ -257,7 +257,7 @@ Verified:
 Best immediate actions:
 
 1. keep Phase 1a deploy retry ready for when the deployer wallet is funded
-2. if more slot work is needed, keep `slot-api`, `slot-core`, and `slot-frontend` in sync
+2. if more game-control work is needed, keep `gamefi-control-api`, `gamefi-control-core`, and `gamefi-control-frontend` in sync
 3. if speech work continues, wire the actual chat surface to `speech-gateway`
 4. once funding arrives, run:
 
@@ -272,9 +272,9 @@ cmd /c npm run verify:phase1a
 
 Current visible local state in `monad-mev` includes untracked work for:
 
-- `slot-api`
-- `slot-core`
-- `slot-frontend`
+- `gamefi-control-api`
+- `gamefi-control-core`
+- `gamefi-control-frontend`
 - `speech-gateway`
 - `docs\CLAUDE_HANDOFF.md`
 - `ADR-001_price-feed-infrastructure.md`

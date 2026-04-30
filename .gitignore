@@ -38,6 +38,12 @@ coverage/
 # Generated risk reports
 risk-engine/artifacts/
 
+# Generated local review and media artifacts
+tmp/
+tmp-*.png
+tmp_*.txt
+.playwright-cli/
+
 # Local package caches
 templates/billing/.npm-cache/
 
@@ -46,3 +52,14 @@ templates/commercial-stack/.env.api
 templates/commercial-stack/.env.billing
 templates/commercial-stack/.env.edge
 templates/commercial-stack/.env.license-service
+
+# Local arb-scout identity overrides
+sovereign-worker/arb-scout/wallet_labels.json
+sovereign-worker/scout-key.json
+sovereign-worker/arb-scout/reports.json
+sovereign-worker/arb-scout/scout_output.txt
+sovereign-worker/arb-scout/test_api.py
+
+# Local API key probes
+api_test.py
+verify_key.py

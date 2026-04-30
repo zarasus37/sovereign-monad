@@ -1,21 +1,31 @@
 import Stripe from 'stripe';
-import { ApiTier, getBillingConfig } from './config';
+import { ApiTier, BillingInterval, getBillingConfig } from './config';
+
+let stripeClient: Stripe | null = null;
 
 export function createStripeClient(): Stripe {
+  if (stripeClient) {
+    return stripeClient;
+  }
+
   const config = getBillingConfig();
 
   if (!config.stripeSecretKey) {
     throw new Error('STRIPE_SECRET_KEY is required');
   }
 
-  return new Stripe(config.stripeSecretKey, {
+  stripeClient = new Stripe(config.stripeSecretKey, {
     apiVersion: config.stripeApiVersion,
   });
+
+  return stripeClient;
 }
 
 export function getTierFromPriceId(priceId: string): ApiTier {
   const config = getBillingConfig();
-  const entry = Object.entries(config.priceIds).find(([, configuredPriceId]) => configuredPriceId === priceId);
+  const entry = Object.entries(config.priceIds).find(
+    ([, configured]) => configured.monthly === priceId || configured.annual === priceId
+  );
 
   if (!entry) {
     throw new Error(`Unknown Stripe price id: ${priceId}`);
@@ -24,12 +34,19 @@ export function getTierFromPriceId(priceId: string): ApiTier {
   return entry[0] as ApiTier;
 }
 
-export function getPriceIdForTier(tier: ApiTier): string {
+export function getPriceIdForTier(
+  tier: ApiTier,
+  billingInterval: BillingInterval = 'monthly'
+): string {
   const config = getBillingConfig();
-  const priceId = config.priceIds[tier];
+  const tierConfig = config.priceIds[tier];
+  const priceId =
+    billingInterval === 'annual'
+      ? tierConfig.annual || tierConfig.monthly
+      : tierConfig.monthly || tierConfig.annual;
 
   if (!priceId) {
-    throw new Error(`Missing Stripe price id for tier ${tier}`);
+    throw new Error(`Missing Stripe price id for tier ${tier} (${billingInterval})`);
   }
 
   return priceId;

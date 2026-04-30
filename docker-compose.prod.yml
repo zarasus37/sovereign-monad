@@ -192,6 +192,7 @@ services:
       dockerfile: Dockerfile
     environment:
       - KAFKA_BROKERS=kafka-1:29092
+      - INPUT_TOPICS=market.monad.price-snapshot,market.eth.price-snapshot,market.spread.signal,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-plan,execution.execution-result
       - OUTPUT_DIR=/app/logs
       - LOG_LEVEL=info
     volumes:

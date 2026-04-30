@@ -11,6 +11,7 @@ This service composes the current local analysis packages into one snapshot:
 - `oracle-core`
 - `gnosis-core`
 - `boundary-stress-monitor`
+- downstream Data Rail, activation, data-product, emergent-protocol, and `lightverify-core` local surfaces
 
 It is local-analysis-only. It does not read chain state and it does not make deployment claims.
 

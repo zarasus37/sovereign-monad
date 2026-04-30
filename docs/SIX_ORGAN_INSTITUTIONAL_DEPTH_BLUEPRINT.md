@@ -4,6 +4,8 @@ Date context: 2026-04-30
 
 This file defines the implementation standard for all six opening organs at institutional depth.
 
+Status: accepted ecosystem upgrade track. The current `organ-runtime` surfaces are analysis-mode implementations, and final live authority remains gated by runtime execution truth, funded `Cardia` activation, telemetry calibration, and governance controls.
+
 ## 1) Objective
 
 Move each organ from simple role logic to:

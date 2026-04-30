@@ -25,8 +25,10 @@ services:
       - ./.env.billing
     volumes:
       - ../api/config:/app/shared-api-keys
+      - ../billing/config:/app/config
     environment:
       API_KEY_STORE_PATH: /app/shared-api-keys/api-keys.json
+      INQUIRY_STORE_PATH: /app/config/inquiries.json
     expose:
       - "3010"
     restart: unless-stopped

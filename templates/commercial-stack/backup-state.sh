@@ -19,9 +19,10 @@ if [[ ! -d "${stack_dir}" ]]; then
 fi
 
 api_keys="${stack_dir}/../api/config/api-keys.json"
+inquiries="${stack_dir}/../billing/config/inquiries.json"
 licenses="${stack_dir}/../license-service/config/licenses.json"
 
-for file in "${api_keys}" "${licenses}"; do
+for file in "${api_keys}" "${inquiries}" "${licenses}"; do
   if [[ ! -f "${file}" ]]; then
     echo "Missing required file: ${file}" >&2
     exit 1
@@ -33,6 +34,7 @@ backup_dir="${BACKUP_ROOT}/${timestamp}"
 mkdir -p "${backup_dir}"
 
 cp "${api_keys}" "${backup_dir}/api-keys.json"
+cp "${inquiries}" "${backup_dir}/inquiries.json"
 cp "${licenses}" "${backup_dir}/licenses.json"
 
 for env_name in .env.api .env.billing .env.license-service .env.edge .env.host; do

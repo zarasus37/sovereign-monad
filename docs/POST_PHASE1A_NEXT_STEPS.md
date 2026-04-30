@@ -28,9 +28,9 @@ Artifacts:
 
 The source to register is the current bootstrap wallet:
 
-- `0xd730b17EC7237cdf9707105D453166308B35383a`
+- `0x9d4fcf7E0Ae5AE994A6eb0bCCbDfAA62E5867352`
 
-## 3. Materialize the local slot source config in `monad-mev`
+## 3. Materialize the local GameFi source config in `monad-mev`
 
 From:
 
@@ -39,16 +39,16 @@ From:
 Run:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\init-slot-bootstrap-config.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\init-gamefi-bootstrap-config.ps1
 ```
 
 This writes:
 
-- `slot-core/config/slot-source.json`
+- `gamefi-control-core/config/gamefi-source.json`
 
 That file is intentionally local-only and ignored by git.
 
-## 4. Start the slot stack
+## 4. Start the GameFi control stack
 
 From:
 
@@ -57,18 +57,18 @@ From:
 Run:
 
 ```powershell
-cd .\slot-api
+cd .\gamefi-control-api
 cmd /c npm start
 ```
 
 In a second terminal:
 
 ```powershell
-cd .\slot-frontend
+cd .\gamefi-control-frontend
 cmd /c npm run dev
 ```
 
-Expected slot state after bootstrap registration:
+Expected source state after bootstrap registration:
 
 - `BOOTSTRAP_ONLY`
 
@@ -88,9 +88,9 @@ This validates the current non-Phase-1a-live packages:
 
 - `risk-engine`
 - `monad-market-agent`
-- `slot-core`
-- `slot-api`
-- `slot-frontend`
+- `gamefi-control-core`
+- `gamefi-control-api`
+- `gamefi-control-frontend`
 - `speech-gateway`
 
 ## 6. Optional speech service bring-up
@@ -117,5 +117,5 @@ http://localhost:4030/
 Once the live Phase 1a deploy and bootstrap source registration are complete, the next work should be:
 
 1. first live routing proof
-2. slot-state API/UI confirmation
+2. GameFi control API/UI confirmation
 3. resumed runtime execution-truth work and guarded-live sequencing

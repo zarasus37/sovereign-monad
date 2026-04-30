@@ -13,6 +13,7 @@ This repo is a build-and-verification surface for the broader Sovereign Monad pr
 - Canonical mirrors have been updated to reflect the current emergence and LightVerify implementation state.
 - `lightverify-core` exists as a bounded commercial certification artifact.
 - `emergence-claim-core` and `emergence-history-core` exist as bounded evidence artifacts.
+- Agent 0, High-Fidelity DeFi Gaming, and the six-organ institutional-depth upgrades are accepted ecosystem tracks now being finalized at specification level.
 - These artifacts do not create live runtime authority, downstream governance authority, or public activation.
 
 ## Current Working Objective
@@ -27,8 +28,9 @@ Keep the Sovereign Monad ecosystem implementation, canonical mirrors, and local 
 
 1. Use the MOF and build map as the first read for any ecosystem-level decision.
 2. Keep `lightverify-core`, `emergence-claim-core`, and `emergence-history-core` aligned with docs and state surfaces.
-3. Preserve mirror sync discipline between `monad-mev` docs and canonical `sovereign-monad`.
-4. Treat `monad-mev` as the implementation workspace and `sovereign-monad` as canonical status truth.
+3. Finalize the Agent 0 shadow-paper markout rules, High-Fidelity DeFi Gaming spec, and six-organ institutional-depth calibrations before granting any live authority.
+4. Preserve mirror sync discipline between `monad-mev` docs and canonical `sovereign-monad`.
+5. Treat `monad-mev` as the implementation workspace and `sovereign-monad` as canonical status truth.
 
 ## Current Constraints
 
@@ -57,7 +59,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\sync-canonical-mirrors.ps1
 - Do not infer live status from local scaffolds alone.
 
 <!-- AUTO-STATUS:START -->
-Generated: 2026-04-30 19:16:06 UTC
+Generated: 2026-04-30 19:57:13 UTC
 
 ### Live Containers
 
@@ -78,5 +80,6 @@ MAX_BRIDGE_EXPOSURE_PERCENT=25
 MAX_SLIPPAGE_BPS=50
 ```
 <!-- AUTO-STATUS:END -->
+
 
 

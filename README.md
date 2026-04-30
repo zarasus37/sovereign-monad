@@ -34,16 +34,16 @@ Normal rule:
 - refresh mirrors after completed phase/step truth changes
 - batch routine mirror updates to once per day when practical
 
-Verify the active runtime, slot, and speech packages with:
+Verify the active runtime, game-control, and speech packages with:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\verify-active-packages.ps1
 ```
 
-Materialize the local slot bootstrap config after on-chain source registration with:
+Materialize the local GameFi source config after on-chain source registration with:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\scripts\init-slot-bootstrap-config.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\init-gamefi-bootstrap-config.ps1
 ```
 
 ## Repo Runtime Artifacts
@@ -90,6 +90,21 @@ start http://localhost:8501
 docker ps --format "table {{.Names}}\t{{.Status}}" | Select-String 'base-arb-mev-mainnet'
 ```
 
+## Agent 0 Shadow Paper Trading
+
+For pre-live evaluation, capture `execution.execution-plan` and run the deterministic markout analyzer:
+
+```bash
+python monitoring/agent0_paper_trade.py --logs-dir monitoring/logs --horizons-sec 60,300,900,3600
+```
+
+Outputs:
+
+- `monitoring/logs/agent0-paper-trades.csv`
+- `monitoring/logs/agent0-paper-summary.json`
+
+This computes "would-have" PnL using logged plan entry/exit prices and future market mids at each horizon. It does not submit swaps.
+
 Typical repo-level validation thresholds:
 
 - `DRY_RUN=true`
@@ -115,9 +130,9 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Billing scaffold: `templates/billing/`
 - License-service scaffold: `templates/license-service/`
 - Combined commercial stack: `templates/commercial-stack/`
-- Slot lifecycle monitor: `slot-core/`
-- Slot lifecycle API: `slot-api/`
-- Slot operator UI: `slot-frontend/`
+- High-fidelity DeFi gaming lifecycle monitor: `gamefi-control-core/`
+- High-fidelity DeFi gaming lifecycle API: `gamefi-control-api/`
+- High-fidelity DeFi gaming control UI: `gamefi-control-frontend/`
 - Organ coordination runtime: `organ-runtime/`
 - Shared ecosystem state API: `ecosystem-state-api/`
 - Internal ecosystem dashboard: `ecosystem-dashboard/`
@@ -134,6 +149,7 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Data Rail internal reward ledger scaffold: `reward-ledger-core/`
 - Data Rail governance scaffold: `data-rail-governance/`
 - Data product bundle scaffold: `data-product-core/`
+- LightVerify commercial certification scaffold: `lightverify-core/`
 - Population growth scaffold: `population-growth-core/`
 - Rights review scaffold: `rights-review-core/`
 - Externalization readiness scaffold: `externalization-readiness-core/`
@@ -143,6 +159,8 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 - Emergence baseline scaffold: `emergence-baseline-core/`
 - Emergence accumulation scaffold: `emergence-accumulator-core/`
 - Emergent protocol discovery scaffold: `emergent-protocol-core/`
+- Emergence claim artifact scaffold: `emergence-claim-core/`
+- Emergence historical-record scaffold: `emergence-history-core/`
 - Internal reward ledger surface: `reward-ledger-core/`
 - Speech I/O gateway: `speech-gateway/`
 - Runtime execution-truth closure surface: `execution-truth-core/`
@@ -152,7 +170,7 @@ If this route is resumed toward funded use, the guarded-live profile should be a
 Current local zero-capital sovereign state:
 
 - the structural zero-capital frontier is complete at the current expected local layer level
-- DAO, Keys NFT, Narrative, Dove integration, Gnosis evaluation, Data Rail productization prep, and emergent protocol discovery now all exist as locally verified surfaces
+- DAO, Keys NFT, Narrative, Dove integration, Gnosis evaluation, Data Rail productization prep, LightVerify commercial certification, and emergent protocol discovery now all exist as locally verified surfaces
 - local externalization remains under explicit activation-decision discipline and is still `review`, not activated
 
 - thresholds are met on the current verified local sample (`9` events, `9` actors, `4` actor classes, `5` surfaces, `5` outcomes)
@@ -161,6 +179,8 @@ Current local zero-capital sovereign state:
 - activation-decision discipline is now implemented, and the current local posture is `review`, not activated
 - the next local expansion target is `16` events across `12` actors, including a `gnosis` surface event and a clean `rejected` outcome
 - emergence observation is `observable`, longitudinal accumulation is `review_ready` at `5/8` windows, and emergent protocol discovery now has a local pattern-extraction surface
+- bounded local emergence claim and history artifacts now exist, but they remain evidence scaffolding only and do not create a live recognition layer or operating-surface authority
+- `lightverify-core` now provides a bounded local commercial certification artifact with a binary public `LightVerified` seal, internal scorecard, and no runtime execution authority
 
 These auxiliary artifacts exist in the repo. Their presence does not override canonical status in the MOF.
 
@@ -168,18 +188,17 @@ These auxiliary artifacts exist in the repo. Their presence does not override ca
 
 These surfaces now exist locally, but they are not live-complete:
 
-- live Phase 1a deployment proof uses a resumable checkpoint path in `sovereign-monad` and is currently blocked by deployer funding
-- bootstrap approved-source registration stays blocked until live Phase 1a deployment proof produces canonical live addresses
-- `execution-truth-core/` tracks runtime execution-truth closure and currently reports `blocked`
-- `cardia-activation-core/` tracks funded `Cardia` activation and currently reports `blocked`
+- live Phase 1a deployment proof completed on 2026-04-18 in `sovereign-monad` and the bootstrap approved source is now registered on Monad mainnet
+- `execution-truth-core/` tracks runtime execution-truth closure and currently reports `staged`
+- `cardia-activation-core/` tracks funded `Cardia` activation and currently reports `ready_for_funding`
 - `public-activation-core/` tracks production/public activation and currently reports `blocked`
 
 Current shared-state summary:
 
-- `phase1aLiveProofRecorded: false`
-- `bootstrapSourceRegistered: false`
-- `executionTruthStatus: blocked`
-- `cardiaActivationStatus: blocked`
+- `phase1aLiveProofRecorded: true`
+- `bootstrapSourceRegistered: true`
+- `executionTruthStatus: staged`
+- `cardiaActivationStatus: ready_for_funding`
 - `publicActivationStatus: blocked`
 
 ## Funnel Direction
@@ -191,7 +210,7 @@ Current intended opening posture:
 - bootstrap approved-source inflow
 - API and licensing revenue
 - agent-native revenue from ecosystem-native agents
-- MonadSpin slot revenue later as an additional rail
+- MonadSpin high-fidelity DeFi gaming revenue later as an additional rail
 
 The first ecosystem-native agent set is specified as a six-function organ cluster:
 
@@ -202,12 +221,19 @@ The first ecosystem-native agent set is specified as a six-function organ cluste
 - `Synapse` for signal routing
 - `Vox` for narrative expression
 
+Current accepted upgrade tracks:
+
+- Agent 0 should use shadow-paper markout review for the first 50 to 100 would-have trades before any funded authority discussion.
+- MonadSpin should be developed as a High-Fidelity DeFi Gaming / gamified environment rail, not as a slot-first product.
+- The first six organs should be held to institutional-depth implementation standards, with analysis-mode outputs first and live authority gated later.
+
 See:
 
 - `docs/FUNNEL_DIVERSIFICATION_PLAN.md`
 - `docs/AGENT_NATIVE_REVENUE_RAIL.md`
 - `docs/FIRST_ORGAN_SET.md`
 - `docs/BUILD_EXECUTION_FLOW.md`
+- `docs/ECOSYSTEM_UPGRADE_INTEGRATION_STATUS_2026-04-30.md`
 
 ## Immediate Post-Deploy Operator Path
 
@@ -219,8 +245,8 @@ That document covers:
 
 - post-deploy verification
 - bootstrap source registration
-- local slot config materialization
-- slot stack bring-up
+- local GameFi source config materialization
+- GameFi control stack bring-up
 - active package verification
 
 ## Legacy Reference Material

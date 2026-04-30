@@ -123,6 +123,7 @@ This updates:
 
 - `templates/api/config/api-keys.json`
 - `templates/license-service/config/licenses.json`
+- `templates/billing/config/inquiries.json` continues capturing demo, fund, enterprise, and presale requests
 
 ## Verification
 
@@ -136,6 +137,7 @@ Then verify:
 
 - `GET /config` with a real API key
 - `POST /evaluate`
+- `POST /sales/request`
 - Stripe webhook delivery to `https://billing.<root-domain>/webhooks/stripe`
 - `POST /licenses/activate`
 - `POST /licenses/validate`

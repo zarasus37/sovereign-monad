@@ -147,6 +147,7 @@ function buildModulePaths(packageRoot: string, runtimeConfigPath: string): Runti
       'src',
       'index.js',
     ),
+    lightVerifyModulePath: path.resolve(repoRoot, 'lightverify-core', 'dist', 'index.js'),
   };
 }
 
@@ -286,6 +287,11 @@ export function loadBuilderBundle(packageRoot: string, runtimeConfigPath: string
         paths.emergentProtocolModulePath,
         'loadLocalEmergentProtocolSnapshot',
       )(repoRoot),
+    loadLightVerifySnapshot: () =>
+      loadBuiltModule<(packageRoot: string) => any>(
+        paths.lightVerifyModulePath,
+        'loadLocalLightVerifySnapshot',
+      )(repoRoot),
   };
 }
 
@@ -321,6 +327,7 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
   const gnosisEvaluation = snapshot.gnosisEvaluation as any;
   const dataProduct = snapshot.dataProduct as any;
   const emergentProtocol = snapshot.emergentProtocol as any;
+  const lightVerify = snapshot.lightVerify as any;
 
   return {
     runtimeMode: organRuntime.runtimeMode,
@@ -353,6 +360,7 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
       'gnosis-evaluator-core',
       'data-product-core',
       'emergent-protocol-core',
+      'lightverify-core',
     ],
     zeroCapitalReadyOrgans: organRuntime.zeroCapitalBuildQueue || [],
     capitalGatedOrgans: organRuntime.capitalGatedQueue || [],
@@ -382,6 +390,7 @@ function summarize(snapshot: EcosystemStateSnapshot['surfaces']): EcosystemState
     gnosisEvaluationStatus: gnosisEvaluation?.posture || 'blocked',
     dataProductStatus: dataProduct?.productizationStatus || 'blocked',
     emergentProtocolStatus: emergentProtocol?.validationStatus || 'forming',
+    lightVerifyStatus: lightVerify?.posture || 'blocked',
     nextFrontier: [
       'phase1a_live_deploy_retry',
       'bootstrap_source_registration',
@@ -530,6 +539,7 @@ export function buildEcosystemStateFromRuntimeConfig(
   const gnosisEvaluation = builders.loadGnosisEvaluationSnapshot();
   const dataProduct = builders.loadDataProductSnapshot();
   const emergentProtocol = builders.loadEmergentProtocolSnapshot();
+  const lightVerify = builders.loadLightVerifySnapshot();
 
   const surfaces = {
     organRuntime,
@@ -559,6 +569,7 @@ export function buildEcosystemStateFromRuntimeConfig(
     gnosisEvaluation,
     dataProduct,
     emergentProtocol,
+    lightVerify,
   };
 
   return {

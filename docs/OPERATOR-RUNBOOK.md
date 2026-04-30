@@ -56,6 +56,7 @@ Review that file when validating whether the current risk model still matches th
 4. `arb-bot` receives execution plans only when upstream gates are cleared.
 5. `alert-rules` starts with either webhook destinations or `console-only` mode.
 6. The dashboard remains reachable at `http://localhost:8501`.
+7. `model-feedback-logger` input topics include `execution.execution-plan` for Agent 0 shadow-paper analysis.
 
 ## What Quiet But Healthy Looks Like
 
@@ -63,6 +64,19 @@ Review that file when validating whether the current risk model still matches th
 2. spread or opportunity topics are sparse
 3. active thresholds are filtering out shallow or low-edge opportunities
 4. the system is behaving as configured under `DRY_RUN`
+
+## Agent 0 Shadow Paper Analysis
+
+Run deterministic paper-trade markout analysis from logged plans and snapshots:
+
+```powershell
+python .\monitoring\agent0_paper_trade.py --logs-dir .\monitoring\logs --horizons-sec 60,300,900,3600
+```
+
+Outputs:
+
+1. `monitoring\logs\agent0-paper-trades.csv`
+2. `monitoring\logs\agent0-paper-summary.json`
 
 ## Notes On Legacy Paths
 

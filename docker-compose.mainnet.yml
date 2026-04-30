@@ -100,7 +100,7 @@ services:
       - INPUT_TOPIC_CHAIN_A=market.base.price-snapshot
       - INPUT_TOPIC_CHAIN_B=market.arbitrum.price-snapshot
       - OUTPUT_TOPIC=market.spread.signal
-      - MIN_SPREAD_BPS=${MIN_SPREAD_BPS:-3}
+      - MIN_SPREAD_BPS=${MIN_SPREAD_BPS:-15}
       - MIN_LIQUIDITY_10BPS_USD=${MIN_LIQUIDITY_10BPS_USD:-750}
       - MIN_CAPACITY_USD=${MIN_CAPACITY_USD:-3000}
       - LOG_LEVEL=info
@@ -134,11 +134,11 @@ services:
       - INPUT_TOPIC=risk.opportunity-candidate
       - OUTPUT_TOPIC=risk.opportunity-evaluation
       - SIMULATIONS=1000
-      - EV_MIN_THRESHOLD=${EV_MIN_THRESHOLD:-10}
-      - RISK_FIXED_COST_BPS=${RISK_FIXED_COST_BPS:-8}
-      - RISK_MIN_EFFECTIVE_SPREAD_BPS=${RISK_MIN_EFFECTIVE_SPREAD_BPS:-12}
-      - SHARPE_LIKE_THRESHOLD=0.3
-      - MAX_TAIL_LOSS_PERCENT=30
+      - EV_MIN_THRESHOLD=${EV_MIN_THRESHOLD:-25}
+      - RISK_FIXED_COST_BPS=${RISK_FIXED_COST_BPS:-10}
+      - RISK_MIN_EFFECTIVE_SPREAD_BPS=${RISK_MIN_EFFECTIVE_SPREAD_BPS:-15}
+      - SHARPE_LIKE_THRESHOLD=${SHARPE_LIKE_THRESHOLD:-0.75}
+      - MAX_TAIL_LOSS_PERCENT=${MAX_TAIL_LOSS_PERCENT:-10}
       - LOG_LEVEL=info
     restart: on-failure
 
@@ -153,7 +153,7 @@ services:
       - KAFKA_BROKERS=kafka:29092
       - INPUT_TOPIC=risk.opportunity-evaluation
       - OUTPUT_TOPIC=execution.execution-plan
-      - MAX_BRIDGE_EXPOSURE_PERCENT=${MAX_BRIDGE_EXPOSURE_PERCENT:-25}
+      - MAX_BRIDGE_EXPOSURE_PERCENT=${MAX_BRIDGE_EXPOSURE_PERCENT:-5}
       - MAX_CHAIN_EXPOSURE_PERCENT=${MAX_CHAIN_EXPOSURE_PERCENT:-80}
       - MAX_SINGLE_TRADE_PERCENT=${MAX_SINGLE_TRADE_PERCENT:-10}
       - LOG_LEVEL=info
@@ -190,7 +190,7 @@ services:
       - kafka
     environment:
       - KAFKA_BROKERS=kafka:29092
-      - INPUT_TOPICS=market.base.price-snapshot,market.arbitrum.price-snapshot,market.spread.signal,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-result
+      - INPUT_TOPICS=market.base.price-snapshot,market.arbitrum.price-snapshot,market.spread.signal,risk.opportunity-candidate,risk.opportunity-evaluation,execution.execution-plan,execution.execution-result
       - OUTPUT_DIR=/app/logs
       - LOG_LEVEL=info
     volumes:
@@ -212,6 +212,9 @@ services:
       - MIN_ALERT_SPREAD_BPS=${MIN_ALERT_SPREAD_BPS:-50}
       - MAX_POSITION_ALERT_USD=${MAX_POSITION_ALERT_USD:-5000}
       - ALERT_COOLDOWN_MS=${ALERT_COOLDOWN_MS:-30000}
+      - AGENT0_TRADE_MILESTONES=${AGENT0_TRADE_MILESTONES:-50,100}
+      - AGENT0_RECURRING_TRADE_MILESTONE_START=${AGENT0_RECURRING_TRADE_MILESTONE_START:-5000}
+      - AGENT0_RECURRING_TRADE_MILESTONE_STEP=${AGENT0_RECURRING_TRADE_MILESTONE_STEP:-5000}
       - LOG_LEVEL=info
     restart: on-failure
 
