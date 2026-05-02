@@ -86,9 +86,14 @@ function makeStageA(opts: {
 
 function makeStageB(opts: {
   hardBlockFromSymbolic?: boolean;
+  accountingEscalationPending?: boolean;
   invariantResults?: SymbolicInvariantResult[];
 } = {}): StageBResult {
-  const { hardBlockFromSymbolic = false, invariantResults = [] } = opts;
+  const {
+    hardBlockFromSymbolic = false,
+    accountingEscalationPending = false,
+    invariantResults = [],
+  } = opts;
   return {
     invariantResults,
     summary: {
@@ -98,6 +103,7 @@ function makeStageB(opts: {
       totalChecked: invariantResults.length
     },
     hardBlockFromSymbolic,
+    accountingEscalationPending,
     stageBRunId: 'STAGE-B-MOCK',
     completedAt: Date.now(),
     engineStatus: 'STUB'

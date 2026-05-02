@@ -34,6 +34,17 @@ export interface AgentFinding {
   reproducibilitySeed: string;
   traceId: string;
   reproScore: number;        // 0-1
+  /**
+   * CAL-006 pre-condition 1: true when this finding was generated from a stub
+   * template that requires live bytecode confirmation before the finding is
+   * treated as protocol-specific evidence. PRIV-T03 (storage collision via
+   * proxy storage layout) is the initial member of this class.
+   *
+   * Forward policy: findings with requiresLiveBytecodeConfirmation=true MUST
+   * NOT fire escalation rules autonomously until a live bytecode scan confirms
+   * the structural precondition exists in the target protocol.
+   */
+  requiresLiveBytecodeConfirmation?: boolean;
 }
 
 export interface AgentCampaignResult {

@@ -75,7 +75,7 @@ export class HeparPrivilegeAgent implements AgentExecutor {
     const findings: AgentFinding[] = selected.map((t) => {
       // Severity: baseSeverity +/- 1, capped at 9 (never 10 in stub output).
       const sev = Math.max(0, Math.min(9, t.baseSeverity + rng.nextInt(-1, 1)));
-      return {
+      const finding: AgentFinding = {
         vectorId: `${AGENT_ID}-${t.templateId}-${seedShort}`,
         agentId: AGENT_ID,
         severity: sev,
@@ -84,8 +84,16 @@ export class HeparPrivilegeAgent implements AgentExecutor {
         estLoss: { low: 0, high: 1_000_000 },
         reproducibilitySeed: agentSeed,
         traceId: `${AGENT_ID}-trace-${seedShort}-${t.templateId}`,
-        reproScore: 1.0
+        reproScore: 1.0,
       };
+      // CAL-006 pre-condition 1: PRIV-T03 (proxy storage-collision / implementation
+      // slot overwrite) requires live bytecode confirmation that the target proxy
+      // uses a non-EIP-1967 storage layout before this finding can be treated as
+      // protocol-specific evidence. Stub template alone is insufficient.
+      if (t.templateId === 'PRIV-T03') {
+        finding.requiresLiveBytecodeConfirmation = true;
+      }
+      return finding;
     });
 
     const allFindings = forcedFindings !== undefined ? [...forcedFindings] : findings;

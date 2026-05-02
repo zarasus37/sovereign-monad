@@ -502,10 +502,29 @@ function determineActionBand(
   }
 
   // Rule 2: Stage B hardBlockFromSymbolic -> unconditional HARDBLOCK
+  // (AUTH/UPGRADE always; ACCOUNTING only when live engine confirmed — see CAL-006)
   if (stageBResult.hardBlockFromSymbolic) {
     finalBand = 'HARDBLOCK';
     hardBlockReasons.push(
-      'Stage B symbolic hard-block: counterexample found for AUTHORIZATION, UPGRADE, or ACCOUNTING invariant'
+      'Stage B symbolic hard-block: counterexample found for AUTHORIZATION or UPGRADE invariant ' +
+      '(or ACCOUNTING with live engine confirmation)'
+    );
+  }
+
+  // Rule 2b: Stage B accounting escalation (stub mode) — minimum RESTRICTED, not HARDBLOCK.
+  // CAL-006 pre-condition 2: ACCOUNTING counterexample was found by a stub engine without
+  // live bytecode confirmation. This is escalation evidence, not deterministic proof.
+  // Promotion to HARDBLOCK requires re-run with a live engine against actual protocol bytecode.
+  if (stageBResult.accountingEscalationPending) {
+    const bandRank: Record<ActionBand, number> = {
+      ALLOW: 0, GUARDED_ALLOW: 1, RESTRICTED: 2, DENY: 3, HARDBLOCK: 4,
+    };
+    if (bandRank[finalBand] < bandRank['RESTRICTED']) {
+      finalBand = 'RESTRICTED';
+    }
+    hardBlockReasons.push(
+      'Stage B ACCOUNTING counterexample (stub mode — no live bytecode confirmation): ' +
+      'minimum RESTRICTED escalation applied. CAL-006: re-run with live engine to promote to HARDBLOCK.'
     );
   }
 

@@ -88,10 +88,25 @@ export interface StageBResult {
     totalChecked: number;
   };
   /**
-   * True if any AUTHORIZATION or UPGRADE invariant returned counterexample-found.
-   * Deterministic hard-block signal fed to Stage D - not averaged with stochastic score.
+   * True if any AUTHORIZATION or UPGRADE invariant returned counterexample-found,
+   * OR if an ACCOUNTING counterexample was found with a LIVE engine.
+   * Deterministic hard-block signal fed to Stage D — not averaged with stochastic score.
+   *
+   * CAL-006 pre-condition 2: ACCOUNTING counterexamples from a STUB engine do NOT
+   * set this flag. They set accountingEscalationPending instead, which triggers
+   * minimum RESTRICTED (not HARDBLOCK) in Stage D until live bytecode confirms.
    */
   hardBlockFromSymbolic: boolean;
+  /**
+   * True when an ACCOUNTING invariant counterexample was found but the engine was
+   * NOT live (STUB or HALMOS_UNAVAILABLE). Forward policy only — does not affect
+   * any existing Batch 1 classifications.
+   *
+   * Stage D response: minimum RESTRICTED escalation. Not HARDBLOCK.
+   * Promotion path: re-run with a live engine against actual protocol bytecode;
+   * if the counterexample is confirmed, hardBlockFromSymbolic becomes true.
+   */
+  accountingEscalationPending: boolean;
   stageBRunId: string;
   completedAt: number;
   /**
@@ -670,10 +685,11 @@ export function runStageB(input: StageBInput = {}): StageBResult {
   });
 
   // Summary counts
-  let provedSafe          = 0;
-  let counterexamplesFound = 0;
-  let unknownTimeout      = 0;
-  let hardBlockFromSymbolic = false;
+  let provedSafe             = 0;
+  let counterexamplesFound   = 0;
+  let unknownTimeout         = 0;
+  let hardBlockFromSymbolic  = false;
+  let accountingEscalationPending = false;
 
   for (const r of invariantResults) {
     switch (r.result) {
@@ -682,14 +698,23 @@ export function runStageB(input: StageBInput = {}): StageBResult {
       case 'unknown/timeout':      unknownTimeout++;       break;
     }
 
-    // Hard-block escalation: AUTHORIZATION, UPGRADE, or ACCOUNTING counterexample is
-    // deterministic evidence - must not be averaged away by Stage D
-    if (
-      r.result === 'counterexample-found' &&
-      (r.invariantClass === 'AUTHORIZATION' || r.invariantClass === 'UPGRADE' ||
-       r.invariantClass === 'ACCOUNTING')
-    ) {
-      hardBlockFromSymbolic = true;
+    if (r.result === 'counterexample-found') {
+      if (r.invariantClass === 'AUTHORIZATION' || r.invariantClass === 'UPGRADE') {
+        // AUTH / UPGRADE counterexamples are unconditional hard-blocks regardless
+        // of engine mode — structural access-control violations are deterministic.
+        hardBlockFromSymbolic = true;
+      } else if (r.invariantClass === 'ACCOUNTING') {
+        if (r.engineStatus === 'LIVE') {
+          // Live engine confirmed the accounting invariant violation against actual
+          // protocol bytecode — promote to hard-block.
+          hardBlockFromSymbolic = true;
+        } else {
+          // CAL-006 pre-condition 2: stub-mode ACCOUNTING counterexample.
+          // Evidence is symbolic-only, not bytecode-confirmed. Set escalation
+          // flag for Stage D to apply minimum RESTRICTED (not HARDBLOCK).
+          accountingEscalationPending = true;
+        }
+      }
     }
   }
 
@@ -702,6 +727,7 @@ export function runStageB(input: StageBInput = {}): StageBResult {
       totalChecked: invariantResults.length,
     },
     hardBlockFromSymbolic,
+    accountingEscalationPending,
     stageBRunId: runId,
     completedAt: Date.now(),
     engineStatus: overallEngineStatus,
