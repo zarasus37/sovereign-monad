@@ -1,0 +1,125 @@
+# Ecosystem Upgrade Integration Status
+
+Date: 2026-04-30
+Revision: r2 (added biological-fidelity standard and tier discipline references)
+Supersedes: r1 (2026-04-30 morning)
+
+## Purpose
+
+This file records the restored ecosystem update set that is accepted as directionally correct, while preserving the distinction between concept acceptance, local analysis implementation, and live authority.
+
+## Doctrinal anchor
+
+The first organ set is governed by **Biological Fidelity = Operational Standard** (`SIX_ORGAN_INSTITUTIONAL_DEPTH_BLUEPRINT.md` §0, `HEPAR_v2.0_SPECIFICATION.md` §0). Each organ — Hepar, Cortex, Synapse, Cardia, Pneuma, Vox — is named after a biological function and is required to perform that function at the standard implied by the name, not at the standard implied by the metaphor. This anchor is the architectural counterpart of MOF §17.8 (Hollow Convergence): a name claim without function clearance is not a depth implementation.
+
+Every accepted upgrade track below is governed by the **Tier Discipline** ladder (`SIX_ORGAN_INSTITUTIONAL_DEPTH_BLUEPRINT.md` §3 and `HEPAR_v2.0_SPECIFICATION.md` §16): Advisory → Decision-Support → Authoritative. No upgrade track is declared past Advisory tier without the evidence required at the next tier.
+
+## Accepted Upgrade Tracks
+
+### Agent 0
+
+Status: accepted as live-recorded, not capital-authorized.
+
+Current implementation truth:
+
+1. Agent 0 is registered on Monad mainnet through `EmergenceRecorder`.
+2. One live behavioral claim has been recorded on-chain.
+3. The proof is record-only and did not move trading capital.
+4. The next evaluation path is shadow-paper trading against `execution.execution-plan` events.
+
+Required next specification:
+
+1. first review window: 50 to 100 would-have trades
+2. later review cadence: 5,000 to 10,000 trade intervals once early behavior is understood
+3. markout horizons, price source rules, slippage assumptions, and incident flags
+4. explicit pass/fail thresholds before any funded guarded-live request
+
+Tier today: Advisory.
+
+### High-Fidelity DeFi Gaming
+
+Status: accepted as the default entertainment direction, not a live product.
+
+Current implementation truth:
+
+1. MonadSpin is now treated as an umbrella GameFi / gamified environment rail.
+2. The slot-first interpretation is no longer the canonical product target.
+3. `gamefi-control-core`, `gamefi-control-api`, and `gamefi-control-frontend` provide transitional state, API, and operator scaffolding.
+
+Required next specification:
+
+1. gameplay quality bar
+2. economy and fairness model
+3. agent role-fit map for design, balancing, simulation, content, distribution, and operations
+4. Data Rail boundaries for gameplay-derived behavioral data
+5. rule separating real entertainment value from speculative token incentives
+
+Tier today: Advisory (concept-acceptance only, no live product).
+
+### Six-Organ Institutional Depth
+
+Status: accepted as the implementation standard for the first organ set, governed by §0 Biological Fidelity = Operational Standard.
+
+Current implementation truth:
+
+1. `Hepar` has forensic and consensus analysis surfaces. Canonical specification: `HEPAR_v2.0_SPECIFICATION.md`. Architecture: `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md`.
+2. `Cortex` has causal strategy and scenario analysis surfaces.
+3. `Synapse` has adaptive signal weighting, conflict, and escalation surfaces.
+4. `Cardia` has allocation and stress-response analysis surfaces, but funded operation remains gated.
+5. `Pneuma` has venue, counterparty, and execution-intelligence surfaces.
+6. `Vox` has truth-linked narrative packaging surfaces.
+
+Required next specification:
+
+1. live telemetry inputs for each organ
+2. evidence packaging into Data Rail artifacts
+3. historical calibration against incidents, trade outcomes, and missed opportunities
+4. governance override policy for conflict escalation
+5. dashboards for precision, recall, false positives, slippage, and narrative truth score
+6. retirement of `fixture-verified` labels in `ORGAN_INTELLIGENCE_CALIBRATION_REPORT_2026-04-30.md` only after live-telemetry evidence is in hand
+
+Tier today: all six organs at Advisory tier (per `SIX_ORGAN_INSTITUTIONAL_DEPTH_BLUEPRINT.md` §5).
+
+## Commercial Surfaces
+
+Accepted as planned revenue tracks, all gated by tier discipline:
+
+1. Hepar forensic reports (Tier 3 in `HEPAR_FORENSIC_STACK_AND_REVENUE_MODEL.md` §3) — Advisory tier acceptable for pre-mainnet engagements under NDA
+2. Hepar risk API and institutional risk feed (Tier 1 / Tier 2) — Decision-Support tier required before external pricing
+3. insurance underwriting data (Tier 4) — Authoritative tier required
+4. LightVerify certification — commercial certification only, never runtime authority
+5. Data Rail licensing — gated by separate Data Rail readiness
+6. GameFi product revenue after entertainment quality is proven
+
+Current boundary:
+
+These are not public-live until production activation, evidence quality, billing, legal/compliance boundaries, and operational support are complete. Per `HEPAR_v2.0_SPECIFICATION.md` §15 (Legal Posture) and §16 (Tier Discipline), no Tier 1 or Tier 2 surface may be priced externally before the relevant tier KPI gates clear and independent reviewer sign-off is obtained.
+
+## Current Gate
+
+The active build frontier remains:
+
+1. runtime execution-truth closure
+2. funded `Cardia` activation
+3. production/public activation
+4. live-telemetry calibration sufficient to promote at least one organ from Advisory to Decision-Support tier
+
+The accepted upgrades should be specified and calibrated in parallel, but they do not override those gates.
+
+## Cross-References
+
+1. `HEPAR_v2.0_SPECIFICATION.md` — canonical Hepar technical specification, §0 biological fidelity, §15 legal posture, §16 tier discipline
+2. `HEPAR_FORENSIC_STACK_AND_REVENUE_MODEL.md` — Hepar revenue packaging with tier-discipline gates
+3. `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md` — Hepar four-stage analytical architecture
+4. `SIX_ORGAN_INSTITUTIONAL_DEPTH_BLUEPRINT.md` — six-organ depth standard, §0 biological fidelity, §3 tier discipline ladder
+5. `ORGAN_INTELLIGENCE_CALIBRATION_REPORT_2026-04-30.md` — fixture-verified calibration evidence (Advisory tier only)
+6. `AGENT_NATIVE_REVENUE_RAIL.md` — first organ set as canonical revenue rail role model
+
+## Change Log (r1 → r2)
+
+1. Added Doctrinal Anchor block referencing biological fidelity and tier discipline.
+2. Tagged each accepted upgrade track with its current tier (all Advisory today).
+3. Tied each commercial surface to the tier required before external pricing.
+4. Added §16 Tier Discipline gate language to the Commercial Surfaces section.
+5. Extended Current Gate with the Advisory→Decision-Support promotion requirement.
+6. Added Cross-References section enumerating the canonical companion documents.

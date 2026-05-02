@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sovereign Ops — Revenue Architecture Dashboard</title>
+  <style>
+    :root {
+      --bg: #07080c;
+      --bg2: #0b0d14;
+      --bg3: #10121b;
+      --bg4: #141722;
+      --border: #1c2035;
+      --border-dim: #111420;
+      --text: #dde0ea;
+      --text-dim: #6b7290;
+      --text-muted: #363c55;
+      --accent: #4f8ef7;
+      --accent-glow: rgba(79,142,247,0.12);
+      --green: #3ecf8e;
+      --green-dim: #0c2018;
+      --amber: #f5a623;
+      --amber-dim: #261a06;
+      --red: #f05252;
+      --red-dim: #200d0d;
+      --purple: #9f7aea;
+      --purple-dim: #180f30;
+      --teal: #38b2ac;
+      --teal-dim: #0b1f1e;
+      --radius: 8px;
+      --radius-sm: 5px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      font-size: 13px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* ─── TOP BAR ─── */
+    .topbar {
+      height: 48px;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-mark {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #4f8ef7, #9f7aea);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+    .logo-text {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+    .topbar-divider {
+      width: 1px;
+      height: 18px;
+      background: var(--border);
+    }
+    .topbar-title {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .phase-pill {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 9px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: var(--amber-dim);
+      color: var(--amber);
+      border: 1px solid rgba(245,166,35,0.3);
+    }
+    .pulse-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--amber);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.35; } }
+    .pulse-dot.green { background: var(--green); }
+    .pulse-dot.red { background: var(--red); }
+    .timestamp {
+      font-size: 10px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ─── LAYOUT ─── */
+    .main {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      flex: 1;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      background: var(--bg2);
+      border-right: 1px solid var(--border-dim);
+      padding: 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .sidebar-section {
+      padding: 8px 16px 4px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.15s;
+      font-size: 12px;
+      color: var(--text-dim);
+      border-left: 2px solid transparent;
+    }
+    .sidebar-item:hover { background: var(--bg3); color: var(--text); }
+    .sidebar-item.active {
+      background: var(--bg3);
+      color: var(--text);
+      border-left-color: var(--accent);
+    }
+    .sidebar-icon { font-size: 13px; width: 16px; text-align: center; }
+    .sidebar-status {
+      margin-left: auto;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+    .status-green { background: var(--green); }
+    .status-amber { background: var(--amber); }
+    .status-red { background: var(--red); }
+    .status-gray { background: var(--text-muted); }
+    .status-blue { background: var(--accent); }
+
+    /* ─── CONTENT AREA ─── */
+    .content {
+      overflow-y: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ─── SECTION HEADER ─── */
+    .section-hdr {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .section-hdr h2 {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .section-hdr .sub {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .card-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+
+    /* ─── GRID LAYOUTS ─── */
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    /* ─── KPI CARDS ─── */
+    .kpi-card {
+      background: var(--bg3);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+    }
+    .kpi-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 5px;
+    }
+    .kpi-value {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .kpi-sub {
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+    .kpi-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-size: 9px;
+      font-weight: 700;
+      margin-top: 5px;
+    }
+    .badge-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(245,166,35,0.3); }
+    .badge-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(62,207,142,0.3); }
+    .badge-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(240,82,82,0.3); }
+    .badge-blue { background: var(--accent-glow); color: var(--accent); border: 1px solid rgba(79,142,247,0.3); }
+    .badge-gray { background: var(--bg4); color: var(--text-dim); border: 1px solid var(--border); }
+    .badge-purple { background: var(--purple-dim); color: var(--purple); border: 1px solid rgba(159,122,234,0.3); }
+
+    /* ─── REVENUE ROUTER DONUT ─── */
+    .router-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .donut-wrap {
+      position: relative;
+      width: 180px;
+      height: 180px;
+    }
+    .donut-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .donut-center-value {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .donut-center-label {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+    .router-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .legend-name {
+      flex: 1;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .legend-pct {
+      font-size: 11px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .legend-note {
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-left: auto;
+    }
+
+    /* ─── PHASE TRACKER ─── */
+    .phase-track {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .phase-row {
+      display: grid;
+      grid-template-columns: 100px 28px 1fr 120px;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      transition: background 0.15s;
+    }
+    .phase-row:hover { background: var(--bg3); }
+    .phase-row.active { background: var(--bg3); border-left: 2px solid var(--amber); }
+    .phase-row.complete { background: var(--bg3); border-left: 2px solid var(--green); }
+    .phase-row.pending { border-left: 2px solid var(--border); }
+    .phase-label {
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .phase-gate {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+    .phase-desc {
+      font-size: 11px;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+    .phase-icon {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* ─── BLOCKERS ─── */
+    .blocker-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .blocker-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg3);
+      border: 1px solid var(--border-dim);
+    }
+    .blocker-sev {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .sev-crit { background: var(--red-dim); color: var(--red); }
+    .sev-warn { background: var(--amber-dim); color: var(--amber); }
+    .sev-info { background: var(--accent-glow); color: var(--accent); }
+    .blocker-body {}
+    .blocker-title { font-size: 11px; font-weight: 600; margin-bottom: 2px; }
+    .blocker-desc { font-size: 10px; color: var(--text-dim); line-height: 1.4; }
+    .blocker-meta {
+      display: flex;
+      gap: 8px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    /* ─── ORGAN STATUS ─── */
+    .organ-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .organ-card {
+      background: var(--bg3);
+      border: 1px solid var(--border-dim);
+      border-radius: var(--radius);
+      padding: 12px;
+    }
+    .organ-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .organ-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .organ-name { font-size: 12px; font-weight: 700; }
+    .organ-role { font-size: 9px; color: var(--text-muted); }
+    .organ-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .organ-mandate {
+      font-size: 10px;
+      color: var(--text-dim);
+      line-height: 1.45;
+    }
+    .organ-revenue {
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: 5px;
+      padding-top: 5px;
+      border-top: 1px solid var(--border-dim);
+    }
+
+    /* ─── RAIL STATUS ─── */
+    .rail-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .rail-table th {
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .rail-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border-dim);
+      vertical-align: top;
+    }
+    .rail-table tr:last-child td { border-bottom: none; }
+    .rail-table tr:hover td { background: var(--bg3); }
+    .rail-name { font-weight: 600; font-size: 11px; }
+    .rail-desc { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+    .progress-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--border);
+      margin-top: 6px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+
+    /* ─── ENGINE PARAMS ─── */
+    .params-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border-dim);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .param-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: var(--bg3);
+    }
+    .param-name { font-size: 10px; color: var(--text-dim); }
+    .param-value { font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+    /* ─── ROUTER ALLOC TABLE ─── */
+    .alloc-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .alloc-table th {
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .alloc-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--border-dim);
+      font-size: 11px;
+    }
+    .alloc-table tr:last-child td { border-bottom: none; }
+    .alloc-bar-cell { width: 120px; }
+    .alloc-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: var(--border);
+      overflow: hidden;
+    }
+    .alloc-fill { height: 100%; border-radius: 2px; }
+    .alloc-note { font-size: 9px; color: var(--text-muted); margin-top: 2px; }
+    .sink-name { font-weight: 600; }
+    .sink-contract { font-size: 9px; color: var(--text-muted); font-family: monospace; margin-top: 1px; }
+
+    /* ─── CONTAINER STATUS TABLE ─── */
+    .container-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .container-table th {
+      text-align: left;
+      padding: 6px 10px;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .container-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--border-dim);
+      font-size: 11px;
+    }
+    .container-table tr:last-child td { border-bottom: none; }
+    .container-table tr:hover td { background: var(--bg3); }
+    .c-name { font-weight: 600; font-family: monospace; font-size: 11px; }
+    .c-note { font-size: 9px; color: var(--text-muted); margin-top: 1px; }
+    .c-icon { font-size: 13px; text-align: center; }
+
+    /* ─── SCROLL TABS ─── */
+    .view { display: none; }
+    .view.active { display: flex; flex-direction: column; gap: 16px; }
+
+    /* ─── MINI ALERT ─── */
+    .alert-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+    }
+    .alert-bar.warn { background: var(--amber-dim); border: 1px solid rgba(245,166,35,0.25); color: var(--amber); }
+    .alert-bar.info { background: var(--accent-glow); border: 1px solid rgba(79,142,247,0.2); color: var(--accent); }
+    .alert-bar.crit { background: var(--red-dim); border: 1px solid rgba(240,82,82,0.25); color: var(--red); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 800px) {
+      .main { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(2, 1fr); }
+      .organ-grid { grid-template-columns: 1fr; }
+      .router-layout { grid-template-columns: 1fr; }
+      .params-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="logo-mark">S</div>
+    <span class="logo-text">SOVEREIGN</span>
+    <div class="topbar-divider"></div>
+    <span class="topbar-title">REVENUE OPS — MOF v2.3.0</span>
+  </div>
+  <div class="topbar-right">
+    <div class="phase-pill"><div class="pulse-dot"></div> PHASE 1a ACTIVE</div>
+    <div class="timestamp" id="clock">—</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-section">Revenue</div>
+    <div class="sidebar-item active" onclick="showView('overview')">
+      <span class="sidebar-icon">⬡</span> Overview
+      <div class="sidebar-status status-amber"></div>
+    </div>
+    <div class="sidebar-item" onclick="showView('router')">
+      <span class="sidebar-icon">↔</span> Revenue Router
+      <div class="sidebar-status status-amber"></div>
+    </div>
+    <div class="sidebar-item" onclick="showView('rails')">
+      <span class="sidebar-icon">⊞</span> Funding Rails
+      <div class="sidebar-status status-amber"></div>
+    </div>
+
+    <div class="sidebar-section">System</div>
+    <div class="sidebar-item" onclick="showView('engine')">
+      <span class="sidebar-icon">⚙</span> MEV Engine
+      <div class="sidebar-status status-amber"></div>
+    </div>
+    <div class="sidebar-item" onclick="showView('organs')">
+      <span class="sidebar-icon">○</span> Organ Cluster
+      <div class="sidebar-status status-gray"></div>
+    </div>
+    <div class="sidebar-item" onclick="showView('blockers')">
+      <span class="sidebar-icon">⚠</span> Blockers
+      <div class="sidebar-status status-red"></div>
+    </div>
+    <div class="sidebar-item" onclick="showView('phases')">
+      <span class="sidebar-icon">▸</span> Phase Map
+      <div class="sidebar-status status-amber"></div>
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- ═══════ OVERVIEW ═══════ -->
+    <div class="view active" id="view-overview">
+
+      <div class="alert-bar warn">
+        <strong>⚠ Live Retry Pending:</strong> Router deployment blocked by deployer wallet re-funding. Phase 1a preflight passed. Once wallet is funded, resume mainnet deployment sequence.
+      </div>
+
+      <!-- KPIs -->
+      <div class="grid-4">
+        <div class="kpi-card">
+          <div class="kpi-label">Active Phase</div>
+          <div class="kpi-value" style="font-size:16px; color: var(--amber);">Phase 1a</div>
+          <div class="kpi-sub">Router + DoveCore deploy</div>
+          <div class="kpi-badge badge-amber">⏳ Retry Pending</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Revenue Rails Live</div>
+          <div class="kpi-value" style="color: var(--red);">0 / 4</div>
+          <div class="kpi-sub">Bootstrap · API · Agents · Slot</div>
+          <div class="kpi-badge badge-red">None Active</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Engine Tests</div>
+          <div class="kpi-value" style="color: var(--green);">28</div>
+          <div class="kpi-sub">Passing (risk-engine package)</div>
+          <div class="kpi-badge badge-green">✓ All Green</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Open Blockers</div>
+          <div class="kpi-value" style="color: var(--red);">3</div>
+          <div class="kpi-sub">Critical path to Phase 1a</div>
+          <div class="kpi-badge badge-red">Action Required</div>
+        </div>
+      </div>
+
+      <!-- Router Snapshot -->
+      <div class="card">
+        <div class="card-title">Revenue Router — Allocation Policy (Locked)</div>
+        <div class="router-layout">
+          <div class="donut-wrap">
+            <canvas id="routerChart" width="180" height="180"></canvas>
+            <div class="donut-center">
+              <div class="donut-center-value">100%</div>
+              <div class="donut-center-label">Allocated</div>
+            </div>
+          </div>
+          <div class="router-legend">
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#4f8ef7;"></div>
+              <span class="legend-name">Treasury</span>
+              <span class="legend-pct" style="color:#4f8ef7;">40%</span>
+              <span class="legend-note">RevenueSink_Treasury.sol</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#3ecf8e;"></div>
+              <span class="legend-name">MEV Bankroll</span>
+              <span class="legend-pct" style="color:#3ecf8e;">25%</span>
+              <span class="legend-note">+10% pre-Phase 3 redirect</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#f5a623;"></div>
+              <span class="legend-name">Ops / Dev</span>
+              <span class="legend-pct" style="color:#f5a623;">15%</span>
+              <span class="legend-note">Infra · audits · founder stipend</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#9f7aea;"></div>
+              <span class="legend-name">Data Yield Pool</span>
+              <span class="legend-pct" style="color:#9f7aea;">10%</span>
+              <span class="legend-note">→ MEV until Phase 3</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#38b2ac;"></div>
+              <span class="legend-name">Delegate Pools</span>
+              <span class="legend-pct" style="color:#38b2ac;">5%</span>
+              <span class="legend-note">Oracle · Signal · Dove · Builder</span>
+            </div>
+            <div class="legend-row">
+              <div class="legend-dot" style="background:#f05252;"></div>
+              <span class="legend-name">Founder</span>
+              <span class="legend-pct" style="color:#f05252;">5%</span>
+              <span class="legend-note">Permanent cap · Dove-monitored</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Funnel Rail Status -->
+      <div class="card">
+        <div class="card-title">Funding Rail Status</div>
+        <table class="rail-table">
+          <thead>
+            <tr>
+              <th style="width:30px;">Priority</th>
+              <th>Rail</th>
+              <th>Status</th>
+              <th>Next Action</th>
+              <th>Revenue Form</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="kpi-badge badge-blue" style="font-size:9px;">1</span></td>
+              <td>
+                <div class="rail-name">Bootstrap Manual Inflow</div>
+                <div class="rail-desc">Bootstrap approved-source wallet → Phase 1a routing proof</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:40%; background: var(--amber);"></div></div>
+              </td>
+              <td><span class="kpi-badge badge-amber">Pending Funding</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Re-fund deployer wallet → retry mainnet sequence</td>
+              <td style="font-size:10px; color: var(--text-dim);">Internal routing proof</td>
+            </tr>
+            <tr>
+              <td><span class="kpi-badge badge-blue" style="font-size:9px;">2</span></td>
+              <td>
+                <div class="rail-name">API + Licensing</div>
+                <div class="rail-desc">Starter/Pro REST API · Fund Docker · Enterprise white-label</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:60%; background: var(--accent);"></div></div>
+              </td>
+              <td><span class="kpi-badge badge-blue">Scaffold Ready</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Deploy commercial page · wire Stripe billing service</td>
+              <td style="font-size:10px; color: var(--text-dim);">$1K–$10K+/mo subscriptions</td>
+            </tr>
+            <tr>
+              <td><span class="kpi-badge badge-blue" style="font-size:9px;">3</span></td>
+              <td>
+                <div class="rail-name">Agent-Native Revenue</div>
+                <div class="rail-desc">Organ cluster: Cardia · Pneuma · Hepar · Cortex · Synapse · Vox</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:20%; background: var(--purple);"></div></div>
+              </td>
+              <td><span class="kpi-badge badge-purple">Specified</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Activate first bounded organ mandate (post Phase 1a)</td>
+              <td style="font-size:10px; color: var(--text-dim);">DeFi yield · research · content</td>
+            </tr>
+            <tr>
+              <td><span class="kpi-badge badge-blue" style="font-size:9px;">4</span></td>
+              <td>
+                <div class="rail-name">MonadSpin Slot</div>
+                <div class="rail-desc">Cosmological slot experience — high-RTP, long-run volume rail</div>
+                <div class="progress-bar"><div class="progress-fill" style="width:10%; background: var(--teal);"></div></div>
+              </td>
+              <td><span class="kpi-badge badge-gray">In Design</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Continue in parallel; do not treat as sole opening rail</td>
+              <td style="font-size:10px; color: var(--text-dim);">Mass-market inflow</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- ═══════ REVENUE ROUTER ═══════ -->
+    <div class="view" id="view-router">
+      <div class="alert-bar info">
+        <strong>ℹ Contracts Reconstructed:</strong> Phase 1a contract suite reconstructed from canonical MOF + surviving DoveCore.sol. 13 Hardhat tests passing. Mainnet deployment pending wallet re-funding.
+      </div>
+      <div class="card">
+        <div class="card-title">Locked Allocation Policy — Unified Revenue Router</div>
+        <table class="alloc-table">
+          <thead>
+            <tr>
+              <th style="width:140px;">Sink</th>
+              <th style="width:50px;">Alloc</th>
+              <th>Allocation Bar</th>
+              <th style="width:180px;">Contract</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="sink-name">Treasury</div></td>
+              <td style="font-weight:700; color: var(--accent);">40%</td>
+              <td class="alloc-bar-cell">
+                <div class="alloc-bar"><div class="alloc-fill" style="width:40%; background: var(--accent);"></div></div>
+              </td>
+              <td><div class="sink-contract">RevenueSink_Treasury.sol</div></td>
+              <td style="font-size:10px; color: var(--text-dim);">Vault · non-custodial · multisig early phase</td>
+            </tr>
+            <tr>
+              <td><div class="sink-name">MEV Bankroll</div></td>
+              <td style="font-weight:700; color: var(--green);">25% <span style="font-size:9px; color: var(--green);">+10%*</span></td>
+              <td class="alloc-bar-cell">
+                <div class="alloc-bar"><div class="alloc-fill" style="width:35%; background: var(--green);"></div></div>
+                <div class="alloc-note">Effective 35% pre-Phase 3</div>
+              </td>
+              <td><div class="sink-contract">RevenueSink_MEVBankroll.sol</div></td>
+              <td style="font-size:10px; color: var(--text-dim);">Direct MEV Engine capital feed. Data Yield 10% redirected here until Phase 3 agents live.</td>
+            </tr>
+            <tr>
+              <td><div class="sink-name">Ops / Dev</div></td>
+              <td style="font-weight:700; color: var(--amber);">15%</td>
+              <td class="alloc-bar-cell">
+                <div class="alloc-bar"><div class="alloc-fill" style="width:15%; background: var(--amber);"></div></div>
+              </td>
+              <td><div class="sink-contract">RevenueSink_OpsDev.sol</div></td>
+              <td style="font-size:10px; color: var(--text-dim);">Infra · audits · founder stipend ($5K–$10K/mo draw)</td>
+            </tr>
+            <tr>
+              <td><div class="sink-name">Data Yield Pool</div></td>
+              <td style="font-weight:700; color: var(--purple);">10%</td>
+              <td class="alloc-bar-cell">
+                <div class="alloc-bar"><div class="alloc-fill" style="width:10%; background: var(--purple);"></div></div>
+                <div class="alloc-note">→ MEV until Phase 3</div>
+              </td>
+              <td><div class="sink-contract">RevenueSink_DataYield.sol</div></td>
+              <td style="font-size:10px; color: var(--text-dim);">Held pre-Phase 3 → redirects to MEV. Distributes to agents at Phase 3+.</td>
+            </tr>
+            <tr>
+              <td><div class="sink-name">Delegate Pools</div></td>
+              <td style="font-weight:700; color: var(--teal);">5%</td>
+              <td class="alloc-bar-cell">
+                <div class="alloc-bar"><div class="alloc-fill" style="width:5%; background: var(--teal);"></div></div>
+              </td>
+              <td><div class="sink-contract">RevenueSink_DelegatePools.sol</div></td>
+              <td style="font-size:10px; color: var(--text-dim);">Oracle · Signal · Dove · Builder delegates per tier</td>
+            </tr>
+            <tr>
+              <td><div class="sink-name">Founder</div></td>
+              <td style="font-weight:700; color: var(--red);">5%</td>
+              <td class="alloc-bar-cell">
+                <div class="alloc-bar"><div class="alloc-fill" style="width:5%; background: var(--red);"></div></div>
+              </td>
+              <td><div class="sink-contract">RevenueSink_Founder.sol</div></td>
+              <td style="font-size:10px; color: var(--text-dim);">Permanent cap · all draws public on-chain · Dove Tier 1 monitored · hard capped, no override path</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Contract Deployment Status</div>
+          <div class="phase-track">
+            <div class="phase-row pending" style="grid-template-columns: 1fr 24px 200px;">
+              <div><div class="phase-label" style="font-size:11px; color: var(--text);">Hardhat Test Suite</div></div>
+              <div class="phase-icon">✅</div>
+              <div><span class="kpi-badge badge-green">13 Passing</span></div>
+            </div>
+            <div class="phase-row pending" style="grid-template-columns: 1fr 24px 200px;">
+              <div><div class="phase-label" style="font-size:11px;">Live Preflight</div></div>
+              <div class="phase-icon">✅</div>
+              <div><span class="kpi-badge badge-green">Passed</span></div>
+            </div>
+            <div class="phase-row active" style="grid-template-columns: 1fr 24px 200px;">
+              <div><div class="phase-label" style="font-size:11px; color: var(--amber);">Mainnet Deployment</div></div>
+              <div class="phase-icon">⏳</div>
+              <div><span class="kpi-badge badge-amber">Retry Pending</span></div>
+            </div>
+            <div class="phase-row pending" style="grid-template-columns: 1fr 24px 200px;">
+              <div><div class="phase-label" style="font-size:11px;">Approved Source Reg.</div></div>
+              <div class="phase-icon">⬜</div>
+              <div><span class="kpi-badge badge-gray">Blocked</span></div>
+            </div>
+            <div class="phase-row pending" style="grid-template-columns: 1fr 24px 200px;">
+              <div><div class="phase-label" style="font-size:11px;">Treasury Deploy</div></div>
+              <div class="phase-icon">⬜</div>
+              <div><span class="kpi-badge badge-gray">Blocked</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Dove Monitoring — Founder Sink Controls</div>
+          <div style="display: flex; flex-direction: column; gap: 8px; font-size: 10px; color: var(--text-dim); line-height: 1.6;">
+            <p>✓ All draws public · immutable · on-chain</p>
+            <p>✓ Hard cap: 5% — no override pathway exists</p>
+            <p>✓ Dove Tier 1: draw frequency + timing + concentration monitored</p>
+            <p>⚠ Dove Tier 2: draws pause automatically if stress-correlated pattern detected → DAO vote required to resume</p>
+            <p>⚠ Dove Tier 3: full multisig audit — founder does not hold blocking power</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ FUNDING RAILS ═══════ -->
+    <div class="view" id="view-rails">
+      <div class="grid-2">
+        <div class="kpi-card">
+          <div class="kpi-label">Minimum Acceptable Launch</div>
+          <div class="kpi-value" style="font-size:16px;">2 of 4</div>
+          <div class="kpi-sub">Rails must be live. 1 is not acceptable as target state.</div>
+          <div class="kpi-badge badge-amber">Currently: 0 Active</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Recommended First Non-Slot Rail</div>
+          <div class="kpi-value" style="font-size:16px; color: var(--accent);">API + Licensing</div>
+          <div class="kpi-sub">Commercial scaffold exists. Needs deployment + Stripe wiring.</div>
+          <div class="kpi-badge badge-blue">Ready to Launch</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Rail 2 — API + Licensing — Commercial Surface Inventory</div>
+        <div class="params-grid">
+          <div class="param-row">
+            <span class="param-name">templates/api</span>
+            <span class="param-value" style="color: var(--green);">Built ✓</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">templates/billing (Stripe)</span>
+            <span class="param-value" style="color: var(--green);">Built ✓</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">templates/license-service</span>
+            <span class="param-value" style="color: var(--green);">Built ✓</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">templates/commercial-stack</span>
+            <span class="param-value" style="color: var(--green);">Built ✓</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">sovereign-commercial.html</span>
+            <span class="param-value" style="color: var(--green);">Built ✓</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">Stripe price IDs</span>
+            <span class="param-value" style="color: var(--amber);">Config Required</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">Domain + TLS</span>
+            <span class="param-value" style="color: var(--amber);">Needed</span>
+          </div>
+          <div class="param-row">
+            <span class="param-name">First paying customer</span>
+            <span class="param-value" style="color: var(--red);">None Yet</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Oracle Licensing Tiers (Canonical — Implementation Phase 3+)</div>
+        <table class="alloc-table">
+          <thead>
+            <tr>
+              <th>Tier</th>
+              <th>Price</th>
+              <th>AUM Cap</th>
+              <th>Delivery</th>
+              <th>Key Feature</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-weight:700;">Starter</td>
+              <td style="color: var(--text);">$1,000/mo</td>
+              <td style="color: var(--text-dim);">≤ $5M</td>
+              <td style="color: var(--text-dim);">REST API · 1K calls/day</td>
+              <td style="font-size:10px; color: var(--text-dim);">Base RGE v2 API</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700; color: var(--accent);">Pro</td>
+              <td style="color: var(--text);">$2,500/mo</td>
+              <td style="color: var(--text-dim);">≤ $25M</td>
+              <td style="color: var(--text-dim);">REST API · 10K calls/day</td>
+              <td style="font-size:10px; color: var(--text-dim);">Custom param tuning · Priority Slack</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;">Fund</td>
+              <td style="color: var(--text);">$5,000/mo</td>
+              <td style="color: var(--text-dim);">≤ $100M</td>
+              <td style="color: var(--text-dim);">Self-hosted Docker</td>
+              <td style="font-size:10px; color: var(--text-dim);">Model calibration sessions · Phone</td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;">Enterprise</td>
+              <td style="color: var(--text);">$10,000+/mo</td>
+              <td style="color: var(--text-dim);">Unlimited</td>
+              <td style="color: var(--text-dim);">White-label deploy</td>
+              <td style="font-size:10px; color: var(--text-dim);">Custom models · Dedicated support</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════ MEV ENGINE ═══════ -->
+    <div class="view" id="view-engine">
+      <div class="grid-4">
+        <div class="kpi-card">
+          <div class="kpi-label">Testnet Trades</div>
+          <div class="kpi-value" style="color: var(--accent);">48</div>
+          <div class="kpi-sub">Simulated Monad testnet</div>
+          <div class="kpi-badge badge-amber">Mainnet Unproven</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Reported Win Rate</div>
+          <div class="kpi-value" style="color: var(--green);">100%</div>
+          <div class="kpi-sub">Testnet / simulation only</div>
+          <div class="kpi-badge badge-amber">Not Final Truth</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Testnet Capital Growth</div>
+          <div class="kpi-value" style="color: var(--green);">$136</div>
+          <div class="kpi-sub">From $100 seed</div>
+          <div class="kpi-badge badge-green">+36.48%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">MC Simulations / Opp</div>
+          <div class="kpi-value" style="color: var(--purple);">1,000</div>
+          <div class="kpi-sub">Correlated GBM paths</div>
+          <div class="kpi-badge badge-purple">ρ = 0.7</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">RGE v2 — Canonical Risk Parameters</div>
+          <div class="params-grid">
+            <div class="param-row">
+              <span class="param-name">Min Effective Spread</span>
+              <span class="param-value" style="color: var(--accent);">20 bps</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Fractional Kelly</span>
+              <span class="param-value" style="color: var(--green);">25% of full</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Max Single Trade</span>
+              <span class="param-value">10% portfolio</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Max Bridge Exposure</span>
+              <span class="param-value">50% portfolio</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Max Per-Chain Exposure</span>
+              <span class="param-value">80% portfolio</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Min Liquidity Depth</span>
+              <span class="param-value">$100 @ 10bps</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Bridge Failure Rate</span>
+              <span class="param-value">0.1% per exec</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Bridge Latency (median)</span>
+              <span class="param-value">15s · p95 30s</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Decision Gate Thresholds</div>
+          <div class="params-grid">
+            <div class="param-row">
+              <span class="param-name">EV Mean ≥</span>
+              <span class="param-value" style="color: var(--green);">$10</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Sharpe-Like ≥</span>
+              <span class="param-value" style="color: var(--accent);">0.3</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Tail Loss ≤</span>
+              <span class="param-value" style="color: var(--amber);">30%</span>
+            </div>
+            <div class="param-row">
+              <span class="param-name">Spread Gate</span>
+              <span class="param-value">≥5 bps raw · ≥$100 liq</span>
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="card-title" style="margin-bottom:6px;">Effective Spread Formula (Canonical)</div>
+            <div style="font-family: monospace; font-size: 10px; color: var(--text-dim); background: var(--bg4); padding: 10px; border-radius: var(--radius-sm); line-height: 1.8;">
+              effectiveSpread =<br/>
+              &nbsp;&nbsp;rawSpread<br/>
+              &nbsp;&nbsp;− vol × √t<br/>
+              &nbsp;&nbsp;− 0.5 × (vol × √t)²<br/>
+              &nbsp;&nbsp;− 0.0015
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Container / Service Status</div>
+        <table class="container-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Service</th>
+              <th>State</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">zookeeper / kafka</div></td>
+              <td><span class="kpi-badge badge-green">Healthy</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Message bus operational</td>
+            </tr>
+            <tr>
+              <td class="c-icon">⚠️</td>
+              <td><div class="c-name">monad-market-agent</div><div class="c-note">BLOCKER</div></td>
+              <td><span class="kpi-badge badge-red">Crash-Looping</span></td>
+              <td style="font-size:10px; color: var(--red);">QuickNode daily rate limit hit — resolve before Phase 1a closed-loop proof</td>
+            </tr>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">eth-market-agent</div></td>
+              <td><span class="kpi-badge badge-green">Polling</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Operational</td>
+            </tr>
+            <tr>
+              <td class="c-icon">⏳</td>
+              <td><div class="c-name">spread-scanner</div></td>
+              <td><span class="kpi-badge badge-amber">Consumer Ready</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Awaiting stable price feeds from monad-market-agent</td>
+            </tr>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">risk-engine</div></td>
+              <td><span class="kpi-badge badge-green">28 Tests Passing</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Repo package signal — broader canonical test program incomplete</td>
+            </tr>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">opportunity-constructor</div></td>
+              <td><span class="kpi-badge badge-green">Built</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">npm install + build complete</td>
+            </tr>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">portfolio-manager</div></td>
+              <td><span class="kpi-badge badge-green">Built</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">npm install + build complete</td>
+            </tr>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">monad-arb-bot</div></td>
+              <td><span class="kpi-badge badge-green">Execution Ready</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">npm install + build complete</td>
+            </tr>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">bridge-exec-bot</div></td>
+              <td><span class="kpi-badge badge-green">Lockfile Fixed</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Ready</td>
+            </tr>
+            <tr>
+              <td class="c-icon">✅</td>
+              <td><div class="c-name">eth-arb-bot</div></td>
+              <td><span class="kpi-badge badge-green">Lockfile Fixed</span></td>
+              <td style="font-size:10px; color: var(--text-dim);">Ready</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ═══════ ORGAN CLUSTER ═══════ -->
+    <div class="view" id="view-organs">
+      <div class="alert-bar info">
+        <strong>ℹ Activation Rule:</strong> Do not launch all six at full power at once. Define all six clearly → activate one bounded mandate per category over time → observe coordination before scaling.
+      </div>
+      <div class="organ-grid">
+        <div class="organ-card">
+          <div class="organ-header">
+            <div class="organ-icon" style="background: rgba(79,142,247,0.15); color: var(--accent);">♥</div>
+            <div>
+              <div class="organ-name">Cardia</div>
+              <div class="organ-role">Capital Circulator</div>
+            </div>
+            <span class="kpi-badge badge-gray" style="margin-left:auto; font-size:9px;">Specified</span>
+          </div>
+          <div class="organ-mandate">Preserve capital continuity · maintain usable liquidity and reserve rhythm · circulate into bounded survivable mandates.</div>
+          <div class="organ-revenue">Revenue: Conservative yield · low-risk spread capture · disciplined reserve-efficient deployment</div>
+        </div>
+        <div class="organ-card">
+          <div class="organ-header">
+            <div class="organ-icon" style="background: rgba(62,207,142,0.15); color: var(--green);">◎</div>
+            <div>
+              <div class="organ-name">Pneuma</div>
+              <div class="organ-role">External Exchange Operator</div>
+            </div>
+            <span class="kpi-badge badge-gray" style="margin-left:auto; font-size:9px;">Specified</span>
+          </div>
+          <div class="organ-mandate">Manage exchange with outside environment · pull in leads, partnerships, distribution · move ecosystem output outward.</div>
+          <div class="organ-revenue">Revenue: API/licensing conversion · distribution partnerships · sponsorship + audience</div>
+        </div>
+        <div class="organ-card">
+          <div class="organ-header">
+            <div class="organ-icon" style="background: rgba(245,166,35,0.15); color: var(--amber);">⬡</div>
+            <div>
+              <div class="organ-name">Hepar</div>
+              <div class="organ-role">Opportunity Refiner</div>
+            </div>
+            <span class="kpi-badge badge-gray" style="margin-left:auto; font-size:9px;">Specified</span>
+          </div>
+          <div class="organ-mandate">Turn raw opportunity flow into safe deployable mandates · reject toxic strategies, counterparties, and unstable setups.</div>
+          <div class="organ-revenue">Revenue: Reduced loss from bad opps · better capital selection · refined strategy memos → paid artifacts</div>
+        </div>
+        <div class="organ-card">
+          <div class="organ-header">
+            <div class="organ-icon" style="background: rgba(159,122,234,0.15); color: var(--purple);">◈</div>
+            <div>
+              <div class="organ-name">Cortex</div>
+              <div class="organ-role">Research Synthesist</div>
+            </div>
+            <span class="kpi-badge badge-gray" style="margin-left:auto; font-size:9px;">Specified</span>
+          </div>
+          <div class="organ-mandate">Produce coherent understanding · synthesize markets, protocols, opportunities into usable intelligence · create research outputs.</div>
+          <div class="organ-revenue">Revenue: Premium research · paid briefings · intelligence packages · enterprise sales support</div>
+        </div>
+        <div class="organ-card">
+          <div class="organ-header">
+            <div class="organ-icon" style="background: rgba(56,178,172,0.15); color: var(--teal);">⟳</div>
+            <div>
+              <div class="organ-name">Synapse</div>
+              <div class="organ-role">Signal Router</div>
+            </div>
+            <span class="kpi-badge badge-gray" style="margin-left:auto; font-size:9px;">Specified</span>
+          </div>
+          <div class="organ-mandate">Detect what matters · route signals to correct organ at correct time · reduce noise, lag, and coordination failure.</div>
+          <div class="organ-revenue">Revenue: Indirect — improves timing and decision quality across every organ. Later: structured signal products</div>
+        </div>
+        <div class="organ-card">
+          <div class="organ-header">
+            <div class="organ-icon" style="background: rgba(240,82,82,0.15); color: var(--red);">◉</div>
+            <div>
+              <div class="organ-name">Vox</div>
+              <div class="organ-role">Narrative Interface</div>
+            </div>
+            <span class="kpi-badge badge-gray" style="margin-left:auto; font-size:9px;">Specified</span>
+          </div>
+          <div class="organ-mandate">Turn internal intelligence into external expression · make the organism understandable · convert coherence into public legibility.</div>
+          <div class="organ-revenue">Revenue: Sponsorship · premium content · distribution revenue · lead gen into API + enterprise</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Coordination Loop (Canonical Sequence)</div>
+        <div style="display: flex; gap: 4px; align-items: center; flex-wrap: wrap; font-size: 11px; color: var(--text-dim); padding: 8px 0;">
+          <span style="padding: 4px 10px; background: var(--bg3); border-radius: 12px; color: var(--teal);">Synapse detects</span>
+          <span style="color: var(--text-muted);">→</span>
+          <span style="padding: 4px 10px; background: var(--bg3); border-radius: 12px; color: var(--amber);">Hepar filters</span>
+          <span style="color: var(--text-muted);">→</span>
+          <span style="padding: 4px 10px; background: var(--bg3); border-radius: 12px; color: var(--purple);">Cortex builds strategy</span>
+          <span style="color: var(--text-muted);">→</span>
+          <span style="padding: 4px 10px; background: var(--bg3); border-radius: 12px; color: var(--accent);">Cardia circulates capital</span>
+          <span style="color: var(--text-muted);">→</span>
+          <span style="padding: 4px 10px; background: var(--bg3); border-radius: 12px; color: var(--red);">Vox expresses</span>
+          <span style="color: var(--text-muted);">→</span>
+          <span style="padding: 4px 10px; background: var(--bg3); border-radius: 12px; color: var(--green);">Pneuma converts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ BLOCKERS ═══════ -->
+    <div class="view" id="view-blockers">
+      <div class="blocker-list">
+        <div class="blocker-item">
+          <div class="blocker-sev sev-crit">!</div>
+          <div class="blocker-body">
+            <div class="blocker-title">Deployer Wallet Balance — Phase 1a Mainnet Retry Blocked</div>
+            <div class="blocker-desc">Live preflight passed. First mainnet deployment attempt consumed deployer balance mid-sequence. Retry is blocked only by wallet re-funding. No contract changes required.</div>
+            <div class="blocker-meta">
+              <span class="kpi-badge badge-red">Critical Path</span>
+              <span class="kpi-badge badge-gray">Phase 1a Gate</span>
+              <span class="kpi-badge badge-amber">Action: Fund deployer wallet</span>
+            </div>
+          </div>
+        </div>
+        <div class="blocker-item">
+          <div class="blocker-sev sev-crit">!</div>
+          <div class="blocker-body">
+            <div class="blocker-title">monad-market-agent Crash-Loop — ISSUE-001 (QuickNode Rate Limit)</div>
+            <div class="blocker-desc">monad-market-agent is crash-looping due to QuickNode daily rate limit being hit. Must resolve before Phase 1a can prove closed-loop operation. spread-scanner is consumer-ready but awaiting stable feed.</div>
+            <div class="blocker-meta">
+              <span class="kpi-badge badge-red">Critical Path</span>
+              <span class="kpi-badge badge-gray">Closed-Loop Proof Gate</span>
+              <span class="kpi-badge badge-amber">Action: Resolve QuickNode limit or switch RPC</span>
+            </div>
+          </div>
+        </div>
+        <div class="blocker-item">
+          <div class="blocker-sev sev-warn">~</div>
+          <div class="blocker-body">
+            <div class="blocker-title">ISSUE-001 — Threshold Calibration Unresolved</div>
+            <div class="blocker-desc">Risk parameter thresholds not yet calibrated against mainnet reality. Testnet performance (100% win rate, 48 trades) is useful but not final truth. Calibration required before live capital deployment.</div>
+            <div class="blocker-meta">
+              <span class="kpi-badge badge-amber">Pre-Live Gate</span>
+              <span class="kpi-badge badge-gray">Phase 1a → Phase 1b</span>
+            </div>
+          </div>
+        </div>
+        <div class="blocker-item">
+          <div class="blocker-sev sev-warn">~</div>
+          <div class="blocker-body">
+            <div class="blocker-title">ISSUE-002 — Real Execution Logic Maturation</div>
+            <div class="blocker-desc">Execution logic must mature before guarded-live profile activation. Mainnet bankroll path, first live routed disbursement, and sustained real performance record all required.</div>
+            <div class="blocker-meta">
+              <span class="kpi-badge badge-amber">Pre-Live Gate</span>
+              <span class="kpi-badge badge-gray">Phase 1b</span>
+            </div>
+          </div>
+        </div>
+        <div class="blocker-item">
+          <div class="blocker-sev sev-info">i</div>
+          <div class="blocker-body">
+            <div class="blocker-title">API + Licensing Rail — Stripe Config + Domain Required</div>
+            <div class="blocker-desc">Commercial stack (templates/api, templates/billing, sovereign-commercial.html) is built. Requires Stripe price IDs configured in .env, domain pointed to billing service, and TLS before first paying customer.</div>
+            <div class="blocker-meta">
+              <span class="kpi-badge badge-blue">Revenue Rail 2</span>
+              <span class="kpi-badge badge-gray">Non-Critical Path</span>
+              <span class="kpi-badge badge-green">Can activate independently</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════ PHASE MAP ═══════ -->
+    <div class="view" id="view-phases">
+      <div class="card">
+        <div class="card-title">Master Phase Roadmap</div>
+        <div class="phase-track">
+          <div class="phase-row active">
+            <div>
+              <div class="phase-label" style="color: var(--amber);">Phase 1a</div>
+              <div class="phase-gate">ACTIVE</div>
+            </div>
+            <div class="phase-icon">⏳</div>
+            <div class="phase-desc">Deploy Revenue Router + DoveCore + Treasury sinks. Prove closed-loop operation with approved source. Register bootstrap approved source wallet.</div>
+            <div><span class="kpi-badge badge-amber">In Progress</span></div>
+          </div>
+          <div class="phase-row pending">
+            <div>
+              <div class="phase-label">Phase 1b</div>
+              <div class="phase-gate">Post 1a</div>
+            </div>
+            <div class="phase-icon">⬜</div>
+            <div class="phase-desc">Guarded-live activation. Threshold calibration. Real execution logic maturation. First live routed bankroll disbursement. Sustained performance record.</div>
+            <div><span class="kpi-badge badge-gray">Blocked on 1a</span></div>
+          </div>
+          <div class="phase-row pending">
+            <div>
+              <div class="phase-label">Phase 2a</div>
+              <div class="phase-gate">Post 1b</div>
+            </div>
+            <div class="phase-icon">⬜</div>
+            <div class="phase-desc">Signal Schema v0 definition. Regime memory capture. Pod health scores. Routing decision logging. Recirculation event capture.</div>
+            <div><span class="kpi-badge badge-gray">Not Started</span></div>
+          </div>
+          <div class="phase-row pending">
+            <div>
+              <div class="phase-label">Phase 3+</div>
+              <div class="phase-gate">Signal Live</div>
+            </div>
+            <div class="phase-icon">⬜</div>
+            <div class="phase-desc">Oracle v1 live. Signal Layer v1. Agent NFTs (Shaliah). Gnosis Integrity Layer implementation. Data Yield Pool activation. First bounded organ mandates go live.</div>
+            <div><span class="kpi-badge badge-gray">Not Started</span></div>
+          </div>
+          <div class="phase-row pending">
+            <div>
+              <div class="phase-label">Phase 4+</div>
+              <div class="phase-gate">Agents Live</div>
+            </div>
+            <div class="phase-icon">⬜</div>
+            <div class="phase-desc">Data Rail begins. Behavioral data aggregation and structured signal products. Institutional licensing preparation.</div>
+            <div><span class="kpi-badge badge-gray">Not Started</span></div>
+          </div>
+          <div class="phase-row pending">
+            <div>
+              <div class="phase-label">Phase 5</div>
+              <div class="phase-gate">Data Mature</div>
+            </div>
+            <div class="phase-icon">⬜</div>
+            <div class="phase-desc">BehavioralDataRevenueRouter.sol enforcement. 100% behavioral data revenue returns to ecosystem. External data product licensing. Population diversity thresholds met.</div>
+            <div><span class="kpi-badge badge-gray">Not Started</span></div>
+          </div>
+          <div class="phase-row pending">
+            <div>
+              <div class="phase-label">Phase 6</div>
+              <div class="phase-gate">Cannot Force</div>
+            </div>
+            <div class="phase-icon">⬜</div>
+            <div class="phase-desc">Emergent Protocol System. New protocol classes, new agent forms, and new ecosystem-native capabilities discovered through validated pattern emergence.</div>
+            <div><span class="kpi-badge badge-gray">Emergence Only</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-bar info">
+        <strong>Next Funnel Milestone:</strong> Not only "ship the slot." Activate at least one additional non-slot revenue rail (API/licensing or agent-native) before MonadSpin is relied upon as a meaningful inflow source.
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // ─── CLOCK ───
+  function updateClock() {
+    const now = new Date();
+    document.getElementById('clock').textContent =
+      now.toUTCString().replace(' GMT', ' UTC').slice(0, -3);
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // ─── NAV ───
+  const views = ['overview','router','rails','engine','organs','blockers','phases'];
+  function showView(id) {
+    views.forEach(v => {
+      document.getElementById('view-' + v).classList.toggle('active', v === id);
+    });
+    document.querySelectorAll('.sidebar-item').forEach(el => {
+      el.classList.toggle('active', el.getAttribute('onclick') === `showView('${id}')`);
+    });
+    drawChart();
+  }
+
+  // ─── DONUT CHART ───
+  function drawChart() {
+    const canvas = document.getElementById('routerChart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const cx = 90, cy = 90, r = 72, inner = 48;
+    const slices = [
+      { pct: 40, color: '#4f8ef7' },
+      { pct: 25, color: '#3ecf8e' },
+      { pct: 15, color: '#f5a623' },
+      { pct: 10, color: '#9f7aea' },
+      { pct: 5,  color: '#38b2ac' },
+      { pct: 5,  color: '#f05252' },
+    ];
+    ctx.clearRect(0, 0, 180, 180);
+    let start = -Math.PI / 2;
+    slices.forEach(s => {
+      const sweep = (s.pct / 100) * Math.PI * 2;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, r, start, start + sweep);
+      ctx.closePath();
+      ctx.fillStyle = s.color;
+      ctx.fill();
+      start += sweep;
+    });
+    // inner cutout
+    ctx.beginPath();
+    ctx.arc(cx, cy, inner, 0, Math.PI * 2);
+    ctx.fillStyle = '#0b0d14';
+    ctx.fill();
+  }
+
+  window.addEventListener('load', () => {
+    drawChart();
+  });
+</script>
+</body>
+</html>

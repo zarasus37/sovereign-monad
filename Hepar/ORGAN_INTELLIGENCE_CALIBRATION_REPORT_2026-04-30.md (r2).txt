@@ -1,0 +1,128 @@
+# Organ Intelligence Calibration Report
+
+Date context: 2026-04-30
+Revision: r2 (clarified verification tier)
+Supersedes: r1 (2026-04-30 morning)
+
+## Status banner
+
+This report records calibration of policy surfaces against deterministic benchmark fixtures in `organ-runtime/src/tools/calibrate-organ-intelligence.ts`. **Every accuracy and uplift number reported below is `fixture-verified`, not `live-telemetry-verified`.**
+
+Under the tier ladder defined in `SIX_ORGAN_INSTITUTIONAL_DEPTH_BLUEPRINT.md` §3 and `HEPAR_v2.0_SPECIFICATION.md` §16:
+
+1. fixture-verified results qualify the organ at **Advisory tier only**
+2. fixture-verified results do **not** qualify any organ for Decision-Support or Authoritative tier
+3. fixture-verified results do **not** authorize external pricing of any commercial output
+4. fixture-verified results do **not** authorize automated capital action
+
+Promotion to Decision-Support requires: live-telemetry replay against a measured horizon, precision/recall and false-positive metrics per `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md` §9, dispute-and-correction protocol live, and independent reviewer sign-off.
+
+## Scope
+
+Calibration run for the adaptive policy surfaces introduced in:
+
+1. `Synapse` adaptive routing
+2. `Cardia` adaptive allocation
+3. `Pneuma` market execution
+
+Companion uplift scoring also reported for:
+
+1. `Cortex` institutional coverage
+2. `Vox` truth-verification coverage
+
+Command:
+
+```powershell
+npm --prefix organ-runtime run calibrate:intelligence
+```
+
+## Calibrated Policy Parameters
+
+### Synapse policy
+
+1. `conflictSeverityGap = 3`
+2. `lowConfidenceBlockThreshold = 0.45`
+3. `capitalEscalationMinSeverity = 2`
+
+### Cardia coefficients
+
+1. `returnWeight = 1.2`
+2. `riskPenaltyWeight = 0.18`
+3. `drawdownPenaltyWeight = 0.06`
+4. `elevatedStressPenalty = 2.5`
+5. `crashStressPenalty = 11`
+6. `allocateThreshold = 2`
+7. `reduceThreshold = -4`
+8. `hardBlockRiskScore = 70`
+
+### Pneuma policy
+
+1. `urgentLatencyPenaltyDivisor = 90`
+2. `normalLatencyPenaltyDivisor = 180`
+3. `minSettlementReliability = 0.72`
+
+## Benchmark Uplift vs Baseline
+
+> All numbers below are tagged `fixture-verified`. They are valid for architecture and policy direction only. They are not Decision-Support or Authoritative tier evidence.
+
+### Synapse
+
+1. Baseline routing accuracy: `0.50` (fixture-verified)
+2. Calibrated routing accuracy: `1.00` (fixture-verified)
+3. Relative lift: `+100%` (fixture-verified)
+
+### Cardia
+
+1. Baseline decision accuracy: `0.25` (fixture-verified)
+2. Calibrated decision accuracy: `1.00` (fixture-verified)
+3. Relative lift: `+300%` (fixture-verified)
+
+### Pneuma
+
+1. Baseline execution-choice accuracy: `0.3333` (fixture-verified)
+2. Calibrated execution-choice accuracy: `1.00` (fixture-verified)
+3. Relative lift: `+200%` (fixture-verified)
+4. Calibrated average execution cost: `24.111 bps` (fixture-verified)
+
+### Cortex coverage
+
+1. Baseline institutional coverage: `0.25` (fixture-verified)
+2. Upgraded institutional coverage: `1.00` (fixture-verified)
+3. Relative lift: `+300%` (fixture-verified)
+
+### Vox coverage
+
+1. Baseline truth-verification coverage: `0.00` (fixture-verified)
+2. Upgraded truth-verification coverage: `1.00` (fixture-verified, from zero baseline to full coverage)
+
+## Interpretation Boundary (binding)
+
+These uplifts are from deterministic benchmark fixtures in `organ-runtime/src/tools/calibrate-organ-intelligence.ts`. They are valid for architecture and policy direction, but they are **not** a substitute for live-outcome calibration on production telemetry, and they are **not** evidence of biological-fidelity clearance under `SIX_ORGAN_INSTITUTIONAL_DEPTH_BLUEPRINT.md` §0.
+
+Fixtures define the test, then the policy fits the fixture. A `1.00` accuracy on a deterministic fixture is **not** a `1.00` accuracy claim against live distribution. Treating fixture accuracy as live evidence would be an MOF §17.5 (False Validation) flag and a §17.8 (Hollow Convergence) flag.
+
+## What This Report Does Not Authorize
+
+1. quoting any uplift number externally without the `fixture-verified` qualifier
+2. moving any organ from Advisory to Decision-Support tier
+3. external pricing of any commercial surface tied to these organs
+4. funded `Cardia` activation
+5. `Hepar` BLACK-tier publication
+6. retirement of any §15 (Legal Posture) or §16 (Tier Discipline) gate in `HEPAR_v2.0_SPECIFICATION.md`
+
+## Path To Decision-Support Tier
+
+1. replay each organ against a live-telemetry corpus over a measured horizon (≥30 days for Synapse/Pneuma, longer for Cardia given regime variance)
+2. report the §9 metrics from `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md` for Hepar-adjacent surfaces and organ-equivalent reliability metrics for the others
+3. stand up dispute-and-correction protocol per `HEPAR_v2.0_SPECIFICATION.md` §15
+4. obtain independent reviewer sign-off on at least one publication per organ
+5. publish the live-telemetry-verified report as a successor to this fixture-verified report
+
+## Change Log (r1 → r2)
+
+1. Added Status Banner subordinating all results to the tier ladder.
+2. Tagged every accuracy and uplift number as `fixture-verified` explicitly.
+3. Strengthened Interpretation Boundary into a binding clause with MOF §17.5 / §17.8 references.
+4. Added "What This Report Does Not Authorize" enumeration.
+5. Added "Path To Decision-Support Tier" enumeration.
+6. Cross-referenced `SIX_ORGAN_INSTITUTIONAL_DEPTH_BLUEPRINT.md`, `HEPAR_v2.0_SPECIFICATION.md`, and `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md`.

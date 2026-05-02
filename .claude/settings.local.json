@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /c/Users/crisc/Dev/agents/monad-mev/*.md)",
+      "Bash(wc -l /c/Users/crisc/Dev/agents/monad-mev/risk-engine/src/**/*.ts)",
+      "Bash(node calibration/run-calibration.js)"
+    ]
+  }
+}

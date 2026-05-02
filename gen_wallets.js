@@ -1,0 +1,1 @@
+const { Wallet } = require('ethers'); const w1 = Wallet.createRandom(); const w2 = Wallet.createRandom(); console.log('Deployer:', JSON.stringify({address: w1.address, privateKey: w1.privateKey})); console.log('Bootstrap Source:', JSON.stringify({address: w2.address, privateKey: w2.privateKey}));

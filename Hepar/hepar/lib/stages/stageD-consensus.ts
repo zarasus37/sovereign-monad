@@ -1,0 +1,655 @@
+// hepar/lib/stages/stageD-consensus.ts
+// Stage D -- Consensus Confidence Fusion.
+// Fuses Stages A + B + C into a single actionable verdict.
+//
+// ADVISORY tier only. Never claim live-telemetry-verified status.
+// SINGLE-SCALAR PROHIBITION: ActionBand alone MUST NOT be used for go/no-go.
+// Stage D never invents new evidence -- it only synthesizes A + B + C output.
+
+import type {
+  FindingVector,
+  ActionBand,
+  AttestationPayload,
+  ConvergenceLabel,
+  SymbolicResult
+} from '../../types/hepar.types';
+import type { StageAResult, StageAFinding, DataSourceStatus } from './stageA-static';
+import type { StageBResult, InvariantClass, StageBInput } from './stageB-symbolic';
+import type { StageCResult, StageCInput } from './stageC-montecarlo';
+import type { AgentFinding, AgentId } from './stageC-utils';
+import { scoreVector } from '../scoring/vectorScoring';
+import { assignActionBand, ActionBandResult } from '../scoring/actionBand';
+import { getConvergenceLabel } from '../scoring/convergenceLabels';
+import { runStageA } from './stageA-static';
+import { runStageB } from './stageB-symbolic';
+import { runStageC } from './stageC-montecarlo';
+
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
+
+const TOTAL_AGENTS = 5;
+
+// Stage B invariant class -> Stage C agent focus mapping
+const INVARIANT_CLASS_TO_AGENT: Record<InvariantClass, AgentId> = {
+  AUTHORIZATION:    'PRIVILEGE',
+  UPGRADE:          'PRIVILEGE',
+  ACCOUNTING:       'ARITHMETIC',
+  REENTRANCY_STATE: 'REENTRANCY'
+};
+
+// Default severity for a Stage B counterexample-found when no Stage C vector matches
+const STAGE_B_CEX_DEFAULT_SEVERITY = 7;
+
+// Agents that contribute to Dimension 5 (Adversarial Execution)
+const ADVERSARIAL_AGENTS: AgentId[] = ['ARITHMETIC', 'REENTRANCY', 'ECONOMIC', 'STATE'];
+
+// ---------------------------------------------------------------------------
+// Public interfaces
+// ---------------------------------------------------------------------------
+
+export interface StageDInput {
+  stageAResult: StageAResult;
+  stageBResult: StageBResult;
+  stageCResult: StageCResult;
+  protocolId: string;
+  codeHash: string;
+  runId?: string;
+}
+
+export interface ScoredFindingVector {
+  vector: FindingVector;
+  riskScore: number;
+}
+
+export interface StageDDimensionScores {
+  byteCodePrivilege:    number;  // Dim 1 from Stage A
+  proxyAdmin:           number;  // Dim 2 from Stage A
+  lpUnlock:             number;  // Dim 3 from Stage A
+  walletTaint:          number;  // Dim 4 from Stage A (provisional when PIPELINE_REQUIRED)
+  accountingInvariant:  number;  // Dim 5 from Stage A
+  inputValidation:      number;  // Dim 6 from Stage A
+  adversarialExecution: number;  // Dim 7 from Stage C (ARITHMETIC+REENTRANCY+ECONOMIC+STATE)
+  economicViability:    number;  // Dim 8 from Stage C (ECONOMIC only)
+  composite:            number;  // Dim 9 weighted aggregate
+}
+
+export interface StageDResult {
+  findingVectors: FindingVector[];
+  scoredVectors: ScoredFindingVector[];
+  globalScore: number;
+  actionBand: ActionBand;
+  actionBandResult: ActionBandResult;
+  dimensionScores: StageDDimensionScores;
+  walletTaintProvisional: boolean;   // true when dataSourceStatus = PIPELINE_REQUIRED
+  hardBlockReasons: string[];        // populated when any escalation fired
+  cortexReviewFlagged: boolean;      // true when multiple PROBABLE vectors
+  attestationPayload: AttestationPayload;
+  tierLabel: 'ADVISORY';
+  stageDRunId: string;
+  completedAt: number;
+}
+
+export interface FullHeparRunResult {
+  stageA: StageAResult;
+  stageB: StageBResult;
+  stageC: StageCResult;
+  stageD: StageDResult;
+  heparRunId: string;
+  protocolId: string;
+  tierLabel: 'ADVISORY';
+  completedAt: number;
+}
+
+// ---------------------------------------------------------------------------
+// Private: simple djb2-xor hash for deterministic merkle root
+// ---------------------------------------------------------------------------
+
+function djb2Hash(s: string): number {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) {
+    h = (((h << 5) + h) ^ s.charCodeAt(i)) >>> 0;
+  }
+  return h >>> 0;
+}
+
+function buildEvidenceMerkleRoot(
+  scoredVectors: ScoredFindingVector[],
+  runIds: string[]
+): string {
+  const parts = [
+    ...scoredVectors.map(sv => `${sv.vector.vectorId}:${sv.riskScore.toFixed(4)}`),
+    ...runIds
+  ];
+  const content = parts.join('|');
+  return djb2Hash(content).toString(16).padStart(8, '0');
+}
+
+function generateRunId(): string {
+  return `STAGE-D-${Date.now()}-${Math.floor(Math.random() * 0xffff).toString(16).padStart(4, '0')}`;
+}
+
+// ---------------------------------------------------------------------------
+// Step 1: Build FindingVectors from Stage C allFindings
+// ---------------------------------------------------------------------------
+
+interface VectorAccumulator {
+  maxSeverity: number;
+  totalRepro: number;
+  findingCount: number;
+  sample: AgentFinding;
+}
+
+function buildVectorsFromStageC(
+  stageCResult: StageCResult
+): {
+  vectors: FindingVector[];
+  vectorAgentsMap: Map<string, Set<AgentId>>;
+} {
+  const accMap = new Map<string, VectorAccumulator>();
+  const vectorAgentsMap = new Map<string, Set<AgentId>>();
+
+  for (const finding of stageCResult.allFindings) {
+    // Track which agent(s) produced this vectorId
+    let agentSet = vectorAgentsMap.get(finding.vectorId);
+    if (!agentSet) {
+      agentSet = new Set<AgentId>();
+      vectorAgentsMap.set(finding.vectorId, agentSet);
+    }
+    agentSet.add(finding.agentId);
+
+    // Accumulate per vectorId
+    const existing = accMap.get(finding.vectorId);
+    if (existing) {
+      existing.maxSeverity = Math.max(existing.maxSeverity, finding.severity);
+      existing.totalRepro  += finding.reproScore;
+      existing.findingCount++;
+    } else {
+      accMap.set(finding.vectorId, {
+        maxSeverity:  finding.severity,
+        totalRepro:   finding.reproScore,
+        findingCount: 1,
+        sample:       finding
+      });
+    }
+  }
+
+  const vectors: FindingVector[] = [];
+  for (const [vectorId, acc] of accMap) {
+    const agentsFound     = vectorAgentsMap.get(vectorId)!.size;
+    const consensus       = agentsFound / TOTAL_AGENTS;
+    const repro           = acc.totalRepro / acc.findingCount;
+    const convergenceLabel = getConvergenceLabel(agentsFound, TOTAL_AGENTS);
+
+    vectors.push({
+      vectorId,
+      severity:                 acc.maxSeverity,
+      consensus,
+      repro,
+      proofStatus:              'unknown/timeout',  // default; Step 2 may override
+      estLoss:                  acc.sample.estLoss,
+      agentsFound,
+      totalAgents:              TOTAL_AGENTS,
+      reproducibilityTraceIds:  [acc.sample.traceId],
+      description:              acc.sample.description,
+      exploitPreconditions:     acc.sample.exploitPreconditions,
+      convergenceLabel
+    });
+  }
+
+  return { vectors, vectorAgentsMap };
+}
+
+// ---------------------------------------------------------------------------
+// Step 2: Apply Stage B proof status to Stage C vectors
+// Priority: counterexample-found > proved-safe > unknown/timeout
+// ---------------------------------------------------------------------------
+
+function applyStageB(
+  vectors: FindingVector[],
+  vectorAgentsMap: Map<string, Set<AgentId>>,
+  stageBResult: StageBResult
+): FindingVector[] {
+  // Work on mutable copies
+  const result: FindingVector[] = vectors.map(v => ({ ...v }));
+
+  // Apply proved-safe first (lower priority), then counterexample-found (wins)
+  const orderedResults = [
+    ...stageBResult.invariantResults.filter(r => r.result === 'proved-safe'),
+    ...stageBResult.invariantResults.filter(r => r.result === 'counterexample-found')
+  ];
+
+  // Track which invariant classes have been applied per vector
+  // to avoid double-applying the same class multiple times.
+  // Because multiple invariants of the same class may exist (e.g. 4 AUTHORIZATION checks),
+  // we apply the worst result per class to each matching vector.
+
+  // Build a summary: worst result per invariant class.
+  // Sentinel -1 = not yet seen; proved-safe (0) must win over sentinel,
+  // so we cannot initialise to 0 (proved-safe priority) -- use Map instead.
+  const classPriority = new Map<InvariantClass, number>();
+  const classResult   = new Map<InvariantClass, SymbolicResult>();
+
+  for (const inv of stageBResult.invariantResults) {
+    const cur =
+      inv.result === 'counterexample-found' ? 2 :
+      inv.result === 'unknown/timeout'      ? 1 : 0;
+    const existing = classPriority.get(inv.invariantClass) ?? -1;
+    if (cur > existing) {
+      classPriority.set(inv.invariantClass, cur);
+      classResult.set(inv.invariantClass,   inv.result);
+    }
+  }
+
+  // Apply worst result per class to matching Stage C vectors
+  for (const [cls, worstResult] of classResult.entries()) {
+    const targetAgent = INVARIANT_CLASS_TO_AGENT[cls];
+
+    for (const vec of result) {
+      const agentSet = vectorAgentsMap.get(vec.vectorId);
+      if (!agentSet?.has(targetAgent)) continue;
+
+      if (worstResult === 'counterexample-found') {
+        vec.proofStatus = 'counterexample-found';
+        // Take max severity between Stage B default and Stage C finding
+        vec.severity = Math.max(vec.severity, STAGE_B_CEX_DEFAULT_SEVERITY);
+      } else if (worstResult === 'proved-safe') {
+        // Symbolic proof of safety overrides stochastic finding -- only if not already CEX
+        if (vec.proofStatus !== 'counterexample-found') {
+          vec.proofStatus = 'proved-safe';
+        }
+      }
+      // unknown/timeout: no change (proofStatus already 'unknown/timeout' by default)
+    }
+  }
+
+  // Stage B counterexample-found with NO matching Stage C vector -> create new FindingVector
+  for (const [cls, worstResult] of classResult.entries()) {
+    if (worstResult !== 'counterexample-found') continue;
+    const targetAgent = INVARIANT_CLASS_TO_AGENT[cls];
+
+    // Check if any existing result vector was matched by this class
+    const alreadyMerged = result.some(v => {
+      const agentSet = vectorAgentsMap.get(v.vectorId);
+      return agentSet?.has(targetAgent);
+    });
+
+    if (!alreadyMerged) {
+      // Find the invariant details for a description
+      const repInvariant = stageBResult.invariantResults.find(
+        i => i.invariantClass === cls && i.result === 'counterexample-found'
+      );
+      const description = repInvariant
+        ? `Stage B counterexample: ${repInvariant.description}`
+        : `Stage B counterexample found for invariant class ${cls}`;
+      const vectorId = `STAGE-B-${cls}-CEX`;
+
+      result.push({
+        vectorId,
+        severity:                STAGE_B_CEX_DEFAULT_SEVERITY,
+        consensus:               0,   // not found by any Monte Carlo agent
+        repro:                   0,
+        proofStatus:             'counterexample-found',
+        estLoss:                 { low: 0, high: 500_000 },
+        agentsFound:             0,
+        totalAgents:             TOTAL_AGENTS,
+        reproducibilityTraceIds: repInvariant ? [repInvariant.invariantId] : [],
+        description,
+        exploitPreconditions:    repInvariant?.counterexample ?? [],
+        convergenceLabel:        getConvergenceLabel(0, TOTAL_AGENTS)
+      });
+      // Register in vectorAgentsMap so subsequent classes don't duplicate
+      vectorAgentsMap.set(vectorId, new Set<AgentId>());
+    }
+  }
+
+  return result;
+}
+
+// ---------------------------------------------------------------------------
+// Step 3+4: Score vectors and compute global score
+// ---------------------------------------------------------------------------
+
+interface GlobalScoreResult {
+  scoredVectors:      ScoredFindingVector[];
+  base:               number;
+  criticalBonus:      number;
+  uncertaintyPenalty: number;
+  globalScore:        number;
+  avgCoverageRatio:   number;
+  avgUnknownRatio:    number;
+}
+
+function computeGlobalScore(
+  vectors: FindingVector[],
+  stageCResult: StageCResult
+): GlobalScoreResult {
+  // Score each vector
+  const scoredVectors: ScoredFindingVector[] = vectors.map(v => ({
+    vector:    v,
+    riskScore: scoreVector(v)
+  }));
+
+  // base = sum of all risk(v)
+  const base = scoredVectors.reduce((s, sv) => s + sv.riskScore, 0);
+
+  // criticalBonus = sum(severity × 0.5) for vectors where consensus = 1.0
+  const criticalBonus = scoredVectors.reduce((s, sv) => {
+    return sv.vector.consensus >= 1.0 ? s + sv.vector.severity * 0.5 : s;
+  }, 0);
+
+  // Uncertainty penalty from Stage C agent metrics
+  const agentResults = stageCResult.agentResults;
+  const avgCoverageRatio =
+    agentResults.reduce((s, r) => s + r.coverageRatio, 0) / agentResults.length;
+  const avgUnknownRatio =
+    agentResults.reduce((s, r) => s + r.unknownRatio, 0) / agentResults.length;
+
+  // uncertaintyPenalty = (1 - avgCoverageRatio) * 10 + avgUnknownRatio * 15
+  const uncertaintyPenalty = (1 - avgCoverageRatio) * 10 + avgUnknownRatio * 15;
+
+  const rawScore = base + criticalBonus - uncertaintyPenalty;
+  const globalScore = Math.max(0, Math.min(100, rawScore));
+
+  return { scoredVectors, base, criticalBonus, uncertaintyPenalty, globalScore, avgCoverageRatio, avgUnknownRatio };
+}
+
+// ---------------------------------------------------------------------------
+// Step 5: Compute 7 dimension scores
+// ---------------------------------------------------------------------------
+
+interface DimensionResult {
+  dimensionScores:     StageDDimensionScores;
+  walletTaintProvisional: boolean;
+}
+
+function computeDimensionScores(
+  stageAResult: StageAResult,
+  stageCResult: StageCResult
+): DimensionResult {
+  // Dims 1-6 directly from Stage A
+  const {
+    byteCodePrivilege, proxyAdmin, lpUnlock, walletTaint,
+    accountingInvariant, inputValidation
+  } = stageAResult.dimensionScores;
+  const walletTaintProvisional = stageAResult.dataSourceStatus.walletTaint === 'PIPELINE_REQUIRED';
+
+  // Dim 7: Adversarial Execution
+  // = 100 - (avgSeverity across ARITHMETIC, REENTRANCY, ECONOMIC, STATE agents), floor 0
+  const adversarialFindings = stageCResult.agentResults
+    .filter(r => (ADVERSARIAL_AGENTS as string[]).includes(r.agentId))
+    .flatMap(r => r.findings);
+
+  const adversarialAvgSeverity = adversarialFindings.length > 0
+    ? adversarialFindings.reduce((s, f) => s + f.severity, 0) / adversarialFindings.length
+    : 0;
+
+  const adversarialExecution = Math.max(0, 100 - adversarialAvgSeverity * 10);
+
+  // Dim 8: Economic Viability
+  // = 100 - (maxSeverity from ECONOMIC agent only), floor 0
+  const economicFindings = stageCResult.agentResults
+    .filter(r => r.agentId === 'ECONOMIC')
+    .flatMap(r => r.findings);
+
+  const maxEconomicSeverity = economicFindings.length > 0
+    ? Math.max(...economicFindings.map(f => f.severity))
+    : 0;
+
+  const economicViability = Math.max(0, 100 - maxEconomicSeverity * 10);
+
+  // Dim 9: Composite (weighted sum of Dims 1-8)
+  // Weights: privilege 17%, proxyAdmin 15%, lpUnlock 13%, walletTaint 17%,
+  //          accountingInvariant 10%, inputValidation 8%,
+  //          adversarial 12%, economicViability 8%  (sum = 1.00)
+  const composite =
+    byteCodePrivilege    * 0.17 +
+    proxyAdmin           * 0.15 +
+    lpUnlock             * 0.13 +
+    walletTaint          * 0.17 +
+    accountingInvariant  * 0.10 +
+    inputValidation      * 0.08 +
+    adversarialExecution * 0.12 +
+    economicViability    * 0.08;
+
+  return {
+    dimensionScores: {
+      byteCodePrivilege,
+      proxyAdmin,
+      lpUnlock,
+      walletTaint,
+      accountingInvariant,
+      inputValidation,
+      adversarialExecution,
+      economicViability,
+      composite
+    },
+    walletTaintProvisional
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Step 6: Build attestation payload
+// ---------------------------------------------------------------------------
+
+function buildAttestationPayload(
+  protocolId: string,
+  codeHash: string,
+  heparRunId: string,
+  globalScore: number,
+  scoredVectors: ScoredFindingVector[],
+  avgCoverageRatio: number,
+  avgUnknownRatio: number,
+  evidenceMerkleRoot: string
+): AttestationPayload {
+  // Top 5 vectors by risk score, descending
+  const top5 = [...scoredVectors]
+    .sort((a, b) => b.riskScore - a.riskScore)
+    .slice(0, 5);
+
+  return {
+    protocolId,
+    codeHash,
+    dependencyHashes: [],
+    heparRunId,
+    riskScore: globalScore,
+    topVectors: top5.map(sv => ({
+      vectorId:       sv.vector.vectorId,
+      severity:       sv.vector.severity,
+      consensusRate:  sv.vector.consensus,
+      convergenceLabel: sv.vector.convergenceLabel
+        ?? getConvergenceLabel(sv.vector.agentsFound, sv.vector.totalAgents)
+    })),
+    coverageRatio:     avgCoverageRatio,
+    unknownRatio:      avgUnknownRatio,
+    evidenceMerkleRoot,
+    signerSet:         ['ADVISORY_STUB'],
+    signerThreshold:   1,
+    attestedAt:        new Date().toISOString()
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Step 4: Assign action band with Stage A / Stage B escalation overrides
+// ---------------------------------------------------------------------------
+
+interface ActionBandDecision {
+  finalBand:       ActionBand;
+  actionBandResult: ActionBandResult;
+  hardBlockReasons: string[];
+  cortexReviewFlagged: boolean;
+}
+
+function determineActionBand(
+  globalScore: number,
+  findingVectors: FindingVector[],
+  stageAResult: StageAResult,
+  stageBResult: StageBResult
+): ActionBandDecision {
+  // Base result from the scoring model (handles CERTAIN+CRITICAL, HIGH+HIGH, multiple PROBABLE)
+  const baseResult = assignActionBand(globalScore, findingVectors);
+
+  let finalBand: ActionBand = baseResult.band;
+  const hardBlockReasons: string[] = [];
+
+  // Rule 1: Stage A hard-block candidates -> unconditional HARDBLOCK
+  if (stageAResult.hardBlockCandidates.length > 0) {
+    finalBand = 'HARDBLOCK';
+    hardBlockReasons.push(
+      `Stage A deterministic hard-block: ${stageAResult.hardBlockCandidates.length} ` +
+      `finding(s) with severity >= 8 or explicit hard-block flag`
+    );
+  }
+
+  // Rule 2: Stage B hardBlockFromSymbolic -> unconditional HARDBLOCK
+  if (stageBResult.hardBlockFromSymbolic) {
+    finalBand = 'HARDBLOCK';
+    hardBlockReasons.push(
+      'Stage B symbolic hard-block: counterexample found for AUTHORIZATION, UPGRADE, or ACCOUNTING invariant'
+    );
+  }
+
+  // Collect CERTAIN+CRITICAL reasons from the scoring model as additional hardBlock reasons
+  for (const reason of baseResult.reasons) {
+    if (reason.rule === 'CERTAIN_CRITICAL_HARDBLOCK') {
+      hardBlockReasons.push(reason.detail);
+      finalBand = 'HARDBLOCK';
+    }
+  }
+
+  // Build final ActionBandResult with corrected band
+  const finalActionBandResult: ActionBandResult = {
+    band:               finalBand,
+    scoreBand:          baseResult.scoreBand,
+    escalated:          baseResult.escalated || hardBlockReasons.length > 0,
+    requiresCortexReview: baseResult.requiresCortexReview,
+    reasons:            baseResult.reasons,
+    triggeringVectors:  baseResult.triggeringVectors
+  };
+
+  return {
+    finalBand,
+    actionBandResult: finalActionBandResult,
+    hardBlockReasons,
+    cortexReviewFlagged: baseResult.requiresCortexReview
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Main: runStageD
+// ---------------------------------------------------------------------------
+
+export function runStageD(input: StageDInput): StageDResult {
+  const {
+    stageAResult,
+    stageBResult,
+    stageCResult,
+    protocolId,
+    codeHash,
+    runId
+  } = input;
+
+  const stageDRunId = runId ?? generateRunId();
+
+  // Step 1: Build finding vectors from Stage C
+  const { vectors: stageCVectors, vectorAgentsMap } = buildVectorsFromStageC(stageCResult);
+
+  // Step 2: Apply Stage B proof status (may add new vectors for B-only CEX findings)
+  const findingVectors = applyStageB(stageCVectors, vectorAgentsMap, stageBResult);
+
+  // Step 3+4: Score and compute global score
+  const {
+    scoredVectors,
+    base,
+    criticalBonus,
+    uncertaintyPenalty,
+    globalScore,
+    avgCoverageRatio,
+    avgUnknownRatio
+  } = computeGlobalScore(findingVectors, stageCResult);
+
+  // Step 4: Assign action band
+  const {
+    finalBand,
+    actionBandResult,
+    hardBlockReasons,
+    cortexReviewFlagged
+  } = determineActionBand(globalScore, findingVectors, stageAResult, stageBResult);
+
+  // Step 5: Compute 9 dimension scores
+  const { dimensionScores, walletTaintProvisional } =
+    computeDimensionScores(stageAResult, stageCResult);
+
+  // Step 6: Build attestation payload
+  const heparRunId =
+    `${stageAResult.stageARunId}+${stageBResult.stageBRunId}+${stageCResult.stageCRunId}+${stageDRunId}`;
+
+  const evidenceMerkleRoot = buildEvidenceMerkleRoot(scoredVectors, [
+    stageAResult.stageARunId,
+    stageBResult.stageBRunId,
+    stageCResult.stageCRunId,
+    stageDRunId
+  ]);
+
+  const attestationPayload = buildAttestationPayload(
+    protocolId,
+    codeHash,
+    heparRunId,
+    globalScore,
+    scoredVectors,
+    avgCoverageRatio,
+    avgUnknownRatio,
+    evidenceMerkleRoot
+  );
+
+  return {
+    findingVectors,
+    scoredVectors,
+    globalScore,
+    actionBand:      finalBand,
+    actionBandResult,
+    dimensionScores,
+    walletTaintProvisional,
+    hardBlockReasons,
+    cortexReviewFlagged,
+    attestationPayload,
+    tierLabel:   'ADVISORY',
+    stageDRunId,
+    completedAt: Date.now()
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Convenience wrapper: runHepar (assembles all four stages)
+// ---------------------------------------------------------------------------
+
+export function runHepar(
+  stageAResult: StageAResult,
+  stageBResult: StageBResult,
+  stageCResult: StageCResult,
+  protocolId: string = 'UNKNOWN',
+  codeHash: string   = '0x0',
+  runId?: string
+): FullHeparRunResult {
+  const stageDInput: StageDInput = {
+    stageAResult,
+    stageBResult,
+    stageCResult,
+    protocolId,
+    codeHash,
+    runId
+  };
+  const stageD = runStageD(stageDInput);
+  const heparRunId = stageD.attestationPayload.heparRunId;
+
+  return {
+    stageA:     stageAResult,
+    stageB:     stageBResult,
+    stageC:     stageCResult,
+    stageD,
+    heparRunId,
+    protocolId,
+    tierLabel:   'ADVISORY',
+    completedAt: Date.now()
+  };
+}
