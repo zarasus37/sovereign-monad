@@ -1,6 +1,6 @@
 {
   "calibrationRunId": "CAL-003",
-  "runAt": "2026-05-02T09:57:05.835Z",
+  "runAt": "2026-05-02T18:33:21.493Z",
   "heparTier": "ADVISORY",
   "purpose": "Gap closure verification: PROBABLE_CRITICAL_RESTRICT rule added to actionBand.ts. Confirms bZx and Harvest now correctly reach RESTRICTED (not ALLOW) when 3/5 agents report severity-9 vectors (flash-loan oracle manipulation class).",
   "gapClosed": "SCORING_UNDERWEIGHT_PARTIAL_CONSENSUS_ECONOMIC",

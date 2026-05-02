@@ -12,6 +12,7 @@
     "calibrate:intelligence:live": "ts-node src/tools/calibrate-organ-intelligence.ts --mode live --config config/runtime.json"
   },
   "dependencies": {
+    "@azure/cosmos": "^4.9.3",
     "dotenv": "^16.4.5",
     "pino": "^8.21.0"
   },

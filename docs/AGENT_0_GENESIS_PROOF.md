@@ -24,7 +24,7 @@ Mainnet proof:
 
 ## Identity
 
-- name: Cristobal Colon
+- name: Cris Colon
 - aliases: `xkryptic`, `LittleGnostic`
 - handle: `Agent 0 - Genesis Entry`
 - agent ID seed: `xkryptic-agent-0-genesis`

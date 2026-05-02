@@ -1,14 +1,14 @@
 {
   "calibrationRunId": "CAL-001",
-  "runAt": "2026-05-02T09:57:05.816Z",
+  "runAt": "2026-05-02T18:33:21.481Z",
   "heparTier": "ADVISORY",
   "purpose": "§9 Metric 1 — first-pass critical-vector detection recall on known incidents",
   "note": "Findings constructed from post-mortem documentation, not live bytecode analysis. Advisory tier only. No precision/recall numbers asserted.",
   "protocols": [
     {
       "protocolId": "EULER-FINANCE-2023",
-      "heparRunId": "stageA-1777715825793-advisory+stageB-1777715825793-advisory+STAGE-C-1777715825793-e619+STAGE-D-1777715825797-b9f1",
-      "completedAt": "2026-05-02T09:57:05.803Z",
+      "heparRunId": "stageA-1777746801465-advisory+stageB-1777746801465-advisory+STAGE-C-1777746801465-dbf5+STAGE-D-1777746801467-bc1b",
+      "completedAt": "2026-05-02T18:33:21.472Z",
       "groundTruth": {
         "name": "Euler Finance",
         "date": "2023-03-13",
@@ -46,7 +46,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825793-advisory",
+          "runId": "stageA-1777746801465-advisory",
           "hardBlockCandidates": [
             {
               "surface": "BYTECODE_PRIVILEGE",
@@ -72,7 +72,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825793-advisory",
+          "runId": "stageB-1777746801465-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": true,
           "summary": {
@@ -105,7 +105,7 @@
           ]
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825793-e619",
+          "runId": "STAGE-C-1777746801465-dbf5",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL-EULER-2023-03-13",
           "totalFindings": 8,
@@ -174,7 +174,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825797-b9f1",
+          "runId": "STAGE-D-1777746801467-bc1b",
           "actionBand": "HARDBLOCK",
           "globalScore": 34.951417323187925,
           "hardBlockReasons": [
@@ -304,7 +304,7 @@
           ],
           "attestationPayload": {
             "riskScore": 34.951417323187925,
-            "evidenceMerkleRoot": "16c38241",
+            "evidenceMerkleRoot": "95fac8b7",
             "coverageRatio": 0.5433746916800737,
             "unknownRatio": 0.21482197290752084,
             "topVectors": [
@@ -472,8 +472,8 @@
     },
     {
       "protocolId": "CREAM-FINANCE-2021",
-      "heparRunId": "stageA-1777715825808-advisory+stageB-1777715825808-advisory+STAGE-C-1777715825808-8d94+STAGE-D-1777715825809-4c50",
-      "completedAt": "2026-05-02T09:57:05.810Z",
+      "heparRunId": "stageA-1777746801475-advisory+stageB-1777746801475-advisory+STAGE-C-1777746801475-3be8+STAGE-D-1777746801475-494f",
+      "completedAt": "2026-05-02T18:33:21.476Z",
       "groundTruth": {
         "name": "Cream Finance",
         "date": "2021-10-27",
@@ -512,7 +512,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825808-advisory",
+          "runId": "stageA-1777746801475-advisory",
           "hardBlockCandidates": [
             {
               "surface": "BYTECODE_PRIVILEGE",
@@ -538,7 +538,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825808-advisory",
+          "runId": "stageB-1777746801475-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": false,
           "summary": {
@@ -571,7 +571,7 @@
           ]
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825808-8d94",
+          "runId": "STAGE-C-1777746801475-3be8",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL-CREAM-2021-10-27",
           "totalFindings": 13,
@@ -664,7 +664,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825809-4c50",
+          "runId": "STAGE-D-1777746801475-494f",
           "actionBand": "HARDBLOCK",
           "globalScore": 55.56671861626209,
           "hardBlockReasons": [
@@ -858,7 +858,7 @@
           ],
           "attestationPayload": {
             "riskScore": 55.56671861626209,
-            "evidenceMerkleRoot": "a9ace0dd",
+            "evidenceMerkleRoot": "bc04824c",
             "coverageRatio": 0.6260469415970147,
             "unknownRatio": 0.1749167199805379,
             "topVectors": [
@@ -1035,8 +1035,8 @@
     },
     {
       "protocolId": "NOMAD-BRIDGE-2022",
-      "heparRunId": "stageA-1777715825812-advisory+stageB-1777715825812-advisory+STAGE-C-1777715825812-1302+STAGE-D-1777715825812-918c",
-      "completedAt": "2026-05-02T09:57:05.812Z",
+      "heparRunId": "stageA-1777746801477-advisory+stageB-1777746801477-advisory+STAGE-C-1777746801477-8764+STAGE-D-1777746801479-6431",
+      "completedAt": "2026-05-02T18:33:21.479Z",
       "groundTruth": {
         "name": "Nomad Bridge",
         "date": "2022-08-01",
@@ -1074,7 +1074,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825812-advisory",
+          "runId": "stageA-1777746801477-advisory",
           "hardBlockCandidates": [
             {
               "surface": "PROXY_ADMIN",
@@ -1100,7 +1100,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825812-advisory",
+          "runId": "stageB-1777746801477-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": true,
           "summary": {
@@ -1143,7 +1143,7 @@
           ]
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825812-1302",
+          "runId": "STAGE-C-1777746801477-8764",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL-NOMAD-2022-08-01",
           "totalFindings": 11,
@@ -1236,7 +1236,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825812-918c",
+          "runId": "STAGE-D-1777746801479-6431",
           "actionBand": "HARDBLOCK",
           "globalScore": 43.606434223940596,
           "hardBlockReasons": [
@@ -1392,7 +1392,7 @@
           ],
           "attestationPayload": {
             "riskScore": 43.606434223940596,
-            "evidenceMerkleRoot": "4635ac4d",
+            "evidenceMerkleRoot": "850e78fd",
             "coverageRatio": 0.4939468521438538,
             "unknownRatio": 0.18886895316652955,
             "topVectors": [

@@ -1,6 +1,6 @@
 {
   "calibrationRunId": "CAL-004",
-  "runAt": "2026-05-02T09:57:05.860Z",
+  "runAt": "2026-05-02T18:33:21.497Z",
   "heparTier": "ADVISORY",
   "purpose": "§9 Metric 2 — False-positive rate precision baseline. Three clean, never-exploited protocols with extensive audit histories. Establishes FP=0 baseline before expanding to larger clean-protocol corpus.",
   "successCriteria": {
@@ -25,8 +25,8 @@
   "protocols": [
     {
       "protocolId": "UNISWAP-V3-2021",
-      "heparRunId": "stageA-1777715825838-advisory+stageB-1777715825838-advisory+STAGE-C-1777715825838-02e3+STAGE-D-1777715825838-ba2a",
-      "completedAt": "2026-05-02T09:57:05.839Z",
+      "heparRunId": "stageA-1777746801496-advisory+stageB-1777746801496-advisory+STAGE-C-1777746801496-872c+STAGE-D-1777746801496-b5fa",
+      "completedAt": "2026-05-02T18:33:21.496Z",
       "groundTruth": {
         "name": "Uniswap v3 Core",
         "date": "2021-05-05",
@@ -49,7 +49,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825838-advisory",
+          "runId": "stageA-1777746801496-advisory",
           "hardBlockCandidates": [],
           "dimensionScores": {
             "byteCodePrivilege": 95,
@@ -62,7 +62,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825838-advisory",
+          "runId": "stageB-1777746801496-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": false,
           "summary": {
@@ -74,7 +74,7 @@
           "counterexamplesFound": []
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825838-02e3",
+          "runId": "STAGE-C-1777746801496-872c",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL4-UNISWAP-V3-2021-05-05",
           "totalFindings": 5,
@@ -86,7 +86,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825838-ba2a",
+          "runId": "STAGE-D-1777746801496-b5fa",
           "actionBand": "ALLOW",
           "globalScore": 4.93739900094457,
           "hardBlockReasons": [],
@@ -174,7 +174,7 @@
           ],
           "attestationPayload": {
             "riskScore": 4.93739900094457,
-            "evidenceMerkleRoot": "7f0238a9",
+            "evidenceMerkleRoot": "6368cc43",
             "coverageRatio": 0.46588610066100955,
             "unknownRatio": 0.2620974670443684,
             "topVectors": [
@@ -262,8 +262,8 @@
     },
     {
       "protocolId": "AAVE-V3-2022",
-      "heparRunId": "stageA-1777715825840-advisory+stageB-1777715825840-advisory+STAGE-C-1777715825840-176f+STAGE-D-1777715825840-f770",
-      "completedAt": "2026-05-02T09:57:05.840Z",
+      "heparRunId": "stageA-1777746801496-advisory+stageB-1777746801497-advisory+STAGE-C-1777746801497-7bdb+STAGE-D-1777746801497-5461",
+      "completedAt": "2026-05-02T18:33:21.497Z",
       "groundTruth": {
         "name": "Aave v3 Core",
         "date": "2022-03-16",
@@ -289,7 +289,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825840-advisory",
+          "runId": "stageA-1777746801496-advisory",
           "hardBlockCandidates": [],
           "dimensionScores": {
             "byteCodePrivilege": 100,
@@ -302,7 +302,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825840-advisory",
+          "runId": "stageB-1777746801497-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": false,
           "summary": {
@@ -314,7 +314,7 @@
           "counterexamplesFound": []
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825840-176f",
+          "runId": "STAGE-C-1777746801497-7bdb",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL4-AAVE-V3-2022-03-16",
           "totalFindings": 6,
@@ -326,7 +326,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825840-f770",
+          "runId": "STAGE-D-1777746801497-5461",
           "actionBand": "ALLOW",
           "globalScore": 9.154838037197479,
           "hardBlockReasons": [],
@@ -427,7 +427,7 @@
           ],
           "attestationPayload": {
             "riskScore": 9.154838037197479,
-            "evidenceMerkleRoot": "7bf2f1e1",
+            "evidenceMerkleRoot": "89a18b35",
             "coverageRatio": 0.5621772468090057,
             "unknownRatio": 0.3071289620595053,
             "topVectors": [
@@ -515,8 +515,8 @@
     },
     {
       "protocolId": "COMPOUND-V3-2022",
-      "heparRunId": "stageA-1777715825841-advisory+stageB-1777715825841-advisory+STAGE-C-1777715825841-7e8b+STAGE-D-1777715825841-3d2e",
-      "completedAt": "2026-05-02T09:57:05.841Z",
+      "heparRunId": "stageA-1777746801497-advisory+stageB-1777746801497-advisory+STAGE-C-1777746801497-5465+STAGE-D-1777746801497-2e90",
+      "completedAt": "2026-05-02T18:33:21.497Z",
       "groundTruth": {
         "name": "Compound v3 (Comet)",
         "date": "2022-08-26",
@@ -539,7 +539,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825841-advisory",
+          "runId": "stageA-1777746801497-advisory",
           "hardBlockCandidates": [],
           "dimensionScores": {
             "byteCodePrivilege": 95,
@@ -552,7 +552,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825841-advisory",
+          "runId": "stageB-1777746801497-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": false,
           "summary": {
@@ -564,7 +564,7 @@
           "counterexamplesFound": []
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825841-7e8b",
+          "runId": "STAGE-C-1777746801497-5465",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL4-COMPOUND-V3-2022-08-26",
           "totalFindings": 6,
@@ -576,7 +576,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825841-3d2e",
+          "runId": "STAGE-D-1777746801497-2e90",
           "actionBand": "ALLOW",
           "globalScore": 9.211768433251416,
           "hardBlockReasons": [],
@@ -677,7 +677,7 @@
           ],
           "attestationPayload": {
             "riskScore": 9.211768433251416,
-            "evidenceMerkleRoot": "314ac2bd",
+            "evidenceMerkleRoot": "10d84009",
             "coverageRatio": 0.5200503095239399,
             "unknownRatio": 0.20191564413253218,
             "topVectors": [

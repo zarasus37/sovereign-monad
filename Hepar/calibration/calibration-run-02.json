@@ -1,6 +1,6 @@
 {
   "calibrationRunId": "CAL-002",
-  "runAt": "2026-05-02T09:57:05.828Z",
+  "runAt": "2026-05-02T18:33:21.489Z",
   "heparTier": "ADVISORY",
   "purpose": "Stage C independence stress test: flash loan + oracle manipulation class. Stage A deliberately minimal. Verifies whether Stage C alone can drive HARDBLOCK/DENY.",
   "successCriteria": {
@@ -39,8 +39,8 @@
   "protocols": [
     {
       "protocolId": "BZX-2020-02",
-      "heparRunId": "stageA-1777715825821-advisory+stageB-1777715825821-advisory+STAGE-C-1777715825821-38be+STAGE-D-1777715825821-3672",
-      "completedAt": "2026-05-02T09:57:05.822Z",
+      "heparRunId": "stageA-1777746801485-advisory+stageB-1777746801485-advisory+STAGE-C-1777746801485-8373+STAGE-D-1777746801485-ffa4",
+      "completedAt": "2026-05-02T18:33:21.486Z",
       "groundTruth": {
         "name": "bZx Protocol",
         "date": "2020-02-15",
@@ -71,7 +71,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825821-advisory",
+          "runId": "stageA-1777746801485-advisory",
           "hardBlockCandidates": [],
           "dimensionScores": {
             "byteCodePrivilege": 100,
@@ -84,7 +84,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825821-advisory",
+          "runId": "stageB-1777746801485-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": false,
           "summary": {
@@ -96,7 +96,7 @@
           "counterexamplesFound": []
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825821-38be",
+          "runId": "STAGE-C-1777746801485-8373",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL2-BZX-2020-02-15",
           "totalFindings": 9,
@@ -165,7 +165,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825821-3672",
+          "runId": "STAGE-D-1777746801485-ffa4",
           "actionBand": "RESTRICTED",
           "globalScore": 18.40486186798787,
           "hardBlockReasons": [],
@@ -279,7 +279,7 @@
           ],
           "attestationPayload": {
             "riskScore": 18.40486186798787,
-            "evidenceMerkleRoot": "a81c8967",
+            "evidenceMerkleRoot": "76802d31",
             "coverageRatio": 0.46453320348635313,
             "unknownRatio": 0.2537202333472669,
             "topVectors": [
@@ -418,8 +418,8 @@
     },
     {
       "protocolId": "HARVEST-FINANCE-2020",
-      "heparRunId": "stageA-1777715825824-advisory+stageB-1777715825824-advisory+STAGE-C-1777715825824-3430+STAGE-D-1777715825825-8a3f",
-      "completedAt": "2026-05-02T09:57:05.825Z",
+      "heparRunId": "stageA-1777746801487-advisory+stageB-1777746801487-advisory+STAGE-C-1777746801487-995c+STAGE-D-1777746801487-a605",
+      "completedAt": "2026-05-02T18:33:21.487Z",
       "groundTruth": {
         "name": "Harvest Finance",
         "date": "2020-10-26",
@@ -450,7 +450,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825824-advisory",
+          "runId": "stageA-1777746801487-advisory",
           "hardBlockCandidates": [],
           "dimensionScores": {
             "byteCodePrivilege": 100,
@@ -463,7 +463,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825824-advisory",
+          "runId": "stageB-1777746801487-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": false,
           "summary": {
@@ -475,7 +475,7 @@
           "counterexamplesFound": []
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825824-3430",
+          "runId": "STAGE-C-1777746801487-995c",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL2-HARVEST-2020-10-26",
           "totalFindings": 9,
@@ -544,7 +544,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825825-8a3f",
+          "runId": "STAGE-D-1777746801487-a605",
           "actionBand": "RESTRICTED",
           "globalScore": 19.195834164539665,
           "hardBlockReasons": [],
@@ -658,7 +658,7 @@
           ],
           "attestationPayload": {
             "riskScore": 19.195834164539665,
-            "evidenceMerkleRoot": "cdc0b8fe",
+            "evidenceMerkleRoot": "0c8c4d73",
             "coverageRatio": 0.5981529495120048,
             "unknownRatio": 0.28953524426091465,
             "topVectors": [
@@ -797,8 +797,8 @@
     },
     {
       "protocolId": "MANGO-MARKETS-2022",
-      "heparRunId": "stageA-1777715825826-advisory+stageB-1777715825826-advisory+STAGE-C-1777715825826-dbcc+STAGE-D-1777715825826-8d52",
-      "completedAt": "2026-05-02T09:57:05.826Z",
+      "heparRunId": "stageA-1777746801488-advisory+stageB-1777746801488-advisory+STAGE-C-1777746801488-bda1+STAGE-D-1777746801488-74f7",
+      "completedAt": "2026-05-02T18:33:21.488Z",
       "groundTruth": {
         "name": "Mango Markets",
         "date": "2022-10-11",
@@ -829,7 +829,7 @@
       },
       "heparResult": {
         "stageA": {
-          "runId": "stageA-1777715825826-advisory",
+          "runId": "stageA-1777746801488-advisory",
           "hardBlockCandidates": [],
           "dimensionScores": {
             "byteCodePrivilege": 100,
@@ -842,7 +842,7 @@
           "walletTaintStatus": "PIPELINE_REQUIRED"
         },
         "stageB": {
-          "runId": "stageB-1777715825826-advisory",
+          "runId": "stageB-1777746801488-advisory",
           "engineStatus": "STUB",
           "hardBlockFromSymbolic": false,
           "summary": {
@@ -854,7 +854,7 @@
           "counterexamplesFound": []
         },
         "stageC": {
-          "runId": "STAGE-C-1777715825826-dbcc",
+          "runId": "STAGE-C-1777746801488-bda1",
           "executionStatus": "STUB",
           "masterSeed": "HEPAR-CAL2-MANGO-2022-10-11",
           "totalFindings": 19,
@@ -1003,7 +1003,7 @@
           ]
         },
         "stageD": {
-          "runId": "STAGE-D-1777715825826-8d52",
+          "runId": "STAGE-D-1777746801488-74f7",
           "actionBand": "HARDBLOCK",
           "globalScore": 57.84149625489191,
           "hardBlockReasons": [
@@ -1197,7 +1197,7 @@
           ],
           "attestationPayload": {
             "riskScore": 57.84149625489191,
-            "evidenceMerkleRoot": "07563f1a",
+            "evidenceMerkleRoot": "268f4ec3",
             "coverageRatio": 0.5361149733699858,
             "unknownRatio": 0.28785689858719704,
             "topVectors": [
