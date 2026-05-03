@@ -1,4 +1,4 @@
-﻿# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
+# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
 
 > Local mirror kept in `monad-mev` for operator convenience.
 > Canonical maintenance target: `C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md`
@@ -443,7 +443,7 @@ These should be treated as an opening funnel component, not merely a later-layer
 
 - Agent 0 guarded-live progression: keep the current on-chain behavioral proof as record-only, use shadow-paper markout analysis for the first 50 to 100 would-have trades, then require explicit operator review before any funded trading authority.
 - High-Fidelity DeFi Gaming: treat MonadSpin as the umbrella GameFi / gamified environment rail, not a slot-first product thesis; final gameplay, economy, fairness, and agent-role specifications remain pending.
-- Six-organ institutional depth: `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` are accepted as institutional-depth organ tracks with analysis-mode implementations and further calibration required before live authority.
+- Six-organ institutional depth: `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` are accepted as institutional-depth organ tracks. Five organs (`Hepar`, `Cortex`, `Synapse`, `Pneuma`, `Vox`) are LIVE at Advisory Tier and active in the autonomous Commercial Intelligence Pipeline. `Cardia` remains pending funded activation.
 - Commercial intelligence rails: Hepar forensic reports, risk API/feed packaging, LightVerify certification, and Data Rail licensing are accepted as planned revenue surfaces, subject to activation discipline and evidence quality controls.
 
 ## 6.1.1 Completion Reading
@@ -502,7 +502,7 @@ This means the architecture and local analysis stack are materially advanced. It
 | Live Agent Behavioral Loop | COMPLETE / LIVE MAINNET PROOF | `emergence-claim-core` now contains Agent 0 full IPIP-NEO + SD3 profile encoding, deterministic facet-level routing, Dove flags, live Monad decision preparation, and a deployed `EmergenceRecorder`; Agent 0 profile registration and one behavioral claim are both mined on Monad mainnet |
 | Agent 0 Trading Evaluation Path | PLANNED / SHADOW-PAPER ONLY | Agent 0 may be evaluated through deterministic shadow-paper markouts against `execution.execution-plan` events; no real capital authority is granted until the first sample window is reviewed and funded `Cardia` activation gates are satisfied |
 | High-Fidelity DeFi Gaming | ACCEPTED DESIGN DIRECTION / SPEC PENDING | MonadSpin is now the umbrella GameFi / gamified environment rail; transitional GameFi control scaffolds may support state and operator flow, but no final high-fidelity game product is live |
-| Six-Organ Institutional Depth | LOCAL ANALYSIS SURFACE ONLY | each opening organ has an institutional-depth analysis standard; current outputs are advisory and auditable, not autonomous live authority |
+| Six-Organ Institutional Depth | LIVE AT ADVISORY TIER | `Hepar`, `Cortex`, `Synapse`, `Pneuma`, and `Vox` are LIVE at Advisory Tier and integrated into the autonomous Commercial Intelligence Pipeline. `Cardia` remains pending capital activation. |
 
 ---
 
@@ -730,7 +730,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 
 **Canonical Name:** Sovereign Agent Intelligence
 **Role:** runtime for autonomous agents
-**Status:** LOCAL ANALYSIS SURFACE COMPLETE / LIVE PENDING
+**Status:** FIVE ORGANS LIVE AT ADVISORY TIER / FULL RUNTIME PENDING
 
 **What is done:**
 
@@ -743,11 +743,11 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - physiological survival lessons and cortical overlay discipline captured from body-level coordination
 - organ runtime scaffold exists
 - zero-capital vs capital-gated build flow defined
-- `Synapse` implemented in analysis mode
-- `Hepar` implemented in analysis mode
-- `Cortex` implemented in analysis mode
-- `Vox` implemented in analysis mode
-- `Pneuma` implemented in analysis mode
+- `Synapse` live at Advisory tier
+- `Hepar` live at Advisory tier
+- `Cortex` live at Advisory tier
+- `Vox` live at Advisory tier
+- `Pneuma` live at Advisory tier
 - `Cardia` simulation and band logic implemented in analysis mode
 - orchestration hardening implemented in analysis mode
 - human-agent participation boundary system implemented in analysis mode
@@ -763,7 +763,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - funded `Cardia` activation
 - live mandate execution and sustained operating record
 
-**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The cortical control overlay is defined in `docs/CORTICAL_OVERLAY_MODEL.md` and maps the existing intelligence/control surfaces into four cognitive domains: perception, integration, memory-identity, and executive control. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, `Vox`, and `Pneuma` are now implemented in analysis mode inside `organ-runtime`, along with control-layer analysis for homeostasis, mixed-speed signaling, and immune/barrier/repair handling.
+**Current specification note:** the canonical opening organ set is `Cardia`, `Pneuma`, `Hepar`, `Cortex`, `Synapse`, and `Vox`, defined in `docs/FIRST_ORGAN_SET.md`. That document also captures the broader physiological rules the ecosystem should inherit: homeostasis, barrier systems, immune response, mixed-speed signaling, waste clearance, repair, and cadence. The cortical control overlay is defined in `docs/CORTICAL_OVERLAY_MODEL.md` and maps the existing intelligence/control surfaces into four cognitive domains: perception, integration, memory-identity, and executive control. The active build-order split between zero-capital work and capital-gated work is defined in `docs/BUILD_EXECUTION_FLOW.md`, and it applies to the whole ecosystem until external funding exists or the first organ set can fund the gated track itself. `Synapse`, `Hepar`, `Cortex`, `Vox`, and `Pneuma` are now live at Advisory tier inside `organ-runtime` and wired into the autonomous Commercial Intelligence Pipeline, along with control-layer analysis for homeostasis, mixed-speed signaling, and immune/barrier/repair handling.
 
 **Dependency:** signal + oracle + later live implementation work
 

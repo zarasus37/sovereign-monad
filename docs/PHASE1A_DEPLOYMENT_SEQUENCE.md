@@ -2,6 +2,18 @@
 
 This document is the executable deployment/rehearsal companion to the locked Phase 1a order in the MOF.
 
+## Current Live Status
+
+The Phase 1a routing substrate is already live on Monad mainnet chain `143`.
+
+Primary router:
+
+- `RevenueRouter`: `0x39158bC2cfCa2cCF70121EF72ed9a5fF1e084982`
+- creation tx: `0x78bc936c000d555d2714462e6f2a7aef5cc9d32e3ea7fbb2ff876e529f51fdfe`
+- explorer: `https://monadscan.com/tx/0x78bc936c000d555d2714462e6f2a7aef5cc9d32e3ea7fbb2ff876e529f51fdfe`
+
+Do not run a fresh deployment unless the intent is to create a new Phase 1a instance.
+
 ## Canonical Source
 
 The order remains governed by:
@@ -99,6 +111,12 @@ Verify a live deployment from the saved report:
 npm run verify:phase1a
 ```
 
+Generate the reviewer-facing proof report:
+
+```bash
+npm run proof:phase1a
+```
+
 ## Output
 
 Both commands write a JSON report to:
@@ -107,7 +125,7 @@ Both commands write a JSON report to:
 - `deployments/phase1a-rehearsal-<network>.json`
 - `deployments/phase1a-progress-<network>.json`
 
-These reports are local deployment artifacts. They do not mean Phase 1a is live onchain.
+These reports are local deployment artifacts. A report means Phase 1a is live only when it is paired with successful `verify:phase1a` and `proof:phase1a` runs against Monad mainnet chain `143`.
 
 The progress report is a checkpoint artifact:
 
@@ -149,6 +167,12 @@ Current practical guidance for Monad mainnet:
 - recommended deploy funding: `10 MON`
 
 The minimum exists to catch obviously underfunded wallets. The recommended budget exists because the full Phase 1a deployment sequence is many transactions deep and can drain a lightly funded wallet before completion.
+
+Current fresh-redeploy blocker:
+
+- the deployer is below the configured `1 MON` fresh-deploy floor
+- this does not invalidate the existing live deployment
+- refill only if intentionally deploying a new Phase 1a instance
 
 ## Preflight Hard Stops
 

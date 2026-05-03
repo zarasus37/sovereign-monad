@@ -101,16 +101,28 @@ async function deployPhase1aSequence(hre, options = {}) {
     if (await codeExists(resumedAddress)) {
       const contract = factory.attach(resumedAddress);
       system.contracts[key] = contract;
-      record(step, label, { address: resumedAddress, resumed: true });
+      const creationTx = resumeReport?.creationTransactions?.[key] || null;
+      record(step, label, { address: resumedAddress, resumed: true, ...(creationTx ? { creationTx } : {}) });
       await publish();
       return contract;
     }
 
     const contract = await factory.connect(ownerSigner).deploy(...args);
-    await contract.waitForDeployment();
+    const deploymentTx = typeof contract.deploymentTransaction === "function"
+      ? contract.deploymentTransaction()
+      : null;
+    const receipt = deploymentTx ? await deploymentTx.wait() : null;
+    if (!receipt) {
+      await contract.waitForDeployment();
+    }
     const deployedAddress = await contractAddress(contract);
     system.contracts[key] = contract;
-    record(step, label, { address: deployedAddress });
+    record(step, label, {
+      address: deployedAddress,
+      creationTx: deploymentTx?.hash || null,
+      deploymentBlockNumber: receipt?.blockNumber || null,
+      deploymentGasUsed: receipt?.gasUsed?.toString() || null,
+    });
     await publish();
     return contract;
   }
@@ -354,6 +366,7 @@ function formatDeploymentReport(hre, system, metadata = {}) {
     approvedSourceAddress: system.accounts?.approvedSourceAddress || null,
     completedStep: system.steps.reduce((max, entry) => Math.max(max, entry.step || 0), 0),
     addresses: {},
+    creationTransactions: {},
     steps: system.steps,
   };
 
@@ -366,6 +379,20 @@ function formatDeploymentReport(hre, system, metadata = {}) {
     const address = contract?.target || contract?.address || null;
     if (address) {
       report.addresses[name] = address;
+    }
+  }
+
+  for (const step of system.steps) {
+    if (!step?.creationTx) {
+      continue;
+    }
+
+    const contractKey = Object.entries(report.addresses).find(
+      ([, address]) => sameAddress(address, step.address),
+    )?.[0];
+
+    if (contractKey) {
+      report.creationTransactions[contractKey] = step.creationTx;
     }
   }
 

@@ -33,6 +33,8 @@ loadEnvFile(".env");
 
 const phase1aAccounts = process.env.DEPLOYER_PRIVATE_KEY ? [process.env.DEPLOYER_PRIVATE_KEY] : [];
 const phase1aChainId = process.env.PHASE1A_CHAIN_ID ? Number(process.env.PHASE1A_CHAIN_ID) : undefined;
+const phase1aGas = process.env.PHASE1A_GAS_LIMIT ? Number(process.env.PHASE1A_GAS_LIMIT) : "auto";
+const phase1aGasPrice = process.env.PHASE1A_GAS_PRICE_WEI ? Number(process.env.PHASE1A_GAS_PRICE_WEI) : "auto";
 
 module.exports = {
   solidity: {
@@ -56,7 +58,9 @@ module.exports = {
     phase1a: {
       url: process.env.PHASE1A_RPC_URL || "http://127.0.0.1:8545",
       chainId: phase1aChainId,
-      accounts: phase1aAccounts
+      accounts: phase1aAccounts,
+      gas: phase1aGas,
+      gasPrice: phase1aGasPrice
     }
   }
 };

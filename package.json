@@ -8,9 +8,11 @@
     "test:contracts": "hardhat test",
     "preflight:phase1a": "hardhat run scripts/preflight-phase1a.js --network phase1a",
     "deploy:phase1a": "hardhat run scripts/deploy-phase1a.js --network phase1a",
-    "rehearse:phase1a": "hardhat run scripts/rehearse-phase1a.js"
-    ,
-    "verify:phase1a": "hardhat run scripts/verify-phase1a.js --network phase1a"
+    "rehearse:phase1a": "hardhat run scripts/rehearse-phase1a.js",
+    "verify:phase1a": "hardhat run scripts/verify-phase1a.js --network phase1a",
+    "proof:phase1a": "hardhat run scripts/prove-phase1a-mainnet.js --network phase1a",
+    "estimate:emergence-recorder": "hardhat run scripts/estimate-emergence-recorder.js --network phase1a",
+    "deploy:emergence-recorder": "hardhat run scripts/deploy-emergence-recorder.js --network phase1a"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
