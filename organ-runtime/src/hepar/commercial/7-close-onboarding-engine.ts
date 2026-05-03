@@ -19,7 +19,7 @@ export async function runCloseAndOnboardingEngine() {
     const voxDistContainer = await getVoxContainer("vox-distribution");
 
     // Mock incoming payment confirmations via Stripe/Crypto webhook events
-    const paymentConfirmations = [
+    const paymentConfirmations: any[] = [
         // { daoId: 'aave.eth', protocolName: 'Aave V4 Deployment' }
     ];
 

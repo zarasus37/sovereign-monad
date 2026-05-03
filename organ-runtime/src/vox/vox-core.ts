@@ -55,7 +55,7 @@ export function verifyTruthAndDetectManipulation(protocolId: string, claims: Nar
     let contradictedCount = 0;
     let unverifiedCount = 0;
 
-    const verifiedClaims = claims.map(c => {
+    const verifiedClaims: NarrativeClaim[] = claims.map(c => {
         let status: NarrativeClaim['status'] = 'UNVERIFIED';
 
         const text = c.claim.toLowerCase();
