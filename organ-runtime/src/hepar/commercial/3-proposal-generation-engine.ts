@@ -2,6 +2,7 @@ import { getContainer } from './cosmos-config';
 import { getCortexContainer } from '../../cortex/cosmosClient';
 import { getSynapseContainer } from '../../synapse/cosmosClient';
 import { getPneumaContainer } from '../../pneuma/cosmosClient';
+import { getVoxContainer } from '../../vox/cosmosClient';
 
 interface Proposal {
     id: string; // Maps to proposalId
@@ -14,6 +15,8 @@ interface Proposal {
     cortexEnhanced?: boolean;
     synapseCoordinated?: boolean;
     pneumaEnhanced?: boolean;
+    voxEnhanced?: boolean;
+    distributionTier?: string;
 }
 
 export async function runProposalGenerationEngine() {
@@ -29,6 +32,8 @@ export async function runProposalGenerationEngine() {
     const pneumaMarketContainer = await getPneumaContainer("pneuma-market");
     const pneumaRegimeContainer = await getPneumaContainer("pneuma-regime");
     const pneumaExecContainer = await getPneumaContainer("pneuma-execution");
+    const voxIntegrityContainer = await getVoxContainer("vox-integrity");
+    const voxDistContainer = await getVoxContainer("vox-distribution");
 
     for (const opp of opportunities) {
         console.log(`[${new Date().toISOString()}] -> Generating tailored proposal document for mandate: ${opp.mandateId}`);
@@ -104,6 +109,33 @@ export async function runProposalGenerationEngine() {
             console.error("Error fetching Pneuma context:", e);
         }
 
+        let voxEnhanced = false;
+        let distributionTier = 'INTERNAL';
+        let voxSection = "";
+
+        try {
+            const { resources: integrityList } = await voxIntegrityContainer.items.query(\`SELECT * from c WHERE c.protocolId = '\${opp.protocolName}'\`).fetchAll();
+            const { resources: distList } = await voxDistContainer.items.query(\`SELECT * from c WHERE c.mandateId = '\${opp.mandateId}'\`).fetchAll();
+            
+            if (integrityList && integrityList.length > 0 && distList && distList.length > 0) {
+                voxEnhanced = true;
+                const integrity = integrityList[0];
+                const dist = distList[0];
+                distributionTier = dist.tier;
+                
+                voxSection = \`
+## Vox Narrative Integrity
+*Proof-Linked Verification*
+- **Protocol Integrity Score:** \${integrity.score.toFixed(2)}
+- **Manipulation Confidence:** \${integrity.manipulationConfidence}
+- **Distribution Tier:** \${dist.tier}
+- **Integrity Certificate Reference:** \${dist.integrityCertificate.organOutputHashes[0]}
+\`;
+            }
+        } catch (e) {
+            console.error("Error fetching Vox context:", e);
+        }
+
         // Generate tailored proposal document
         const markdownContent = `
 # Hepar Security Assessment Proposal for ${opp.protocolName}
@@ -117,6 +149,7 @@ Our Hepar pipeline completed Stages A through D on live bytecode (${opp.bytecode
 ${synthesisSection}
 ${coordinationSection}
 ${pneumaSection}
+${voxSection}
 
 ## Hepar Accuracy Guarantee Terms
 We guarantee our findings with a strict SLA.
@@ -143,7 +176,9 @@ We guarantee our findings with a strict SLA.
             timestamp: new Date().toISOString(),
             cortexEnhanced,
             synapseCoordinated,
-            pneumaEnhanced
+            pneumaEnhanced,
+            voxEnhanced,
+            distributionTier
         };
 
         await proposalsContainer.items.upsert(proposal);
