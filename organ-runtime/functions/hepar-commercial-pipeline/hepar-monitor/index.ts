@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { runMonitoringNotificationEngine } from "../../../src/hepar/commercial/6-monitoring-notification-engine";
+import { runMonitoringNotificationEngine } from "../src_core/hepar/commercial/6-monitoring-notification-engine";
 import { logExecution, logFounderReview } from "../shared/logger";
 
 const timerTrigger: AzureFunction = async function (context: Context, myTimer: any): Promise<void> {
@@ -28,4 +28,5 @@ const timerTrigger: AzureFunction = async function (context: Context, myTimer: a
     }
 };
 
-export default timerTrigger;\n
+export default timerTrigger;
+

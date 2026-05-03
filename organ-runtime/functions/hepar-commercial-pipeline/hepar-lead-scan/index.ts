@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { runLeadIdentificationEngine } from "../../../src/hepar/commercial/1-lead-identification-engine";
+import { runLeadIdentificationEngine } from "../src_core/hepar/commercial/1-lead-identification-engine";
 import { logExecution, logFounderReview } from "../shared/logger";
 
 const timerTrigger: AzureFunction = async function (context: Context, myTimer: any): Promise<void> {
@@ -25,4 +25,5 @@ const timerTrigger: AzureFunction = async function (context: Context, myTimer: a
     }
 };
 
-export default timerTrigger;\n
+export default timerTrigger;
+

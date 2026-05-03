@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { runCloseAndOnboardingEngine } from "../../../src/hepar/commercial/7-close-onboarding-engine";
+import { runCloseAndOnboardingEngine } from "../src_core/hepar/commercial/7-close-onboarding-engine";
 import { logExecution, logFounderReview } from "../shared/logger";
 
 const timerTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
@@ -29,4 +29,5 @@ const timerTrigger: AzureFunction = async function (context: Context, req: HttpR
     }
 };
 
-export default timerTrigger;\n
+export default timerTrigger;
+

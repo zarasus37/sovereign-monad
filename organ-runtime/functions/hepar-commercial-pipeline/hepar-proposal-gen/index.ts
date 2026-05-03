@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { runProposalGenerationEngine } from "../../../src/hepar/commercial/3-proposal-generation-engine";
+import { runProposalGenerationEngine } from "../src_core/hepar/commercial/3-proposal-generation-engine";
 import { logExecution, logFounderReview } from "../shared/logger";
 
 const timerTrigger: AzureFunction = async function (context: Context, documents: any[]): Promise<void> {
@@ -25,4 +25,5 @@ const timerTrigger: AzureFunction = async function (context: Context, documents:
     }
 };
 
-export default timerTrigger;\n
+export default timerTrigger;
+

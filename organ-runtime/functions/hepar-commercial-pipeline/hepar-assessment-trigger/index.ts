@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { runAssessmentTriggerEngine } from "../../../src/hepar/commercial/2-assessment-trigger-engine";
+import { runAssessmentTriggerEngine } from "../src_core/hepar/commercial/2-assessment-trigger-engine";
 import { logExecution, logFounderReview } from "../shared/logger";
 
 const timerTrigger: AzureFunction = async function (context: Context, documents: any[]): Promise<void> {
@@ -25,4 +25,5 @@ const timerTrigger: AzureFunction = async function (context: Context, documents:
     }
 };
 
-export default timerTrigger;\n
+export default timerTrigger;
+

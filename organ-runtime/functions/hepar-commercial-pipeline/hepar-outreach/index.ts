@@ -1,5 +1,5 @@
 import { AzureFunction, Context } from "@azure/functions";
-import { runOutreachEngine } from "../../../src/hepar/commercial/4-outreach-engine";
+import { runOutreachEngine } from "../src_core/hepar/commercial/4-outreach-engine";
 import { logExecution, logFounderReview } from "../shared/logger";
 
 const timerTrigger: AzureFunction = async function (context: Context, documents: any[]): Promise<void> {
@@ -25,4 +25,5 @@ const timerTrigger: AzureFunction = async function (context: Context, documents:
     }
 };
 
-export default timerTrigger;\n
+export default timerTrigger;
+

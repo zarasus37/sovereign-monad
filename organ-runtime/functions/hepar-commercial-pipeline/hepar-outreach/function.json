@@ -5,8 +5,8 @@
       "name": "documents",
       "direction": "in",
       "leaseCollectionName": "leases",
-      "connectionStringSetting": "CosmosDBConnection",
-      "databaseName": "hepar_commercial",
+      "connectionStringSetting": "COSMOS_CONNECTION_STRING",
+      "databaseName": "hepar",
       "collectionName": "proposals",
       "createLeaseCollectionIfNotExists": true
     }
