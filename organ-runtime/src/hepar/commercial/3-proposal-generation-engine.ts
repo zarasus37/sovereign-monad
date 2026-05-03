@@ -1,6 +1,7 @@
 import { getContainer } from './cosmos-config';
 import { getCortexContainer } from '../../cortex/cosmosClient';
 import { getSynapseContainer } from '../../synapse/cosmosClient';
+import { getPneumaContainer } from '../../pneuma/cosmosClient';
 
 interface Proposal {
     id: string; // Maps to proposalId
@@ -12,6 +13,7 @@ interface Proposal {
     timestamp: string;
     cortexEnhanced?: boolean;
     synapseCoordinated?: boolean;
+    pneumaEnhanced?: boolean;
 }
 
 export async function runProposalGenerationEngine() {
@@ -24,6 +26,9 @@ export async function runProposalGenerationEngine() {
 
     const cortexResearchContainer = await getCortexContainer("cortex-research");
     const synapseCoordContainer = await getSynapseContainer("synapse-coordination");
+    const pneumaMarketContainer = await getPneumaContainer("pneuma-market");
+    const pneumaRegimeContainer = await getPneumaContainer("pneuma-regime");
+    const pneumaExecContainer = await getPneumaContainer("pneuma-execution");
 
     for (const opp of opportunities) {
         console.log(`[${new Date().toISOString()}] -> Generating tailored proposal document for mandate: ${opp.mandateId}`);
@@ -71,6 +76,34 @@ export async function runProposalGenerationEngine() {
             console.error("Error fetching Synapse coordination:", e);
         }
 
+        let pneumaEnhanced = false;
+        let pneumaSection = "";
+
+        try {
+            // Check pneuma-market and pneuma-regime
+            const { resources: marketList } = await pneumaMarketContainer.items.query(\`SELECT * from c WHERE c.protocolId = '\${opp.protocolName}'\`).fetchAll();
+            const { resources: regimeList } = await pneumaRegimeContainer.items.query(\`SELECT * from c WHERE c.protocolId = '\${opp.protocolName}'\`).fetchAll();
+            const { resources: execList } = await pneumaExecContainer.items.query(\`SELECT * from c WHERE c.protocolId = '\${opp.protocolName}'\`).fetchAll();
+            
+            if (marketList && marketList.length > 0 && regimeList && regimeList.length > 0 && execList && execList.length > 0) {
+                pneumaEnhanced = true;
+                const market = marketList[0];
+                const regime = regimeList[0];
+                const exec = execList[0];
+                
+                pneumaSection = \`
+## Pneuma Live Market Context
+*Execution Intelligence*
+- **Market Regime:** \${regime.regime}
+- **Liquidity Depth Summary:** TVL $\${market.tvl}, 24h Volume $\${market.volume24h}
+- **Execution Cost Estimate:** \${exec.executionCostBps} bps
+- **Converted Demand:** \${market.convertedDemand ? 'TRUE (Pre-Exploit Anomaly Detected)' : 'None Detected'}
+\`;
+            }
+        } catch (e) {
+            console.error("Error fetching Pneuma context:", e);
+        }
+
         // Generate tailored proposal document
         const markdownContent = `
 # Hepar Security Assessment Proposal for ${opp.protocolName}
@@ -83,6 +116,7 @@ Our Hepar pipeline completed Stages A through D on live bytecode (${opp.bytecode
 **Key Finding:** ${opp.findingsSummary}
 ${synthesisSection}
 ${coordinationSection}
+${pneumaSection}
 
 ## Hepar Accuracy Guarantee Terms
 We guarantee our findings with a strict SLA.
@@ -108,7 +142,8 @@ We guarantee our findings with a strict SLA.
             pdfReadyOutputUri,
             timestamp: new Date().toISOString(),
             cortexEnhanced,
-            synapseCoordinated
+            synapseCoordinated,
+            pneumaEnhanced
         };
 
         await proposalsContainer.items.upsert(proposal);
