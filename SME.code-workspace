@@ -6,5 +6,10 @@
 	],
 	"settings": {
 		"chatgpt.runCodexInWindowsSubsystemForLinux": true
+	},
+	"extensions": {
+		"recommendations": [
+			"anshu-agi.smartroute"
+		]
 	}
 }

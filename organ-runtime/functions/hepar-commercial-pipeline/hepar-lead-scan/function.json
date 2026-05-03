@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "type": "timerTrigger",
+      "name": "myTimer",
+      "direction": "in",
+      "schedule": "0 0 */6 * * *"
+    }
+  ],
+  "scriptFile": "../dist/hepar-lead-scan/index.js"
+}
