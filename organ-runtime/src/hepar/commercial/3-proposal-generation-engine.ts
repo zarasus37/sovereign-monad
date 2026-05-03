@@ -1,5 +1,6 @@
 import { getContainer } from './cosmos-config';
 import { getCortexContainer } from '../../cortex/cosmosClient';
+import { getSynapseContainer } from '../../synapse/cosmosClient';
 
 interface Proposal {
     id: string; // Maps to proposalId
@@ -10,6 +11,7 @@ interface Proposal {
     pdfReadyOutputUri: string;
     timestamp: string;
     cortexEnhanced?: boolean;
+    synapseCoordinated?: boolean;
 }
 
 export async function runProposalGenerationEngine() {
@@ -21,6 +23,7 @@ export async function runProposalGenerationEngine() {
     const { resources: opportunities } = await opportunitiesContainer.items.query("SELECT * from c").fetchAll();
 
     const cortexResearchContainer = await getCortexContainer("cortex-research");
+    const synapseCoordContainer = await getSynapseContainer("synapse-coordination");
 
     for (const opp of opportunities) {
         console.log(`[${new Date().toISOString()}] -> Generating tailored proposal document for mandate: ${opp.mandateId}`);
@@ -46,6 +49,28 @@ export async function runProposalGenerationEngine() {
             console.error("Error fetching Cortex synthesis:", e);
         }
 
+        let synapseCoordinated = false;
+        let coordinationSection = "";
+
+        try {
+            // Check synapse-coordination for unified intelligence record linked to mandateId
+            // In a real implementation this would query by mandateId or a linked foreign key
+            const { resources: coordList } = await synapseCoordContainer.items.query(\`SELECT * from c WHERE c.mandateId = '\${opp.mandateId}'\`).fetchAll();
+            if (coordList && coordList.length > 0) {
+                synapseCoordinated = true;
+                const coord = coordList[0];
+                if (!coord.conflict) {
+                    coordinationSection = \`
+## Synapse Unified Intelligence
+*Cross-Organ Coordination Record*
+\${coord.unifiedOutput}
+\`;
+                }
+            }
+        } catch (e) {
+            console.error("Error fetching Synapse coordination:", e);
+        }
+
         // Generate tailored proposal document
         const markdownContent = `
 # Hepar Security Assessment Proposal for ${opp.protocolName}
@@ -57,6 +82,7 @@ Based on recent governance activity and treasury size, we have preemptively anal
 Our Hepar pipeline completed Stages A through D on live bytecode (${opp.bytecodeHash}).
 **Key Finding:** ${opp.findingsSummary}
 ${synthesisSection}
+${coordinationSection}
 
 ## Hepar Accuracy Guarantee Terms
 We guarantee our findings with a strict SLA.
@@ -81,7 +107,8 @@ We guarantee our findings with a strict SLA.
             markdownContent,
             pdfReadyOutputUri,
             timestamp: new Date().toISOString(),
-            cortexEnhanced
+            cortexEnhanced,
+            synapseCoordinated
         };
 
         await proposalsContainer.items.upsert(proposal);
