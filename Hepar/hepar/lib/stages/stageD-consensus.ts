@@ -55,6 +55,13 @@ export interface StageDInput {
   protocolId: string;
   codeHash: string;
   runId?: string;
+  /**
+   * CAL-006 PC-1: template IDs confirmed absent by live bytecode analysis.
+   * Stage C findings with requiresLiveBytecodeConfirmation=true whose vectorId
+   * contains any entry here are excluded from scoring.
+   * Example: ['PRIV-T03'] when bytecode confirms no non-EIP-1967 proxy exists.
+   */
+  confirmedAbsentTemplateIds?: string[];
 }
 
 export interface ScoredFindingVector {
@@ -570,8 +577,21 @@ export function runStageD(input: StageDInput): StageDResult {
 
   const stageDRunId = runId ?? generateRunId();
 
+  // CAL-006 PC-1: exclude Stage C findings that require live bytecode confirmation
+  // and whose template was confirmed absent by the live bytecode scan.
+  const confirmedAbsent = input.confirmedAbsentTemplateIds ?? [];
+  const activeStageCResult: StageCResult = confirmedAbsent.length > 0
+    ? {
+        ...stageCResult,
+        allFindings: stageCResult.allFindings.filter(f => {
+          if (!f.requiresLiveBytecodeConfirmation) return true;
+          return !confirmedAbsent.some(templateId => f.vectorId.includes(templateId));
+        }),
+      }
+    : stageCResult;
+
   // Step 1: Build finding vectors from Stage C
-  const { vectors: stageCVectors, vectorAgentsMap } = buildVectorsFromStageC(stageCResult);
+  const { vectors: stageCVectors, vectorAgentsMap } = buildVectorsFromStageC(activeStageCResult);
 
   // Step 2: Apply Stage B proof status (may add new vectors for B-only CEX findings)
   const findingVectors = applyStageB(stageCVectors, vectorAgentsMap, stageBResult);
@@ -585,7 +605,7 @@ export function runStageD(input: StageDInput): StageDResult {
     globalScore,
     avgCoverageRatio,
     avgUnknownRatio
-  } = computeGlobalScore(findingVectors, stageCResult);
+  } = computeGlobalScore(findingVectors, activeStageCResult);
 
   // Step 4: Assign action band
   const {
@@ -597,7 +617,7 @@ export function runStageD(input: StageDInput): StageDResult {
 
   // Step 5: Compute 9 dimension scores
   const { dimensionScores, walletTaintProvisional } =
-    computeDimensionScores(stageAResult, stageCResult);
+    computeDimensionScores(stageAResult, activeStageCResult);
 
   // Step 6: Build attestation payload
   const heparRunId =
@@ -648,7 +668,8 @@ export function runHepar(
   stageCResult: StageCResult,
   protocolId: string = 'UNKNOWN',
   codeHash: string   = '0x0',
-  runId?: string
+  runId?: string,
+  confirmedAbsentTemplateIds?: string[]
 ): FullHeparRunResult {
   const stageDInput: StageDInput = {
     stageAResult,
@@ -656,7 +677,8 @@ export function runHepar(
     stageCResult,
     protocolId,
     codeHash,
-    runId
+    runId,
+    confirmedAbsentTemplateIds,
   };
   const stageD = runStageD(stageDInput);
   const heparRunId = stageD.attestationPayload.heparRunId;

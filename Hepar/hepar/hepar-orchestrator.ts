@@ -152,6 +152,12 @@ export interface HeparOrchestratorInput {
   stageBEngine?: EngineAdapter;
   /** Forced findings per agent for Stage C (testing only). */
   stageCForcedFindings?: Partial<Record<AgentId, AgentFinding[]>>;
+  /**
+   * CAL-006 PC-1: template IDs confirmed absent by live bytecode analysis.
+   * Stage D will exclude stub-template findings whose vectorId contains these strings
+   * and have requiresLiveBytecodeConfirmation=true. Example: ['PRIV-T03'].
+   */
+  confirmedAbsentTemplateIds?: string[];
 }
 
 // ---------------------------------------------------------------------------
@@ -198,7 +204,11 @@ export function runHeparOrchestrator(input: HeparOrchestratorInput): HeparFullRu
   });
 
   // -- Step 4: Stage D (Consensus Confidence Fusion) --
-  const fullResult: FullHeparRunResult = runHepar(stageA, stageB, stageC, protocolId, codeHash);
+  const fullResult: FullHeparRunResult = runHepar(
+    stageA, stageB, stageC, protocolId, codeHash,
+    undefined, // runId — auto-generated
+    input.confirmedAbsentTemplateIds,
+  );
   const { heparRunId, stageD } = fullResult;
 
   // -- Step 5: Route integrations (all five organs) --
