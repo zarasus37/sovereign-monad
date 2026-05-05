@@ -1,4 +1,4 @@
-I don't give my shit# Sovereign Monad Organ Updates - Hepar and Other Organs
+# Sovereign Monad Organ Updates - Hepar and Other Organs
 
 ## Current Status (from MOF v2.3.0)
 - Hepar, Cortex, Synapse, Pneuma, Vox: LIVE at Advisory Tier in organ-runtime, integrated into Commercial Intelligence Pipeline.

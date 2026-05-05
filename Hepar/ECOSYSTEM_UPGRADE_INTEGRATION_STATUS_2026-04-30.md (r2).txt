@@ -25,14 +25,7 @@ Current implementation truth:
 1. Agent 0 is registered on Monad mainnet through `EmergenceRecorder`.
 2. One live behavioral claim has been recorded on-chain.
 3. The proof is record-only and did not move trading capital.
-4. The next evaluation path is shadow-paper trading against `execution.execution-plan` events.
 
-Required next specification:
-
-1. first review window: 50 to 100 would-have trades
-2. later review cadence: 5,000 to 10,000 trade intervals once early behavior is understood
-3. markout horizons, price source rules, slippage assumptions, and incident flags
-4. explicit pass/fail thresholds before any funded guarded-live request
 
 Tier today: Advisory.
 
