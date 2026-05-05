@@ -309,6 +309,7 @@ export interface HeparOpportunity {
   opaque: boolean;
   exploitative: boolean;
   summary: string;
+  contracts?: string[];
   forensics?: Partial<HeparForensicsSignals>;
 }
 

@@ -1,4 +1,4 @@
-# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
+﻿# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
 
 > Local mirror kept in `monad-mev` for operator convenience.
 > Canonical maintenance target: `C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md`
@@ -2570,4 +2570,3 @@ It moves forward through:
 ---
 
 *End of SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0*
-
