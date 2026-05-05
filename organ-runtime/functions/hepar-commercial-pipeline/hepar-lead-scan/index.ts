@@ -1,29 +1,27 @@
-import { AzureFunction, Context } from "@azure/functions";
-import { runLeadIdentificationEngine } from "../src_core/hepar/commercial/1-lead-identification-engine";
-import { logExecution, logFounderReview } from "../shared/logger";
+import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import { getContainer } from '../../../src/hepar/commercial/cosmos-config';
 
-const timerTrigger: AzureFunction = async function (context: Context, myTimer: any): Promise<void> {
-    context.log(`[${new Date().toISOString()}] ${context.executionContext.functionName} triggered.`);
-    
-    await logExecution(context.executionContext.functionName, 'STARTED');
+const azureFunction: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
+    context.log('Hepar Lead Scan trigger function processed a request.');
 
-    try {
-        // Execute the underlying engine
-        await runLeadIdentificationEngine();
+    const container = await getContainer('leads');
 
-        // If the function handles events that require founder review, we log it.
-        // E.g., HTTP webhook for payment, or tracking Cosmos changes.
-        
+    const lead = {
+        id: `lead-${Date.now()}`,
+        daoId: "monad-ecosystem",
+        priority: "STANDARD",
+        source: "scan",
+        timestamp: new Date().toISOString(),
+        status: "NEW",
+        urgency: "STANDARD"
+    };
 
-        
-        
-        await logExecution(context.executionContext.functionName, 'COMPLETED');
-    } catch (error) {
-        context.log.error(`[${new Date().toISOString()}] Error in ${context.executionContext.functionName}: `, error);
-        await logExecution(context.executionContext.functionName, 'FAILED', { error: error.message });
-        throw error;
-    }
+    await container.items.create(lead);
+
+    context.res = {
+        // status: 200, /* Defaults to "200" */
+        body: `Lead created: ${lead.id}`
+    };
 };
 
-export default timerTrigger;
-
+export default azureFunction;
