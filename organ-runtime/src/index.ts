@@ -26,7 +26,7 @@ export { buildVoxNarrativeIntelligenceSnapshot } from './vox-intelligence';
 export { buildVoxSnapshot, packageNarrative } from './vox';
 
 // Hepar-core: modular forensic stack (Stages A–D)
-// export * from './hepar-core';
+export * from './hepar-core';
 export type {
   CardiaAdaptiveDecision,
   CardiaAdaptiveCoefficients,
