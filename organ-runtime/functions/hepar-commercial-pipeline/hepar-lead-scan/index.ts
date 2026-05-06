@@ -1,8 +1,9 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import { getContainer } from "./cosmos-config";   // Now local
+import { enrichLeadWithOrgans } from "./organ-integration";
 
 // ====================== HEPAR v2.0 DIAGNOSTIC CONSTANTS ======================
-const QUALIFYING_THRESHOLD = 25;   // TEMPORARILY lowered 50% for validation only
+const QUALIFYING_THRESHOLD = 50;   // Production value restored
 
 const azureFunction: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log(`[${new Date().toISOString()}] [Hepar Lead Scan] Starting Lead Identification Engine (Hepar v2.0 commercial pipeline)...`);
@@ -41,6 +42,9 @@ const azureFunction: AzureFunction = async function (context: Context, req: Http
             await container.items.create(lead);
             leadsWritten++;
             context.log(`[${new Date().toISOString()}] [Hepar Lead Scan] -> Wrote QUALIFIED lead to Cosmos DB: ${lead.daoId} [Score: ${score}]`);
+
+            // Organ enrichment pipeline: enrich and persist
+            await enrichLeadWithOrgans(lead, context);
         }
     }
 
