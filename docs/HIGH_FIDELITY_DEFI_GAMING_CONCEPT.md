@@ -69,8 +69,8 @@ It is a natural productization path for a system that claims to be more than fin
 
 The current architecture already points toward this possibility:
 
-- `MonadSpin` as an entertainment inflow precedent
-- `MonadSpin` as the existing entertainment-rail name that can be reinterpreted as a broader gamified/GameFi surface
+- `Monad Matrix` as an entertainment inflow precedent
+- `Monad Matrix` as the existing entertainment-rail name that can be reinterpreted as a broader gamified/GameFi surface
 - `Vox` for expression and public-facing packaging
 - `Cortex` for systems design and research synthesis
 - `Synapse` for coordination and timing-sensitive system integration
@@ -125,7 +125,7 @@ This concept is now the default entertainment direction for the ecosystem.
 That means:
 
 - the first serious entertainment implementation should target gamified/GameFi environments rather than a slot machine
-- `MonadSpin` should be interpreted as the umbrella entertainment rail, not as proof that the product must be a slot
+- `Monad Matrix` should be interpreted as the umbrella entertainment rail, not as proof that the product must be a slot
 - if a slot is later built, it should exist as an optional subproduct, minigame, or later format inside the broader GameFi rail
 
 ## Practical transition rule

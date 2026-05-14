@@ -1,0 +1,14 @@
+﻿Timestamp,Lead,Vector,Batch,Status
+2026-05-09 01:23,Lido,Forensic-Audit,batch-2026-05-09-01-19-alpha-tier,DISPATCHED
+2026-05-09 01:23,Binance-CEX,Forensic-Audit,batch-2026-05-09-01-19-alpha-tier,DISPATCHED
+2026-05-09 01:23,SSV-Network,Forensic-Audit,batch-2026-05-09-01-19-alpha-tier,DISPATCHED
+2026-05-09 01:23,Bybit,Forensic-Audit,batch-2026-05-09-01-19-alpha-tier,DISPATCHED
+2026-05-09 01:40,Uniswap-V3,Forensic-Audit,batch-2026-05-09-01-37-full-suite,DISPATCHED
+2026-05-09 01:40,Curve-DEX,Forensic-Audit,batch-2026-05-09-01-37-full-suite,DISPATCHED
+2026-05-09 01:40,Falcon-Finance,Forensic-Audit,batch-2026-05-09-01-37-full-suite,DISPATCHED
+2026-05-09 01:40,PancakeSwap-AMM,Forensic-Audit,batch-2026-05-09-01-37-full-suite,DISPATCHED
+2026-05-09 01:40,Spark-Liquidity-Layer,Forensic-Audit,batch-2026-05-09-01-37-full-suite,DISPATCHED
+2026-05-09 01:40,Centrifuge-Protocol,Forensic-Audit,batch-2026-05-09-01-37-full-suite,DISPATCHED
+2026-05-09 03:43,Arbitrum-DAO,Forensic-Audit,batch-2026-05-09-03-41-total-standard,DISPATCHED
+2026-05-09 03:43,Optimism-Collective,Forensic-Audit,batch-2026-05-09-03-41-total-standard,DISPATCHED
+2026-05-09 03:43,Lido-DAO,Forensic-Audit,batch-2026-05-09-03-41-total-standard,DISPATCHED

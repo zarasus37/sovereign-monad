@@ -4,10 +4,10 @@
       "type": "cosmosDBTrigger",
       "name": "documents",
       "direction": "in",
-      "leaseCollectionName": "leases",
+      "leaseCollectionName": "leases-proposal-gen",
       "connectionStringSetting": "COSMOS_CONNECTION_STRING",
       "databaseName": "hepar",
-      "collectionName": "opportunities",
+      "collectionName": "enriched-leads",
       "createLeaseCollectionIfNotExists": true
     }
   ],
