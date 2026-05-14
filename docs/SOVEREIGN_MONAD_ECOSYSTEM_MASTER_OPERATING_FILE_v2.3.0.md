@@ -1,4 +1,4 @@
-﻿# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
+# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
 
 > Local mirror kept in `monad-mev` for operator convenience.
 > Canonical maintenance target: `C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md`
@@ -444,8 +444,11 @@ These should be treated as an opening funnel component, not merely a later-layer
 
 - Agent 0 guarded-live progression: keep the current on-chain behavioral proof as record-only, use shadow-paper markout analysis for the first 50 to 100 would-have trades, then require explicit operator review before any funded trading authority.
 - High-Fidelity DeFi Gaming: treat MonadSpin as the umbrella GameFi / gamified environment rail, not a slot-first product thesis; final gameplay, economy, fairness, and agent-role specifications remain pending.
-- Six-organ institutional depth: `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` are accepted as institutional-depth organ tracks. Five organs (`Hepar`, `Cortex`, `Synapse`, `Pneuma`, `Vox`) are LIVE at Advisory Tier and active in the autonomous Commercial Intelligence Pipeline. `Cardia` remains pending funded activation.
-- Commercial intelligence rails: Hepar forensic reports, risk API/feed packaging, LightVerify certification, and Data Rail licensing are accepted as planned revenue surfaces, subject to activation discipline and evidence quality controls.
+- Six-organ institutional depth: `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` are accepted as institutional-depth organ tracks. Five organs (`Hepar`, `Cortex`, `Synapse`, `Pneuma`, `Vox`) are LIVE at Advisory Tier and actively integrated into the Ultimate Hepar Revenue Orchestrator. The pipeline natively implements Dynamic Cardia Allocation Caps (0.05% - 0.2% TVL, bounded $15k-$100k) scaled by the enhanced Hepar audit scoring engine (TVL tier, governance, heuristics).
+- Commercial intelligence rails: Hepar forensic reports, risk API/feed packaging, LightVerify certification, and Data Rail licensing are operationalized via an autonomous, human-gated scheduled orchestrator. Post-dispatch diagnostics and 5-day cycle response tracking systems are active, aggressively scaling institutional sales (priced at $28k setup, $9k/mo minimum continuous monitoring).
+- Sovereign Monad Control Hub: Deployment of the `hepar-dashboard-api` HTTP trigger on Azure Functions to securely serve live pipeline telemetry (lead status, proposals, and CRM data) to the React frontend Control Center using `x-functions-key` authentication.
+- Resort Deal Pipeline: A modular, Python-based automated outreach and proposal system streamlining the business development workflow for resort entertainment activations (property research, decision-maker identification, tailored proposal generation).
+- Wallet Architecture & Configuration: Established a secure and structured deployment architecture with specific public addresses for "Deployer" and "Bootstrap Source" roles, securely mapped across `.env.phase1a` and `config/phase1a.deploy.json`.
 
 ## 6.1.1 Completion Reading
 
@@ -496,14 +499,14 @@ This means the architecture and local analysis stack are materially advanced. It
 | Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` and `gnosis-evaluator-core` now provide retrospective-only decompression analysis plus integrity scoring tied to organ/runtime operation; live integration remains later-phase |
 | Narrative Surface | LOCAL ANALYSIS SURFACE ONLY | `narrative-core` now packages governed local narratives from ecosystem state; no live public narrative surface is active |
 | Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, activation-decision, bundle/product-boundary, and LightVerify certification surfaces now exist; thresholds are met on the current verified local sample, readiness is `ready`, but no explicit activation record exists and externalization is not activated |
-| Evaluation / Commercial Surfaces | AUXILIARY ARTIFACTS EXIST | demo package, API wrapper, billing scaffold, license-service scaffold, and public commercial-stack templates exist in repo; they do **not** change active phase, blocker state, or current next action |
+| Evaluation / Commercial Surfaces | FULLY OPERATIONALIZED | The Master Scheduled Orchestrator securely bridges Azure Cosmos dependencies, dynamically generates value-priced institutional proposals, tracks responses (CRM), and ensures human-gated outreach dispatch. The Control Hub React dashboard visualizes live pipeline telemetry via `hepar-dashboard-api`. The Resort Deal Pipeline automates entertainment activation outreach. Legal §15 compliance and tier-based allocation discipline are integrated natively. |
 | Governance DAO | LOCAL ANALYSIS SURFACE ONLY | `dao-core` now provides local constitution, proposal routing, sponsorship lanes, and handoff controls; onchain governance remains later-phase |
 | Agent NFTs / Keys | LOCAL ANALYSIS SURFACE ONLY | `keys-core` and `keys-nft-core` now provide local activation, delegation, and metadata surfaces; live minting and activation remain later-phase |
 | Emergence Pipeline | LOCAL OBSERVATION AND EVIDENCE-ARTIFACT SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, `emergent-protocol-core` provides local pattern extraction and downstream-path scaffolding, and `emergence-claim-core` plus `emergence-history-core` now provide bounded local claim and historical-record artifacts without creating a live emergence recognition layer |
 | Live Agent Behavioral Loop | COMPLETE / LIVE MAINNET PROOF | `emergence-claim-core` now contains Agent 0 full IPIP-NEO + SD3 profile encoding, deterministic facet-level routing, Dove flags, live Monad decision preparation, and a deployed `EmergenceRecorder`; Agent 0 profile registration and one behavioral claim are both mined on Monad mainnet |
 | Agent 0 Trading Evaluation Path | PLANNED / SHADOW-PAPER ONLY | Agent 0 may be evaluated through deterministic shadow-paper markouts against `execution.execution-plan` events; no real capital authority is granted until the first sample window is reviewed and funded `Cardia` activation gates are satisfied |
 | High-Fidelity DeFi Gaming | ACCEPTED DESIGN DIRECTION / SPEC PENDING | MonadSpin is now the umbrella GameFi / gamified environment rail; transitional GameFi control scaffolds may support state and operator flow, but no final high-fidelity game product is live |
-| Six-Organ Institutional Depth | LIVE AT ADVISORY TIER | `Hepar`, `Cortex`, `Synapse`, `Pneuma`, and `Vox` are LIVE at Advisory Tier and integrated into the autonomous Commercial Intelligence Pipeline. `Cardia` remains pending capital activation. |
+| Six-Organ Institutional Depth | LIVE AT ADVISORY TIER | `Hepar`, `Cortex`, `Synapse`, `Pneuma`, and `Vox` are LIVE at Advisory Tier and integrated into the autonomous Commercial Intelligence Pipeline. The dynamic `Cardia` allocation framework ($15k-$100k cap) is active inside proposal generation. Real capital activation remains pending. |
 
 ---
 
@@ -749,13 +752,13 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - `Cortex` live at Advisory tier
 - `Vox` live at Advisory tier
 - `Pneuma` live at Advisory tier
-- `Cardia` simulation and band logic implemented in analysis mode
-- orchestration hardening implemented in analysis mode
-- human-agent participation boundary system implemented in analysis mode
-- inter-organ coordination rules implemented in analysis mode
-- first bounded ecosystem-seeded agent revenue mandate implemented in analysis mode
+- `Cardia` simulation and dynamic allocation band logic ($15k-$100k cap) implemented in analysis mode
+- orchestration hardening successfully deployed via Ultimate Hepar Revenue Orchestrator
+- human-agent participation boundary explicitly secured by autonomous human approval gates
+- inter-organ coordination rules generating cohesive institutional-grade forensic/strategic reports
+- continuous ecosystem-seeded revenue mandate operationalized via 5-day Post-Dispatch CRM tracking
 - homeostasis and mixed-speed signaling implemented in analysis mode
-- immune, barrier, and repair logic implemented in analysis mode
+- immune, barrier, and repair logic successfully mitigates Azure/Cosmos DB dependencies dynamically
 
 **What remains:**
 
