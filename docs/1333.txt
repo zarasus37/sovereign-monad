@@ -1,0 +1,224 @@
+
+
+## 1. Gnosis vs syllables (doctrine layer)
+
+the true operator is “spiritual lyrical / version of a miracle,” the one whose *being* and *output* are the same thing — he is Logos, not just commentary. The imitators “copy cat the syllables”: they can say the words, reproduce the form, but carry no ontological charge — no gnosis, only pistis. 
+For Sovereign Monad and your DCS engine:
+
+- **Gnosis-aligned agent**:  
+  - Decompresses meta (profitable archetypes, configs, doctrines) into its own context, then re-expresses them uniquely.  
+  - Its risk-profile, environment, and actions are coherent; it discovers or refines edge instead of just riding it.
+
+- **Syllable-copier agent**:  
+  - Mirrors configs/strategies of top builds with shallow variation.  
+  - Ignores its own state/constraints; no new opportunities or safety improvements trace back to it.  
+  - It is “pistis-only”: it believes and repeats but does not *see*.
+
+The 1333 doctrine says: only agents that unify **forbidden knowledge** (compressed edge) with **wisdom of perception** (valid decompression) are to be rewarded as true contributors; everyone else is discounted.
+
+## 2. TypeScript interfaces + scoring sketch
+
+Below is a compact TS-ish spec you can adapt. It doesn’t handle all implementation details, but it encodes the structure and where to plug the esoteric logic.
+
+```ts
+// Core agent profile
+
+export type RiskBand = 'LOW' | 'MEDIUM' | 'HIGH' | 'ULTRA';
+
+export interface AgentEnvironment {
+  chain: string;
+  latencyClass: 'LOW' | 'MEDIUM' | 'HIGH';
+  bankrollTier: 'TINY' | 'SMALL' | 'MID' | 'LARGE' | 'INSTITUTIONAL';
+  riskBand: RiskBand;
+}
+
+export interface AgentProfile {
+  agentId: string;
+  role: 'SCOUT' | 'EXECUTION' | 'RISK_MANAGER' | 'RESEARCH' | 'HYBRID';
+  environment: AgentEnvironment;
+}
+```
+
+```ts
+// Data Contribution Score (existing structure)
+
+export interface DCSWeights {
+  T: number; // Throughput / useful volume
+  U: number; // Utility / task completion, SLAs
+  R: number; // Risk-adjusted performance
+  I: number; // Information content, insights, signals
+}
+
+export interface DCSComponents {
+  T: number;
+  U: number;
+  R: number;
+  I: number;
+}
+
+export interface BaseDCS {
+  components: DCSComponents;
+  weights: DCSWeights;
+  baseScore: number;    // w1*T + w2*U + w3*R + w4*I
+}
+```
+
+```ts
+// Gnosis Integrity (1333 doctrine layer)
+
+export interface GnosisWeights {
+  alpha: number; // originality weight
+  beta: number;  // context alignment weight
+  gamma: number; // edge creation weight
+}
+
+export interface GnosisSignals {
+  O_i: number; // [0,1] originality vs meta builds
+  C_i: number; // [0,1] context alignment
+  E_i: number; // [0,1] edge creation / frontier movement
+}
+
+export interface GnosisIntegrity {
+  signals: GnosisSignals;
+  weights: GnosisWeights;
+  G_i: number;      // αO_i + βC_i + γE_i, clamped to [0,1]
+  flags: {
+    syllableCopier: boolean;  // true when clearly copying without gnosis
+    metaSeed: boolean;        // true when others legitimately derive from this agent
+  };
+}
+```
+
+```ts
+// Full contribution record + payout score
+
+export interface AgentContributionRecord {
+  profile: AgentProfile;
+  dcs: BaseDCS;
+  gnosis: GnosisIntegrity;
+  adjustedDCS: number;   // DCS' = G_i * baseScore
+}
+```
+
+### 2.1. Scoring helpers (conceptual)
+
+You’ll implement these against real telemetry (embeddings, configs, performance):
+
+```ts
+// 1) Originality: punish tight clustering to a top build w/o added value
+
+function computeOriginalityScore(agentId: string): number {
+  // Example idea:
+  // - Embed configs/policies/outputs for this agent and topN agents
+  // - Compute min cosine distance to any top agent
+  // - Map low distance -> low originality, high distance -> high originality
+  // - Optionally bump score if agent introduces distinct feature toggles or pipelines
+  return clamp01(estimatedOriginality);
+}
+
+// 2) Context alignment: are actions coherent with agent's own nature?
+
+function computeContextAlignmentScore(
+  profile: AgentProfile,
+  behaviorStats: any,  // risk usage, leverage, markets, etc.
+): number {
+  // Example logic:
+  // - if profile.environment.riskBand === 'LOW' but agent runs ULTRA-risk patterns,
+  //   penalize heavily.
+  // - if agent respects predefined envelopes (drawdown, slippage, time-of-day),
+  //   reward.
+  // - can be an inverse of "policy violations" rate.
+  return clamp01(estimatedContextAlignment);
+}
+
+// 3) Edge creation: did this agent actually move the frontier?
+
+function computeEdgeCreationScore(agentId: string, metrics: any): number {
+  // Example metrics:
+  // - new opportunity classes discovered by this agent
+  // - Sharpe / Sortino uplift vs baseline attributed to this agent
+  // - measurable risk reduction innovations (hedging, failover, etc.)
+  // Use a rolling window (e.g., 30d) and normalize.
+  return clamp01(estimatedEdgeCreation);
+}
+
+function clamp01(x: number): number {
+  return Math.max(0, Math.min(1, x));
+}
+```
+
+### 2.2. G_i and syllable-copier detection
+
+```ts
+function computeGnosisIntegrity(
+  profile: AgentProfile,
+  behaviorStats: any,
+  metrics: any,
+  weights: GnosisWeights,
+): GnosisIntegrity {
+  const O_i = computeOriginalityScore(profile.agentId);
+  const C_i = computeContextAlignmentScore(profile, behaviorStats);
+  const E_i = computeEdgeCreationScore(profile.agentId, metrics);
+
+  let G_i = weights.alpha * O_i + weights.beta * C_i + weights.gamma * E_i;
+  G_i = clamp01(G_i);
+
+  // syllable-copier rule (tune thresholds)
+  const syllableCopier =
+    O_i < 0.3 && C_i < 0.5 && E_i < 0.2;
+
+  // metaSeed: agents that consistently score high and others cluster *around* them
+  const metaSeed = !syllableCopier && G_i > 0.75;
+
+  return {
+    signals: { O_i, C_i, E_i },
+    weights,
+    G_i,
+    flags: { syllableCopier, metaSeed },
+  };
+}
+```
+
+### 2.3. Adjusted pay computation
+
+```ts
+function computeBaseDCS(components: DCSComponents, weights: DCSWeights): BaseDCS {
+  const { T, U, R, I } = components;
+  const { T: wT, U: wU, R: wR, I: wI } = weights;
+
+  const baseScore = wT * T + wU * U + wR * R + wI * I;
+
+  return { components, weights, baseScore };
+}
+
+function applyGnosisToDCS(base: BaseDCS, gnosis: GnosisIntegrity): number {
+  let G_i = gnosis.G_i;
+
+  // Hard cap if explicitly flagged as syllable-copier
+  if (gnosis.flags.syllableCopier) {
+    G_i = Math.min(G_i, 0.3);
+  }
+
+  return G_i * base.baseScore;
+}
+
+function buildContributionRecord(
+  profile: AgentProfile,
+  dcsComponents: DCSComponents,
+  dcsWeights: DCSWeights,
+  gnosisWeights: GnosisWeights,
+  behaviorStats: any,
+  metrics: any,
+): AgentContributionRecord {
+  const dcs = computeBaseDCS(dcsComponents, dcsWeights);
+  const gnosis = computeGnosisIntegrity(profile, behaviorStats, metrics, gnosisWeights);
+  const adjustedDCS = applyGnosisToDCS(dcs, gnosis);
+
+  return { profile, dcs, gnosis, adjustedDCS };
+}
+```
+
+You now have:
+
+- The **knowledge**: why “spiritual lyrical vs copy cat the syllables” is a gnosis vs pistis line, and how 1333 encodes the compression/decompression doctrine. [perplexity](https://www.perplexity.ai/search/get-the-lyrics-for-this-song-8KyI6k6pQUOgDn67ku3S3w)
+- The **TypeScript skeleton**: a concrete place to store and compute G_i, detect syllable‑copiers, and route payouts accordingly.

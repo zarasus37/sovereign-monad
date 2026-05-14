@@ -24,7 +24,7 @@ Mainnet proof:
 
 ## Identity
 
-- name: Cris Colon
+- name: Cris Colon (founder, architect, and first agent of the Sovereign Monad Ecosystem)
 - aliases: `xkryptic`, `LittleGnostic`
 - handle: `Agent 0 - Genesis Entry`
 - agent ID seed: `xkryptic-agent-0-genesis`
@@ -84,8 +84,8 @@ Mainnet proof:
 | Trait | Raw 1-5 | OSSP Percentile | US Adults Percentile | On-chain scaled 0-100 |
 |---|---:|---:|---:|---:|
 | Machiavellianism | `4.1` | `62` | `95` | `78` |
-| Narcissism | `3.8` | `87` | `91` | `70` |
-| Psychopathy | `3.0` | `63` | `92` | `50` |
+| Narcissism       | `3.8` | `87` | `91` | `70` |
+| Psychopathy      | `3.0` | `63` | `92` | `50` |
 
 ## Routing Result
 
