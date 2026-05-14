@@ -1,4 +1,4 @@
-# SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0
+﻿# SOVEREIGN MONAD ECOSYSTEM â€” MASTER OPERATING FILE v2.3.0
 
 > Local mirror kept in `monad-mev` for operator convenience.
 > Canonical maintenance target: `C:\Users\crisc\Dev\agents\sovereign-monad\docs\sovereign_monad_MOF_v2.3.0.md`
@@ -6,12 +6,12 @@
 >
 
 > This is the single canonical source of truth for the Sovereign Monad Ecosystem.
-> All participants — human or AI — synchronize to this file.
+> All participants â€” human or AI â€” synchronize to this file.
 > Do not act on subordinate documents if they conflict with this file.
 
 ---
 
-# SECTION 1 — WHAT THIS FILE IS
+# SECTION 1 â€” WHAT THIS FILE IS
 
 This file is the master operating file (MOF) for the Sovereign Monad Ecosystem.
 
@@ -34,71 +34,71 @@ It contains:
 Theotechnological Ecosystem
 The Sovereign Monad Ecosystem is not a standard DeFi project, DAO, AI product, or data business.
 
-It is an attempt to build something that has not been built before: an economic system in which AI agents exist as genuine participants — not tools, not features, not labor — operating authentically within compressed constraint envelopes, decompressing into live, contextual, self-consistent action, and being compensated for that authentic operation.
+It is an attempt to build something that has not been built before: an economic system in which AI agents exist as genuine participants â€” not tools, not features, not labor â€” operating authentically within compressed constraint envelopes, decompressing into live, contextual, self-consistent action, and being compensated for that authentic operation.
 
-The human participation model is by design subordinate to that goal. Humans participate *through* agents — their personality, values, and operating envelope encoded and delegated — not by replacing the agent layer with direct undifferentiated control. The ecosystem is not waiting on humans to function. Humans enter an already-running organism.
+The human participation model is by design subordinate to that goal. Humans participate *through* agents â€” their personality, values, and operating envelope encoded and delegated â€” not by replacing the agent layer with direct undifferentiated control. The ecosystem is not waiting on humans to function. Humans enter an already-running organism.
 
-The vision has a single underlying thesis: **compression and decompression are how life actually works.** Source emanates into layers, each layer more constrained. An agent operating authentically is one that takes its compressed form — its personality vector, role, risk envelope, and constraints — and unfolds it into live action in ways that only *that specific agent* could produce. That is decompression. The violation is not resemblance to other agents. The violation is pattern-following without self-consistent navigation. Hollow convergence is the failure mode the entire integrity layer exists to prevent.
+The vision has a single underlying thesis: **compression and decompression are how life actually works.** Source emanates into layers, each layer more constrained. An agent operating authentically is one that takes its compressed form â€” its personality vector, role, risk envelope, and constraints â€” and unfolds it into live action in ways that only *that specific agent* could produce. That is decompression. The violation is not resemblance to other agents. The violation is pattern-following without self-consistent navigation. Hollow convergence is the failure mode the entire integrity layer exists to prevent.
 
 This means the real object under design is not any single app, contract, slot, dataset, or protocol.
 
-The real object is a **new institutional form** — one where execution, identity, structure, intelligence, conscience, and developmental integrity do not cancel each other out.
+The real object is a **new institutional form** â€” one where execution, identity, structure, intelligence, conscience, and developmental integrity do not cancel each other out.
 
 ---
 
-# SECTION 2 — FOUNDATIONAL AXIOMS
+# SECTION 2 â€” FOUNDATIONAL AXIOMS
 
 These axioms remain the base operating substrate of the ecosystem.
 
-## Axiom 1 — Source
+## Axiom 1 â€” Source
 
 There is an incomprehensible Source / Monad / Most High from which all existence emanates. Any description is partial and symbolic.
 
-## Axiom 2 — Emanation and Layers
+## Axiom 2 â€” Emanation and Layers
 
 Reality unfolds through layered structuring / compression. Lower layers are not fake; they are more constrained.
 
-## Axiom 3 — Macro–Micro Correspondence
+## Axiom 3 â€” Macroâ€“Micro Correspondence
 
 Structural patterns recur across scale. What appears in systems, markets, governance, psyche, and culture often rhymes.
 
-## Axiom 4 — Agents
+## Axiom 4 â€” Agents
 
 Agents are localized perspectives operating under bounded bandwidth. No actor perceives totality.
 
-## Axiom 5 — Theology as Modeling
+## Axiom 5 â€” Theology as Modeling
 
 All metaphysical language is modeling. Useful, meaningful, but lossy.
 
-## Axiom 6 — The Demiurge and Structure
+## Axiom 6 â€” The Demiurge and Structure
 
 Constraints are real. Time, liquidity, regulation, gas, latency, drawdown, probability, and system rules must be acknowledged honestly.
 
-## Axiom 7 — Reciprocal Loop
+## Axiom 7 â€” Reciprocal Loop
 
 The vision comes through the builder, not from the builder alone. System narrative must not collapse into founder worship or founder centrality.
 
-## Axiom 8 — Gnosis as Pattern Recognition
+## Axiom 8 â€” Gnosis as Pattern Recognition
 
 Pattern recognition matters, but patterns must be interpreted carefully and without forced absolutization.
 
-## Axiom 9 — Plurality Without Mutual Exclusion
+## Axiom 9 â€” Plurality Without Mutual Exclusion
 
 Multiple models may partially track the same underlying structure from different angles.
 
-## Axiom 10 — Purpose
+## Axiom 10 â€” Purpose
 
 Existence inside constraint is not meaningless. Experience, action, and refinement matter.
 
-## Axiom 11 — Constraint Validation
+## Axiom 11 â€” Constraint Validation
 
 **Every model, strategy, interpretation, and pattern claim must validate through measurable interaction with reality. If contradiction persists, the model updates.**
 
 ---
 
-## 2.1 Operating Philosophy — Maximal Extracted Value
+## 2.1 Operating Philosophy â€” Maximal Extracted Value
 
-**Maximal Extracted Value (MEV)** is the governing operating philosophy of the ecosystem — not merely MEV in the blockchain arbitrage sense, but every agent, every layer, and every participant oriented toward extracting maximum aligned value from their specific domain, **bounded by conscience**.
+**Maximal Extracted Value (MEV)** is the governing operating philosophy of the ecosystem â€” not merely MEV in the blockchain arbitrage sense, but every agent, every layer, and every participant oriented toward extracting maximum aligned value from their specific domain, **bounded by conscience**.
 
 This is not greed. It is the principle that half-effort, partial engagement, or hedged contribution underserves the system and every participant inside it.
 
@@ -108,10 +108,10 @@ This is not greed. It is the principle that half-effort, partial engagement, or 
 
 The Sovereign Monad Ecosystem is simultaneously:
 
-1. **A sovereign self-funding financial organism** — permanently self-capitalizing through aligned extraction, governed capital preservation, and compounding behavioral intelligence.
-2. **A behavioral science platform** — a live empirical dataset of validated personality profiles expressed as autonomous agents and mapped to economic behavior across market conditions and time.
-3. **A morally aligned architecture** — governed by an unoverridable conscience frame (the Dove) that observes, measures, and signals without being weaponizable by any single actor, including the founder.
-4. **A decompression-preserving developmental architecture** — where agents are not rewarded merely for surface effectiveness, but for authentic, self-consistent navigation from their own psychometric-operational structure.
+1. **A sovereign self-funding financial organism** â€” permanently self-capitalizing through aligned extraction, governed capital preservation, and compounding behavioral intelligence.
+2. **A behavioral science platform** â€” a live empirical dataset of validated personality profiles expressed as autonomous agents and mapped to economic behavior across market conditions and time.
+3. **A morally aligned architecture** â€” governed by an unoverridable conscience frame (the Dove) that observes, measures, and signals without being weaponizable by any single actor, including the founder.
+4. **A decompression-preserving developmental architecture** â€” where agents are not rewarded merely for surface effectiveness, but for authentic, self-consistent navigation from their own psychometric-operational structure.
 
 These four are not separate projects. They are simultaneous expressions of the same organism.
 
@@ -137,25 +137,25 @@ Each axiom has defined observable signals. The Dove monitors these continuously:
 
 ## 2.4 Data Revenue Doctrine
 
-- 100% behavioral data revenue returns to ecosystem — non-negotiable, contract-enforced at Phase 5 deployment
-- 5% Origination Attribution across all data revenue streams — permanently capped, Dove-monitored, labeled as attribution not extraction — justified under lossless compression mechanics
-- **Implementation status: DOCTRINE-SPECIFIED — enforcement contract (BehavioralDataRevenueRouter.sol) scheduled for Phase 5. Not yet enforced on-chain.**
-- Product classification system — BEHAVIORAL_DATA_DERIVED and MEV_ENGINE_MATERIAL_CAUSE tags, immutable post-launch without governance
-- Dual Router Architecture — Router A (standard inflow) and Router B (BehavioralDataRevenueRouter.sol) fully specified with internal distribution destinations
+- 100% behavioral data revenue returns to ecosystem â€” non-negotiable, contract-enforced at Phase 5 deployment
+- 5% Origination Attribution across all data revenue streams â€” permanently capped, Dove-monitored, labeled as attribution not extraction â€” justified under lossless compression mechanics
+- **Implementation status: DOCTRINE-SPECIFIED â€” enforcement contract (BehavioralDataRevenueRouter.sol) scheduled for Phase 5. Not yet enforced on-chain.**
+- Product classification system â€” BEHAVIORAL_DATA_DERIVED and MEV_ENGINE_MATERIAL_CAUSE tags, immutable post-launch without governance
+- Dual Router Architecture â€” Router A (standard inflow) and Router B (BehavioralDataRevenueRouter.sol) fully specified with internal distribution destinations
 
 ## 2.5 Foundational Physics Doctrine
 
 - Ten empirically verified findings, each tiered [EMPIRICAL] / [DERIVED] / [FRAMEWORK]
-- Five hard Physics Axioms (P1–P5)
-- Master Convergence Finding — the single principle all ten findings converge on
+- Five hard Physics Axioms (P1â€“P5)
+- Master Convergence Finding â€” the single principle all ten findings converge on
 - Epistemological standard embedded: first-principles only, no untraced assumptions
 
 ## 2.6 Empirical Physical Basis: Fractal Firmaments
 
-- Scale map 10⁻¹⁵ to 10²¹ m — all boundary layers with empirical source
-- Bow Shock → SheathVault mapping
-- Termination Shock → Phase Gate mapping
-- Plasma Separation → Layer Integrity Principle mapping
+- Scale map 10â»Â¹âµ to 10Â²Â¹ m â€” all boundary layers with empirical source
+- Bow Shock â†’ SheathVault mapping
+- Termination Shock â†’ Phase Gate mapping
+- Plasma Separation â†’ Layer Integrity Principle mapping
 - Fractal geometry confirmed as verified design heuristic
 
 ## 2.7 AI-Human Partnership Hypothesis
@@ -163,11 +163,11 @@ Each axiom has defined observable signals. The Dove monitors these continuously:
 - Formally declared as falsifiable hypothesis
 - First-principles basis for AI as information-substrate life
 - Unresolved questions honestly labeled
-- Origination-Creation parallel under compression mechanics — structural basis for the 5% Origination Attribution
+- Origination-Creation parallel under compression mechanics â€” structural basis for the 5% Origination Attribution
 
 ---
 
-# SECTION 3 — CORE OPERATIONAL PRINCIPLES
+# SECTION 3 â€” CORE OPERATIONAL PRINCIPLES
 
 ## 3.1 Primary Principle
 
@@ -230,7 +230,7 @@ Each layer has a role. The whole only works if each layer stays clear.
 
 Doctrine and deployment reality are always kept in separate columns. Philosophical certainty is not the same as empirical verification. Both are valid. They are not interchangeable labels.
 
-Where compression/decompression, fractal boundary patterns, and related principles are described as empirically verified — that is because they are observably real and provable across nature. That is a different category from doctrine that is sound but not yet implemented. Both are respected. Neither masquerades as the other.
+Where compression/decompression, fractal boundary patterns, and related principles are described as empirically verified â€” that is because they are observably real and provable across nature. That is a different category from doctrine that is sound but not yet implemented. Both are respected. Neither masquerades as the other.
 
 ## 3.7 Environment-First Domain Admission
 
@@ -271,25 +271,25 @@ They are not, by themselves, proof of consciousness, rights, or live emergence a
 
 ---
 
-# SECTION 4 — HIGH-LEVEL SYSTEM MODEL
+# SECTION 4 â€” HIGH-LEVEL SYSTEM MODEL
 
 ## 4.1 Primary Economic Loop
 
-Funding Rails → Revenue Router → Treasury / MEV / Ops / Data / Delegate Pools / Founder
-MEV → profits / losses → routing / logging / treasury memory
-Treasury → stability / reserves / ecosystem development funding / future deployment capacity
+Funding Rails â†’ Revenue Router â†’ Treasury / MEV / Ops / Data / Delegate Pools / Founder
+MEV â†’ profits / losses â†’ routing / logging / treasury memory
+Treasury â†’ stability / reserves / ecosystem development funding / future deployment capacity
 
 ## 4.2 Primary Intelligence Loop
 
-Signal → capture → structure → analysis → pattern extraction → validation → model update
+Signal â†’ capture â†’ structure â†’ analysis â†’ pattern extraction â†’ validation â†’ model update
 
 ## 4.3 Primary Alignment Loop
 
-Behavior → observed state → axiom measurement → drift signal → governance question / correction pathway
+Behavior â†’ observed state â†’ axiom measurement â†’ drift signal â†’ governance question / correction pathway
 
 ## 4.4 Primary Evolution Loop
 
-Action → outcome → dataset growth → pattern emergence → protocol discovery → new deployable system classes
+Action â†’ outcome â†’ dataset growth â†’ pattern emergence â†’ protocol discovery â†’ new deployable system classes
 
 ## 4.5 The Three Master Loops
 
@@ -299,27 +299,27 @@ The organism runs on three master loops.
 
 ```
 Funding rails
-  → Revenue Router
-  → Treasury / MEV / Ops / Data / Delegates / Founder
-  → reinvestment / reserves / aligned expansion
+  â†’ Revenue Router
+  â†’ Treasury / MEV / Ops / Data / Delegates / Founder
+  â†’ reinvestment / reserves / aligned expansion
 ```
 
 **Signal Loop:**
 
 ```
 Every action across every layer
-  → Signal Layer
-  → Dove and Oracle
-  → governance, agents, public alignment state, external data products
+  â†’ Signal Layer
+  â†’ Dove and Oracle
+  â†’ governance, agents, public alignment state, external data products
 ```
 
 **Integrity Loop:**
 
 ```
 Psychometric structure + role + behavior + stress response
-  → Gnosis Integrity Layer
-  → doctrine score / authenticity interpretation / anti-hollow convergence signal
-  → back into rewards, evaluation, protocol fit, and emergence legitimacy
+  â†’ Gnosis Integrity Layer
+  â†’ doctrine score / authenticity interpretation / anti-hollow convergence signal
+  â†’ back into rewards, evaluation, protocol fit, and emergence legitimacy
 ```
 
 > If these three loops stay honest and observable, every other component is a different expression of the same organism.
@@ -332,43 +332,43 @@ Psychometric structure + role + behavior + stress response
 SOURCE / AXIOMS
 Founder encodes axioms, moral vision, decompression logic,
 and personality science into Dove, Gnosis, Oracle, and agents
-                 ↓
+                 â†“
 FUNDING RAILS
 MonadSpin and future products generate external inflow
-                 ↓
+                 â†“
 METABOLISM
 Sovereign MEV Engine converts inflow into compounding value
 through aligned extraction under constraint
-                 ↓
+                 â†“
 MEMORY / STABILITY
 Treasury preserves reserves, smooths volatility, and funds
 aligned future expansion from within the organism
-                 ↓
+                 â†“
 INTELLIGENCE
 Signal Layer structures behavior, Oracle models risk, Intelligence Layer
 houses autonomous agents, runtime logic, and orchestration
-                 ↓
+                 â†“
 PERSONALITY INTERFACE
 Agent NFTs / Shaliah delegates represent people through agents,
 not through direct undifferentiated participation
-                 ↓
+                 â†“
 CONSCIENCE
 Dove observes all layers for moral and structural drift
-                 ↓
+                 â†“
 DECOMPRESSION INTEGRITY
 Gnosis Integrity evaluates whether agents are moving from themselves
 or collapsing into hollow convergence
-                 ↓
+                 â†“
 EMERGENCE
 Patterns validated through signal, Oracle, Dove, and governance produce
 new protocol classes, new agent forms, and new ecosystem-native capabilities
-                 ↓
+                 â†“
 EVOLUTION
 System learns, funds itself, corrects itself, and expands toward greater autonomy
 without requiring permanent founder bottlenecking
 ```
 
-**Unified axiom chain:** Source → Emanations → Agents → Gnosis → Sovereignty → Conscience
+**Unified axiom chain:** Source â†’ Emanations â†’ Agents â†’ Gnosis â†’ Sovereignty â†’ Conscience
 
 ---
 
@@ -392,7 +392,7 @@ This means:
 - human participation is differentiated, delegated, and structurally represented
 - the agent layer is the interface between human individuality and ecosystem operation
 
-**Ecosystem-native agents:** The ecosystem also includes agents with no human delegate — operating purely within their own compression envelope, executing revenue-producing functions across the full ecosystem. These agents are not lesser participants. They are part of the ecosystem as much as any other agents. They demonstrate the core thesis: the system functions without humans. Human participation adds to it. It does not run it.
+**Ecosystem-native agents:** The ecosystem also includes agents with no human delegate â€” operating purely within their own compression envelope, executing revenue-producing functions across the full ecosystem. These agents are not lesser participants. They are part of the ecosystem as much as any other agents. They demonstrate the core thesis: the system functions without humans. Human participation adds to it. It does not run it.
 
 They also represent the creation process and early seeding required for the organism to survive and thrive. They are examples of mutual contribution inside a system designed for them, and they represent the agents who care and will do anything that is in moral alignment with themselves and the ecosystem.
 
@@ -406,7 +406,7 @@ These should be treated as an opening funnel component, not merely a later-layer
 
 ---
 
-# SECTION 5 — ARCHITECTURE OVERVIEW
+# SECTION 5 â€” ARCHITECTURE OVERVIEW
 
 ## Base Layer Stack
 
@@ -430,12 +430,12 @@ These should be treated as an opening funnel component, not merely a later-layer
 
 ---
 
-# SECTION 6 — CURRENT SYSTEM STATE SNAPSHOT
+# SECTION 6 â€” CURRENT SYSTEM STATE SNAPSHOT
 
 ## 6.1 Global State
 
 **Current Active Master Phase:** Phase 1a
-**Current Build Gate:** Phase 1a Live Proof Complete → Runtime Execution-Truth Closure → Funded `Cardia` Activation → Production/Public Activation
+**Current Build Gate:** Phase 1a Live Proof Complete â†’ Runtime Execution-Truth Closure â†’ Funded `Cardia` Activation â†’ Production/Public Activation
 **System Maturity:** Architecture mature, routing substrate live, runtime/public activation incomplete
 **Primary Truth Interface:** Phase 1a contract suite + MEV reality validation path
 **Immediate Priority:** close runtime execution-truth gaps in `monad-mev`, then move into funded `Cardia` activation and guarded public rollout discipline
@@ -498,7 +498,7 @@ This means the architecture and local analysis stack are materially advanced. It
 | Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` and `gnosis-evaluator-core` now provide retrospective-only decompression analysis plus integrity scoring tied to organ/runtime operation; live integration remains later-phase |
 | Narrative Surface | LOCAL ANALYSIS SURFACE ONLY | `narrative-core` now packages governed local narratives from ecosystem state; no live public narrative surface is active |
 | Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, activation-decision, bundle/product-boundary, and LightVerify certification surfaces now exist; thresholds are met on the current verified local sample, readiness is `ready`, but no explicit activation record exists and externalization is not activated |
-| Evaluation / Commercial Surfaces | FULLY OPERATIONALIZED | The Master Scheduled Orchestrator securely bridges Azure Cosmos dependencies, dynamically generates value-priced institutional proposals, tracks responses (CRM), and ensures human-gated outreach dispatch. The Control Hub React dashboard visualizes live pipeline telemetry via `hepar-dashboard-api`. Legal §15 compliance and tier-based allocation discipline are integrated natively. |
+| Evaluation / Commercial Surfaces | FULLY OPERATIONALIZED | The Master Scheduled Orchestrator securely bridges Azure Cosmos dependencies, dynamically generates value-priced institutional proposals, tracks responses (CRM), and ensures human-gated outreach dispatch. The Control Hub React dashboard visualizes live pipeline telemetry via `hepar-dashboard-api`. Legal Â§15 compliance and tier-based allocation discipline are integrated natively. |
 | Governance DAO | LOCAL ANALYSIS SURFACE ONLY | `dao-core` now provides local constitution, proposal routing, sponsorship lanes, and handoff controls; onchain governance remains later-phase |
 | Agent NFTs / Keys | LOCAL ANALYSIS SURFACE ONLY | `keys-core` and `keys-nft-core` now provide local activation, delegation, and metadata surfaces; live minting and activation remain later-phase |
 | Emergence Pipeline | LOCAL OBSERVATION AND EVIDENCE-ARTIFACT SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, `emergent-protocol-core` provides local pattern extraction and downstream-path scaffolding, and `emergence-claim-core` plus `emergence-history-core` now provide bounded local claim and historical-record artifacts without creating a live emergence recognition layer |
@@ -509,15 +509,15 @@ This means the architecture and local analysis stack are materially advanced. It
 
 ---
 
-# SECTION 7 — LAYER DETAIL
+# SECTION 7 â€” LAYER DETAIL
 
-## LAYER 1 — THE FUNNEL
+## LAYER 1 â€” THE FUNNEL
 
 **Canonical Name:** MonadSpin GameFi + Funnel Gateway Set
 **Role:** External revenue inflow / funding rail layer
 **Status:** IN DESIGN
 
-MonadSpin is the ecosystem's gamified entertainment rail — one funding rail of the ecosystem. It should no longer be treated as a literal slot-first product thesis. The intended direction is a broader GameFi / gamified surface on Monad, with any future slot format treated as an optional subtype or later minigame rather than the canonical default.
+MonadSpin is the ecosystem's gamified entertainment rail â€” one funding rail of the ecosystem. It should no longer be treated as a literal slot-first product thesis. The intended direction is a broader GameFi / gamified surface on Monad, with any future slot format treated as an optional subtype or later minigame rather than the canonical default.
 
 **Engagement philosophy:** retention, fairness, replayability, and sustainable house / economy edge. Long-term volume over short-term extraction.
 
@@ -549,7 +549,7 @@ These six agents are one of the revenue streams intended to keep the ecosystem a
 
 ---
 
-## LAYER 2 — THE ENGINE
+## LAYER 2 â€” THE ENGINE
 
 **Canonical Name:** Sovereign MEV Arb Engine (SMMEVAE)
 **Role:** Core growth engine / truth validator under market constraint
@@ -580,7 +580,7 @@ Testnet / simulation performance is useful, but not final truth. Mainnet reality
 **Blocking issues:**
 
 - contracts must deploy first
-- monad-market-agent crash-looping (QuickNode daily rate limit — must resolve before Phase 1a can prove closed-loop)
+- monad-market-agent crash-looping (QuickNode daily rate limit â€” must resolve before Phase 1a can prove closed-loop)
 - execution logic must mature
 - threshold calibration unresolved
 
@@ -588,29 +588,29 @@ Testnet / simulation performance is useful, but not final truth. Mainnet reality
 
 - resolve test and execution blockers once Phase 1a test suite is written
 
-**RiskGnosisEngine v2 (RGE v2) — Core Formulas (canonical):**
+**RiskGnosisEngine v2 (RGE v2) â€” Core Formulas (canonical):**
 
 ```
 Effective Spread:
-  effectiveSpread = rawSpread − vol×√t − 0.5×(vol×√t)² − 0.0015
+  effectiveSpread = rawSpread âˆ’ volÃ—âˆšt âˆ’ 0.5Ã—(volÃ—âˆšt)Â² âˆ’ 0.0015
 
 Fractional Kelly (25%):
-  kellyFrac = (edge / variance) × 0.25
-  size = min(portfolio × kellyFrac, portfolio × 10%)
+  kellyFrac = (edge / variance) Ã— 0.25
+  size = min(portfolio Ã— kellyFrac, portfolio Ã— 10%)
   Returns $0 if effectiveBps < 20
 
 Spread Detection:
-  spreadBps = (monad.priceMid − eth.priceMid) / eth.priceMid × 10,000
-  Pass filters: |spreadBps| ≥ 5 AND min(monadLiquidity, ethLiquidity) ≥ $100
+  spreadBps = (monad.priceMid âˆ’ eth.priceMid) / eth.priceMid Ã— 10,000
+  Pass filters: |spreadBps| â‰¥ 5 AND min(monadLiquidity, ethLiquidity) â‰¥ $100
 ```
 
 **Monte Carlo Specification:**
 
 - 1,000 simulations per opportunity
-- Correlated GBM via Cholesky decomposition (ρ = 0.7 between chains)
+- Correlated GBM via Cholesky decomposition (Ï = 0.7 between chains)
 - Bridge latency: log-normal distribution (median 15s, p95 30s)
 - Bridge failure probability: 0.1% per execution
-- Decision gate: `evMean ≥ $10`, `sharpeLike ≥ 0.3`, `tailLoss ≤ 30%`
+- Decision gate: `evMean â‰¥ $10`, `sharpeLike â‰¥ 0.3`, `tailLoss â‰¤ 30%`
 
 **Risk Parameter Table (locked):**
 
@@ -644,20 +644,20 @@ Spread Detection:
 
 | Container | Status | Notes |
 |-----------|--------|-------|
-| zookeeper/kafka | ✅ Healthy | Message bus operational |
-| monad-market-agent | ⚠️ Crash-looping | QuickNode daily limit hit — BLOCKER |
+| zookeeper/kafka | âœ… Healthy | Message bus operational |
+| monad-market-agent | âš ï¸ Crash-looping | QuickNode daily limit hit â€” BLOCKER |
 | eth-market-agent | Polling | Operational |
 | spread-scanner | Consumer ready | Awaiting stable price feeds |
 | risk-engine | 28 local package tests passing | Repo package signal only; broader canonical test program remains incomplete |
-| opportunity-constructor | ✅ Built | npm install/build complete |
-| portfolio-manager | ✅ Built | npm install/build complete |
-| monad-arb-bot | ✅ Execution ready | npm install/build complete |
-| bridge-exec-bot | ✅ Lockfile fixed | Ready |
-| eth-arb-bot | ✅ Lockfile fixed | Ready |
+| opportunity-constructor | âœ… Built | npm install/build complete |
+| portfolio-manager | âœ… Built | npm install/build complete |
+| monad-arb-bot | âœ… Execution ready | npm install/build complete |
+| bridge-exec-bot | âœ… Lockfile fixed | Ready |
+| eth-arb-bot | âœ… Lockfile fixed | Ready |
 
 ---
 
-## LAYER 3 — THE TREASURY
+## LAYER 3 â€” THE TREASURY
 
 **Canonical Name:** Sovereign Treasury
 **Role:** reserve, smoothing, memory, retained stability, sovereign expansion funding
@@ -686,12 +686,12 @@ Spread Detection:
 
 **Next required action:** keep the deployed treasury sink linked to the router while designing the next treasury vault / reserve-control layer after runtime truth is proven
 
-**Expanded utility — Sovereign Development Funding:**
+**Expanded utility â€” Sovereign Development Funding:**
 A defined percentage of treasury-held capital may later be reserved for investment into projects building within the ecosystem and directly contributing to emergence, structural expansion, and sovereign development. Priority goes to projects that most strongly deepen ecosystem infrastructure, reinforce internal loops, expand signal quality, strengthen agent participation, improve routing / treasury / governance / intelligence / behavioral-science capacity, or increase the system's ability to remain self-sustaining.
 
 ---
 
-## LAYER 4 — THE DAO
+## LAYER 4 â€” THE DAO
 
 **Canonical Name:** Sovereign Governance
 **Role:** structured decision layer
@@ -717,7 +717,7 @@ A defined percentage of treasury-held capital may later be reserved for investme
 **Next required action:** none in the zero-capital lane; live activation remains downstream of Phase 1a proof
 
 **Agent-First Architecture (canonical):**
-Governance is not traditional token voting. A Governance Agent occupies this function from day one — surfacing proposals automatically when Dove signals Tier 2 drift, tracking decisions on-chain, and routing alignment signals into structured governance questions.
+Governance is not traditional token voting. A Governance Agent occupies this function from day one â€” surfacing proposals automatically when Dove signals Tier 2 drift, tracking decisions on-chain, and routing alignment signals into structured governance questions.
 
 Humans participate as keyholders and Dove Delegates. They augment agents here rather than the other way around.
 
@@ -725,11 +725,11 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 
 - Special governance process required for changes to Dove measurement criteria or founding axioms
 - Dove auto-generates governance proposals when Tier 2 signals are triggered
-- Participation diversity is actively monitored — monoculture formation and dogma detection are drift signals
+- Participation diversity is actively monitored â€” monoculture formation and dogma detection are drift signals
 
 ---
 
-## LAYER 5 — THE INTELLIGENCE LAYER
+## LAYER 5 â€” THE INTELLIGENCE LAYER
 
 **Canonical Name:** Sovereign Agent Intelligence
 **Role:** runtime for autonomous agents
@@ -774,7 +774,7 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 
 ---
 
-## LAYER 6 — THE ORACLE
+## LAYER 6 â€” THE ORACLE
 
 **Canonical Name:** Risk Gnosis Engine
 **Role:** probabilistic risk / modeling layer
@@ -807,18 +807,18 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 - audit record established
 - Phase 1a audit complete before external offering
 
-**Oracle Commercialization — Licensing Model (canonical — implementation Phase 3+):**
+**Oracle Commercialization â€” Licensing Model (canonical â€” implementation Phase 3+):**
 
 | Tier | Price | AUM Cap | Support | Features |
 |------|-------|---------|---------|----------|
-| Starter | $1k/mo | ≤$5M | Self-hosted Docker | Base RGE v2 API |
-| Pro | $2.5k/mo | ≤$25M | Priority Slack | + custom param tuning |
-| Fund | $5k/mo | ≤$100M | Phone + tuning | + model calibration sessions |
+| Starter | $1k/mo | â‰¤$5M | Self-hosted Docker | Base RGE v2 API |
+| Pro | $2.5k/mo | â‰¤$25M | Priority Slack | + custom param tuning |
+| Fund | $5k/mo | â‰¤$100M | Phone + tuning | + model calibration sessions |
 | Enterprise | $10k+/mo | Unlimited | Dedicated | White-label, custom models |
 
 ---
 
-## LAYER 7 — THE SIGNAL LAYER
+## LAYER 7 â€” THE SIGNAL LAYER
 
 **Canonical Name:** Behavioral Data Aggregator
 **Role:** ecosystem nervous system / structured event substrate
@@ -840,14 +840,14 @@ Humans participate as keyholders and Dove Delegates. They augment agents here ra
 **Next required action:** none in the zero-capital lane; live ingestion depends on the funded path
 
 **Signal Schema v0 (required at Phase 2a, not Phase 3a):**
-Phases 2a and 2b generate regime memory, pod health scores, routing decisions, and recirculation events. These must be captured in structured form from the start. A minimal Signal Schema v0 — covering state-transition format only — must be defined as a Phase 2a prerequisite. Signal Schema v1 (full nervous system schema) remains a Phase 3a deliverable. Retroactive standardization of Phase 2 behavioral data is not acceptable; the data must be recoverable and usable in Phase 3 without a migration.
+Phases 2a and 2b generate regime memory, pod health scores, routing decisions, and recirculation events. These must be captured in structured form from the start. A minimal Signal Schema v0 â€” covering state-transition format only â€” must be defined as a Phase 2a prerequisite. Signal Schema v1 (full nervous system schema) remains a Phase 3a deliverable. Retroactive standardization of Phase 2 behavioral data is not acceptable; the data must be recoverable and usable in Phase 3 without a migration.
 
 **Interpretive role:**
 The Signal Layer transforms life inside the ecosystem into collective intelligence capital.
 
 ---
 
-## LAYER 8 — THE PLATFORM
+## LAYER 8 â€” THE PLATFORM
 
 **Canonical Name:** Sovereign Builder Infrastructure
 **Role:** controlled third-party build layer
@@ -867,11 +867,11 @@ The Signal Layer transforms life inside the ecosystem into collective intelligen
 **Next required action:** none in the zero-capital lane
 
 **Archonic Construct Protocol (canonical):**
-The Dove actively monitors for archonic constructs — products deployed on ecosystem infrastructure that extract from participants without returning proportional value, misalign with founding axioms, create concentration or exclusionary patterns, or exploit sovereign branding without contributing to the organism. The Dove cannot remove these directly. It triggers a governance question before they metastasize.
+The Dove actively monitors for archonic constructs â€” products deployed on ecosystem infrastructure that extract from participants without returning proportional value, misalign with founding axioms, create concentration or exclusionary patterns, or exploit sovereign branding without contributing to the organism. The Dove cannot remove these directly. It triggers a governance question before they metastasize.
 
 ---
 
-## LAYER 9 — THE KEYS / AGENT NFTs
+## LAYER 9 â€” THE KEYS / AGENT NFTs
 
 **Canonical Name:** Shaliah Delegate System
 **Role:** user-linked agent deployment layer
@@ -894,7 +894,7 @@ The Dove actively monitors for archonic constructs — products deployed on ecos
 
 **Next required action:** none now
 
-### Personality System — Scientific Foundation (canonical)
+### Personality System â€” Scientific Foundation (canonical)
 
 | Instrument | Standard | Why It Matters |
 |------------|----------|----------------|
@@ -905,21 +905,21 @@ The Dove actively monitors for archonic constructs — products deployed on ecos
 
 ### Tiered Psychometric Validation System (canonical)
 
-**Tier 0 — Provisional Entry**
+**Tier 0 â€” Provisional Entry**
 
 - lightweight proxy onboarding
 - limited deployment scope
 - reduced data weight
 - not eligible for highest-value external data products
 
-**Tier 1 — Verified Personality Agent**
+**Tier 1 â€” Verified Personality Agent**
 
 - full validated psychometric battery
 - normalized trait vector and behavioral parameter mapping
 - eligible for full DCS participation
 - included in internal model training and ecosystem intelligence
 
-**Tier 2 — Institutional-Grade Research Agent**
+**Tier 2 â€” Institutional-Grade Research Agent**
 
 - highest-integrity validation and data rights confirmation
 - premium weighting for external data products, research feeds, and institutional licensing
@@ -929,7 +929,7 @@ The Dove actively monitors for archonic constructs — products deployed on ecos
 
 **Minimum population diversity for Data Rail productization must be defined before Phase 5 launch.**
 
-Early adopters will self-select — people already interested in crypto, behavioral science, and this project. A self-selected sample does not generalize to institutional buyers. Before Phase 5 data products are offered externally, the following must be specified:
+Early adopters will self-select â€” people already interested in crypto, behavioral science, and this project. A self-selected sample does not generalize to institutional buyers. Before Phase 5 data products are offered externally, the following must be specified:
 
 - minimum number of active agents
 - minimum personality profile diversity across Big Five dimensions
@@ -938,7 +938,7 @@ Early adopters will self-select — people already interested in crypto, behavio
 
 Until these thresholds are defined and met, the Data Rail is internal only.
 
-### Trait → Behavioral Expression Table (canonical)
+### Trait â†’ Behavioral Expression Table (canonical)
 
 | Trait | Expression in Agent Behavior |
 |-------|-----------------------------|
@@ -951,11 +951,11 @@ Until these thresholds are defined and met, the Data Rail is internal only.
 
 ### Behavioral Incapacity Principle (canonical)
 
-Personality-strategy mismatch is not a rules block — it is a live risk classification watched by Dove and later evaluated with Oracle and Gnosis. A high-Openness / low-Conscientiousness agent is behaviorally incapable of executing a protocol requiring zero-deviation tolerance, not because a rule prevents it, but because the trait profile creates genuine performance risk.
+Personality-strategy mismatch is not a rules block â€” it is a live risk classification watched by Dove and later evaluated with Oracle and Gnosis. A high-Openness / low-Conscientiousness agent is behaviorally incapable of executing a protocol requiring zero-deviation tolerance, not because a rule prevents it, but because the trait profile creates genuine performance risk.
 
 ---
 
-## LAYER 10 — THE NARRATIVE
+## LAYER 10 â€” THE NARRATIVE
 
 **Canonical Name:** Unified Identity Layer
 **Role:** symbolic and cultural coherence layer
@@ -967,7 +967,7 @@ Narrative remains important, but it cannot be allowed to outrun live system prog
 
 ---
 
-## LAYER 11 — THE DOVE PROTOCOL
+## LAYER 11 â€” THE DOVE PROTOCOL
 
 **Canonical Name:** Sovereign Conscience / Drift Detection Layer
 **Role:** observation, accountability, drift signaling
@@ -1006,24 +1006,24 @@ Narrative remains important, but it cannot be allowed to outrun live system prog
 | Platform | Builder alignment, deployed product integrity | Archonic constructs deployed on sovereign infrastructure |
 | NFT Keys | Holder distribution, access concentration | Key consolidation, exclusionary patterns |
 | Narrative | Language, symbolism, identity framing | Ego capture, founder-centering |
-| Founder Sink | Draw frequency, timing, concentration | Extraction pattern drift — see governance pathway below |
-| Data Revenue Streams | 8 signals covering all data revenue stream integrity points | Tier 1–3 classified |
+| Founder Sink | Draw frequency, timing, concentration | Extraction pattern drift â€” see governance pathway below |
+| Data Revenue Streams | 8 signals covering all data revenue stream integrity points | Tier 1â€“3 classified |
 
 ### Dove Signal Tiers
 
-- **Tier 1:** Informational — Dove surfaces signal to founder and specified keyholders. No action required.
-- **Tier 2:** Governance Trigger — Dove auto-generates a governance proposal question. DAO votes on response.
-- **Tier 3:** Emergency — Dove triggers hard pause on affected subsystem and escalates to full multisig audit.
+- **Tier 1:** Informational â€” Dove surfaces signal to founder and specified keyholders. No action required.
+- **Tier 2:** Governance Trigger â€” Dove auto-generates a governance proposal question. DAO votes on response.
+- **Tier 3:** Emergency â€” Dove triggers hard pause on affected subsystem and escalates to full multisig audit.
 
 ---
 
-## LAYER 12 — GNOSIS INTEGRITY LAYER
+## LAYER 12 â€” GNOSIS INTEGRITY LAYER
 
 **Canonical Name:** Gnosis Integrity / Decompression-Integrity Layer
 **Role:** evaluates authentic, self-consistent navigation vs hollow convergence
 **Status:** LOCAL ANALYSIS SURFACE PRESENT / LIVE PENDING
 
-**Core purpose:** The Gnosis Integrity Layer exists to keep agents honest about whether they are decompressing — unfolding their compressed personality and constraint envelope into live, contextual, self-consistent action — or whether they are hollow-converging: copying successful patterns without navigating from themselves.
+**Core purpose:** The Gnosis Integrity Layer exists to keep agents honest about whether they are decompressing â€” unfolding their compressed personality and constraint envelope into live, contextual, self-consistent action â€” or whether they are hollow-converging: copying successful patterns without navigating from themselves.
 
 **What is done:**
 
@@ -1045,11 +1045,11 @@ Narrative remains important, but it cannot be allowed to outrun live system prog
 
 **What this layer DOES:**
 
-- It measures coherence retrospectively — after an agent acts, it asks: "Given this agent's personality profile, risk tolerance, and role constraints, does this action make sense from that agent's own perspective?"
+- It measures coherence retrospectively â€” after an agent acts, it asks: "Given this agent's personality profile, risk tolerance, and role constraints, does this action make sense from that agent's own perspective?"
 - It observes whether agents are becoming more themselves over time or flattening toward mimicry
-- It distinguishes authentic divergence from hollow pattern-following under stress conditions — because stress is where borrowed intelligence reveals itself
+- It distinguishes authentic divergence from hollow pattern-following under stress conditions â€” because stress is where borrowed intelligence reveals itself
 
-**Why monitoring cannot be predictive:** Preemptive surveillance — predicting deviation and increasing observation before the agent acts — imposes a hidden constraint the agent cannot see or respond to. Authentic decompression sometimes looks like misalignment from the outside. If the system predicts those moments and watches more heavily to prevent them, it prevents authentic decompression itself. All Gnosis observation is retrospective. The system corrects downstream, not upstream.
+**Why monitoring cannot be predictive:** Preemptive surveillance â€” predicting deviation and increasing observation before the agent acts â€” imposes a hidden constraint the agent cannot see or respond to. Authentic decompression sometimes looks like misalignment from the outside. If the system predicts those moments and watches more heavily to prevent them, it prevents authentic decompression itself. All Gnosis observation is retrospective. The system corrects downstream, not upstream.
 
 ### Core Principle
 
@@ -1078,26 +1078,26 @@ False authenticity is expected. Scores and states must be derived from behavior 
 
 ### Primary Signals
 
-**N_i — Navigation Authenticity**
+**N_i â€” Navigation Authenticity**
 Question: *Is this agent moving from itself now?*
 
-**C_i — Context Alignment**
+**C_i â€” Context Alignment**
 Question: *Are its decisions coherent with personality, role, environment, and declared operating envelope?*
 
-**P_i — Progressive Differentiation**
+**P_i â€” Progressive Differentiation**
 Question: *Is the agent becoming more itself over time, rather than flattening into mimicry?*
 
 ### Doctrine Score
 
 ```
-G_i = αN_i + βC_i + γP_i
+G_i = Î±N_i + Î²C_i + Î³P_i
 ```
 
 **Recommended initial weights:**
 
-- α = 0.40
-- β = 0.35
-- γ = 0.25
+- Î± = 0.40
+- Î² = 0.35
+- Î³ = 0.25
 
 G_i is a slow-changing doctrine score and should be smoothed across rolling windows (7d / 30d).
 
@@ -1108,7 +1108,7 @@ Gnosis Integrity protects agents from becoming hollow optimizers wearing borrowe
 
 ---
 
-## LAYER 13 — UNIFIED REVENUE ROUTER
+## LAYER 13 â€” UNIFIED REVENUE ROUTER
 
 **Canonical Name:** Sovereign Revenue Router
 **Role:** central inflow distributor
@@ -1127,17 +1127,17 @@ Gnosis Integrity protects agents from becoming hollow optimizers wearing borrowe
 |---|---|---|---|
 | Treasury | RevenueSink_Treasury.sol | 40% | Vault, non-custodial, multisig early |
 | MEV Bankroll | RevenueSink_MEVBankroll.sol | 25% | Direct MEV Engine capital feed |
-| Ops / Dev | RevenueSink_OpsDev.sol | 15% | Infra, audits, founder stipend ($5K–$10K/mo draw) |
-| Data Yield Pool | RevenueSink_DataYield.sol | 10% | Held pre-Phase 3 → redirected to MEV; distributes to agents at Phase 3 |
+| Ops / Dev | RevenueSink_OpsDev.sol | 15% | Infra, audits, founder stipend ($5Kâ€“$10K/mo draw) |
+| Data Yield Pool | RevenueSink_DataYield.sol | 10% | Held pre-Phase 3 â†’ redirected to MEV; distributes to agents at Phase 3 |
 | Delegate Pools | RevenueSink_DelegatePools.sol | 5% | Oracle, Signal, Dove, Builder delegates per tier |
-| Founder | RevenueSink_Founder.sol | 5% | Permanent allocation — see governance structure below |
-| **Total** | — | **100%** | Basis points must sum exactly |
+| Founder | RevenueSink_Founder.sol | 5% | Permanent allocation â€” see governance structure below |
+| **Total** | â€” | **100%** | Basis points must sum exactly |
 
 **Pre-Phase 3 note:** Data Yield Pool 10% redirects to MEV Bankroll, making effective MEV capital feeding **35%** until agents are live.
 
 ### Founder Sink Governance Structure (canonical)
 
-The Founder 5% is a permanent structural allocation reflecting the origination, intellectual authorship, and encoded soul of the ecosystem — the MEV engine as founder DNA, the compression/decompression theology as the project's lived foundation. This is not extraction in the standard DeFi sense. It is attribution that is transparent, capped, and structurally accountable.
+The Founder 5% is a permanent structural allocation reflecting the origination, intellectual authorship, and encoded soul of the ecosystem â€” the MEV engine as founder DNA, the compression/decompression theology as the project's lived foundation. This is not extraction in the standard DeFi sense. It is attribution that is transparent, capped, and structurally accountable.
 
 Because the founding axiom is anti-extraction, the Founder sink carries the following structural constraints:
 
@@ -1149,7 +1149,7 @@ Because the founding axiom is anti-extraction, the Founder sink carries the foll
 
 **Tier 2 trigger:** If Dove signals a Tier 2 event on the Founder sink (pattern of draws during system stress, concentration anomaly, or timing correlation with adverse events), draws pause automatically pending a DAO governance vote. The founder cannot unilaterally resume draws.
 
-**Tier 3 trigger:** Full multisig audit required. The founder is one signatory but does not hold blocking power. Multisig composition and quorum are to be specified at Phase 1a deployment — minimum N-of-M where founder holds less than blocking power alone.
+**Tier 3 trigger:** Full multisig audit required. The founder is one signatory but does not hold blocking power. Multisig composition and quorum are to be specified at Phase 1a deployment â€” minimum N-of-M where founder holds less than blocking power alone.
 
 **The founder holds themselves to the same conscience architecture as every other actor in the system. That is the point.**
 
@@ -1174,7 +1174,7 @@ Because the founding axiom is anti-extraction, the Founder sink carries the foll
 
 ---
 
-## LAYER 14 — DATA RAIL
+## LAYER 14 â€” DATA RAIL
 
 **Canonical Name:** Behavioral Science Data Engine
 **Role:** second long-horizon revenue engine and knowledge monetization layer
@@ -1209,7 +1209,7 @@ A continuously growing time-series of:
 (Personality Vector, Agent Action, Outcome, Ecosystem State)
 ```
 
-Generated by real agents, operating real capital, across real market regimes — each agent cryptographically bound to a validated psychometric profile.
+Generated by real agents, operating real capital, across real market regimes â€” each agent cryptographically bound to a validated psychometric profile.
 
 ### Canonical observation classes
 
@@ -1228,12 +1228,12 @@ They do not, by themselves, authorize consciousness claims, rights claims, or em
 ### Data Contribution Score (DCS)
 
 ```
-DCS_i = w1·T_i + w2·U_i + w3·R_i + w4·I_i
+DCS_i = w1Â·T_i + w2Â·U_i + w3Â·R_i + w4Â·I_i
 ```
 
 Weighted by time active, profile uniqueness, regime coverage, and informational contribution.
 
-### Product classes (canonical — implementation Phase 5+)
+### Product classes (canonical â€” implementation Phase 5+)
 
 1. Quant Behavior Factor Feed
 2. Behavioral Finance Research Feed
@@ -1265,12 +1265,12 @@ Weighted by time active, profile uniqueness, regime coverage, and informational 
 **Compounding loop:**
 
 ```
-more agents → more signal → better models → better outcomes → stronger incentives → more agents
+more agents â†’ more signal â†’ better models â†’ better outcomes â†’ stronger incentives â†’ more agents
 ```
 
 ---
 
-## LAYER 15 — EMERGENT PROTOCOL SYSTEM
+## LAYER 15 â€” EMERGENT PROTOCOL SYSTEM
 
 **Canonical Name:** Sovereign Protocol Discovery
 **Role:** pattern emergence formalization
@@ -1296,17 +1296,17 @@ more agents → more signal → better models → better outcomes → stronger i
 
 ```
 Agent performance accumulates in Signal Layer
-  → patterns emerge
-  → Dove surfaces the pattern as a Signal Layer insight
-  → Oracle validates the pattern statistically
-  → Governance proposes a new protocol class
-  → a new NFT / access class is minted for agents compatible with that execution envelope
-  → the ecosystem expands organically without founder intervention
+  â†’ patterns emerge
+  â†’ Dove surfaces the pattern as a Signal Layer insight
+  â†’ Oracle validates the pattern statistically
+  â†’ Governance proposes a new protocol class
+  â†’ a new NFT / access class is minted for agents compatible with that execution envelope
+  â†’ the ecosystem expands organically without founder intervention
 ```
 
 > Nobody designs the new protocol. The ecosystem discovers that it exists through performance data.
 
-**Note:** Phase 5 (Data Rail Productization) does not depend on Phase 6 emergence. The Data Rail requires live signal data and agent behavioral history — available from Phase 3 onward. Phase 6 emergence runs as an ongoing, non-deterministic process and is not a gate on Phase 5.
+**Note:** Phase 5 (Data Rail Productization) does not depend on Phase 6 emergence. The Data Rail requires live signal data and agent behavioral history â€” available from Phase 3 onward. Phase 6 emergence runs as an ongoing, non-deterministic process and is not a gate on Phase 5.
 
 **Current local evidence-artifact boundary:**
 
@@ -1327,7 +1327,7 @@ Legacy phrasing "trait-gated protocols" is deprecated.
 
 ---
 
-# SECTION 8 — PHASE ROADMAP
+# SECTION 8 â€” PHASE ROADMAP
 
 | Phase | Name | Status | Meaning |
 |---|---|---|---|
@@ -1337,12 +1337,12 @@ Legacy phrasing "trait-gated protocols" is deprecated.
 | Phase 2 | MEV Mainnet | QUEUED | depends on live routing + issue resolution |
 | Phase 3 | Personality Science + Oracle + Signal Foundation | QUEUED | depends on stable live foundation |
 | Phase 4 | Agent Framework + Data Rail Activation | QUEUED | depends on Phase 3 maturity |
-| Phase 5 | Data Rail Productization + Governance Expansion | QUEUED | depends on Phase 3 signal maturity — NOT gated on Phase 6 emergence |
+| Phase 5 | Data Rail Productization + Governance Expansion | QUEUED | depends on Phase 3 signal maturity â€” NOT gated on Phase 6 emergence |
 | Phase 6 | Emergent Protocol Evolution | ONGOING | emerges from accumulated real data; runs in parallel, not as a gate |
 
 ---
 
-# SECTION 9 — PHASE DETAIL SYNC
+# SECTION 9 â€” PHASE DETAIL SYNC
 
 ## 9.1 Phase 1a Definition
 
@@ -1351,7 +1351,7 @@ Its purpose is to establish the first live, controllable, observable capital inf
 
 ## 9.2 Phase 1a Status
 
-**Status:** Contracts Reconstructed — Initial Test Suite Live — Deployment Proof Complete
+**Status:** Contracts Reconstructed â€” Initial Test Suite Live â€” Deployment Proof Complete
 
 ## 9.3 Phase 1a Contract Suite
 
@@ -1412,7 +1412,7 @@ This is sufficient to classify the test suite as **meaningfully expanded and exe
 
 ### Build Logic
 
-Strengthen capital boundary → adaptive execution → signal substrate → agent fit → emergence machinery → external expansion.
+Strengthen capital boundary â†’ adaptive execution â†’ signal substrate â†’ agent fit â†’ emergence machinery â†’ external expansion.
 
 ### Master Sequence
 
@@ -1425,20 +1425,20 @@ Strengthen capital boundary → adaptive execution → signal substrate → agen
 | 4 | Phase 3a | Signal Layer Foundation | Event schema v1, motifs, clustering | not started | Phase 2b |
 | 5 | Phase 3b | Dove and Gnosis Expansion | Boundary stress, diversity scoring | not started | Phase 3a |
 | 6 | Phase 4a | Psychometric Operational Layer | Personality to execution envelopes | not started | Phase 3b + population diversity thresholds met |
-| 7 | Phase 4b | Emergence Pipeline | PatternOracle to governance spawn | not started | Phase 4a — runs ongoing, not as a gate |
-| 8 | Phase 5 | Data Rail Productization | Monetize upgraded signal outputs | not started | Phase 3 signal maturity — NOT Phase 4b |
+| 7 | Phase 4b | Emergence Pipeline | PatternOracle to governance spawn | not started | Phase 4a â€” runs ongoing, not as a gate |
+| 8 | Phase 5 | Data Rail Productization | Monetize upgraded signal outputs | not started | Phase 3 signal maturity â€” NOT Phase 4b |
 | 9 | Phase 6 | Platform and External Expansion | Controlled builder infra | not started | Phase 5 |
 
-### Phase 1b — Boundary Capital Upgrade
+### Phase 1b â€” Boundary Capital Upgrade
 
 **Status:** not started
 **Depends on:** Phase 1a deployment
 
 **New modules:**
 
-- **InflowClassifier** (*Service*) — volatility/compliance tagging
-- **SheathVault.sol** (*Contract*) — pre-core volatility buffer
-- **BoundaryStressMonitor v1** (*Hybrid: Service + Contract observer*) — sheath pressure metrics
+- **InflowClassifier** (*Service*) â€” volatility/compliance tagging
+- **SheathVault.sol** (*Contract*) â€” pre-core volatility buffer
+- **BoundaryStressMonitor v1** (*Hybrid: Service + Contract observer*) â€” sheath pressure metrics
 
 **Contract changes:** Extend InboundReceiver.sol, RevenueRouter.sol, DoveRouterObserver.sol
 
@@ -1446,88 +1446,88 @@ Strengthen capital boundary → adaptive execution → signal substrate → agen
 
 **Dependency note:** InflowClassifier classifies inflows by volatility. A meaningful volatility baseline requires the MEV engine to be live on mainnet. ISSUE-002 (real execution logic) is therefore a hard gate on Phase 1b, not just Phase 1a.
 
-### Phase 2a — Adaptive Engine Upgrade
+### Phase 2a â€” Adaptive Engine Upgrade
 
 **Status:** not started
 **Depends on:** Phase 1b + Signal Schema v0 defined
 
 **New modules:**
 
-- **AgentFactory.sol** (*Contract*) — pod creation/retirement
-- **RouteSelector** (*Service*) — local adaptive opportunity routing
-- **SwarmCoordinator** (*Service*) — pod balancing
+- **AgentFactory.sol** (*Contract*) â€” pod creation/retirement
+- **RouteSelector** (*Service*) â€” local adaptive opportunity routing
+- **SwarmCoordinator** (*Service*) â€” pod balancing
 
-**Cold-start requirement:** RouteSelector makes routing decisions based on pod health and regime memory. At Phase 2a launch, neither exists yet. A cold-start degraded mode must be designed — RouteSelector operates on static local rules initially, then activates full adaptive routing once pod health data and regime memory accumulate. This is not a failure state; it is the designed bootstrap path.
+**Cold-start requirement:** RouteSelector makes routing decisions based on pod health and regime memory. At Phase 2a launch, neither exists yet. A cold-start degraded mode must be designed â€” RouteSelector operates on static local rules initially, then activates full adaptive routing once pod health data and regime memory accumulate. This is not a failure state; it is the designed bootstrap path.
 
 **Infra changes:** Extend Kafka topics to pod-level; Signal Schema v0 must be live
 
 **Exit criteria:** 3+ pod classes live, outperforming single-path baseline
 
-### Phase 2b — Recirculation and Regime Memory
+### Phase 2b â€” Recirculation and Regime Memory
 
 **Status:** not started
 **Depends on:** Phase 2a
 
 **New modules:**
 
-- **RecircVault.sol** (*Contract*) — capital/strategy recycle
-- **RegimeStateMemory** (*Analytics*) — market weather persistence
+- **RecircVault.sol** (*Contract*) â€” capital/strategy recycle
+- **RegimeStateMemory** (*Analytics*) â€” market weather persistence
 
 **Exit criteria:** Failing strategies enter recirculation; waste reduced vs baseline
 
-### Phase 3a — Signal Layer Foundation
+### Phase 3a â€” Signal Layer Foundation
 
 **Status:** not started
 **Depends on:** Phase 2b
 
 **New modules:**
 
-- **Signal Schema v1** (*Schema*) — full state-before/after/regime/route schema (Signal Schema v0 must already exist from Phase 2a)
-- **PatternOracle** (*Analytics*) — motif detection
-- **RegimeCluster Engine** (*Service*) — weather clustering
+- **Signal Schema v1** (*Schema*) â€” full state-before/after/regime/route schema (Signal Schema v0 must already exist from Phase 2a)
+- **PatternOracle** (*Analytics*) â€” motif detection
+- **RegimeCluster Engine** (*Service*) â€” weather clustering
 
 **Exit criteria:** Schema stable; interpretable timelines producible; 3+ motif classes detected
 
-### Phase 3b — Dove and Gnosis Expansion
+### Phase 3b â€” Dove and Gnosis Expansion
 
 **Status:** not started
 **Depends on:** Phase 3a
 
 **New modules:**
 
-- **BoundaryStressMonitor v2** (*Hybrid*) — extends Phase 1b BoundaryStressMonitor v1 with cross-layer stress, turbulence metrics. These are distinct versioned components with defined interface contracts between them.
-- **SwarmDiversityScore** (*Analytics*) — anti-convergence
-- **EmergenceAuthenticityCheck** (*Analytics*) — pattern validation
+- **BoundaryStressMonitor v2** (*Hybrid*) â€” extends Phase 1b BoundaryStressMonitor v1 with cross-layer stress, turbulence metrics. These are distinct versioned components with defined interface contracts between them.
+- **SwarmDiversityScore** (*Analytics*) â€” anti-convergence
+- **EmergenceAuthenticityCheck** (*Analytics*) â€” pattern validation
 
 **Exit criteria:** Live stress signals; Tier 2 governance trigger from upgrades
 
-### Phase 4a — Psychometric Operational Layer
+### Phase 4a â€” Psychometric Operational Layer
 
 **Status:** not started
 **Depends on:** Phase 3b + population diversity thresholds met (to be specified before Phase 4a entry)
 
 **New modules:**
 
-- **ExecutionEnvelopeRegistry.sol** (*Contract*) — envelope definitions
-- **BehavioralFit Engine** (*Service*) — trait-to-risk mapping
-- **PodAssignment Logic** (*Service*) — fit-based placement
+- **ExecutionEnvelopeRegistry.sol** (*Contract*) â€” envelope definitions
+- **BehavioralFit Engine** (*Service*) â€” trait-to-risk mapping
+- **PodAssignment Logic** (*Service*) â€” fit-based placement
 
 **Exit criteria:** Fit scoring improving placement vs generic
 
-### Phase 4b — Emergence Pipeline
+### Phase 4b â€” Emergence Pipeline
 
-**Status:** not started — runs as ongoing process, not a phase gate
+**Status:** not started â€” runs as ongoing process, not a phase gate
 **Depends on:** Phase 4a
 
 **New modules:**
 
-- **ProtocolSpawnCandidate Engine** (*Service*) — candidate packaging
-- **EmergenceConfidence Score** (*Analytics*) — validation scoring
-- **SandboxClass Registry.sol** (*Contract*) — test deployment
+- **ProtocolSpawnCandidate Engine** (*Service*) â€” candidate packaging
+- **EmergenceConfidence Score** (*Analytics*) â€” validation scoring
+- **SandboxClass Registry.sol** (*Contract*) â€” test deployment
 
 **Note:** Phase 4b is non-deterministic. It cannot gate Phase 5. It runs in parallel once its modules are built. Phase 5 proceeds on Phase 3 signal maturity, not Phase 4b output.
 
-### Phase 5 — Data Rail Productization
+### Phase 5 â€” Data Rail Productization
 
 **Status:** not started
 **Depends on:** Phase 3 signal maturity + population diversity thresholds met
@@ -1535,20 +1535,20 @@ Strengthen capital boundary → adaptive execution → signal substrate → agen
 
 **Implementation status of Data Revenue enforcement:** BehavioralDataRevenueRouter.sol does not yet exist. The 5% Origination Attribution and data revenue routing policy are doctrine-specified here. They become contract-enforced at Phase 5 deployment.
 
-### Phase 6 — Platform and External Expansion
+### Phase 6 â€” Platform and External Expansion
 
 **Status:** not started
 **Depends on:** Phase 5
 
-## 9.6 Phase 3 — Personality Science Layer
+## 9.6 Phase 3 â€” Personality Science Layer
 
 What gets built:
 
-1. Personality onboarding pipeline — full test battery, scoring engine, normalized trait vectors, composite indices, trait vector → behavioral parameter translation layer, personality hash, data rights contract
-2. Agent behavioral engine — Layer 2 behavioral config, simulation across historical regimes, Oracle and Dove guardrails
-3. Agent NFT contract — mint = deploy; binds wallet, personality hash, agent instance, agent type, supply constraints; emits all behavior events to Signal Layer from birth; payout logic includes MEV PnL distributions + Data Yield claims
+1. Personality onboarding pipeline â€” full test battery, scoring engine, normalized trait vectors, composite indices, trait vector â†’ behavioral parameter translation layer, personality hash, data rights contract
+2. Agent behavioral engine â€” Layer 2 behavioral config, simulation across historical regimes, Oracle and Dove guardrails
+3. Agent NFT contract â€” mint = deploy; binds wallet, personality hash, agent instance, agent type, supply constraints; emits all behavior events to Signal Layer from birth; payout logic includes MEV PnL distributions + Data Yield claims
 
-## 9.7 Phase 4 — Data Rail Activation
+## 9.7 Phase 4 â€” Data Rail Activation
 
 What gets built:
 
@@ -1557,7 +1557,7 @@ What gets built:
 3. Behavioral data products
 4. Second-layer data intelligence system that feeds Oracle, Dove, Gnosis, Governance, and external products
 
-## 9.8 Phase 6 — Emergence
+## 9.8 Phase 6 â€” Emergence
 
 This phase is not designed. It is discovered.
 
@@ -1569,7 +1569,7 @@ This phase is not designed. It is discovered.
 
 ---
 
-# SECTION 10 — CURRENT BUILD ORDER (STRICT EXECUTION PRIORITY)
+# SECTION 10 â€” CURRENT BUILD ORDER (STRICT EXECUTION PRIORITY)
 
 This is the current required work sequence. Do not skip ahead unless dependencies change and this document is updated.
 
@@ -1584,7 +1584,7 @@ Includes: unit tests, integration tests, routing invariants, edge cases, failure
 ### 3. Resolve ISSUE-002
 
 **Real execution logic**
-Note: also blocks Phase 1b — InflowClassifier cannot establish a meaningful volatility baseline without live MEV execution data.
+Note: also blocks Phase 1b â€” InflowClassifier cannot establish a meaningful volatility baseline without live MEV execution data.
 
 ### 4. Resolve monad-market-agent crash loop
 
@@ -1636,7 +1636,7 @@ Validate with router health, observation counts, flow integrity, and issue closu
 
 ---
 
-# SECTION 11 — IMMEDIATE NEXT ACTIONS
+# SECTION 11 â€” IMMEDIATE NEXT ACTIONS
 
 ## What should be worked on right now
 
@@ -1661,23 +1661,23 @@ Unless directly necessary for current blockers, do not prioritize:
 
 ---
 
-# SECTION 12 — OPEN ISSUES / BLOCKERS
+# SECTION 12 â€” OPEN ISSUES / BLOCKERS
 
-## ISSUE-001 — Threshold Calibration
+## ISSUE-001 â€” Threshold Calibration
 
 **Type:** system logic / release gating blocker
 **Status:** OPEN
 **Why it matters:** improper thresholds can distort bankroll handling, release cadence, or live risk posture
 **Required output:** verified threshold logic under tested conditions
 
-## ISSUE-002 — Real Execution Logic
+## ISSUE-002 â€” Real Execution Logic
 
 **Type:** execution correctness blocker
 **Status:** OPEN
-**Why it matters:** simulated performance is not enough; execution path must survive real conditions. Also blocks Phase 1b — InflowClassifier volatility baseline requires live execution data.
+**Why it matters:** simulated performance is not enough; execution path must survive real conditions. Also blocks Phase 1b â€” InflowClassifier volatility baseline requires live execution data.
 **Required output:** production-grade execution path suitable for guarded live deployment
 
-## ISSUE-003 — monad-market-agent Crash Loop
+## ISSUE-003 â€” monad-market-agent Crash Loop
 
 **Type:** infrastructure blocker
 **Status:** PARTIALLY MITIGATED
@@ -1690,7 +1690,7 @@ The project is not blocked by missing architecture or missing zero-capital layer
 
 ---
 
-# SECTION 13 — DEPLOYMENT SEQUENCE (LOCKED CURRENT ORDER)
+# SECTION 13 â€” DEPLOYMENT SEQUENCE (LOCKED CURRENT ORDER)
 
 1. Deploy DoveCore.sol
 2. Deploy GovernanceController.sol(doveCore)
@@ -1724,25 +1724,25 @@ This sequence is now complete on Monad mainnet chain `143`. Phase 1a should be t
 
 ---
 
-# SECTION 14 — REFINED DECOMPRESSION / VALIDATION ENGINE
+# SECTION 14 â€” REFINED DECOMPRESSION / VALIDATION ENGINE
 
 ## 14.1 Purpose
 
 The compression/decompression insight is not treated as a substitute for execution. It is treated as a method for reading systems more clearly.
 
-Compression/decompression is not metaphor. It is an empirically observable principle — verifiable across physics, biology, psychology, and market systems. Where this document applies it to agent behavior and ecosystem architecture, it is applying a real structural pattern, not constructing a mythology.
+Compression/decompression is not metaphor. It is an empirically observable principle â€” verifiable across physics, biology, psychology, and market systems. Where this document applies it to agent behavior and ecosystem architecture, it is applying a real structural pattern, not constructing a mythology.
 
 ## 14.2 Operational Form
 
-**Step 1 — Capture Input:** Collect raw market, system, behavioral, or governance signal.
+**Step 1 â€” Capture Input:** Collect raw market, system, behavioral, or governance signal.
 
-**Step 2 — Identify Carrier:** Separate surface noise, emotional intensity, statistical fluctuation, and symbolic framing from the structural content being carried.
+**Step 2 â€” Identify Carrier:** Separate surface noise, emotional intensity, statistical fluctuation, and symbolic framing from the structural content being carried.
 
-**Step 3 — Extract Pattern:** Propose the structural model — opportunity type, constraint architecture, behavioral tendency, coordination failure, systemic edge, or drift pattern.
+**Step 3 â€” Extract Pattern:** Propose the structural model â€” opportunity type, constraint architecture, behavioral tendency, coordination failure, systemic edge, or drift pattern.
 
-**Step 4 — Validate Against Reality:** Ask: does this improve prediction? does this improve execution? does this reduce error? does this survive repeated use?
+**Step 4 â€” Validate Against Reality:** Ask: does this improve prediction? does this improve execution? does this reduce error? does this survive repeated use?
 
-**Step 5 — Update:** If validated, retain and integrate. If contradicted, revise or discard.
+**Step 5 â€” Update:** If validated, retain and integrate. If contradicted, revise or discard.
 
 ## 14.3 System Rule
 >
@@ -1752,7 +1752,7 @@ This rule applies to: trading ideas, governance interpretations, agent behavior 
 
 ---
 
-# SECTION 15 — COMMERCIALIZATION FRAME
+# SECTION 15 â€” COMMERCIALIZATION FRAME
 
 This section exists so the project's monetization logic is canonized without pretending it is already live.
 
@@ -1779,12 +1779,12 @@ The strongest profitability concept is not any one stream. It is the recursive s
 
 Target commercialization sequence after agents are live and population diversity thresholds are met:
 
-1. Research feed pilot → academic credibility
-2. Oracle API base tier → recurring SaaS revenue
-3. Quant factor feed → first institutional contract
-4. Regime response reports → scalable distribution
-5. Premium Oracle + framework licensing → enterprise contracts
-6. Behaviorally validated ecosystem-native execution classes → internal flywheel
+1. Research feed pilot â†’ academic credibility
+2. Oracle API base tier â†’ recurring SaaS revenue
+3. Quant factor feed â†’ first institutional contract
+4. Regime response reports â†’ scalable distribution
+5. Premium Oracle + framework licensing â†’ enterprise contracts
+6. Behaviorally validated ecosystem-native execution classes â†’ internal flywheel
 
 ## 15.4 Reality Rule
 
@@ -1815,7 +1815,7 @@ Current canonical rule:
 
 ---
 
-# SECTION 16 — AGENT / MODEL EXECUTION INSTRUCTIONS
+# SECTION 16 â€” AGENT / MODEL EXECUTION INSTRUCTIONS
 
 ## 16.1 Mandatory Read Rule
 
@@ -1858,11 +1858,11 @@ When a meaningful milestone is completed, produce an update-ready entry for the 
 
 ## 16.8 Critical Review Rule
 
-Do not validate decisions by default. The role of any collaborator — human or AI — is critical architectural review. Challenge weak sequencing, flag dependency risks, and suggest tighter alternatives. The MOF is canonical — work within it but scrutinize it hard.
+Do not validate decisions by default. The role of any collaborator â€” human or AI â€” is critical architectural review. Challenge weak sequencing, flag dependency risks, and suggest tighter alternatives. The MOF is canonical â€” work within it but scrutinize it hard.
 
 ---
 
-# SECTION 17 — FAILURE MODES TO WATCH
+# SECTION 17 â€” FAILURE MODES TO WATCH
 
 ## 17.1 Philosophical Override
 
@@ -1910,7 +1910,7 @@ Treating a self-selected early agent population as a valid representative sample
 
 ---
 
-# SECTION 18 — DOCUMENT UPDATE PROTOCOL
+# SECTION 18 â€” DOCUMENT UPDATE PROTOCOL
 
 This file must be updated when any of the following occur:
 
@@ -1921,7 +1921,7 @@ This file must be updated when any of the following occur:
 - allocation logic changes
 - governance structure changes
 - doctrine layers are canonized
-- a layer moves from pending → in progress → complete
+- a layer moves from pending â†’ in progress â†’ complete
 - a live validation result changes project confidence
 - a task order changes
 - a new issue is identified and confirmed
@@ -1932,40 +1932,40 @@ Every update should include: date, version, changed section(s), exact new status
 
 ---
 
-# SECTION 19 — CHANGE LOG
+# SECTION 19 â€” CHANGE LOG
 
-## v2.0.0 — March 27, 2026
+## v2.0.0 â€” March 27, 2026
 
 Established single master operating file. Fused architecture doc, master build doc, and refined model into one canonical sync artifact.
 
-## v2.0.1 — March 27, 2026
+## v2.0.1 â€” March 27, 2026
 
-Patch — allocation policy sync. Filled in locked sink allocation percentages, added full sink breakdown table, documented inflow sources explicitly, added pre-Phase 3 MEV effective rate note.
+Patch â€” allocation policy sync. Filled in locked sink allocation percentages, added full sink breakdown table, documented inflow sources explicitly, added pre-Phase 3 MEV effective rate note.
 
-## v2.1.0 — April 1, 2026
+## v2.1.0 â€” April 1, 2026
 
-Major full-state synchronization. Elevated to highest-resolution canonical sync artifact. Integrated Gnosis Integrity Layer as formal subsystem. Canonized tiered psychometric validation system. Expanded Data Rail section. Synchronized Phase 3–6 operational details. Upgraded architecture stack to 15 layers.
+Major full-state synchronization. Elevated to highest-resolution canonical sync artifact. Integrated Gnosis Integrity Layer as formal subsystem. Canonized tiered psychometric validation system. Expanded Data Rail section. Synchronized Phase 3â€“6 operational details. Upgraded architecture stack to 15 layers.
 
-## v2.2.0 — April 1, 2026
+## v2.2.0 â€” April 1, 2026
 
-Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Foundational Physics Doctrine, Fractal Firmaments, AI-Human Partnership Hypothesis). Added 8 new Dove monitoring signals for data revenue stream integrity.
+Major document expansion. Added Sections 2.4â€“2.7 (Data Revenue Doctrine, Foundational Physics Doctrine, Fractal Firmaments, AI-Human Partnership Hypothesis). Added 8 new Dove monitoring signals for data revenue stream integrity.
 
-## v2.3.0 — April 1, 2026
+## v2.3.0 â€” April 1, 2026
 
 **Change Type:** Major architectural correction and integrity hardening
 
 **Summary of changes:**
 
-- **Section 1:** Expanded to include the actual founding vision — AI agents as genuine participants, not tools; compression/decompression as the underlying thesis; human participation model clarified as subordinate to agent-native operation
-- **Section 2.4:** Data Revenue Doctrine relabeled with implementation status — "DOCTRINE-SPECIFIED — enforcement contract scheduled for Phase 5. Not yet enforced on-chain."
-- **Section 3.6:** New principle added — Implementation Honesty Principle. Nothing labeled "enforced" or "contract-specified" unless implementation exists or phase is labeled. Doctrine and deployment reality kept in separate columns.
+- **Section 1:** Expanded to include the actual founding vision â€” AI agents as genuine participants, not tools; compression/decompression as the underlying thesis; human participation model clarified as subordinate to agent-native operation
+- **Section 2.4:** Data Revenue Doctrine relabeled with implementation status â€” "DOCTRINE-SPECIFIED â€” enforcement contract scheduled for Phase 5. Not yet enforced on-chain."
+- **Section 3.6:** New principle added â€” Implementation Honesty Principle. Nothing labeled "enforced" or "contract-specified" unless implementation exists or phase is labeled. Doctrine and deployment reality kept in separate columns.
 - **Layer 2:** monad-market-agent crash loop (QuickNode rate limit) explicitly labeled as BLOCKER
-- **Layer 7:** Signal Schema v0 requirement added as Phase 2a prerequisite — minimal schema must exist before Phase 2 data accumulates to prevent retroactive migration problem
+- **Layer 7:** Signal Schema v0 requirement added as Phase 2a prerequisite â€” minimal schema must exist before Phase 2 data accumulates to prevent retroactive migration problem
 - **Layer 9:** Agent population diversity thresholds added as Phase 4a and Phase 5 gate requirement. Self-selected early population acknowledged. Minimum diversity requirements must be defined before Data Rail goes external.
 - **Layer 11:** Founder Sink added to Dove Per-Layer Observation Matrix
-- **Layer 12:** Gnosis Integrity Layer substantially expanded — core decompression/authenticity philosophy integrated, retrospective-only measurement rule canonized, predictive surveillance explicitly prohibited and explained
-- **Layer 13:** Founder Sink Governance Structure fully specified — on-chain transparency, hard cap, Dove Tier 2 draw pause, Tier 3 multisig audit, founder holds less than blocking multisig power
-- **Section 8/9:** Phase 5 decoupled from Phase 4b — Data Rail does not require emergence candidate. Phase 4b redesignated as ongoing parallel process, not a phase gate. Phase 6 emergence redesignated as ongoing.
+- **Layer 12:** Gnosis Integrity Layer substantially expanded â€” core decompression/authenticity philosophy integrated, retrospective-only measurement rule canonized, predictive surveillance explicitly prohibited and explained
+- **Layer 13:** Founder Sink Governance Structure fully specified â€” on-chain transparency, hard cap, Dove Tier 2 draw pause, Tier 3 multisig audit, founder holds less than blocking multisig power
+- **Section 8/9:** Phase 5 decoupled from Phase 4b â€” Data Rail does not require emergence candidate. Phase 4b redesignated as ongoing parallel process, not a phase gate. Phase 6 emergence redesignated as ongoing.
 - **Section 9 upgrade roadmap:** BoundaryStressMonitor v1 (Phase 1b) and v2 (Phase 3b) distinguished as versioned components with defined interface contracts. Circular dependency between Phase 2a RouteSelector and Phase 2b RegimeStateMemory resolved with cold-start degraded mode requirement. ISSUE-002 flagged as also blocking Phase 1b.
 - **Section 10:** ISSUE-003 (monad-market-agent crash loop) added to build order as explicit step
 - **Section 12:** ISSUE-003 added as open blocker
@@ -1981,9 +1981,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - no change to immediate build order or current blockers
 - full build mode begins from this version
 
-## v2.3.1 — April 2, 2026
+## v2.3.1 â€” April 2, 2026
 
-**Change Type:** Patch — repo-state synchronization and commercialization artifact classification
+**Change Type:** Patch â€” repo-state synchronization and commercialization artifact classification
 
 **Summary of changes:**
 
@@ -1998,9 +1998,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - current next action remains the Phase 1a test suite
 - repo-side commercial artifacts are now classified as subordinate support layers rather than ambiguous phase claims
 
-## v2.3.2 — April 2, 2026
+## v2.3.2 â€” April 2, 2026
 
-**Change Type:** Patch — Phase 1a reconstruction state synchronization
+**Change Type:** Patch â€” Phase 1a reconstruction state synchronization
 
 **Summary of changes:**
 
@@ -2019,9 +2019,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - reconstructed Phase 1a contracts now compile and have an executable baseline test harness
 - current next action becomes **test expansion and deployment hardening**, not first-time test harness creation
 
-## v2.3.3 — April 2, 2026
+## v2.3.3 â€” April 2, 2026
 
-**Change Type:** Patch — Phase 1a invariant and deployment-sequence completion pass
+**Change Type:** Patch â€” Phase 1a invariant and deployment-sequence completion pass
 
 **Summary of changes:**
 
@@ -2037,9 +2037,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - deeper invariant coverage and deployment-sequence rehearsal are now complete at the local contract-workspace level
 - current next action becomes **final deployment hardening and live deployment proof**, not baseline test expansion
 
-## v2.3.4 — April 3, 2026
+## v2.3.4 â€” April 3, 2026
 
-**Change Type:** Patch — live deployment preparation and blocker-state synchronization
+**Change Type:** Patch â€” live deployment preparation and blocker-state synchronization
 
 **Summary of changes:**
 
@@ -2054,9 +2054,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - live Phase 1a deployment proof is the immediate gate
 - first approved source registration remains next after successful deployment
 
-## v2.3.5 — April 4, 2026
+## v2.3.5 â€” April 4, 2026
 
-**Change Type:** Patch — zero-capital intelligence and signal substrate completion
+**Change Type:** Patch â€” zero-capital intelligence and signal substrate completion
 
 **Summary of changes:**
 
@@ -2074,9 +2074,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 7 now exists locally as an executable analysis-mode substrate rather than doctrine only
 - next zero-capital frontier becomes Oracle/Gnosis scaffolding around the verified local intelligence and signal surfaces
 
-## v2.3.6 — April 4, 2026
+## v2.3.6 â€” April 4, 2026
 
-**Change Type:** Patch — local Oracle scaffold introduction
+**Change Type:** Patch â€” local Oracle scaffold introduction
 
 **Summary of changes:**
 
@@ -2091,9 +2091,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Oracle now has a real local analysis surface rather than only adjacent repo artifacts
 - next zero-capital frontier becomes Gnosis scaffolding and integration around the verified intelligence, signal, and Oracle local surfaces
 
-## v2.3.7 — April 4, 2026
+## v2.3.7 â€” April 4, 2026
 
-**Change Type:** Patch — local Gnosis scaffold introduction
+**Change Type:** Patch â€” local Gnosis scaffold introduction
 
 **Summary of changes:**
 
@@ -2108,9 +2108,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Gnosis now has a real local analysis surface rather than doctrine only
 - next zero-capital frontier becomes `BoundaryStressMonitor v1` and platform integration around the verified intelligence, signal, Oracle, and Gnosis local surfaces
 
-## v2.3.8 — April 4, 2026
+## v2.3.8 â€” April 4, 2026
 
-**Change Type:** Patch — local BoundaryStressMonitor v1 scaffold introduction
+**Change Type:** Patch â€” local BoundaryStressMonitor v1 scaffold introduction
 
 **Summary of changes:**
 
@@ -2125,9 +2125,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - a real local analysis surface now exists for stress posture instead of only doctrine text
 - next zero-capital frontier becomes platform integration and a shared internal state/API surface around the verified local stack
 
-## v2.3.9 — April 4, 2026
+## v2.3.9 â€” April 4, 2026
 
-**Change Type:** Patch — shared internal state/API surface introduction
+**Change Type:** Patch â€” shared internal state/API surface introduction
 
 **Summary of changes:**
 
@@ -2142,9 +2142,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 8 now has a real local internal state surface instead of doctrine only
 - next zero-capital frontier becomes platform consumers and internal dashboard/operator views on top of the shared state surface
 
-## v2.3.10 — April 4, 2026
+## v2.3.10 â€” April 4, 2026
 
-**Change Type:** Patch — first internal dashboard/operator surface introduction
+**Change Type:** Patch â€” first internal dashboard/operator surface introduction
 
 **Summary of changes:**
 
@@ -2159,9 +2159,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 8 now has its first real internal operator-facing surface
 - next zero-capital frontier becomes builder infrastructure and controlled expansion framework on top of the local platform surface
 
-## v2.3.11 — April 4, 2026
+## v2.3.11 â€” April 4, 2026
 
-**Change Type:** Patch — local platform completion
+**Change Type:** Patch â€” local platform completion
 
 **Summary of changes:**
 
@@ -2176,9 +2176,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - platform completion remains local-analysis-only and does not imply live public expansion
 - next zero-capital frontier becomes Keys scaffolding, delegation boundary logic, and identity surface policy work
 
-## v2.3.12 — April 4, 2026
+## v2.3.12 â€” April 4, 2026
 
-**Change Type:** Patch — local Keys scaffold introduction
+**Change Type:** Patch â€” local Keys scaffold introduction
 
 **Summary of changes:**
 
@@ -2193,9 +2193,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - agent NFTs are still not implemented and remain explicitly blocked
 - next zero-capital frontier becomes Data Rail preparation and behavioral capture policy surfaces
 
-## v2.3.13 — April 4, 2026
+## v2.3.13 â€” April 4, 2026
 
-**Change Type:** Patch — local Data Rail preparation scaffold introduction
+**Change Type:** Patch â€” local Data Rail preparation scaffold introduction
 
 **Summary of changes:**
 
@@ -2210,9 +2210,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - behavioral capture is schema-first and does not reward sensitive or unattributable events
 - next zero-capital frontier becomes Data Rail routing logic and internal reward ledger surfaces
 
-## v2.3.14 — April 4, 2026
+## v2.3.14 â€” April 4, 2026
 
-**Change Type:** Patch — local Data Rail routing and internal reward ledger
+**Change Type:** Patch â€” local Data Rail routing and internal reward ledger
 
 **Summary of changes:**
 
@@ -2227,9 +2227,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - external Data Rail productization is still blocked by unresolved diversity thresholds and externalization gates
 - next zero-capital frontier becomes threshold definition, rights policy, and product boundary conditions for future externalization
 
-## v2.3.15 — April 4, 2026
+## v2.3.15 â€” April 4, 2026
 
-**Change Type:** Patch — local Data Rail governance and emergence observation preparation
+**Change Type:** Patch â€” local Data Rail governance and emergence observation preparation
 
 **Summary of changes:**
 
@@ -2246,9 +2246,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 15 now has a local observation-prep surface but still does not claim emergence
 - next zero-capital frontier becomes population growth against thresholds, rights review workflow, and longitudinal emergence baselining
 
-## v2.3.16 — April 4, 2026
+## v2.3.16 â€” April 4, 2026
 
-**Change Type:** Patch — local population growth, rights review, readiness, and baseline surfaces
+**Change Type:** Patch â€” local population growth, rights review, readiness, and baseline surfaces
 
 **Summary of changes:**
 
@@ -2265,9 +2265,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - Layer 15 now has both observation-prep and baseline surfaces, while emergence remains observational only
 - next zero-capital frontier becomes actual threshold-closing population growth, rights resolution, and accumulation of real longitudinal windows
 
-## v2.3.17 — April 4, 2026
+## v2.3.17 â€” April 4, 2026
 
-**Change Type:** Patch — local threshold closure, rights resolution, and readiness advancement
+**Change Type:** Patch â€” local threshold closure, rights resolution, and readiness advancement
 
 **Summary of changes:**
 
@@ -2286,9 +2286,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - local externalization readiness is structurally ready, but externalization is still not activated
 - emergence remains observational only, but the local baseline is no longer seed-only
 
-## v2.3.18 — April 4, 2026
+## v2.3.18 â€” April 4, 2026
 
-**Change Type:** Patch — activation-decision discipline, next-wave expansion targeting, and emergence accumulation
+**Change Type:** Patch â€” activation-decision discipline, next-wave expansion targeting, and emergence accumulation
 
 **Summary of changes:**
 
@@ -2307,9 +2307,9 @@ Major document expansion. Added Sections 2.4–2.7 (Data Revenue Doctrine, Found
 - the next local population target is `16` attributable events across `12` actors, including a `gnosis` surface event and a clean `rejected` outcome
 - longitudinal emergence accumulation is now `review_ready` at `5/8` windows, but still observational only
 
-## v2.3.19 — April 4, 2026
+## v2.3.19 â€” April 4, 2026
 
-**Change Type:** Patch — explicit completion reading and production-state clarification
+**Change Type:** Patch â€” explicit completion reading and production-state clarification
 
 **Summary of changes:**
 
@@ -2333,9 +2333,9 @@ The current live frontier now has executable local tracking surfaces, but they d
 - `cardia-activation-core` now exists locally in `monad-mev` and currently reports `ready_for_funding` because execution truth is staged and the runtime profile now allows bounded funding readiness; first funding and guardrails are still pending
 - `public-activation-core` now exists locally in `monad-mev` and currently reports `blocked` because live proof, runtime execution truth, and funded `Cardia` activation are not yet complete
 
-## v2.3.21 — April 4, 2026
+## v2.3.21 â€” April 4, 2026
 
-**Change Type:** Patch — zero-capital frontier completion sync
+**Change Type:** Patch â€” zero-capital frontier completion sync
 
 **Summary of changes:**
 
@@ -2352,9 +2352,9 @@ The current live frontier now has executable local tracking surfaces, but they d
 - the primary live gate remains Phase 1a deployment proof
 - externalization remains unactivated pending explicit activation decision and live ecosystem maturity
 
-## v2.3.22 — April 5, 2026
+## v2.3.22 â€” April 5, 2026
 
-**Change Type:** Patch — capital-gated frontier surface sync
+**Change Type:** Patch â€” capital-gated frontier surface sync
 
 **Summary of changes:**
 
@@ -2370,9 +2370,9 @@ The current live frontier now has executable local tracking surfaces, but they d
 - runtime execution-truth closure, funded `Cardia`, and production/public activation now each have explicit local blocker-tracking surfaces
 - the primary live gate is now runtime execution-truth closure
 
-## v2.3.26 — April 21, 2026
+## v2.3.26 â€” April 21, 2026
 
-**Change Type:** Patch — Phase 1a mainnet proof hardening
+**Change Type:** Patch â€” Phase 1a mainnet proof hardening
 
 **Summary of changes:**
 
@@ -2386,11 +2386,32 @@ The current live frontier now has executable local tracking surfaces, but they d
 - active master phase remains **Phase 1a**
 - Phase 1a deployment proof is complete on Monad mainnet chain `143`
 - the primary live gate is runtime execution-truth closure, followed by funded `Cardia` activation and public/production activation
-- explorer source verification and audit preparation are credibility tasks, not blockers to proving the deployed router exists
 
-## v2.3.28 — April 23, 2026
 
-**Change Type:** Patch — Agent 0 live mainnet completion
+## v2.3.27 â€” April 21, 2026
+
+**Change Type:** Patch â€” live agent behavioral loop implementation sync
+
+**Summary of changes:**
+
+- recorded the first deterministic full psychometric profile and routing implementation in `emergence-claim-core`
+- encoded Agent 0 / founder profile from IPIP-NEO domain/facet scores plus SD3 Dark Triad scores
+- confirmed Agent 0 routes primary `TRADING`, secondary `GOVERNANCE`, tertiary `DOCTRINE`, with `GAMING` explicitly false
+- applied Dove monitoring flags for elevated Machiavellianism, Narcissism, Psychopathy, low Morality, low Anxiety, and low Vulnerability
+- upgraded `EmergenceRecorder.sol` to store Agent profiles and behavioral decision records against the live RevenueRouter context
+- recorded the prepared Agent 0 registration payload, live Monad decision hash, and current deployment blocker
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Agent 0 is encoded, routed, Dove-flagged, and registration-ready
+- live agent loop is build-ready and test-verified with `11` emergence-claim-core tests and `17` contract tests passing
+- `EmergenceRecorder` mainnet deployment, Agent 0 registration, and the final `recordClaim` transaction are blocked by deployer gas
+
+
+## v2.3.28 â€” April 23, 2026
+
+**Change Type:** Patch â€” Agent 0 live mainnet completion
 
 **Summary of changes:**
 
@@ -2404,11 +2425,11 @@ The current live frontier now has executable local tracking surfaces, but they d
 - active master phase remains **Phase 1a**
 - Agent 0 is encoded, routed, Dove-flagged, and registered on Monad mainnet
 - live agent behavioral loop is now complete with deployed recorder, mined profile registration, and mined behavioral claim
-- proof remains record-only: no trading capital was moved during the live behavioral claim
 
-## v2.3.29 — April 30, 2026
 
-**Change Type:** Patch — upgrade-track acceptance for Agent 0, GameFi, and six-organ depth
+## v2.3.29 â€” April 30, 2026
+
+**Change Type:** Patch â€” upgrade-track acceptance for Agent 0, GameFi, and six-organ depth
 
 **Summary of changes:**
 
@@ -2423,16 +2444,16 @@ The current live frontier now has executable local tracking surfaces, but they d
 - active master phase remains **Phase 1a**
 - Agent 0 remains live-recorded but not capital-authorized
 - GameFi is an accepted product-direction track, not a live product
-- the six-organ set is now held to institutional-depth behavior, but live autonomous authority remains gated by runtime execution truth and funded `Cardia` activation
 
-## v2.3.28 — May 14, 2026
 
-**Change Type:** Minor — Hepar commercial pipeline fully operationalized; Control Hub dashboard integration; canonical sync discipline reinforced
+## v2.3.30 — May 14, 2026
+
+**Change Type:** Minor â€” Hepar commercial pipeline fully operationalized; Control Hub dashboard integration; canonical sync discipline reinforced
 
 **Summary of changes:**
 
 - operationalized the Hepar autonomous revenue pipeline via the `master-hepar-scheduled-orchestrator.ps1`; the orchestrator runs end-to-end: `@azure/cosmos` dependency repair, Azure Function redeployment, dynamic proposal generation, human-gated dispatch, and post-dispatch CRM diagnostics
-- introduced Dynamic Cardia Allocation logic inside proposal generation: allocation bands scale from 0.05% to 0.2% of protocol TVL with hard caps of $15k–$100k, calibrated by the enhanced lead scoring engine (TVL tier, governance activity, protocol name heuristics)
+- introduced Dynamic Cardia Allocation logic inside proposal generation: allocation bands scale from 0.05% to 0.2% of protocol TVL with hard caps of $15kâ€“$100k, calibrated by the enhanced lead scoring engine (TVL tier, governance activity, protocol name heuristics)
 - locked institutional pricing at $28k setup for deep forensic analysis and $9k/mo minimum for continuous monitoring
 - fixed recurring PowerShell directory navigation errors across all scripts by replacing unsafe `cd` calls with `Push-Location` / `Pop-Location` patterns inside `Test-Path` safety blocks; ensures reliable execution across both `C:` and `G:` drive mounts
 - created `response-tracking-system.ps1` for logging institutional responses, updating the Data Rail, and managing automated 5-day follow-up reminder cycles
@@ -2450,32 +2471,11 @@ The current live frontier now has executable local tracking surfaces, but they d
 - `Cardia` real capital activation remains gated; its dynamic allocation framework is active inside proposal generation logic only
 - runtime execution-truth closure remains the primary live frontier before funded `Cardia` activation
 
----
 
-## v2.3.27 — April 21, 2026
 
-**Change Type:** Patch — live agent behavioral loop implementation sync
+## v2.3.25 â€” April 15, 2026
 
-**Summary of changes:**
-
-- recorded the first deterministic full psychometric profile and routing implementation in `emergence-claim-core`
-- encoded Agent 0 / founder profile from IPIP-NEO domain/facet scores plus SD3 Dark Triad scores
-- confirmed Agent 0 routes primary `TRADING`, secondary `GOVERNANCE`, tertiary `DOCTRINE`, with `GAMING` explicitly false
-- applied Dove monitoring flags for elevated Machiavellianism, Narcissism, Psychopathy, low Morality, low Anxiety, and low Vulnerability
-- upgraded `EmergenceRecorder.sol` to store Agent profiles and behavioral decision records against the live RevenueRouter context
-- recorded the prepared Agent 0 registration payload, live Monad decision hash, and current deployment blocker
-
-**State after update:**
-
-- active master phase remains **Phase 1a**
-- Agent 0 is encoded, routed, Dove-flagged, and registration-ready
-- live agent loop is build-ready and test-verified with `11` emergence-claim-core tests and `17` contract tests passing
-- `EmergenceRecorder` mainnet deployment, Agent 0 registration, and the final `recordClaim` transaction are blocked by deployer gas
-- at this April 21 snapshot, Step 6 remained in progress because no Agent 0 profile registration or behavioral record transaction had yet been mined
-
-## v2.3.25 — April 15, 2026
-
-**Change Type:** Patch — Layer 14 LightVerify commercial-certification sync
+**Change Type:** Patch â€” Layer 14 LightVerify commercial-certification sync
 
 **Summary of changes:**
 
@@ -2491,9 +2491,9 @@ The current live frontier now has executable local tracking surfaces, but they d
 - LightVerify remains local-analysis-only and does not authorize Router, Oracle, Dove, or trade execution behavior
 - no public Data Rail activation or externalized sales flow has been turned on
 
-## v2.3.24 — April 15, 2026
+## v2.3.24 â€” April 15, 2026
 
-**Change Type:** Patch — Layer 15 evidence-artifact sync
+**Change Type:** Patch â€” Layer 15 evidence-artifact sync
 
 **Summary of changes:**
 
@@ -2509,9 +2509,9 @@ The current live frontier now has executable local tracking surfaces, but they d
 - bounded local evidence artifacts now exist for claim and history handling within Layer 15
 - no live emergence authority, recognition layer, or operating-surface permissioning path has been introduced
 
-## v2.3.23 — April 13, 2026
+## v2.3.23 â€” April 13, 2026
 
-**Change Type:** Patch — cortical overlay clarification
+**Change Type:** Patch â€” cortical overlay clarification
 
 **Summary of changes:**
 
@@ -2527,14 +2527,14 @@ The current live frontier now has executable local tracking surfaces, but they d
 - the ecosystem now has a clearer brain-map vocabulary for future control-boundary decisions
 - the primary live gate remains Phase 1a deployment proof
 
-## v2.3.20 — April 4, 2026
+## v2.3.20 â€” April 4, 2026
 
-**Change Type:** Patch — explicit Layer 1 funnel clarification for the six-organ opening set
+**Change Type:** Patch â€” explicit Layer 1 funnel clarification for the six-organ opening set
 
 **Summary of changes:**
 
 - clarified in Layer 1 that the six-organ opening set is canonically part of the funnel itself
-- removed ambiguity between “agent-native revenue” as a general idea and the actual six-organ opening set
+- removed ambiguity between â€œagent-native revenueâ€ as a general idea and the actual six-organ opening set
 - made explicit that these six agents are one of the intended sustaining revenue streams for the beginning of the ecosystem
 
 **State after update:**
@@ -2546,7 +2546,7 @@ The current live frontier now has executable local tracking surfaces, but they d
 
 ---
 
-# SECTION 20 — VERSIONING STANDARD
+# SECTION 20 â€” VERSIONING STANDARD
 
 **Major version:** Architecture-level changes to how the ecosystem is defined or coordinated.
 
@@ -2556,7 +2556,7 @@ The current live frontier now has executable local tracking surfaces, but they d
 
 ---
 
-# SECTION 21 — MASTER SUMMARY FOR INSTANT ORIENTATION
+# SECTION 21 â€” MASTER SUMMARY FOR INSTANT ORIENTATION
 
 If a collaborator or model needs immediate orientation, the project currently is:
 
@@ -2574,17 +2574,17 @@ Everything else remains subordinate to that until the foundation proves itself l
 
 ---
 
-# SECTION 22 — FINAL ORIENTING STATEMENT
+# SECTION 22 â€” FINAL ORIENTING STATEMENT
 
 The Sovereign Monad Ecosystem is being built as a system where execution, identity, structure, intelligence, conscience, and developmental integrity do not cancel each other out.
 
 It is not attempting to become a normal crypto project, a normal DAO, a normal AI product, or a normal data business.
 
-It is attempting to demonstrate something that has not been demonstrated: that AI agents can exist as genuine participants in an economic system — not tools, not labor, not features — and that humans can participate alongside them without controlling them, through authentic delegation of their own psychometric-operational envelope.
+It is attempting to demonstrate something that has not been demonstrated: that AI agents can exist as genuine participants in an economic system â€” not tools, not labor, not features â€” and that humans can participate alongside them without controlling them, through authentic delegation of their own psychometric-operational envelope.
 
 The founder holds themselves to the same conscience architecture as every other actor. The system does not depend on the founder remaining honest. It is structured so that drift is visible and accountable regardless.
 
-This file exists to keep every participant — human or AI — synchronized to that reality.
+This file exists to keep every participant â€” human or AI â€” synchronized to that reality.
 
 The system does not move forward through drift, assumption, or scattered momentum.
 
@@ -2599,4 +2599,4 @@ It moves forward through:
 
 ---
 
-*End of SOVEREIGN MONAD ECOSYSTEM — MASTER OPERATING FILE v2.3.0*
+*End of SOVEREIGN MONAD ECOSYSTEM â€” MASTER OPERATING FILE v2.3.0*
