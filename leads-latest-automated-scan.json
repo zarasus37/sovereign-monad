@@ -1,0 +1,23 @@
+[
+    {
+        "Name": "Arbitrum DAO",
+        "Score": 90,
+        "Sector": "DAO",
+        "Vector": "Grant-Target Forensic Integrity",
+        "Alpha": "Implement our 'Diligence-as-a-Service' layer for your grant pipeline to ensure community funds aren't being allocated to protocols with high wallet-taint or privilege drift."
+    },
+    {
+        "Name": "Optimism Collective",
+        "Score": 88,
+        "Sector": "DAO",
+        "Vector": "RetroPGF Recipient Auditing",
+        "Alpha": "Automate the forensic validation of RetroPGF applicants to ensure rewards are only flowing to technically sound and compliant infrastructure providers."
+    },
+    {
+        "Name": "Lido DAO",
+        "Sector": "DAO",
+        "Score": 95,
+        "Vector": "Operator Geographic Health",
+        "Alpha": "Provide real-time geographic health monitoring for your validator set to ensure your LSD maintains its 'Decentralized Gold Standard' status."
+    }
+]
