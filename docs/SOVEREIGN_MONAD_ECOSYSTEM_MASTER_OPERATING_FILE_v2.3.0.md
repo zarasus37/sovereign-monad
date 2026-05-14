@@ -447,7 +447,6 @@ These should be treated as an opening funnel component, not merely a later-layer
 - Six-organ institutional depth: `Hepar`, `Cortex`, `Synapse`, `Cardia`, `Pneuma`, and `Vox` are accepted as institutional-depth organ tracks. Five organs (`Hepar`, `Cortex`, `Synapse`, `Pneuma`, `Vox`) are LIVE at Advisory Tier and actively integrated into the Ultimate Hepar Revenue Orchestrator. The pipeline natively implements Dynamic Cardia Allocation Caps (0.05% - 0.2% TVL, bounded $15k-$100k) scaled by the enhanced Hepar audit scoring engine (TVL tier, governance, heuristics).
 - Commercial intelligence rails: Hepar forensic reports, risk API/feed packaging, LightVerify certification, and Data Rail licensing are operationalized via an autonomous, human-gated scheduled orchestrator. Post-dispatch diagnostics and 5-day cycle response tracking systems are active, aggressively scaling institutional sales (priced at $28k setup, $9k/mo minimum continuous monitoring).
 - Sovereign Monad Control Hub: Deployment of the `hepar-dashboard-api` HTTP trigger on Azure Functions to securely serve live pipeline telemetry (lead status, proposals, and CRM data) to the React frontend Control Center using `x-functions-key` authentication.
-- Resort Deal Pipeline: A modular, Python-based automated outreach and proposal system streamlining the business development workflow for resort entertainment activations (property research, decision-maker identification, tailored proposal generation).
 - Wallet Architecture & Configuration: Established a secure and structured deployment architecture with specific public addresses for "Deployer" and "Bootstrap Source" roles, securely mapped across `.env.phase1a` and `config/phase1a.deploy.json`.
 
 ## 6.1.1 Completion Reading
@@ -499,7 +498,7 @@ This means the architecture and local analysis stack are materially advanced. It
 | Gnosis Integrity | LOCAL ANALYSIS SURFACE ONLY | `gnosis-core` and `gnosis-evaluator-core` now provide retrospective-only decompression analysis plus integrity scoring tied to organ/runtime operation; live integration remains later-phase |
 | Narrative Surface | LOCAL ANALYSIS SURFACE ONLY | `narrative-core` now packages governed local narratives from ecosystem state; no live public narrative surface is active |
 | Data Rail | LOCAL ANALYSIS SURFACE ONLY | local capture, routing, governance, rights, readiness, activation-decision, bundle/product-boundary, and LightVerify certification surfaces now exist; thresholds are met on the current verified local sample, readiness is `ready`, but no explicit activation record exists and externalization is not activated |
-| Evaluation / Commercial Surfaces | FULLY OPERATIONALIZED | The Master Scheduled Orchestrator securely bridges Azure Cosmos dependencies, dynamically generates value-priced institutional proposals, tracks responses (CRM), and ensures human-gated outreach dispatch. The Control Hub React dashboard visualizes live pipeline telemetry via `hepar-dashboard-api`. The Resort Deal Pipeline automates entertainment activation outreach. Legal §15 compliance and tier-based allocation discipline are integrated natively. |
+| Evaluation / Commercial Surfaces | FULLY OPERATIONALIZED | The Master Scheduled Orchestrator securely bridges Azure Cosmos dependencies, dynamically generates value-priced institutional proposals, tracks responses (CRM), and ensures human-gated outreach dispatch. The Control Hub React dashboard visualizes live pipeline telemetry via `hepar-dashboard-api`. Legal §15 compliance and tier-based allocation discipline are integrated natively. |
 | Governance DAO | LOCAL ANALYSIS SURFACE ONLY | `dao-core` now provides local constitution, proposal routing, sponsorship lanes, and handoff controls; onchain governance remains later-phase |
 | Agent NFTs / Keys | LOCAL ANALYSIS SURFACE ONLY | `keys-core` and `keys-nft-core` now provide local activation, delegation, and metadata surfaces; live minting and activation remain later-phase |
 | Emergence Pipeline | LOCAL OBSERVATION AND EVIDENCE-ARTIFACT SURFACE ONLY | observation-only readiness now reaches observable with a forming evidence window; the baseline spans five windows, accumulation is review-ready at 5/8, `emergent-protocol-core` provides local pattern extraction and downstream-path scaffolding, and `emergence-claim-core` plus `emergence-history-core` now provide bounded local claim and historical-record artifacts without creating a live emergence recognition layer |
@@ -2425,6 +2424,33 @@ The current live frontier now has executable local tracking surfaces, but they d
 - Agent 0 remains live-recorded but not capital-authorized
 - GameFi is an accepted product-direction track, not a live product
 - the six-organ set is now held to institutional-depth behavior, but live autonomous authority remains gated by runtime execution truth and funded `Cardia` activation
+
+## v2.3.28 — May 14, 2026
+
+**Change Type:** Minor — Hepar commercial pipeline fully operationalized; Control Hub dashboard integration; canonical sync discipline reinforced
+
+**Summary of changes:**
+
+- operationalized the Hepar autonomous revenue pipeline via the `master-hepar-scheduled-orchestrator.ps1`; the orchestrator runs end-to-end: `@azure/cosmos` dependency repair, Azure Function redeployment, dynamic proposal generation, human-gated dispatch, and post-dispatch CRM diagnostics
+- introduced Dynamic Cardia Allocation logic inside proposal generation: allocation bands scale from 0.05% to 0.2% of protocol TVL with hard caps of $15k–$100k, calibrated by the enhanced lead scoring engine (TVL tier, governance activity, protocol name heuristics)
+- locked institutional pricing at $28k setup for deep forensic analysis and $9k/mo minimum for continuous monitoring
+- fixed recurring PowerShell directory navigation errors across all scripts by replacing unsafe `cd` calls with `Push-Location` / `Pop-Location` patterns inside `Test-Path` safety blocks; ensures reliable execution across both `C:` and `G:` drive mounts
+- created `response-tracking-system.ps1` for logging institutional responses, updating the Data Rail, and managing automated 5-day follow-up reminder cycles
+- created `diagnose-enriched-leads-post-dispatch.ps1` for automated post-dispatch synchronization reporting of all outreach batches against the Cosmos DB enriched-leads container
+- deployed `hepar-dashboard-api` Azure Function HTTP trigger with `x-functions-key` authentication to serve live pipeline telemetry (lead status, proposals, CRM data) to the React frontend Control Hub
+- generated and committed first live proposal batches targeting Binance, Uniswap V3, Curve DEX, PancakeSwap, Centrifuge, Falcon Finance, Spark Liquidity Layer, Steakhouse Financial, Kamino Lend, Maple, Portal, and Sentora
+- synchronized all changes across both drive mounts (`C:\` and `G:\`) and the canonical `sovereign-monad` repository using the formal `sync-canonical-mirrors.ps1` discipline; SHA256 hashes verified identical at each sync point
+- committed all changes to the `blackboxai/hepar-deployment-v2.0` branch in both the `C:\` and `G:\` workspaces
+
+**State after update:**
+
+- active master phase remains **Phase 1a**
+- Evaluation / Commercial Surfaces status is now **FULLY OPERATIONALIZED**
+- five organs (`Hepar`, `Cortex`, `Synapse`, `Pneuma`, `Vox`) are LIVE at Advisory Tier inside the autonomous commercial pipeline
+- `Cardia` real capital activation remains gated; its dynamic allocation framework is active inside proposal generation logic only
+- runtime execution-truth closure remains the primary live frontier before funded `Cardia` activation
+
+---
 
 ## v2.3.27 — April 21, 2026
 
