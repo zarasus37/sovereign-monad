@@ -7,11 +7,15 @@ Write-Host "=== Full End-to-End Autonomous Revenue Cycle ===" -ForegroundColor C
 
 # 1. Pipeline fix
 Write-Host "Fixing @azure/cosmos and redeploying..." -ForegroundColor Yellow
-cd .\organ-runtime\functions\hepar-commercial-pipeline
-Remove-Item -Path "node_modules\@azure\cosmos" -Recurse -Force -ErrorAction SilentlyContinue
-npm install @azure/cosmos --save
-func azure functionapp publish hepar-commercial-pipeline --nozip
-cd ..\..\..
+if (Test-Path ".\organ-runtime\functions\hepar-commercial-pipeline") {
+    Push-Location .\organ-runtime\functions\hepar-commercial-pipeline
+    Remove-Item -Path "node_modules\@azure\cosmos" -Recurse -Force -ErrorAction SilentlyContinue
+    npm install @azure/cosmos --save
+    func azure functionapp publish hepar-commercial-pipeline --nozip
+    Pop-Location
+} else {
+    Write-Host "Warning: .\organ-runtime\functions\hepar-commercial-pipeline not found. Skipping pipeline deployment." -ForegroundColor Yellow
+}
 
 # 2. Post-dispatch diagnostic
 .\diagnose-enriched-leads-post-dispatch.ps1
@@ -30,7 +34,7 @@ $leads = @(
     @{ Name = "Uniswap V3"; Score = 75; TVL = 4000000000; Summary = "Major DEX with high TVL and governance signals." },
     @{ Name = "Curve DEX"; Score = 75; TVL = 1100000000; Summary = "Established DEX needing ongoing forensic oversight." },
     @{ Name = "Centrifuge Protocol"; Score = 60; TVL = 250000000; Summary = "Real-world asset protocol with institutional relevance." },
-    @{ Name = "Falcon Finance"; Score = 60; TVL = 300000000; Summary = "Presents a strong opportunity for Hepar’s full institutional suite." }
+    @{ Name = "Falcon Finance"; Score = 60; TVL = 300000000; Summary = "Presents a strong opportunity for Hepar's full institutional suite." }
 )
 
 Write-Host "`nGenerating hand-tailored proposals..." -ForegroundColor Cyan
@@ -42,17 +46,17 @@ foreach ($lead in $leads) {
     if ($allocationCap -lt 15000) { $allocationCap = 15000 }
     if ($allocationCap -gt 100000) { $allocationCap = 100000 }
 
-    $content = @"
-# Hepar Institutional Continuous Risk Intelligence Suite
-**Proposal for $($lead.Name)**  
-**Hepar Score**: $($lead.Score)  
-**Date**: $(Get-Date -Format "yyyy-MM-dd")
-
-## Cardia Allocation Guidance (Dynamic)
-- Recommended net allocation cap: `$$allocationCap (0.05–0.2 % of TVL scaled by audit score)
-"@
-    $content | Out-File -FilePath $filePath -Encoding UTF8
-    Write-Host "Generated proposal: $($lead.Name) — Allocation: `$$allocationCap" -ForegroundColor Green
+    $contentArray = @(
+        "# Hepar Institutional Continuous Risk Intelligence Suite",
+        "**Proposal for $($lead.Name)**  ",
+        "**Hepar Score**: $($lead.Score)  ",
+        "**Date**: $(Get-Date -Format 'yyyy-MM-dd')",
+        "",
+        "## Cardia Allocation Guidance (Dynamic)",
+        "- Recommended net allocation cap: `$$allocationCap (0.05-0.2 % of TVL scaled by audit score)"
+    )
+    $contentArray -join "`r`n" | Out-File -FilePath $filePath -Encoding UTF8
+    Write-Host "Generated proposal: $($lead.Name) - Allocation: `$$allocationCap" -ForegroundColor Green
 }
 
 # 4. Human Approval Gate
@@ -62,7 +66,7 @@ if ($approval -ne "APPROVE") {
     exit
 }
 
-Write-Host "Human approval received — Dispatching..." -ForegroundColor Green
+Write-Host "Human approval received - Dispatching..." -ForegroundColor Green
 
 # 5. Response Tracking
 .\response-tracking-system.ps1 -RunReminders

@@ -17,7 +17,7 @@ function Log-Response {
     $entry = "$(Get-Date -Format 'yyyy-MM-dd HH:mm') | $LeadName | $Status | $Notes"
     $entry | Out-File -FilePath $trackingLog -Append -Encoding UTF8
     Write-Host "Logged: $entry" -ForegroundColor Green
-    Write-Host "✓ Data Rail updated for $LeadName" -ForegroundColor Cyan
+    Write-Host "-> Data Rail updated for $LeadName" -ForegroundColor Cyan
 }
 
 if ($RunReminders) {
@@ -27,4 +27,5 @@ if ($RunReminders) {
     Write-Host "Next automated reminder cycle in $reminderDays days." -ForegroundColor Cyan
 }
 
-Write-Host "`nResponse tracking system is active and ready." -ForegroundColor Green
+Write-Host " "
+Write-Host "Response tracking system is active and ready." -ForegroundColor Green

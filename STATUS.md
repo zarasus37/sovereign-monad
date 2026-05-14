@@ -59,7 +59,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\sync-canonical-mirrors.ps1
 - Do not infer live status from local scaffolds alone.
 
 <!-- AUTO-STATUS:START -->
-Generated: 2026-05-14 11:59:48 UTC
+Generated: 2026-05-14 15:57:40 UTC
 
 ### Live Containers
 
@@ -80,6 +80,7 @@ MAX_BRIDGE_EXPOSURE_PERCENT=25
 MAX_SLIPPAGE_BPS=50
 ```
 <!-- AUTO-STATUS:END -->
+
 
 
 

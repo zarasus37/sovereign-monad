@@ -104,7 +104,7 @@ See:
 - `docs/AGENT_NATIVE_REVENUE_RAIL.md`
 - `docs/FIRST_ORGAN_SET.md`
 
-### Rail 4. Monad Matrix Gamified / GameFi Rail
+### Rail 4. MonadSpin Gamified / GameFi Rail
 
 Purpose:
 
