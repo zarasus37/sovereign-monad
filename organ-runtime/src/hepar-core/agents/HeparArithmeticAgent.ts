@@ -2,7 +2,7 @@
 // Detects integer overflow, underflow, precision loss, and rounding vulnerabilities
 
 import type { AgentCampaignResult, AgentFinding } from '../stages/stageC-utils';
-import { SeededLCG } from '../stages/stageC-utils';
+import { SeededLCG, hashToNumber } from '../stages/stageC-utils';
 
 export class HeparArithmeticAgent {
   readonly agentId = 'ARITHMETIC' as const;
@@ -61,17 +61,18 @@ export class HeparArithmeticAgent {
       },
     ];
 
+    const seedFingerprint = hashToNumber(this.seed).toString(16);
     for (let i = 0; i < this.rng.nextInt(1, 3); i++) {
       const t = templates[i % templates.length]!;
       findings.push({
-        vectorId: `arith_${this.rng.next().toString(16)}`,
+        vectorId: `arith_${seedFingerprint}_${this.rng.next().toString(16)}`,
         agentId: this.agentId,
         severity: t.severity,
         description: t.description,
         exploitPreconditions: ['Large input values', 'Overflow in intermediate computation'],
         estLoss: t.estLoss,
         reproducibilitySeed: this.seed,
-        traceId: `trace_arith_${i}`,
+        traceId: `trace_arith_${seedFingerprint}_${i}`,
         reproScore: 0.7 + this.rng.nextFloat(0, 0.25),
       });
     }

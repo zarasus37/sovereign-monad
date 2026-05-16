@@ -1,5 +1,19 @@
 {
+  "name": "monad-mev",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@azure/cosmos": "^4.9.3"
+    "@azure/cosmos": "^4.9.3",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "@types/node": "^18.17.0",
+    "@types/node-fetch": "^2.6.2"
+  },
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "ts-node src/index.ts"
   }
 }

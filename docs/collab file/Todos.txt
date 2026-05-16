@@ -1,0 +1,40 @@
+Todos
+Description: Rewrite the commercial pipeline and sales collateral to translate HEPAR/sovereign Monad technical advantages into clear plain-language B2B value propositions. Remove or isolate internal ecosystem nomenclature (e.g., Kardia funding, synapse routing) from external-facing materials. Emphasize immediate market pain points (risk of exploits, TVL loss) and map HEPAR capabilities (continuous monitoring, multimodal analysis, wallet-graph awareness) to concrete buyer benefits (reduced breach risk, faster remediation, cost/time savings). Produce a one-page sales summary, a 1–2 page Tier 3 product brief, and updated slide deck for sales outreach.
+Severity: High
+Owner: Speaker 2
+Title: Create Day-Zero Revenue Pipeline Section (Decouple Tier 3 Launch)
+Description: Add a dedicated "Day Zero Revenue" section to the commercial roadmap that isolates Tier 3 forensic reports for immediate sales. Define a separate, short-term go-to-market track for Tier 3 NDA-backed forensic reports focused on rapid revenue generation, and a long-term track for full organ-set fidelity and telemetry gates. Produce an updated roadmap graphic showing the two tracks, success criteria for Tier 3 sales, and required sales collateral & NDA workflow.
+Severity: High
+Owner: Speaker 2
+Title: Split Commercial Roadmap into Two Distinct Tracks
+Description: Physically restructure the commercial roadmap into Track 1 (immediate Tier 3 market adoption and NDA reports) and Track 2 (long-term organ set upgrades and full biological fidelity features like Kardia, Pneuma, Vox). Define milestones, timelines, dependencies, and acceptance criteria for each track so sales can operate independently of long-term engineering constraints.
+Severity: Medium
+Owner: Speaker 1 & Speaker 2 (collaborative)
+Title: Reframe Tier 3 Forensic Report as Product vs. Internal Classification
+Description: Rework the Tier 3 forensic report language so it reads as a customer-facing product (e.g., "Tier 3 Forensic Service — Continuous, Dynamic Defense") rather than an internal legal classification. Clearly state what it replaces (static audit snapshot) and list distinct deliverables: continuous stage-B bounded symbolic proving, stage-C Monte Carlo adversarial simulation, NDA process, expected timelines, and pricing model.
+Severity: Medium
+Owner: Speaker 1
+Title: Translate Technical Stages to Commercial Assurance Statements
+Description: For each of HEPAR's four analytical stages (Stage A: static forensics; Stage B: bounded symbolic proving; Stage C: multi-agent execution; Stage D: consensus fusion/on-chain attestation), create a short commercial assurance statement that explains the buyer-facing benefit (e.g., false-positive reduction, developer-hours saved, verifiable on-chain proof for underwriters). Produce a mapping table and short examples (customer scenarios, insurance/underwriter use cases).
+Severity: High
+Owner: Speaker 1 & Speaker 2 (collaborative)
+Title: Position On-Chain Attestation as Liability-Reducing Moat
+Description: Reframe Stage D on-chain attestation and HIPAA-run ID/evidence routing in commercial materials as a verifiable liability reduction tool. Draft messaging and an explanatory one-pager explaining how on-chain cryptographic proof differentiates HEPAR from legacy auditors and benefits insurance underwriting, legal posture, and third-party verification. Include suggested legal/marketing language and examples.
+Severity: High
+Owner: Speaker 1
+Title: Simplify "10 Structural Gaps" into Customer-Facing Deliverables
+Description: Convert the internal "10 structural gaps" document into a customer-oriented list that highlights commercial deliverables (continuous monitoring, incident simulation, faster remediation, reduced false positives) rather than internal mechanics like funding routes. Produce a revised document and a short FAQ for sales to address common customer questions.
+Severity: Medium
+Owner: Speaker 2
+Title: Provide Concrete ROI / Savings Examples for Sales Collateral
+Description: Create explicit, quantifiable examples linking technical features to business outcomes (e.g., "Stage C multi-agent simulation reduces false positives by X% and saves developers Y hours per incident" or "On-chain attestation enables Z% faster underwriting approval"). Work with engineering to derive reasonable estimates and produce slides and one-pagers for sales use.
+Severity: High
+Owner: Speaker 2 (with engineering input)
+Title: Produce NDA & Sales Workflow for Tier 3 Forensic Engagements
+Description: Define the end-to-end sales process for Tier 3 NDA engagements: lead → NDA signing → scope & access → execution of Tier 3 forensic analysis → delivery of on-chain attestation & report → follow-up services. Include templates (NDA, engagement SOW), SLAs, pricing bands, and legal handoff points.
+Severity: High
+Owner: Speaker 2
+Title: Resubmit Revised Commercial Pipeline for Review
+Description: After implementing messaging, roadmap separation, stage-to-assurance mapping, and sales workflows, prepare the revised commercial pipeline documentation and submit for follow-up critique. Include before/after samples to demonstrate improvements.
+Severity: Low
+Owner: Speaker 1 & Speaker 2 (collaborative)

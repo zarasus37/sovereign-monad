@@ -2,7 +2,7 @@
 // Detects privilege escalation, unauthorized state mutations, and role-bypass vulnerabilities
 
 import type { AgentCampaignResult, AgentFinding } from '../stages/stageC-utils';
-import { SeededLCG, deriveAgentSeed } from '../stages/stageC-utils';
+import { SeededLCG, hashToNumber } from '../stages/stageC-utils';
 
 export class HeparPrivilegeAgent {
   readonly agentId = 'PRIVILEGE' as const;
@@ -61,17 +61,18 @@ export class HeparPrivilegeAgent {
       },
     ];
 
+    const seedFingerprint = hashToNumber(this.seed).toString(16);
     for (let i = 0; i < this.rng.nextInt(0, 2); i++) {
       const t = templates[i % templates.length]!;
       findings.push({
-        vectorId: `priv_${this.rng.next().toString(16)}`,
+        vectorId: `priv_${seedFingerprint}_${this.rng.next().toString(16)}`,
         agentId: this.agentId,
         severity: t.severity,
         description: t.description,
         exploitPreconditions: ['Attacker is unprivileged', 'Sensitive function is public or delegatecall-exposed'],
         estLoss: t.estLoss,
         reproducibilitySeed: this.seed,
-        traceId: `trace_priv_${i}`,
+        traceId: `trace_priv_${seedFingerprint}_${i}`,
         reproScore: 0.6 + this.rng.nextFloat(0, 0.35),
       });
     }

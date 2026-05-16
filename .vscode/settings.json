@@ -6,5 +6,10 @@
   "files.exclude": {
     "**/__pycache__": true,
     "**/*.pyc": true
+  },
+  "chat.tools.terminal.autoApprove": {
+    "npx tsc": true,
+    "npm install": true,
+    "npx --yes tsc": true
   }
 }

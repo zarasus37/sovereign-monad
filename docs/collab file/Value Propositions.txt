@@ -1,0 +1,16 @@
+Value Propositions
+New value proposition:
+HEPAR delivers continuous, multimodal smart‑contract assurance that prevents costly exploits before they occur — combining automated static forensics, bounded symbolic proving, adversarial Monte‑Carlo simulations, and on‑chain attestation to provide verifiable, insurer‑grade evidence that reduces developer remediation time, false positives, and legal/liability exposure. Buy Tier‑3 forensic engagements today under NDA for rapid risk reduction; adopt the full organ‑set over time for continuous, protocol‑level defense.
+Comparison: old vs new
+Old (current messaging problems)
+•	Heavy ecosystem/biological jargon (cardia, synapse routing, organ set) that obscures commercial value.
+•	Framed as internal architecture and constraints rather than a client product.
+•	Presents tiering and gates in a way that blocks immediate sales — unclear what can be bought today.
+•	Treats on‑chain telemetry and proofs as internal data; doesn’t link them to liability reduction or insurer value.
+New (refined, client‑focused)
+•	Plain B2B language: positions HEPAR as a practical, day‑one auditor alternative that prevents TVL‑draining exploits.
+•	Productized offering: clearly market Tier‑3 forensic reports as immediately purchasable NDA engagements (day‑zero revenue path) separate from longer R&D/organ upgrades.
+•	Maps technical stages to commercial benefits: lower false positives, fewer developer hours, measurable risk reduction, and verifiable on‑chain evidence for insurers and legal assurance.
+•	Turns on‑chain attestation into a competitive moat and liability‑reducing assurance rather than an internal artifact.
+One‑line takeaway for sales collateral:
+Sell risk reduction and verifiable liability protection today (Tier‑3 NDA reports); sell continuous, protocol‑level defense as the long‑term upgrade.

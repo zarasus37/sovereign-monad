@@ -2,7 +2,7 @@
 // Detects reentrancy vulnerabilities and callback-based attack vectors
 
 import type { AgentCampaignResult, AgentFinding } from '../stages/stageC-utils';
-import { SeededLCG } from '../stages/stageC-utils';
+import { SeededLCG, hashToNumber } from '../stages/stageC-utils';
 
 export class HeparReentrancyAgent {
   readonly agentId = 'REENTRANCY' as const;
@@ -61,17 +61,18 @@ export class HeparReentrancyAgent {
       },
     ];
 
+    const seedFingerprint = hashToNumber(this.seed).toString(16);
     for (let i = 0; i < this.rng.nextInt(0, 3); i++) {
       const t = templates[i % templates.length]!;
       findings.push({
-        vectorId: `reen_${this.rng.next().toString(16)}`,
+        vectorId: `reen_${seedFingerprint}_${this.rng.next().toString(16)}`,
         agentId: this.agentId,
         severity: t.severity,
         description: t.description,
         exploitPreconditions: ['External call to untrusted contract', 'State not updated before call'],
         estLoss: t.estLoss,
         reproducibilitySeed: this.seed,
-        traceId: `trace_reen_${i}`,
+        traceId: `trace_reen_${seedFingerprint}_${i}`,
         reproScore: 0.75 + this.rng.nextFloat(0, 0.2),
       });
     }

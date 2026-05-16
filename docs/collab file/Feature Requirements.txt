@@ -1,0 +1,55 @@
+Feature Requirements
+1.	External-facing messaging and collateral
+•	Requirement: Reframe commercial materials in plain B2B language that focuses on buyer pain points (risk of exploits, TVL loss, insurance/litigation exposure) rather than internal ecosystem nomenclature (e.g., "cardia funding", "synapse routing", organ metaphors).
+•	Deliverables: One-page value propositions, sales deck sections, and website copy that explicitly contrast HEPAR offerings with traditional audits.
+•	Key claims to surface: continuous monitoring vs. static snapshot; dynamic defense; measurable developer/time/money savings; on-chain attestation as verifiable proof.
+1.	Product positioning of Tier 3 forensic reports (day‑zero revenue)
+•	Requirement: Treat Tier 3 forensic (advisory NDA) reports as a sellable product distinct from long-term organ fidelity constraints.
+•	Deliverables: Dedicated “day-zero revenue pipeline” documentation and sales playbook for Tier 3 (NDA) engagements; explicit product descriptions showing what standard audits are replaced and what Tier 3 delivers (e.g., continuous Stage B symbolic proving + Stage C Monte Carlo adversarial simulation).
+•	Sequencing: A clear, decoupled go‑to‑market track that allows closing NDA reports immediately without waiting for full multi-organ telemetry gates.
+1.	Dual-track commercial roadmap
+•	Requirement: Split roadmap into two visible tracks:
+•	Track 1: Immediate Tier 3 adoption and NDA report sales (market adoption, revenue generation).
+•	Track 2: Long-term organ set upgrades (activating Kardia/Pneuma/Vox, clearing heavier decision-support gates).
+•	Deliverables: Roadmap artifact that separates timelines, prerequisites, and KPIs for each track.
+1.	Mapping technical stages to commercial assurances
+•	Requirement: Explicitly map the four-stage analytical stack (Stage A static forensics, Stage B bounded symbolic proving, Stage C multi-agent execution, Stage D consensus fusion/on-chain attestation) to concrete commercial benefits and liability reduction.
+•	Deliverables: For each stage, a short commercial statement of benefit (e.g., Stage C reduces false positives and developer hours; Stage D provides cryptographic, on-chain evidence for insurers/underwriters and legal defensibility).
+•	KPI/metrics suggestions: False positive rate reduction; developer-hours saved; time-to-remediation; verifiable attestations issued; number of insurance-ready evidence packages.
+1.	Sales enablement and buyer-focused artifacts
+•	Requirement: Create collateral that buyers (protocol teams, insurers, underwriters) can interpret without translating internal jargon.
+•	Deliverables: Comparison matrices (HEPAR vs. traditional audit), swimlanes showing lifecycle of engagements, concrete case scenarios, pricing/packaging options for Tier 3 NDAs.
+1.	Trust & liability positioning
+•	Requirement: Reframe legal posture and independent reviewer concerns as competitive advantages—use on-chain attestations, HIP R run IDs, and evidence routing as verifiable liability shields rather than blockers.
+•	Deliverables: Legal + risk brief tying technical outputs to reduced legal exposure; template evidence bundles for clients/insurers; recommended contractual language highlighting on-chain proof.
+Identified ambiguities and missing details
+1.	Exact scope and deliverables of Tier 3 forensic reports
+•	Ambiguity: The transcript calls Tier 3 “advisory tier NDA output” and refers to components (Stage B + C) but lacks a precise checklist of what is included in a Tier 3 report (scope, depth, remediation follow-up, SLAs).
+•	Impact: Hard to create sales pricing and clear customer expectations.
+1.	Commercial metrics and measurement methodology
+•	Ambiguity: Suggestions to claim savings (e.g., developer-hours saved, false positive reduction) are made, but there are no baseline metrics, measurement methods, or historic data to support quantified claims.
+•	Impact: Difficult to substantiate claims to buyers and insurers without defined measurement approach.
+1.	Legal liability posture and contractual placement of on-chain evidence
+•	Ambiguity: The role of on-chain attestations in formal legal/insurance contracts is proposed as a moat, but specifics are missing on how attestations translate into contractual liability limits, indemnities, or regulator/insurer acceptance.
+•	Impact: Legal teams and underwriters will require concrete precedent, contract language, or insurer endorsements before accepting this as a liability reduction.
+1.	Relationship between tier gates and what can be sold now
+•	Ambiguity: It's unclear exactly which organs/features must be live or certified for different product tiers, and which gating KPIs (live telemetry, decision-support gates) are mandatory before external pricing or sales discussions.
+•	Impact: Sales teams will be uncertain what to promise and which internal milestones block external engagements.
+1.	Integration requirements and client onboarding flow
+•	Ambiguity: Missing details on technical integration (what client data access is required, on-chain vs off-chain evidence collection processes, NDA workflows) and time-to-delivery for Tier 3 engagements.
+•	Impact: Sales and delivery teams cannot produce accurate timelines or resourcing plans.
+1.	Independent reviewer and governance process
+•	Ambiguity: The role and status of independent reviewers and governance approvals are listed as gaps, but responsibilities, timelines, and standards for third‑party validation are not defined.
+•	Impact: Buyers seeking independent assurance will not know how or when third‑party validation is obtained.
+1.	Pricing model and packaging
+•	Ambiguity: No concrete pricing strategy or packaging (one-off NDA report, subscription for continuous monitoring, hybrid) is specified.
+•	Impact: Hard to operationalize a go-to-market playbook and forecast revenue.
+Recommendations to resolve ambiguities (brief)
+•	Produce an explicit Tier 3 product spec (scope checklist, deliverables, SLAs, turnarounds).
+•	Define measurement methodology and collect baseline data to justify claims (pilot engagements).
+•	Draft sample legal/insurance contract language and seek insurer feedback or pilot sign-off to validate on-chain attestation value.
+•	Publish a gating matrix that maps organ features/KPIs to sellable product tiers.
+•	Create a technical onboarding checklist and flow with estimated timelines.
+•	Define independent reviewer qualification and onboarding processes.
+•	Develop pricing tiers: one-off NDA forensic, subscription continuous monitoring, and hybrid options.
+If you want, I can convert these requirements into a prioritized product backlog or create the Tier 3 product spec template next.

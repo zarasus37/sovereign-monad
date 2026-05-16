@@ -1,0 +1,36 @@
+Refactoring Opportunities
+1.	Presentation / API layer (sales collateral)
+•	Extract a plain-language presentation layer from technical docs. Create a separate module that translates technical features (stages A–D, tier definitions) into business-facing statements: value propositions, pain-point mappings, and product comparisons (e.g., "dynamic defense vs static snapshot").
+•	Implement templated outputs for common buyer personas (protocol teams, insurers, underwriters) so marketing collateral and proposals are auto-generated without internal jargon.
+1.	Commercial pipeline vs core logic separation
+•	Physically separate commercial pipeline logic from the biological/organ-system implementation. Introduce a clear boundary (interface) so sales/launch sequencing code can operate independently of organ fidelity constraints.
+•	Refactor configuration/settings for launch sequencing into two tracks: day-zero (Tier-3 only) and long-term organ integration. Make this configurable via feature flags or separate pipeline classes.
+1.	Tiering and gating logic
+•	Replace monolithic tier-checking code with modular, composable gate functions. Allow certain tiers (e.g., Tier 3 forensic reports) to bypass live-telemetry/decision-support gates when appropriate (under NDA).
+•	Provide a rules engine or policy layer to define which gates are mandatory per deployment/contract; decouple hard-coded biological fidelity checks from commercial eligibility checks.
+1.	Documentation / naming and internal jargon
+•	Centralize and normalize terminology: create a vocabulary map module that maps internal terms (cardia funding, synapse routing, Kardia Pneuma Vox) to standardized technical identifiers and to customer-friendly labels.
+•	Avoid leaking internal names into external-facing templates; implement translation utilities used by UI and export endpoints.
+1.	Product/Report generation pipeline
+•	Refactor the report generator so output types are first-class: Tier-3 forensic (NDA) reports vs standard audits. Separate content-generation from internal telemetry aggregation.
+•	Provide clear hooks to include on-chain attestations and cryptographic proofs into report outputs (so legal/commercial claims are explicit).
+1.	Mapping technical stages to commercial assurances
+•	Implement a mapping layer that attaches commercial assurance metadata to each technical stage (A–D). For example: Stage C -> "reduces false positives X%" or "saves Y developer hours"; Stage D -> "on-chain attestation hash + timestamp".
+•	Store these mappings as data-driven templates so they can be updated without code changes.
+1.	Legal & attestation integration
+•	Refactor on-chain attestation and evidence-routing code into a reusable service with clear API surface for reports, sales collateral, and legal signoff. Provide stable outputs (proof hashes, verification endpoints) that can be embedded in external deliverables.
+•	Add tooling to produce verifiable artifacts (evidence bundles, attestation proofs) in standardized formats consumable by insurers and third-party reviewers.
+1.	Sales enablement and collateral generation tooling
+•	Add utilities to generate concise product one-pagers and comparison matrices automatically from capabilities metadata. Expose an export API for marketing/sales to pull plain-language descriptions and guarantees.
+•	Implement guardrails to prevent internal architecture text from being included in external exports (sanitization layer).
+1.	Sequencing & rollout orchestration
+•	Introduce an orchestration module that handles staged rollouts (immediate Tier-3 launch vs organ-set rollout). Make sequencing rules declarative and configurable to avoid coupling to runtime biological fidelity checks.
+•	Add simulation/test modes to validate commercialization flows without requiring full organ gating.
+1.	Observability & developer ergonomics
+•	Improve logs and telemetry labels to separate internal operational signals from customer-facing indicators. Provide dashboards/views tailored to sales (revenue pipeline), legal (attestation status), and engineering (organ health).
+•	Refactor complex internal components into smaller, testable units with clear contracts to reduce cognitive load for engineers and to avoid JIRA-like backlog leaking into docs.
+Implementation priorities and quick wins:
+•	Quick wins: vocabulary map + translation utilities; report generator split (Tier-3 path); on-chain attestation service encapsulation.
+•	Medium: rules engine for gating; mapping layer linking technical stages to commercial assurances.
+•	Long-term: orchestration for dual-track roadmap, full sanitization of external exports, and tailored sales dashboards.
+These refactors will make the codebase easier to maintain, enable a faster go-to-market for Tier-3 revenue, and allow the system to preserve biological fidelity internally while presenting clear, liability-focused commercial value externally.

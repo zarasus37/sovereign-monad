@@ -1,0 +1,10 @@
+Financial KPIs
+•	Day-zero revenue (first-dollar revenue from Tier 3 forensic reports)
+•	Revenue run rate from Tier 3 NDA engagements (speed-to-revenue / cash-in-the-door)
+•	Time-to-close / sales cycle length for Tier 3 contracts (market adoption velocity)
+•	Cost savings to clients (developer hours saved vs. traditional audits)
+•	False-positive reduction (efficiency metric tied to cost savings)
+•	Total value at risk (TVL) protection / expected loss reduction from avoiding exploits
+•	Liability and insurance impact (reduced insurance premiums or improved underwriter terms due to on-chain attestation)
+•	Commercial deliverables / recurring monitoring revenue (continuous monitoring vs. one-off audit fees)
+•	Market conversion from proposals to paid engagements (sales conversion rate for external collateral)

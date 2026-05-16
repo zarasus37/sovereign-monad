@@ -11,6 +11,7 @@ import type {
 import {
   deriveAgentSeed,
   SeededLCG,
+  hashToNumber,
 } from './stageC-utils';
 
 export interface StageCConfig {
@@ -120,10 +121,11 @@ export class StageC {
     const rng = new SeededLCG(config.masterSeed);
     const traces: ExecutionTrace[] = [];
 
+    const seedFingerprint = hashToNumber(`${config.masterSeed}:${protocolId}`).toString(16);
     for (let i = 0; i < Math.min(config.pathsPerAgent, 5); i++) {
       const callSeq = ['delegatecall', 'call', 'staticcall', 'callcode'];
       traces.push({
-        executionId: `trace-${i}`,
+        executionId: `trace_${seedFingerprint}_${i}`,
         traceHash: `0x${rng.next().toString(16).padStart(64, '0')}`,
         contractAddress: `0x${rng.next().toString(16).padStart(40, '0')}`,
         initiatorAddress: `0x${rng.next().toString(16).padStart(40, '0')}`,

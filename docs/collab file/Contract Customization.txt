@@ -1,0 +1,63 @@
+Contract Customization
+1.	Scope and Deliverables — Tier 3 Forensic Report (Day‑Zero Offering)
+•	Clause: Provider will deliver a Tier 3 Forensic Report under NDA within X business days of contract signature and receiving required access materials. Deliverable includes: (a) static forensics (Stage A), (b) bounded symbolic proving summary (Stage B), (c) multi‑agent execution summary (Stage C), and (d) on‑chain attestation package (Stage D) evidencing the simulation runs.
+•	Rationale: Positions Tier 3 as a standalone, sellable product separate from longer organ‑set gates.
+•	Options: X = 10–20 days (fast path) or 30–45 days (standard).
+1.	Fixed‑Price, Fast‑Track Payment Terms
+•	Clause: Tier 3 engagements are offered on a fixed‑fee basis to eliminate procurement friction. 50% payable at signature, 40% on delivery of report draft, 10% on final acceptance within 10 business days.
+•	Rationale: Simple pricing and staged payments reduce procurement objections and get cash in the door.
+•	Options: Net 30 invoice for enterprise clients; include expedited delivery fee (e.g., +20%) for <10‑day turnaround.
+1.	Clear Commercial Guarantees Mapped to Technical Stages
+•	Clause: The Provider guarantees the following commercial outcomes tied to technical stages:
+•	Stage A: Identification of all critical and high‑risk vulnerabilities known at time of assessment; remediation guidance provided.
+•	Stage B: Bounded symbolic proving reduces undiscovered logical flaws in specified modules to a maximum residual risk threshold agreed in SOW (e.g., ≤Y%).
+•	Stage C: Multi‑agent adversarial simulations will demonstrate exploit scenarios across top N threat vectors; Provider will document false positive/negative rates observed.
+•	Stage D: On‑chain attestations will be published to [specified chain/address] as verifiable evidence of the simulation and results.
+•	Rationale: Converts technical outputs into contractual assurances clients care about (risk reduction, verifiable proof).
+•	Options: Define Y% numerically (if client accepts measurable SLA) or define qualitative acceptance criteria (e.g., “no critical exploits found”).
+1.	Liability and Limitation of Liability — Risk Reduction Incentive
+•	Clause: Provider’s liability for direct damages arising from negligence in performing the Tier 3 engagement is capped at the lesser of (a) the total fees paid under this SOW, or (b) $X. However, if Provider fails to produce the on‑chain attestation as required in Stage D or materially misrepresents Simulation Results, the cap increases to 2x fees paid.
+•	Rationale: Gives client stronger protection tied to the unique on‑chain proof that distinguishes the offering, while keeping Provider risk bounded.
+•	Options: Set $X to a reasonable commercial figure (e.g., $250k–$1M) depending on client size.
+1.	Evidence & Auditability — On‑Chain Attestation and Documentation
+•	Clause: Provider will publish cryptographic proofs of the Stage C/D execution to a mutually agreed public ledger and deliver complete evidence routes (hashes, logs, signed artifacts). Provider grants the Client a non‑exclusive right to present these artifacts to insurers, auditors, and regulators.
+•	Rationale: Turn the attestation into a commercial benefit that reduces underwriting friction for insurance and improves client trust.
+•	Options: Allow private on‑chain anchors (e.g., ephemeral merkle root + anchor tx) if client requires confidentiality.
+1.	Independent Reviewer & Assurance Add‑On
+•	Clause: If requested by Client, Provider will engage a mutually agreed independent reviewer to validate methodology and results. Costs and timeline for independent review to be added as an optional addendum and billed separately.
+•	Rationale: Addresses perceived gap around independent validation while keeping base sales motion lean.
+•	Options: Pre‑approve a short list of third‑party firms to accelerate procurement.
+1.	Acceptance Criteria & Remediation Support
+•	Clause: Acceptance is based on mutually agreed test cases and coverage matrix in the SOW. Following delivery, Provider will offer up to Z hours of remediation advisory support (remote) at no extra charge within 30 days. Additional support billed at hourly rate or under a support retainer.
+•	Rationale: Lowers buyer anxiety by promising immediate remediation help; speeds closing by clarifying post‑report responsibilities.
+•	Options: Z = 8–24 hours; offer retainer packages (e.g., 40 hours/month).
+1.	Confidentiality, NDA & Publicity
+•	Clause: Work performed as Tier 3 is governed by a mutual NDA. Provider may anonymize and aggregate findings for marketing unless client opts out. Public disclosure of attestation artifacts requires prior written consent to avoid leaking sensitive data.
+•	Rationale: Protects client while preserving Provider’s ability to showcase the unique on‑chain proof capability.
+•	Options: Allow client to opt into a case study program with agreed redactions and timing.
+1.	Roadmap Separation and Option to Upgrade
+•	Clause: This agreement explicitly acknowledges that Tier 3 deliverables are independent of the Provider’s broader organ‑set gating. Client may elect to upgrade to Tier 1/2 services (full live telemetry integration) at predefined upgrade rates and timelines. Upgrade path and credits for fees paid toward Tier 3 will be specified in the SOW.
+•	Rationale: Reassures clients they can access advanced services later without blocking current procurement.
+•	Options: Provide fee credit equal to 50% of Tier 3 fee if upgrade within 12 months.
+1.	SLAs for Response and Investigation of Critical Findings
+•	Clause: If a critical vulnerability (CV) is discovered and verified, Provider will respond (triage call) within 4 hours and provide an initial mitigation plan within 24 hours. For ongoing incidents, Provider will make reasonable best efforts to assist under a separate incident response fee schedule or emergency retainer.
+•	Rationale: Matches the client’s fear of catastrophic exploits with fast, contractual response expectations.
+•	Options: Offer incident response retainer discounts if signed with the Tier 3 contract.
+1.	Pricing Transparency and Purchasing Options
+•	Clause: Provider will offer: (a) fixed one‑off Tier 3 report pricing, (b) subscription option for continuous monitoring (monthly/quarterly) with clearly stated deliverables, and (c) bundled pricing if Client commits to multiple reports (volume discounts).
+•	Rationale: Aligns with procurement processes and gives client clear choices for short‑term vs. long‑term engagement.
+•	Options: Discount tiers (e.g., 5–20%) based on volume or multi‑period commitments.
+1.	Insurance & Indemnity Carve‑Outs for Greater Buyer Confidence
+•	Clause: Provider maintains professional liability insurance of at least $X and will provide certificate on request. Provider will indemnify Client for third‑party claims resulting from Provider’s gross negligence or willful misconduct in performing the services.
+•	Rationale: Provides procurement and legal teams with comfort that the Provider is financially responsible and insured.
+•	Options: Adjust insurance minimum to client expectations (e.g., $1M–$5M).
+Suggested negotiation playbook (how to use these terms to close):
+•	Open with a fixed‑price, NDA'ed Tier 3 SOW with a rapid delivery SLA and staged payments to get the first contract signed quickly.
+•	Couple the base SOW with an optional independent reviewer and remediation support addenda priced separately to avoid procurement overreach delaying the core sale.
+•	Emphasize Stage D on‑chain attestation contractually (publication mechanism + rights to use artifacts) as a unique liability‑reducing asset for insurers and counsel.
+•	Offer an explicit upgrade credit and roadmap separation clause so the buyer knows signing now doesn’t lock them into long wait times for biological‑fidelity features.
+•	Use the liability uplift (higher cap) tied to failure to publish attestation as a sales lever to demonstrate confidence in the attestation process.
+If you’d like, I can:
+•	Draft a one‑page Tier 3 SOW template with these clauses filled in for a specific turnaround and price.
+•	Produce sample language for the on‑chain attestation artifact (what exactly will be published and how it will be formatted).
+•	Tailor liability caps, SLA timings, and payment milestones to a target client size or jurisdiction.

@@ -1,0 +1,193 @@
+# Six-Organ Institutional Depth Blueprint
+
+Version: v1.1
+Date context: 2026-04-30
+Supersedes: v1.0 (2026-04-30 morning)
+
+This file defines the implementation standard for all six opening organs at institutional depth.
+
+Status: accepted ecosystem upgrade track. The current `organ-runtime` surfaces are analysis-mode implementations, and final live authority remains gated by runtime execution truth, funded `Cardia` activation, telemetry calibration, and governance controls.
+
+## 0) Doctrinal Anchor: Biological Fidelity = Operational Standard
+
+The six opening organs are named after biological organs because the bar is the actual function those organs perform in the body, not the metaphor.
+
+1. **Hepar** is named after the liver. The bar is continuous, multi-modal toxin filtration with measurable physiological consequence — translated into protocol-forensic terms as continuous, multi-stage adversarial analysis with measurable precision/recall and bounded false-positive rate.
+2. **Cortex** is named after the cerebral cortex. The bar is causal explanation, scenario simulation, and decision-support reasoning — not summary generation.
+3. **Synapse** is named after the neural synapse. The bar is selective signal routing with conflict arbitration and capital-sensitive escalation — not message-bus pass-through.
+4. **Cardia** is named after the heart. The bar is risk-adjusted allocation with reserve discipline and stress-regime response — not a portfolio rebalancer.
+5. **Pneuma** is named after the lungs / breath. The bar is venue-selective execution with cost optimization and feedback to upstream organs — not order routing.
+6. **Vox** is named after the voice. The bar is audience-specific narrative packaging with proof-reference linkage and explicit truth-status tagging — not content generation.
+
+The architecture-layer counterpart of MOF §17.8 (Hollow Convergence) applies here: **an organ that fails to perform its biological function at the standard implied by its name is not a depth implementation, it is a name claim**. Name-claims fail Pass/Fail (§4) regardless of how many surfaces are wired up.
+
+This anchor is binding for every organ. Tier-discipline (§3.5) is the operational expression of it.
+
+## 1) Objective
+
+Move each organ from simple role logic to:
+
+1. explicit phase-based processing
+2. quantitative scoring and confidence
+3. conflict-aware coordination
+4. auditable outputs for Data Rail and governance
+5. evidence sufficient to clear the §0 biological-fidelity bar at the relevant tier (§3.5)
+
+## 2) Organ Standards
+
+The "Must produce" lines are minimum surfaces. Biological-fidelity language under each organ defines the standard those surfaces must meet to qualify as depth implementations rather than name claims.
+
+### Hepar
+
+Must produce:
+
+1. deterministic forensic risk vectors
+2. multi-agent consensus fusion
+3. symbolic status integration (`proved_safe` / `counterexample` / `unknown`)
+4. action banding and attestation metadata
+
+Biological-fidelity bar: continuous filtration of inbound protocol exposure with measurable precision/recall against an independent labelled incident set, false-positive rate bounded by severity tier, and per-finding evidence linkage. Single-modality analysis (fuzzing-only, static-only, symbolic-only) does not clear the bar. Canonical specification: `HEPAR_v2.0_SPECIFICATION.md`. Architecture: `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md`.
+
+### Cortex
+
+Must produce:
+
+1. causal drivers (not summary-only)
+2. scenario matrix with probabilities and stress posture
+3. decision-support recommendations with confidence
+4. model-update hooks for recurring failure modes
+
+Biological-fidelity bar: causal explanation that survives adversarial probing — outputs must distinguish correlation from cause, must show scenario probabilities with bounded uncertainty, and must hand off decision-support recommendations with explicit confidence and reasoning trace. Pure summarization does not clear the bar.
+
+### Synapse
+
+Must produce:
+
+1. source trust weighting
+2. conflict detection and arbitration routing
+3. capital-sensitive escalation behavior
+4. route auditability (why signal routed where)
+
+Biological-fidelity bar: selective routing under conflict — when two upstream sources disagree, Synapse must choose, justify the choice in an auditable trace, and escalate capital-sensitive disagreements to governance rather than silently averaging. Pass-through routing does not clear the bar.
+
+### Cardia
+
+Must produce:
+
+1. risk-adjusted allocation scoring
+2. reserve-aware deployable budget logic
+3. stress-regime actions (crash, liquidity stress, reserve breach)
+4. measurable net allocation and blocked-exposure tracking
+
+Biological-fidelity bar: rhythm under stress — Cardia must hold reserve discipline through liquidity stress events, must reduce or block exposure on `crashStressPenalty` regimes (see `ORGAN_INTELLIGENCE_CALIBRATION_REPORT_2026-04-30.md`), and must maintain measurable net allocation tracking that survives audit. A passive rebalancer does not clear the bar. Funded operation remains gated by runtime execution-truth closure.
+
+### Pneuma
+
+Must produce:
+
+1. venue/counterparty filtered execution choices
+2. cost-optimized route selection
+3. fill ratio + cost metrics
+4. feedback signals back into Synapse/Cortex/Cardia
+
+Biological-fidelity bar: selective intake — Pneuma must reject venues failing `minSettlementReliability`, must report fill ratio and cost per execution, and must feed execution outcomes back into upstream organ calibration. Order routing without feedback does not clear the bar.
+
+### Vox
+
+Must produce:
+
+1. audience-specific packages from a common truth set
+2. proof-reference linkage
+3. narrative truth status (`verified` / `incomplete` / `conflicted`)
+4. coherence warnings for operator follow-up
+
+Biological-fidelity bar: speech under truth constraint — every Vox output must carry an explicit truth-status tag, must link to its proof references, and must escalate `incomplete` and `conflicted` states to operator review rather than smoothing them away. Content generation without proof-linkage does not clear the bar.
+
+## 3) Tier Discipline (binding for all six organs)
+
+Every organ output sits at one of three tiers (the architectural counterpart to `HEPAR_v2.0_SPECIFICATION.md` §16):
+
+### 3.1 Advisory tier
+
+1. fixture-verified or staged-data-verified
+2. operator-supervised consumption only
+3. no external pricing
+4. no automated capital action without human-in-the-loop
+5. all six organs are at Advisory tier today
+
+### 3.2 Decision-Support tier
+
+1. live-telemetry-verified against a measured horizon
+2. precision/recall, false-positive rate, coverage, and time-to-verdict reported per `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md` §9 (or organ-equivalent metrics)
+3. dispute-and-correction protocol live
+4. external pricing allowed only after independent reviewer sign-off
+5. automated action allowed within bounded budgets
+
+### 3.3 Authoritative tier
+
+1. multi-cycle live performance evidence
+2. independently audited precision/recall and reliability metrics
+3. legal carve-outs and insurance in force (Hepar-specific: `HEPAR_v2.0_SPECIFICATION.md` §15)
+4. licensing-quality output (Tier 4 revenue surfaces require this)
+5. governance override policy in force for conflict escalation
+
+### 3.4 Demotion conditions
+
+An organ demotes one tier on any of:
+
+1. live-telemetry deviation beyond calibrated bounds
+2. correction protocol invocation in a measurable window
+3. independent reviewer flag
+4. governance override of an organ decision
+
+### 3.5 Tier discipline as operational expression of biological fidelity
+
+The §0 anchor and the §3 ladder are the same rule from two angles. **A claim that an organ has cleared the biological-fidelity bar is a tier claim.** Advisory tier means "the organ can plausibly perform its biological function in fixtures." Decision-Support tier means "the organ has demonstrated it on live telemetry." Authoritative tier means "the organ has demonstrated it across cycles with independent verification." No organ is biological-fidelity-cleared in the abstract; it is cleared at a tier, with evidence at that tier, and the §16-equivalent gate must be passed before that tier is claimed externally.
+
+## 4) Pass/Fail Definition (Per Organ)
+
+An organ is **Institutional-Depth PASS** when:
+
+1. it emits structured outputs with confidence/decision state
+2. test coverage validates key edge cases
+3. outputs can be tied to evidence records
+4. orchestration captures interactions with at least two other organs
+5. outputs meet the §0 biological-fidelity bar at a declared tier (§3)
+
+An organ is **FAIL** when:
+
+1. it is only static role logic without adaptive scoring, auditable reasoning, or cross-organ integration; **or**
+2. it claims a tier (§3) without the evidence required at that tier; **or**
+3. its surfaces wire up but do not perform the biological function the organ name claims (a name-claim under §0).
+
+## 5) Current Build Surface in `organ-runtime`
+
+Institutional-depth companion snapshots are now implemented for:
+
+1. `Hepar`: forensic + consensus layers
+2. `Cortex`: strategic stress/scenario/recommendation layer
+3. `Synapse`: adaptive trust/conflict/escalation layer
+4. `Cardia`: adaptive allocation/stress-response layer
+5. `Pneuma`: market-interface execution intelligence layer
+6. `Vox`: truth-verified multi-audience narrative layer
+
+All are **Advisory tier** today. All are analysis-mode surfaces and do not grant live autonomous authority by themselves.
+
+## 6) Next Realism Steps
+
+1. feed these analysis modules with live telemetry streams instead of static samples
+2. persist decisions and evidence roots into Data Rail artifacts
+3. calibrate thresholds against historical incident and trade outcomes
+4. formalize governance override policy for escalated conflicts
+5. add reliability dashboards (precision/recall, false positives, execution slippage, narrative trust score)
+6. retire `fixture-verified` labels in `ORGAN_INTELLIGENCE_CALIBRATION_REPORT_2026-04-30.md` only when the §3.2 evidence is in hand
+
+## 7) Change Log (v1.0 → v1.1)
+
+1. Added §0 Doctrinal Anchor (Biological Fidelity = Operational Standard) for all six organs.
+2. Added biological-fidelity bar to each organ's "Must produce" block in §2.
+3. Added §3 Tier Discipline ladder (Advisory / Decision-Support / Authoritative) with demotion conditions.
+4. Tied tier discipline to biological-fidelity in §3.5.
+5. Extended Pass/Fail in §4 with biological-fidelity and tier-evidence requirements.
+6. Marked all six organs as **Advisory tier** in §5.
+7. Cross-referenced `HEPAR_v2.0_SPECIFICATION.md`, `HEPAR_MONTE_CARLO_CONSENSUS_BLUEPRINT.md`, and `ORGAN_INTELLIGENCE_CALIBRATION_REPORT_2026-04-30.md`.

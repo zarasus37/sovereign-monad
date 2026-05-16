@@ -2,7 +2,7 @@
 // Detects economic exploits, MEV attacks, and protocol-level manipulation
 
 import type { AgentCampaignResult, AgentFinding } from '../stages/stageC-utils';
-import { SeededLCG } from '../stages/stageC-utils';
+import { SeededLCG, hashToNumber } from '../stages/stageC-utils';
 
 export class HeparEconomicAgent {
   readonly agentId = 'ECONOMIC' as const;
@@ -61,17 +61,18 @@ export class HeparEconomicAgent {
       },
     ];
 
+    const seedFingerprint = hashToNumber(this.seed).toString(16);
     for (let i = 0; i < this.rng.nextInt(1, 3); i++) {
       const t = templates[i % templates.length]!;
       findings.push({
-        vectorId: `econ_${this.rng.next().toString(16)}`,
+        vectorId: `econ_${seedFingerprint}_${this.rng.next().toString(16)}`,
         agentId: this.agentId,
         severity: t.severity,
         description: t.description,
         exploitPreconditions: ['Access to mempool or public data', 'Price/state volatility'],
         estLoss: t.estLoss,
         reproducibilitySeed: this.seed,
-        traceId: `trace_econ_${i}`,
+        traceId: `trace_econ_${seedFingerprint}_${i}`,
         reproScore: 0.55 + this.rng.nextFloat(0, 0.3),
       });
     }

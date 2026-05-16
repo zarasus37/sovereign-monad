@@ -2,7 +2,7 @@
 // Detects state consistency violations, invariant breaks, and logical fallacies
 
 import type { AgentCampaignResult, AgentFinding } from '../stages/stageC-utils';
-import { SeededLCG } from '../stages/stageC-utils';
+import { SeededLCG, hashToNumber } from '../stages/stageC-utils';
 
 export class HeparStateAgent {
   readonly agentId = 'STATE' as const;
@@ -61,17 +61,18 @@ export class HeparStateAgent {
       },
     ];
 
+    const seedFingerprint = hashToNumber(this.seed).toString(16);
     for (let i = 0; i < this.rng.nextInt(1, 3); i++) {
       const t = templates[i % templates.length]!;
       findings.push({
-        vectorId: `state_${this.rng.next().toString(16)}`,
+        vectorId: `state_${seedFingerprint}_${this.rng.next().toString(16)}`,
         agentId: this.agentId,
         severity: t.severity,
         description: t.description,
         exploitPreconditions: ['Execution of specific transaction sequence', 'State mutation ordering'],
         estLoss: t.estLoss,
         reproducibilitySeed: this.seed,
-        traceId: `trace_state_${i}`,
+        traceId: `trace_state_${seedFingerprint}_${i}`,
         reproScore: 0.65 + this.rng.nextFloat(0, 0.25),
       });
     }

@@ -4,7 +4,9 @@
 import { StageA, type StageAResult, type StageAConfig } from './stages/stageA-static';
 import { StageB, type StageBResult, type StageBConfig } from './stages/stageB-symbolic';
 import { StageC, type StageCResult, type StageCConfig } from './stages/stageC-montecarlo';
+import { ServiceBusClient } from "@azure/service-bus";
 import { StageD, type StageDResult, type StageDConfig } from './stages/stageD-consensus';
+import { HeparStageD_Consensus, type FinalSynthesis } from './stages/stageD-attestation';
 import { createAgentRegistry } from './agents/index';
 
 export interface HeparOrchestratorConfig {
@@ -143,6 +145,59 @@ export class HeparOrchestrator {
         pipelineStatus: stageAResult ? 'PARTIAL' : 'FAILURE',
       };
     }
+  }
+
+  /**
+   * Dispatch Stage B findings to an isolated Python MCTS worker via Azure Service Bus
+   */
+  public async dispatchToStageCMonteCarlo(protocolId: string, stageBResult: StageBResult): Promise<void> {
+    console.log(`[HeparOrchestrator] Routing ${protocolId} to Python MCTS Engine via Azure Service Bus...`);
+
+    const connectionString = process.env.HEPAR_SERVICE_BUS_CONNECTION || "";
+    const queueName = "hepar-stage-c-queue";
+
+    if (!connectionString) {
+      throw new Error("Hepar Orchestrator Error: Service Bus connection string is missing.");
+    }
+
+    const sbClient = new ServiceBusClient(connectionString);
+    const sender = sbClient.createSender(queueName);
+
+    try {
+      const messagePayload = {
+        protocolId: protocolId,
+        stageBFindings: stageBResult.findings,
+        timestamp: new Date().toISOString(),
+        counterexamples: stageBResult.counterexamples || [],
+      };
+
+      const message = {
+        body: messagePayload,
+        contentType: "application/json",
+        subject: "StageC_MCTS_Simulation",
+      };
+
+      await sender.sendMessages(message);
+      console.log(`[HeparOrchestrator] Payload successfully emitted to Hepar Python Engine for ${protocolId}. Node.js thread released.`);
+    } catch (error) {
+      console.error(`[HeparOrchestrator] Failed to bridge to Python worker:`, error);
+      throw error;
+    } finally {
+      await sender.close();
+      await sbClient.close();
+    }
+  }
+
+  /**
+   * Executes Phase 3: Transforms the Python MCTS output into a sellable Attestation.
+   */
+  public processStageD(mctsSynthesisResult: FinalSynthesis) {
+    const stageD = new HeparStageD_Consensus();
+    const finalAttestation = stageD.generateAttestation(mctsSynthesisResult);
+
+    // This payload is now ready to be mapped into the Tier 3 Forensic Report PDF/Document
+    // and dispatched to the human operator for NDA client delivery.
+    return finalAttestation;
   }
 }
 

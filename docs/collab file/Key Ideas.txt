@@ -1,0 +1,5 @@
+Key Ideas
+1.	Decouple immediate revenue (Tier 3 forensic/NDA reports) from the long-term biological-fidelity organ set to enable a day-zero sales pipeline. — 05:56–07:22
+1.	Reframe Tier 3 forensic reports as product replacements for standard audits (dynamic defense vs. static snapshot) and map protocol capabilities directly to client pain points. — 03:33–04:14, 03:58–04:09
+1.	Use the four-stage analytical stack (Stage A: static forensics; B: bounded symbolic proving; C: multi-agent execution; D: consensus fusion/on-chain attestation) as verifiable commercial assurances that reduce liability and false positives. — 08:24–09:07, 09:29–10:18
+1.	Position on-chain attestation and cryptographic proofs as a competitive moat for liability reduction (valuable for insurers and institutional clients) rather than an internal technical artifact. — 08:01–08:17, 10:09–10:38
