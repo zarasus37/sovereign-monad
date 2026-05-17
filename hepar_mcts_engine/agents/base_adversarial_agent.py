@@ -1,148 +1,101 @@
-import asyncio
-import math
-import random
-import copy
-import inspect
-from typing import List, Dict, Any, Optional
+# BaseAdversarialAgent
 
-
-class MCTSNode:
-    def __init__(self, state: Dict[str, Any], parent: Optional['MCTSNode'] = None, action: Optional[str] = None):
-        self.state = state
-        self.parent = parent
-        self.action = action
-        self.children: List['MCTSNode'] = []
-        self.visits = 0
-        self.value = 0.0
-
-
-class BaseAdversarialAgent:
+def seed_threads(
+    self,
+    base_state: 'ContractState',
+    counterexamples: List[str],
+    attck_techniques: List[str],
+    n: int
+) -> List['ContractState']:
     """
-    Universal internal architecture for all Hepar agents.
-    Minimal safety hardening: per-worker state isolation, awaitable reward handling,
-    and guarded UCB1 computation.
+    Divergent seeding — three priority tiers:
+    1. Stage B counterexample seeds (proven math failures)
+    2. ATT&CK technique seeds (documented patterns)
+    3. Domain stochastic seeds (unexplored state space)
+    Zero-days live in tier 3 — tiers 1+2 calibrate MCTS globally.
     """
-    def __init__(self, domain_config: Dict[str, Any]):
-        self.domain_config = domain_config or {}
-        self.agent_id = self.__class__.__name__
+    seeds = []
 
-    async def run_campaign(self, initial_state: Dict[str, Any], n_threads: int = 10, time_limit_sec: int = 30) -> Dict[str, Any]:
-        """Runs N parallel reasoning threads using asynchronous MCTS."""
-        print(f"[{self.agent_id}] Initiating adversarial campaign with {n_threads} parallel MCTS threads.")
+    # Tier 1: Stage B counterexample seeds
+    for cex_id in counterexamples:
+        if len(seeds) >= n:
+            break
+        seed = base_state.copy()
+        seed.counterexample_ref = cex_id
+        seed.execution_step = 0
+        seeds.append(seed)
 
-        # Each worker must operate on an isolated copy of the initial state
-        tasks = [self._mcts_worker(copy.deepcopy(initial_state), time_limit_sec) for _ in range(n_threads)]
-        results = await asyncio.gather(*tasks)
+    # Tier 2: ATT&CK technique seeds
+    for technique_id in attck_techniques:
+        if len(seeds) >= n:
+            break
+        seed = base_state.copy()
+        seed.attck_technique_id = technique_id
+        seed.execution_step = 0
+        seeds.append(seed)
 
-        return self._synthesize_results(results)
+    # Tier 3: Domain stochastic (fill remaining slots)
+    while len(seeds) < n:
+        seeds.append(self.stochastic_seed(base_state))
 
-    async def _mcts_worker(self, initial_state: Dict[str, Any], time_limit_sec: int) -> MCTSNode:
-        # Isolate the root state per worker to avoid shared mutations
-        root = MCTSNode(state=copy.deepcopy(initial_state))
-        loop = asyncio.get_running_loop()
-        end_time = loop.time() + float(time_limit_sec)
+    return seeds[:n]
 
-        while loop.time() < end_time:
-            # 1. Select
-            node = self._select(root)
+def extract_best_path(self, root: 'MCTSNode') -> List['StepRecord']:
+    """
+    Walks highest-value path from root to terminal/leaf.
+    Produces the step_map that KillChainDetector indexes.
+    """
+    from .models.contract_state import StepRecord
+    path = []
+    node = root
+    step = 0
 
-            # 2. Expand
-            if not self._is_terminal(node.state):
-                node = self._expand(node)
+    while node.children:
+        best = max(node.children, key=lambda c: c.value)
+        if best.action and best.state:
+            path.append(StepRecord(
+                step=step,
+                action=best.action,
+                state_hash=self._hash_state(best.state),
+                reward=best.value / max(best.visits, 1),
+                execution_context=dict(best.state),
+                attck_technique_id=best.state.get(
+                    "attck_technique_id"
+                ),
+                estimated_value=best.state.get(
+                    "estimated_value", 0.0
+                )
+            ))
+        node = best
+        step += 1
 
-            # 3. Simulate
-            reward = await self._simulate(node.state)
+    return path
 
-            # 4. Backpropagate
-            self._backpropagate(node, float(reward))
+def _hash_state(self, state: Dict[str, Any]) -> str:
+    import hashlib, json
+    hashable = {
+        k: state[k] for k in [
+            "contract_address", "storage_slots",
+            "current_caller", "call_depth",
+            "balance", "execution_step"
+        ] if k in state
+    }
+    return hashlib.sha256(
+        json.dumps(hashable, sort_keys=True).encode()
+    ).hexdigest()[:16]
 
-            # Yield control back to event loop to ensure parallel thread concurrency
-            await asyncio.sleep(0)
-
-        return root
-
-    def _select(self, node: MCTSNode) -> MCTSNode:
-        current = node
-        while current.children:
-            current = max(current.children, key=self._ucb1)
-        return current
-
-    def _expand(self, node: MCTSNode) -> MCTSNode:
-        actions = self.get_possible_actions(node.state) or []
-        random.shuffle(actions)
-        for action in actions:
-            # Apply action to a deep copy of the state to avoid in-place mutations
-            new_state = self.apply_action(copy.deepcopy(node.state), action)
-            child = MCTSNode(state=new_state, parent=node, action=action)
-            node.children.append(child)
-        return random.choice(node.children) if node.children else node
-
-    async def _simulate(self, state: Dict[str, Any]) -> float:
-        """Stochastic simulation phase. Accepts sync or async reward_signal implementations."""
-        result = self.reward_signal(state)
-        if inspect.isawaitable(result):
-            return await result
-        return result
-
-    def _backpropagate(self, node: MCTSNode, reward: float):
-        current = node
-        while current is not None:
-            current.visits += 1
-            current.value += reward
-            current = current.parent
-
-    def _ucb1(self, node: MCTSNode, c: float = 1.414) -> float:
-        # If node has not been visited, prioritize it for exploration
-        if node.visits == 0:
-            return float('inf')
-
-        parent_visits = 1
-        if node.parent is not None:
-            parent_visits = max(1, node.parent.visits)
-
-        # Safe log computation and classic UCB1 formula
-        try:
-            exploration = c * math.sqrt(math.log(parent_visits) / node.visits)
-        except Exception:
-            exploration = 0.0
-
-        exploitation = node.value / node.visits
-        return exploitation + exploration
-
-    def _synthesize_results(self, roots: List[MCTSNode]) -> Dict[str, Any]:
-        """Synthesizes parallel tree searches into a typed finding with confidence."""
-        total_visits = sum(root.visits for root in roots)
-        total_value = sum(root.value for root in roots)
-
-        avg_reward = total_value / max(total_visits, 1)
-
-        # Allow agents to provide a domain-specific reward scaling value
-        reward_scale = float(self.domain_config.get('reward_scale', 100.0))
-
-        confidence = min(1.0, max(0.0, avg_reward / reward_scale))
-
-        return {
-            "agent": self.agent_id,
-            "confidence": confidence,
-            "total_paths_explored": int(total_visits),
-            "finding": "Counterexample Identified" if confidence > 0.75 else "Proved Safe / Unknown",
-            "metadata": {"avg_reward": avg_reward, "reward_scale": reward_scale}
-        }
-
-    def _is_terminal(self, state: Dict[str, Any]) -> bool:
-        return bool(state.get("is_terminal", False))
-
-    # --- Methods to be overridden by the specific Hepar Agents ---
-    def get_possible_actions(self, state: Dict[str, Any]) -> List[str]:
-        """Domain-specific state mutations."""
-        return []
-
-    def apply_action(self, state: Dict[str, Any], action: str) -> Dict[str, Any]:
-        """Applies mutation to generate child states."""
-        return state
-
-    def reward_signal(self, state: Dict[str, Any]) -> float:
-        """Agent specializes this to define what a successful exploit looks like.
-        May be either sync (return float) or async (return awaitable).
-        """
-        return 0.0
+def stochastic_seed(
+    self, base_state: 'ContractState'
+) -> 'ContractState':
+    """
+    Override in each domain agent for domain-specific
+    stochastic entry point generation.
+    Default: randomize caller address.
+    """
+    seed = base_state.copy()
+    import random
+    seed.current_caller = "0x" + "".join(
+        random.choices("0123456789abcdef", k=40)
+    )
+    seed.execution_step = 0
+    return seed

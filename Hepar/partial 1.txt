@@ -1,0 +1,96 @@
+partial 1
+
+1. What is Hepar?
+Within the Sovereign Monad Ecosystem, Hepar operates as the Forensic Intelligence Organ. Named after the biological liver, its operational standard is governed by "Biological Fidelity." It does not merely scan for keyword matches; it continuously filters, detoxifies, and transforms inbound DeFi protocol opportunities into purified intelligence so that only safe, viable leads reach the rest of the organism (like Cardia for capital allocation or Pneuma for execution).
+
+2. The Core Technical Update: The 4-Stage Analytical Stack
+Hepar was upgraded from a basic heuristic script (advisory tier) to a full, institutional-grade hepar-core integration. This update split its processing into a deterministic, four-stage pipeline:
+
+Stage A — Static Forensics: The deterministic prefilter. It performs fast bytecode privilege analysis, maps upgrade authorities, analyzes LP unlock timelines, and conducts wallet-graph taint detection.
+
+Stage B — Bounded Symbolic Proving: It performs targeted mathematical checks on critical smart contract invariants (authorization, accounting, reentrancy state). It outputs whether a contract is proved-safe, counterexample-found, or unknown/timeout.
+
+Stage C — Multi-Agent Monte Carlo Adversarial Execution: The deep simulation layer. Hepar now deploys 5 specialized parallel agents:
+
+Hepar-Privilege
+
+Hepar-Arithmetic
+
+Hepar-Reentrancy
+
+Hepar-Economic (MEV/frontrunning exploits)
+
+Hepar-State
+
+Stage D — Consensus Fusion & Attestation: The final synthesis layer. It aggregates findings, applies a rigorous adversarial co-inherence gate (using a 0.75 confidence threshold rubric), and generates an immutable, cryptographically verifiable On-Chain Attestation Payload.
+
+3. The "Azure Bridge" & Python MCTS Upgrade
+To solve a critical Node.js HTTP bottleneck, a major infrastructure service update was executed:
+
+Python MCTS Engine: Stage C (the compute-heavy multi-agent simulation) was isolated and migrated to a specialized Python worker to run deep Monte Carlo Tree Search (MCTS) algorithms in parallel.
+
+Azure Service Bus: The TypeScript orchestrator (handling Stages A, B, and D) now hands off the workload to the Python engine via Azure Service Bus. This completely decoupled the fast, lightweight telemetry routing from the heavy mathematical modeling, persisting all enriched data into Azure Cosmos DB.
+
+4. The Commercial & Revenue Pipeline Pivot (v2.4)
+Previously, Hepar was deadlocked because it was tied to the completion of the entire 6-organ ecosystem. The Revenue Architecture Revision executed a "hard pivot" to unblock Day-Zero revenue:
+
+Tier 3 Forensic Reports (NDA): Hepar’s technical outputs (Stages A-D) were repackaged into an immediate, sellable B2B product. It replaces static audits with dynamic, continuous monitoring and verifiable liability reduction.
+
+Decoupling: This Tier 3 product bypasses the long-term biological fidelity gates required for the broader ecosystem, allowing for immediate pilot sales and cash flow to fund the rest of the Sovereign Monad project (like Cardia).
+
+Jargon Stripping & Outreach: An automated Sales Pipeline Orchestrator was built. It pulls the cryptographically verified intelligence from Azure Cosmos DB, strictly strips out all internal biological nomenclature ("synapse routing," "organ set"), and translates it into plain B2B language. This is then fed directly to the autonomous AI Sales Agent for immediate pilot customer acquisition via Twitter/Discord.
+
+
+--------------------------------------------------------------------------------
+
+partial 2
+
+Hepar is the Forensic Intelligence Organ of the Sovereign Monad ecosystem. Named after the biological liver, its primary role is to act as a continuous, multi-modal risk filtration system for DeFi protocols and centralized exchanges.
+
+While traditional security companies provide a single, static "snapshot" audit that quickly becomes outdated, Hepar is designed to provide continuous, dynamic defense. It constantly ingests real-time data from platforms like DefiLlama, Snapshot, Tally, and direct on-chain telemetry to identify threats, validate opportunities, and deliver actionable intelligence before a protocol's Total Value Locked (TVL) can be drained.
+
+Here is a detailed breakdown of exactly what Hepar does during its auditing and risk-filtration process.
+
+The Four-Stage Forensic Analytical Stack
+Hepar processes inbound smart contracts and protocol data through a rigorous, automated pipeline designed to reduce false positives, save developer remediation time, and generate verifiable cryptographic proofs.
+
+Stage A — Static Forensics (Deterministic Prefilter)
+This is the initial filtration layer. It rapidly scans the protocol for known, deterministic risk vectors.
+
+Bytecode privilege analysis: Checking for dangerous administrative powers.
+
+Proxy and Upgrade mapping: Identifying who holds the keys to upgrade the contract and how those upgrades are authorized.
+
+Economic/Liquidity analysis: Tracking LP (Liquidity Provider) unlock concentration and timelines.
+
+Wallet Graph Taint: Analyzing associated wallets for behavioral anomalies or ties to known malicious actors.
+
+Stage B — Bounded Symbolic Proving
+Moving beyond simple pattern matching, this stage uses mathematical proofs to verify the protocol's safety.
+
+It formulates targeted symbolic constraints around critical smart contract invariants (e.g., authorization, upgradeability, accounting math, and reentrancy states).
+
+The engine attempts to mathematically prove that the contract is safe, or it generates a specific "counterexample" (a reproducible path showing exactly how an invariant can be broken).
+
+Stage C — Multi-Agent Monte Carlo Adversarial Execution
+If a protocol survives the math, it is subjected to simulated attacks. Hepar deploys five specialized AI agents that run parallel stochastic (randomized but guided) campaigns against the contract:
+
+Hepar-Privilege Agent: Attempts to escalate privileges and hijack admin roles.
+
+Hepar-Arithmetic Agent: Probes for integer overflows, underflows, and precision loss.
+
+Hepar-Reentrancy Agent: Attempts callback vulnerabilities to drain funds.
+
+Hepar-Economic Agent: Looks for MEV (Maximal Extractable Value) vulnerabilities, frontrunning, and flash-loan exploits.
+
+Hepar-State Agent: Tries to force the contract into inconsistent internal states.
+
+Stage D — Consensus Fusion & Attestation
+The final stage gathers all the intelligence from the previous three stages.
+
+Consensus Fusion: It aggregates the findings, normalizes the risk vectors, and assigns a final Risk Band/Decision (e.g., ALLOW, RESTRICTED, HARDBLOCK).
+
+On-Chain Attestation: This is Hepar's unique competitive moat. It generates an immutable cryptographic proof (an attestation payload) of the entire simulation and forensic run. This provides insurers, legal teams, and investors with verifiable, on-chain evidence that the protocol was rigorously tested at a specific point in time.
+
+Hepar's Role in the Broader Ecosystem
+Once Hepar completes its 4-stage filtration, it passes the "purified" intelligence to the rest of the Sovereign Monad ecosystem. For example, it tells Cardia (the capital allocation organ) exactly what the risk-adjusted limits should be, and it alerts Synapse (the routing organ) if an emergency hard-block needs to be instituted.

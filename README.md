@@ -1,3 +1,25 @@
+# Sovereign Monad (Unified Workspace)
+
+This is the consolidated repository for the Sovereign Monad ecosystem, incorporating both the **Phase 1a smart contracts (Hardhat)** and the **Monad-MEV Forensic Stack / HEPAR pipeline**.
+
+## Canonical Modules & Materials
+*   `contracts/` — Canonical Solidity smart contracts including `DoveCore.sol`.
+*   `hepar_mcts_engine/` — Institutional-grade multi-agent forensic simulation stack.
+*   `sovereign-site/` — High-performance user interface for ecosystem control.
+*   `scripts/` & `test/` — Hardhat contract build, preflight, deployment, and testing harnesses.
+
+---
+# Sovereign Monad (Unified Workspace)
+
+This is the consolidated repository for the Sovereign Monad ecosystem, incorporating both the **Phase 1a smart contracts (Hardhat)** and the **Monad-MEV Forensic Stack / HEPAR pipeline**.
+
+## Canonical Modules & Materials
+*   `contracts/` — Canonical Solidity smart contracts including `DoveCore.sol`.
+*   `hepar_mcts_engine/` — Institutional-grade multi-agent forensic simulation stack.
+*   `sovereign-site/` — High-performance user interface for ecosystem control.
+*   `scripts/` & `test/` — Hardhat contract build, preflight, deployment, and testing harnesses.
+
+---
 # Sovereign Repo Overview
 
 Sovereign is a cross-chain arbitrage and market-monitoring repository. The repo currently contains:
@@ -256,3 +278,5 @@ That document covers:
 - `monad-arb-bot`, `eth-arb-bot`, `bridge-exec-bot`
 
 Do not use those paths as the source of truth for canonical project status.
+
+

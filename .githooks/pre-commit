@@ -1,5 +1,0 @@
-#!/bin/sh
-set -e
-
-powershell -ExecutionPolicy Bypass -File ./scripts/refresh-status.ps1
-git add STATUS.md
